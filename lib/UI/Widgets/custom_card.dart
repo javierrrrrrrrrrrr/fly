@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   const CustomCard({
     Key? key,
-    required this.height,
+    this.height,
     required this.child,
   }) : super(key: key);
 
-  final double height;
+  final double? height;
   final Widget child;
 
   @override
