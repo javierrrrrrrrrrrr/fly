@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Pages/airline_details.dart';
 
 import '../Widgets/widgets.dart';
 
@@ -11,28 +10,36 @@ class HomePage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.1,
-          top: size.height * 0.05,
-          right: size.width * 0.1,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomCircleAvatar(),
-            SizedBox(
-              height: size.height * 0.2,
-            ),
-            HavanaAirWidget(
-              onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const AirlinePage())),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            const NoAirline(),
-          ],
+      child: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(
+            'assets/fondo.jpg',
+          ),
+          fit: BoxFit.fill,
+        )),
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.08,
+            top: size.height * 0.05,
+            right: size.width * 0.08,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomCircleAvatar(),
+              SizedBox(
+                height: size.height * 0.2,
+              ),
+              HavanaAirWidget(
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/airlines')),
+              SizedBox(
+                height: size.height * 0.02,
+              ),
+              const NoAirline(),
+            ],
+          ),
         ),
       ),
     ));
@@ -48,7 +55,7 @@ class NoAirline extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return CustomCard(
-      height: size.height * 0.12,
+      height: size.height * 0.11,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
@@ -78,7 +85,7 @@ class HavanaAirWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: CustomCard(
-        height: size.height * 0.12,
+        height: size.height * 0.11,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -88,7 +95,7 @@ class HavanaAirWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   image: const DecorationImage(
                     image: AssetImage(
-                      'assets/logo.jpg',
+                      'assets/logo.png',
                     ),
                     fit: BoxFit.fill,
                   )),
