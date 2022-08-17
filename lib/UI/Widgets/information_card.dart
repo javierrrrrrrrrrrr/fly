@@ -48,10 +48,37 @@ class InformationCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     vertical: size.height * 0.015,
                     horizontal: size.width * 0.03),
-                child: Text(
-                  description,
-                  style: const TextStyle(fontSize: 20),
-                ),
+                child: description.length > 10
+                    ? Stack(
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                description,
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.05,
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            right: 0,
+                            bottom: 0,
+                            child: Text(
+                              "Ver más",
+                              style:
+                                  TextStyle(color: kprimarycolor, fontSize: 18),
+                            ),
+                          )
+                        ],
+                      )
+                    : Text(
+                        description,
+                        style: const TextStyle(fontSize: 20),
+                      ),
               ),
             ),
             Text(buttonText,

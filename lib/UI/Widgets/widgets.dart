@@ -1,3 +1,5 @@
+export 'package:flutter/material.dart';
+
 export 'package:fly_cliente/UI/Widgets/custom_circle_avatar.dart';
 export 'package:fly_cliente/UI/Widgets/custom_card.dart';
 export 'package:fly_cliente/UI/Widgets/custom_circle_avatar.dart';
