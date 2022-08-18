@@ -11,198 +11,192 @@ class SearchFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        Container(
-          height: size.height * 0.7,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade100,
-            borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
-          ),
-          padding: const EdgeInsets.all(20),
-          child: Column(children: [
-            Row(
-              children: [
-                const TextSearch(texto: 'Flight Number'),
-                SizedBox(
-                  width: size.width * 0.1,
-                ),
-                const TextSearch(texto: 'Charter'),
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.01),
-                  child: SizedBox(
-                    width: size.width * 0.3,
-                    child: const Imputfield(hintext: "Flight Number"),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.01, left: size.width * 0.12),
-                  child: SizedBox(
-                    width: size.width * 0.3,
-                    //TODO: Hacer el DropDownMeny de aqui.
-                    child: const Imputfield(
-                      hintext: " All",
-                      suffixIcon: Icon(Icons.arrow_drop_down),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+    return Container(
+      height: size.height * 0.7,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 0.1,
+        ),
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
+      ),
+      padding: EdgeInsets.only(
+          left: size.width * 0.070,
+          right: size.width * 0.050,
+          top: size.width * 0.08),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+          children: [
+            const TextSearch(texto: 'Flight Number'),
             SizedBox(
-              height: size.height * 0.02,
+              width: size.width * 0.12,
             ),
-            Row(
-              children: const [
-                TextSearch(texto: 'Date from:/To:'),
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.01),
-                  child: SizedBox(
-                    width: size.width * 0.32,
-                    child: Imputfield(
-                      hintext: "From",
-                      //Aqui va el action del calendar
-                      prefixIcon: Icon(
-                        Icons.calendar_month,
-                        color: kprimarycolor,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: size.width * 0.07,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.01),
-                  child: SizedBox(
-                    width: size.width * 0.31,
-                    child: Imputfield(
-                      hintext: "To",
-                      prefixIcon: Icon(
-                        Icons.calendar_month,
-                        color: kprimarycolor,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Row(
-              children: const [
-                TextSearch(texto: 'Route'),
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.01),
-                  child: SizedBox(
-                    width: size.width * 0.3,
-                    child: const Imputfield(
-                      hintext: " From",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: size.width * 0.1,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.01),
-                  child: SizedBox(
-                    width: size.width * 0.3,
-                    child: const Imputfield(
-                      hintext: " To",
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Row(
-              children: const [
-                TextSearch(texto: 'Weekdays'),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.01,
-            ),
-            Row(
-              children: const [
-                WeekedDay(texto: "S"),
-                CustomSpacer(),
-                WeekedDay(texto: "M"),
-                CustomSpacer(),
-                WeekedDay(texto: "T"),
-                CustomSpacer(),
-                WeekedDay(texto: "W"),
-                CustomSpacer(),
-                WeekedDay(texto: "T"),
-                CustomSpacer(),
-                WeekedDay(texto: "F"),
-                CustomSpacer(),
-                WeekedDay(texto: "S"),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.035,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ColumnStatus1(),
-                SizedBox(
-                  width: size.width * 0.165,
-                ),
-                const ColumnaStatus2()
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.018,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.18),
-              child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/result');
-                },
-                height: size.height * 0.05,
-                minWidth: size.width * 0.01,
-                color: const Color.fromRGBO(1, 63, 148, 1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                    SizedBox(
-                      width: size.width * 0.02,
-                    ),
-                    const Text("Search",
-                        style: TextStyle(color: Colors.white, fontSize: 18)),
-                  ],
+            const TextSearch(texto: 'Charter'),
+          ],
+        ),
+        //Segunda Row
+        Padding(
+          padding: EdgeInsets.only(top: size.height * 0.01),
+          child: Row(
+            children: [
+              SizedBox(
+                width: size.width * 0.318,
+                child: const Imputfield(hintext: "Flight Number"),
+              ),
+              SizedBox(
+                width: size.width * 0.12,
+              ),
+              SizedBox(
+                width: size.width * 0.318,
+                //TODO: Hacer el DropDownMeny de aqui.
+                child: const Imputfield(
+                  hintext: " All",
+                  suffixIcon: Icon(Icons.arrow_drop_down),
                 ),
               ),
-            )
-          ]),
+            ],
+          ),
         ),
-      ],
+        //separador
+        SizedBox(
+          height: size.height * 0.02,
+        ),
+        const TextSearch(texto: 'Date from:/To:'),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.01),
+              child: SizedBox(
+                width: size.width * 0.318,
+                child: Imputfield(
+                  hintext: "From",
+                  //Aqui va el action del calendar
+                  prefixIcon: Icon(
+                    Icons.calendar_month,
+                    color: kprimarycolor,
+                  ),
+                ),
+              ),
+            ),
+            //separador
+            SizedBox(
+              width: size.width * 0.12,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.01),
+              child: SizedBox(
+                width: size.width * 0.318,
+                child: Imputfield(
+                  hintext: "To",
+                  prefixIcon: Icon(
+                    Icons.calendar_month,
+                    color: kprimarycolor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        //separador height
+        SizedBox(
+          height: size.height * 0.02,
+        ),
+        const TextSearch(texto: 'Route'),
+        //ROw
+        Padding(
+          padding: EdgeInsets.only(top: size.height * 0.01),
+          child: Row(
+            children: [
+              SizedBox(
+                width: size.width * 0.318,
+                child: const Imputfield(
+                  hintext: " From",
+                ),
+              ),
+              //separador width
+              SizedBox(
+                width: size.width * 0.11,
+              ),
+              SizedBox(
+                width: size.width * 0.318,
+                child: const Imputfield(
+                  hintext: " To",
+                ),
+              ),
+            ],
+          ),
+        ),
+        //separador height
+        SizedBox(
+          height: size.height * 0.02,
+        ),
+        const TextSearch(texto: 'Weekdays'),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        Row(
+          children: const [
+            WeekedDay(texto: "S"),
+            CustomSpacer(),
+            WeekedDay(texto: "M"),
+            CustomSpacer(),
+            WeekedDay(texto: "T"),
+            CustomSpacer(),
+            WeekedDay(texto: "W"),
+            CustomSpacer(),
+            WeekedDay(texto: "T"),
+            CustomSpacer(),
+            WeekedDay(texto: "F"),
+            CustomSpacer(),
+            WeekedDay(texto: "S"),
+          ],
+        ),
+        SizedBox(
+          height: size.height * 0.035,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ColumnStatus1(),
+            SizedBox(
+              width: size.width * 0.15,
+            ),
+            const ColumnaStatus2()
+          ],
+        ),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.18),
+          child: MaterialButton(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/result');
+            },
+            height: size.height * 0.05,
+            minWidth: size.width * 0.01,
+            color: const Color.fromRGBO(1, 63, 148, 1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                  size: 28,
+                ),
+                SizedBox(
+                  width: size.width * 0.02,
+                ),
+                const Text("Search",
+                    style: TextStyle(color: Colors.white, fontSize: 18)),
+              ],
+            ),
+          ),
+        )
+      ]),
     );
   }
 }
@@ -368,7 +362,7 @@ class ColumnaStatus2 extends StatelessWidget {
           height: size.height * 0.01,
         ),
         SizedBox(
-          width: size.width * 0.29,
+          width: size.width * 0.318,
           child: const Imputfield(
             hintext: " Gate Number",
           ),

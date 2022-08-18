@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/UI/Pages/airline_details.dart';
+import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
 import 'package:fly_cliente/UI/Pages/search_page.dart';
 import 'package:fly_cliente/UI/Pages/search_result.dart';
-import 'package:fly_cliente/UI/Pages/ver_mas_page.dart';
+import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
 
 import 'UI/Pages/home_page.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: ThemeData(fontFamily: 'LexendDeca'),
-      initialRoute: '/result',
+      initialRoute: '/home',
       routes: {
         '/home': (context) => const HomePage(),
         '/airlines': (context) => const AirlinePage(),
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
               title: '',
             ),
         '/result': (context) => const SearchResult(),
+        '/MoreDetailsFly': (context) => const MoreDetailsFly(),
       },
     );
   }

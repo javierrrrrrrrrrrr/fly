@@ -16,9 +16,7 @@ class SearchResult extends StatelessWidget {
           AppBackgroundSelection(
             body: SafeArea(
               child: Column(
-                children: const [
-                  CustomDropDown(),
-                ],
+                children: const [],
               ),
             ),
             padding: EdgeInsets.all(size.width * 0.06),
@@ -43,7 +41,12 @@ class SearchResult extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          Positioned(
+              left: size.width * 0.06,
+              top: size.height * 0.06,
+              child: SizedBox(
+                  width: size.width * 0.88, child: const CustomDropDown())),
         ],
       ),
     );
@@ -142,7 +145,9 @@ class CardFlyResumen extends StatelessWidget {
                           child: Text("More Details",
                               style: TextStyle(
                                   fontSize: 14, color: Colors.white))),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/MoreDetailsFly");
+                      }),
                 ],
               )
             ],

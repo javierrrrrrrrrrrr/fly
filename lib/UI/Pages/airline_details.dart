@@ -1,4 +1,4 @@
-import 'package:fly_cliente/UI/Pages/ver_mas_page.dart';
+import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
 
 import '../Widgets/app_background_selection.dart';
 import '../Widgets/custom_appbar_row.dart';

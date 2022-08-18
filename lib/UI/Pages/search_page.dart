@@ -16,9 +16,9 @@ class SearchPage extends StatelessWidget {
         body: SafeArea(
           child: AppBackgroundSelection(
               padding: EdgeInsets.only(
-                left: size.width * 0.08,
+                left: size.width * 0.06,
                 top: size.height * 0.05,
-                right: size.width * 0.08,
+                right: size.width * 0.06,
               ),
               customAppBar: const AppBarRow(),
               body: const Expanded(
