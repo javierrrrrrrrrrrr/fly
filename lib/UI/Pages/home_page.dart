@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../Widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,7 +25,9 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomCircleAvatar(),
+              const CustomCircleAvatar(
+                avatarRadius: 32,
+              ),
               SizedBox(
                 height: size.height * 0.2,
               ),

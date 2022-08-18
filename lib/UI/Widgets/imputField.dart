@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class imputfield extends StatelessWidget {
-  const imputfield({
+class Imputfield extends StatelessWidget {
+  const Imputfield({
     Key? key,
     required this.hintext,
     this.suffixIcon,

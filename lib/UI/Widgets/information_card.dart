@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 
 import 'widgets.dart';
@@ -9,11 +8,13 @@ class InformationCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.buttonText,
+    required this.verMasOnpressed,
   }) : super(key: key);
 
   final String title;
   final String description;
   final String buttonText;
+  final VoidCallback verMasOnpressed;
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +68,13 @@ class InformationCard extends StatelessWidget {
                           Positioned(
                             right: 0,
                             bottom: 0,
-                            child: Text(
-                              "Ver más",
-                              style:
-                                  TextStyle(color: kprimarycolor, fontSize: 18),
+                            child: GestureDetector(
+                              onTap: verMasOnpressed,
+                              child: Text(
+                                "Ver más",
+                                style: TextStyle(
+                                    color: kprimarycolor, fontSize: 18),
+                              ),
                             ),
                           )
                         ],

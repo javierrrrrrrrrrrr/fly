@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/custom_appbar_row.dart';
 
 class AppBackgroundSelection extends StatelessWidget {
   const AppBackgroundSelection({
     Key? key,
     required this.body,
+    this.customAppBar,
+    required this.padding,
   }) : super(key: key);
 
   final Widget body;
+  final Widget? customAppBar;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage(
-          'assets/fondo.jpg',
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage(
+              'assets/fondo.jpg',
+            ),
+            fit: BoxFit.fill,
+          )),
         ),
-        fit: BoxFit.fill,
-      )),
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.08,
-          top: size.height * 0.05,
-          right: size.width * 0.08,
+        Padding(
+          padding: padding,
+          child: Column(
+            children: [
+              customAppBar ?? Container(),
+              // Primera Row de la Vista esto es para guirnos despues en el disenno
+              body,
+            ],
+          ),
         ),
-        child: Column(
-          children: [
-            const AppBarRow(),
-            // Primera Row de la Vista esto es para guirnos despues en el disenno
-            body,
-          ],
-        ),
-      ),
+      ],
     );
   }
 }

@@ -11,7 +11,9 @@ class AppBarRow extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Row(
       children: [
-        const CustomCircleAvatar(),
+        const CustomCircleAvatar(
+          avatarRadius: 32,
+        ),
         const Spacer(),
         Icon(
           Icons.mark_email_unread_outlined,
