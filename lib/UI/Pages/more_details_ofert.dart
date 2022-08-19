@@ -2,8 +2,9 @@ import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/app_background_selection.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 
-class VerMasPage extends StatelessWidget {
-  const VerMasPage({Key? key, this.title, this.description, this.buttonText})
+class MoreDetailsOfert extends StatelessWidget {
+  const MoreDetailsOfert(
+      {Key? key, this.title, this.description, this.buttonText})
       : super(key: key);
 
   final String? title;
@@ -53,7 +54,7 @@ class VerMasPage extends StatelessWidget {
                     vertical: size.height * 0.02,
                   ),
                   child: Text(
-                    title!.toUpperCase(),
+                    title ?? '',
                     style: TextStyle(
                         color: kprimarycolor,
                         fontSize: 22,
@@ -77,7 +78,7 @@ class VerMasPage extends StatelessWidget {
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Text(
-                        description!,
+                        description ?? '',
                         style: const TextStyle(
                             fontSize: 20, color: Color.fromRGBO(95, 95, 95, 1)),
                       ),
@@ -88,7 +89,7 @@ class VerMasPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                     vertical: size.height * 0.02,
                   ),
-                  child: Text(buttonText!,
+                  child: Text(buttonText ?? '',
                       style: TextStyle(
                           fontSize: 14,
                           color: kprimarycolor,

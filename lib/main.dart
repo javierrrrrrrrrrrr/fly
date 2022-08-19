@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Pages/airline_details.dart';
+import 'package:fly_cliente/UI/Pages/airline_info.dart';
 import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
 import 'package:fly_cliente/UI/Pages/search_page.dart';
 import 'package:fly_cliente/UI/Pages/search_result.dart';
@@ -21,13 +21,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => const HomePage(),
-        '/airlines': (context) => const AirlinePage(),
+        '/airlines': (context) => const AirlineInfoPage(),
         '/search': (context) => const SearchPage(),
-        '/vermas': (context) => const VerMasPage(
-              buttonText: '',
-              description: '',
-              title: '',
-            ),
+        '/vermas': (context) => const MoreDetailsOfert(),
         '/result': (context) => const SearchResult(),
         '/MoreDetailsFly': (context) => const MoreDetailsFly(),
       },

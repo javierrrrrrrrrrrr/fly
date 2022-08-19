@@ -26,7 +26,7 @@ class SearchPage extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   child: Padding(
                     padding: EdgeInsets.only(top: 8),
-                    child: CustomDropDown(),
+                    child: CustomDropDown(expandido: true),
                   ),
                 ),
               )),

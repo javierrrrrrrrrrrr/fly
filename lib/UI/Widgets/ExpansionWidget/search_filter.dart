@@ -12,7 +12,7 @@ class SearchFilters extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.7,
+      height: size.height * 0.72,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,

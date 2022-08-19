@@ -4,8 +4,8 @@ import '../Widgets/app_background_selection.dart';
 import '../Widgets/custom_appbar_row.dart';
 import '../Widgets/widgets.dart';
 
-class AirlinePage extends StatelessWidget {
-  const AirlinePage({Key? key}) : super(key: key);
+class AirlineInfoPage extends StatelessWidget {
+  const AirlineInfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class AirlinePage extends StatelessWidget {
       body: SafeArea(
         child: AppBackgroundSelection(
           padding: EdgeInsets.only(
-            left: size.width * 0.08,
+            left: size.width * 0.06,
             top: size.height * 0.05,
-            right: size.width * 0.08,
+            right: size.width * 0.06,
           ),
           customAppBar: const AppBarRow(),
           body: BodyAirlineDetails(size: size),
@@ -50,7 +50,7 @@ class BodyAirlineDetails extends StatelessWidget {
             InformationCard(
               verMasOnpressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: ((context) => const VerMasPage(
+                    builder: ((context) => const MoreDetailsOfert(
                           buttonText:
                               'Especial Miercoles 3 de Agosto Mia SCr \$419',
                           description:
@@ -69,7 +69,7 @@ class BodyAirlineDetails extends StatelessWidget {
             InformationCard(
               verMasOnpressed: () =>
                   Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const VerMasPage(
+                builder: (context) => const MoreDetailsOfert(
                   buttonText: 'Especial Miercoles 3 de Agosto Mia SCr \$419',
                   description:
                       "Precio de \n Miami y Tampa\n Actualizado el 5 de julio \n\n Miami-Habana \$379 vuelo diario\n (Viernes 3147 \$349) (Doming...",

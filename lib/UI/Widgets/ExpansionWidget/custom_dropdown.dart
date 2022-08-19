@@ -8,13 +8,16 @@ import 'package:fly_cliente/UI/Widgets/ExpansionWidget/search_filter.dart';
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown({
     Key? key,
+    required this.expandido,
   }) : super(key: key);
+
+  final bool expandido;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ExpansionWidget(
-        initiallyExpanded: false,
+        initiallyExpanded: expandido,
         titleBuilder:
             (double animationValue, _, bool isExpaned, toogleFunction) {
           return InkWell(
