@@ -16,7 +16,7 @@ class AirlineInfoPage extends StatelessWidget {
         child: AppBackgroundSelection(
           padding: EdgeInsets.only(
             left: size.width * 0.06,
-            top: size.height * 0.05,
+            top: size.height * 0.02,
             right: size.width * 0.06,
           ),
           customAppBar: const AppBarRow(),
@@ -43,7 +43,7 @@ class BodyAirlineDetails extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: size.height * 0.07,
+              height: size.height * 0.03,
             ),
             //TODO: Ver q aqui van las cartas estas por listViews desde el api..
 
