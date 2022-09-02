@@ -47,33 +47,27 @@ class MoreDetailsOfert extends StatelessWidget {
             width: double.infinity,
             margin: EdgeInsets.only(top: size.height * 0.05),
             decoration: const BoxDecoration(color: Colors.white),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: size.height * 0.02,
-                  ),
-                  child: Text(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: size.height * 0.02,
+                left: size.width * 0.08,
+                right: size.width * 0.08,
+              ),
+              child: Column(
+                children: [
+                  Text(
                     title ?? '',
                     style: TextStyle(
                         color: kprimarycolor,
                         fontSize: 22,
                         fontWeight: FontWeight.bold),
                   ),
-                ),
-                Container(
-                  height: 2,
-                  width: size.width * 0.8,
-                  color: Colors.grey,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * 0.02,
-                    left: size.width * 0.08,
-                    right: size.width * 0.08,
+                  Container(
+                    height: 2,
+                    width: size.width * 0.8,
+                    color: Colors.grey,
                   ),
-                  //TODO: Despues ver como se comporta el texto dentro del campo de abajo.
-                  child: SizedBox(
+                  SizedBox(
                     height: size.height * 0.63,
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
@@ -84,18 +78,18 @@ class MoreDetailsOfert extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: size.height * 0.02,
-                  ),
-                  child: Text(buttonText ?? '',
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: kprimarycolor,
-                          fontWeight: FontWeight.bold)),
-                )
-              ],
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: size.height * 0.02,
+                    ),
+                    child: Text(buttonText ?? '',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: kprimarycolor,
+                            fontWeight: FontWeight.bold)),
+                  )
+                ],
+              ),
             ),
           )),
         ),
