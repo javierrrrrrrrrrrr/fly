@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:http/http.dart' as http;
@@ -9,15 +11,19 @@ class FlightProvider extends ChangeNotifier {
 
   List<Flight> flights = [];
 
-  Future<String> getFlights() async {
+  Future<bool> getFlights() async {
     var request = http.Request('GET', Uri.parse('$ip/flights'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String respuesta = await response.stream.bytesToString();
+      final List<dynamic> decodedResp = json.decode(respuesta);
+      flights.clear();
+      for (int i = 0; i < decodedResp.length; i++) {
+        flights.add(Flight.fromMap(decodedResp[i]));
+      }
+      return true;
     } else {
-      print(response.reasonPhrase);
+      return false;
     }
-
-    return "";
   }
 }

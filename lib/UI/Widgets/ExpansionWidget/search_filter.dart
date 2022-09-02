@@ -176,8 +176,24 @@ class SearchFilters extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             onPressed: () async {
-              await flightProvaider.getFlights();
-              Navigator.of(context).pushNamed('/result');
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  });
+
+              bool respuesta = await flightProvaider.getFlights();
+
+              if (respuesta == true) {
+                Navigator.pop(context);
+                Navigator.of(context).pushNamed('/result');
+              } else {
+                /*Mostrar al Usaqrio el error */
+                Navigator.pop(context);
+              }
             },
             height: size.height * 0.05,
             minWidth: size.width * 0.01,

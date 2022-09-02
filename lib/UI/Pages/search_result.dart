@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../Business_logic/Provaiders/flight_provider.dart';
 import '../Widgets/ExpansionWidget/custom_dropdown.dart';
 import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
 
@@ -9,6 +11,7 @@ class SearchResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final flightProvaider = Provider.of<FlightProvider>(context);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -31,11 +34,11 @@ class SearchResult extends StatelessWidget {
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  itemCount: 10,
+                  itemCount: flightProvaider.flights.length,
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: EdgeInsets.only(bottom: size.height * 0.03),
-                        child: const CardFlightDetails());
+                        child: CardFlightDetails(index: index));
                   },
                 ),
               )

@@ -1,16 +1,36 @@
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/app_background_selection.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
+import '../../Business_logic/Provaiders/flight_provider.dart';
 import '../Widgets/fligthDetailWidgets/flight_details_header.dart';
 import '../Widgets/fligthDetailWidgets/line.dart';
 
 class MoreDetailsFly extends StatelessWidget {
-  const MoreDetailsFly({Key? key}) : super(key: key);
+  const MoreDetailsFly({Key? key, this.index}) : super(key: key);
+
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
+    final int index = ModalRoute.of(context)?.settings.arguments as int;
     final size = MediaQuery.of(context).size;
+    final flightProvaider = Provider.of<FlightProvider>(context);
+
+    /* from*/
+    final String base = flightProvaider.flights[index].from;
+    final String nombreCiudadEntero =
+        flightProvaider.flights[index].from.substring(5, base.length);
+    final String nombreCiudadReducido =
+        flightProvaider.flights[index].from.substring(0, 3);
+/* to*/
+    final String base1 = flightProvaider.flights[index].to;
+    final String nombreCiudadEntero1 =
+        flightProvaider.flights[index].to.substring(5, base1.length);
+    final String nombreCiudadReducido1 =
+        flightProvaider.flights[index].to.substring(0, 3);
+
     return Scaffold(
       body: SafeArea(
           child: AppBackgroundSelection(
@@ -59,7 +79,8 @@ class MoreDetailsFly extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        FlightDetailsHeader(size: size),
+                        FlightDetailsHeader(
+                            flightProvaider: flightProvaider.flights[index]),
                         const Line(),
                         Padding(
                           padding: EdgeInsets.only(
@@ -70,12 +91,24 @@ class MoreDetailsFly extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
-                                children: const [
-                                  Text('Havana',
-                                      style: TextStyle(fontSize: 12)),
-                                  Text('Hav', style: TextStyle(fontSize: 23)),
-                                  Text('9:50 AM',
-                                      style: TextStyle(fontSize: 16)),
+                                children: [
+                                  Text(nombreCiudadEntero,
+                                      style: const TextStyle(fontSize: 12)),
+                                  Text(nombreCiudadReducido,
+                                      style: const TextStyle(fontSize: 23)),
+                                  Row(
+                                    children: [
+                                      Text(
+                                          flightProvaider
+                                              .flights[index].departure
+                                              .trim()
+                                              .substring(0, 4),
+                                          style: const TextStyle(fontSize: 16)),
+                                      Text(
+                                          " ${flightProvaider.flights[index].departure.trim().substring(flightProvaider.flights[index].departure.length - 2, flightProvaider.flights[index].departure.length)}",
+                                          style: const TextStyle(fontSize: 16)),
+                                    ],
+                                  ),
                                 ],
                               ),
                               const VerticalDiscontinuosLine(),
@@ -84,16 +117,28 @@ class MoreDetailsFly extends StatelessWidget {
                                   SizedBox(
                                     height: size.height * 0.015,
                                   ),
-                                  const Text('Terminal 2')
+                                  Text(flightProvaider.flights[index].gate)
                                 ],
                               ),
                               const VerticalDiscontinuosLine(),
                               Column(
-                                children: const [
-                                  Text('Miami', style: TextStyle(fontSize: 12)),
-                                  Text('Mia', style: TextStyle(fontSize: 23)),
-                                  Text('10:55 AM',
-                                      style: TextStyle(fontSize: 16)),
+                                children: [
+                                  Text(nombreCiudadEntero1,
+                                      style: const TextStyle(fontSize: 12)),
+                                  Text(nombreCiudadReducido1,
+                                      style: const TextStyle(fontSize: 23)),
+                                  Row(
+                                    children: [
+                                      Text(
+                                          flightProvaider.flights[index].arrival
+                                              .trim()
+                                              .substring(0, 4),
+                                          style: const TextStyle(fontSize: 16)),
+                                      Text(
+                                          " ${flightProvaider.flights[index].arrival.trim().substring(flightProvaider.flights[index].arrival.length - 2, flightProvaider.flights[index].arrival.length)}",
+                                          style: const TextStyle(fontSize: 16)),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],
@@ -109,11 +154,13 @@ class MoreDetailsFly extends StatelessWidget {
                               top: size.height * 0.02,
                               bottom: size.height * 0.02),
                           child: Row(
-                            children: const [
-                              Text("Check In ", style: TextStyle(fontSize: 20)),
-                              Text("5:50 AM",
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.grey)),
+                            children: [
+                              Text(
+                                  "Check in ${flightProvaider.flights[index].departure.trim().substring(0, 4)}",
+                                  style: const TextStyle(fontSize: 20)),
+                              Text(
+                                  " ${flightProvaider.flights[index].departure.trim().substring(flightProvaider.flights[index].departure.length - 2, flightProvaider.flights[index].departure.length)}",
+                                  style: const TextStyle(fontSize: 20)),
                             ],
                           ),
                         ),
@@ -123,6 +170,7 @@ class MoreDetailsFly extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              /**Faltan datos en la consulta */
                               Column(
                                 children: [
                                   const Text(
