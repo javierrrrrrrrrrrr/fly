@@ -48,8 +48,6 @@ class BodyAirlineDetails extends StatelessWidget {
             SizedBox(
               height: size.height * 0.03,
             ),
-            //TODO: Ver q aqui van las cartas estas por listViews desde el api..
-
             SizedBox(
               height: size.height - size.height * 0.14,
               child: ListView.builder(
