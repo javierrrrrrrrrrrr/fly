@@ -26,7 +26,6 @@ class NewsProvider extends ChangeNotifier {
 
       return true;
     } else {
-      print(response.reasonPhrase);
       return false;
     }
   }

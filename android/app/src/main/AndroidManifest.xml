@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fly_cliente">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="fly_cliente"
         android:name="${applicationName}"
