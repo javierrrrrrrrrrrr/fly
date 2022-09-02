@@ -185,7 +185,8 @@ class SearchFilters extends StatelessWidget {
                     );
                   });
 
-              bool respuesta = await flightProvaider.getFlights();
+              await flightProvaider.getFlight();
+              var respuesta = flightProvaider.respuesta;
 
               if (respuesta == true) {
                 Navigator.pop(context);
