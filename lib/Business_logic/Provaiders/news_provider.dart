@@ -10,6 +10,7 @@ class NewsProvider extends ChangeNotifier {
   String token = '';
 
   List<News> news = [];
+  bool respuesta = false;
 
   Future<bool> getNews() async {
     var request = http.Request('GET', Uri.parse('$ip/news'));
@@ -28,5 +29,18 @@ class NewsProvider extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  Future<List<News>> getNewsList() async {
+    news.clear();
+    var response = await http.get(Uri.parse('$ip/news'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> decodedResp = json.decode(response.body);
+      decodedResp.map((item) => news.add(News.fromMap(item))).toList();
+      respuesta = true;
+    }
+
+    return news;
   }
 }

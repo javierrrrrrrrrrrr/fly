@@ -11,6 +11,8 @@ class FlightProvider extends ChangeNotifier {
 
   List<Flight> flights = [];
 
+  bool respuesta = false;
+
   Future<bool> getFlights() async {
     var request = http.Request('GET', Uri.parse('$ip/flights'));
     http.StreamedResponse response = await request.send();
@@ -25,5 +27,21 @@ class FlightProvider extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  Future<List<Flight>> getFlight() async {
+    flights.clear();
+    var response = await http.get(Uri.parse('$ip/flights'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> decodedResp = json.decode(response.body);
+      decodedResp.map((item) {
+        flights.add(Flight.fromMap(item));
+      }).toList();
+
+      respuesta = true;
+    }
+
+    return flights;
   }
 }

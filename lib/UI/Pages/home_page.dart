@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<NewsProvider>(context);
+    final newsProvider = Provider.of<NewsProvider>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -42,7 +42,9 @@ class HomePage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       );
                     });
-                bool respuesta = await userProvider.getNews();
+                await newsProvider.getNewsList();
+                var respuesta = newsProvider.respuesta;
+
                 if (respuesta == true) {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/airlines');
