@@ -36,8 +36,11 @@ class CustomDrawer extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.03,
               ),
-              const CustomRowDrawer(
-                  icono: Icons.house, texto: "House", tamnofuente: 18),
+              CustomRowDrawer(
+                  onPressed: () => Navigator.of(context).pushNamed('/home'),
+                  icono: Icons.house,
+                  texto: "Home",
+                  tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
                   onPressed: () => Navigator.of(context).pushNamed('/search'),

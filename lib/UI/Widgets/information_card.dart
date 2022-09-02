@@ -85,11 +85,13 @@ class InformationCard extends StatelessWidget {
                       ),
               ),
             ),
-            Text(buttonText,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: kprimarycolor,
-                    fontWeight: FontWeight.bold))
+            Center(
+              child: Text(buttonText,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: kprimarycolor,
+                      fontWeight: FontWeight.bold)),
+            )
           ],
         ),
       )),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Constants/contants.dart';
 import '../imputField.dart';
 
@@ -10,6 +11,7 @@ class SearchFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flightProvaider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.72,
@@ -173,7 +175,8 @@ class SearchFilters extends StatelessWidget {
           child: MaterialButton(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            onPressed: () {
+            onPressed: () async {
+              await flightProvaider.getFlights();
               Navigator.of(context).pushNamed('/result');
             },
             height: size.height * 0.05,

@@ -1,4 +1,6 @@
+import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
 import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/app_background_selection.dart';
 import '../Widgets/custom_appbar_row.dart';
@@ -37,6 +39,7 @@ class BodyAirlineDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<NewsProvider>(context);
     return Expanded(
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -47,49 +50,31 @@ class BodyAirlineDetails extends StatelessWidget {
             ),
             //TODO: Ver q aqui van las cartas estas por listViews desde el api..
 
-            InformationCard(
-              verMasOnpressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: ((context) => const MoreDetailsOfert(
-                          buttonText:
-                              'Especial Miercoles 3 de Agosto Mia SCr \$419',
-                          description:
-                              "**Importante, por favor recordarle a los pasajeros llenar 24h antes de su vuelo, el formulario de viaje en la pagina de XD",
-                          title: 'Super Oferta',
-                        ))),
+            SizedBox(
+              height: size.height - size.height * 0.14,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: userProvider.news.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: size.height * 0.03),
+                    child: InformationCard(
+                      verMasOnpressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: ((context) => MoreDetailsOfert(
+                                  buttonText: 'Miranda Charters',
+                                  description:
+                                      userProvider.news[index].description,
+                                  title: userProvider.news[index].title,
+                                ))),
+                      ),
+                      buttonText: 'Miranda Charters',
+                      description: userProvider.news[index].description,
+                      title: userProvider.news[index].title,
+                    ),
+                  );
+                },
               ),
-              buttonText: 'Especial Miercoles 3 de Agosto Mia SCr \$419',
-              description:
-                  "**Importante, por favor recordarle a los pasajeros llenar 24h antes de su vuelo, el formulario de viaje en la pagina de XD",
-              title: 'Super Oferta',
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            InformationCard(
-              verMasOnpressed: () =>
-                  Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const MoreDetailsOfert(
-                  buttonText: 'Especial Miercoles 3 de Agosto Mia SCr \$419',
-                  description:
-                      "Precio de \n Miami y Tampa\n Actualizado el 5 de julio \n\n Miami-Habana \$379 vuelo diario\n (Viernes 3147 \$349) (Doming...",
-                  title: 'Informacion General',
-                ),
-              )),
-              buttonText: 'Especial Miercoles 3 de Agosto Mia SCr \$419',
-              description:
-                  "Precio de \n Miami y Tampa\n Actualizado el 5 de julio \n\n Miami-Habana \$379 vuelo diario\n (Viernes 3147 \$349) (Doming...",
-              title: 'Informacion General',
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            InformationCard(
-              verMasOnpressed: () {},
-              buttonText: 'Especial Miercoles 3 de Agosto Mia SCr \$419',
-              description:
-                  "**Importante, por favor recordarle a los pasajeros llenar 24h antes de su vuelo, el formulario de viaje en la pagina de XD",
-              title: 'Super Oferta',
             ),
           ],
         ),

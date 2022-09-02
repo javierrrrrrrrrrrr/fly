@@ -1,3 +1,6 @@
+import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../Widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,6 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<NewsProvider>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -31,9 +35,24 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.2,
               ),
-              HavanaAirWidget(
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/airlines')),
+              HavanaAirWidget(onPressed: () async {
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    });
+                bool respuesta = await userProvider.getNews();
+                if (respuesta == true) {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/airlines');
+                } else {
+                  Navigator.pop(context);
+                  print("error");
+                }
+              }),
               SizedBox(
                 height: size.height * 0.02,
               ),
