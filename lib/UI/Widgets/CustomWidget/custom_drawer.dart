@@ -1,6 +1,6 @@
-import 'package:fly_cliente/UI/Widgets/separador.dart';
+import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 
-import 'widgets.dart';
+import '../widgets.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({

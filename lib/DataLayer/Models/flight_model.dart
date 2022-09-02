@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromMap(jsonString);
-
 import 'dart:convert';
 
 class Flight {

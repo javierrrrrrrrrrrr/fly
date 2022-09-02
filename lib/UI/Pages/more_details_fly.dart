@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/flight_provider.dart';
 import '../Widgets/fligthDetailWidgets/flight_details_header.dart';
-import '../Widgets/fligthDetailWidgets/line.dart';
+import '../Widgets/SeparationWidget/line.dart';
 
 class MoreDetailsFly extends StatelessWidget {
   const MoreDetailsFly({Key? key, this.index}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
 import 'package:provider/provider.dart';
 
 import '../Widgets/app_background_selection.dart';
-import '../Widgets/custom_appbar_row.dart';
+import '../Widgets/CustomWidget/custom_appbar_row.dart';
 import '../Widgets/widgets.dart';
 
 class AirlineInfoPage extends StatelessWidget {
@@ -41,41 +41,34 @@ class BodyAirlineDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<NewsProvider>(context);
     return Expanded(
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            SizedBox(
-              height: size.height * 0.03,
-            ),
-            SizedBox(
-              height: size.height - size.height * 0.14,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: userProvider.news.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: size.height * 0.03),
-                    child: InformationCard(
-                      verMasOnpressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: ((context) => MoreDetailsOfert(
-                                  buttonText: 'Miranda Charters',
-                                  description:
-                                      userProvider.news[index].description,
-                                  title: userProvider.news[index].title,
-                                ))),
-                      ),
-                      buttonText: 'Miranda Charters',
-                      description: userProvider.news[index].description,
-                      title: userProvider.news[index].title,
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: userProvider.news.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: EdgeInsets.only(bottom: size.height * 0.03),
+                  child: InformationCard(
+                    verMasOnpressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: ((context) => MoreDetailsOfert(
+                                buttonText: 'Miranda Charters',
+                                description:
+                                    userProvider.news[index].description,
+                                title: userProvider.news[index].title,
+                              ))),
                     ),
-                  );
-                },
-              ),
+                    buttonText: 'Miranda Charters',
+                    description: userProvider.news[index].description,
+                    title: userProvider.news[index].title,
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/line.dart';
+import 'package:fly_cliente/UI/Widgets/SeparationWidget/line.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';
+import '../SeparationWidget/line.dart';
 import 'flight_details_body.dart';
 import 'flight_details_footer.dart';
 import 'flight_details_header.dart';
