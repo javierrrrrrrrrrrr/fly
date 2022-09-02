@@ -20,9 +20,13 @@ class CustomDrawer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.grey,
+                  GestureDetector(
+                    onTap: () => Scaffold.of(context).closeDrawer(),
+                    child: const CircleAvatar(
+                      backgroundImage: AssetImage('assets/fondo.png'),
+                      radius: 30,
+                      backgroundColor: Colors.grey,
+                    ),
                   ),
                   SizedBox(
                     width: size.width * 0.03,

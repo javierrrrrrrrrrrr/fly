@@ -18,10 +18,15 @@ class CustomCircleAvatar extends StatelessWidget {
           )
         ],
       ),
-      child: const CircleAvatar(
-        backgroundColor: Colors.white,
-        radius: 25,
-        backgroundImage: AssetImage('assets/fondo.png'),
+      child: GestureDetector(
+        onTap: (() {
+          Scaffold.of(context).openDrawer();
+        }),
+        child: const CircleAvatar(
+          backgroundColor: Colors.white,
+          radius: 25,
+          backgroundImage: AssetImage('assets/fondo.png'),
+        ),
       ),
     );
   }
