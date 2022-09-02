@@ -21,6 +21,7 @@ class CustomCircleAvatar extends StatelessWidget {
       child: const CircleAvatar(
         backgroundColor: Colors.white,
         radius: 25,
+        backgroundImage: AssetImage('assets/fondo.png'),
       ),
     );
   }
