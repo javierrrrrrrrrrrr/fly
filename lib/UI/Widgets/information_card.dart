@@ -29,7 +29,7 @@ class InformationCard extends StatelessWidget {
           children: [
             Text(title.toUpperCase(),
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: kprimarycolor,
                 )),
@@ -41,7 +41,7 @@ class InformationCard extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 1,
-                  color: const Color.fromRGBO(70, 70, 70, 0.2),
+                  color: const Color.fromRGBO(70, 70, 70, 0.1),
                 ),
                 borderRadius: BorderRadius.circular(5),
               ),

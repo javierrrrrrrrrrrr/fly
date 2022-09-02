@@ -32,6 +32,7 @@ class MoreDetailsFly extends StatelessWidget {
         flightProvaider.flights[index].to.substring(0, 3);
 
     return Scaffold(
+      drawer: const CustomDrawer(),
       body: SafeArea(
           child: AppBackgroundSelection(
         customAppBar: Padding(
@@ -49,9 +50,7 @@ class MoreDetailsFly extends StatelessWidget {
                   color: kprimarycolor,
                 ),
               ),
-              const CustomCircleAvatar(
-                avatarRadius: 28,
-              )
+              const CustomCircleAvatar()
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/flight_provider.dart';
@@ -13,6 +14,7 @@ class SearchResult extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final flightProvaider = Provider.of<FlightProvider>(context);
     return Scaffold(
+      drawer: const CustomDrawer(),
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(

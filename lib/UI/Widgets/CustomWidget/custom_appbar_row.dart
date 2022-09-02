@@ -13,9 +13,7 @@ class AppBarRow extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
-          const CustomCircleAvatar(
-            avatarRadius: 25,
-          ),
+          const CustomCircleAvatar(),
           const Spacer(),
           Icon(
             Icons.mark_email_unread_outlined,

@@ -36,9 +36,7 @@ class MoreDetailsOfert extends StatelessWidget {
                     color: kprimarycolor,
                   ),
                 ),
-                const CustomCircleAvatar(
-                  avatarRadius: 28,
-                )
+                const CustomCircleAvatar()
               ],
             ),
           ),

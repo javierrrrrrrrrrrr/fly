@@ -29,9 +29,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomCircleAvatar(
-                avatarRadius: 32,
-              ),
+              const CustomCircleAvatar(),
               SizedBox(
                 height: size.height * 0.2,
               ),
