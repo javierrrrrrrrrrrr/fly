@@ -1,3 +1,4 @@
+import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final newsProvider = Provider.of<NewsProvider>(context);
+    final bookProvider = Provider.of<BookFlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -42,10 +44,11 @@ class HomePage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       );
                     });
+                bool respuesta2 = await bookProvider.refillFieldBookFlights();
                 await newsProvider.getNewsList();
                 var respuesta = newsProvider.respuesta;
 
-                if (respuesta == true) {
+                if (respuesta == true && respuesta2 == true) {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/airlines');
                 } else {

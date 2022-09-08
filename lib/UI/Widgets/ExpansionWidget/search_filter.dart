@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Constants/contants.dart';
@@ -19,6 +20,7 @@ class _SearchFiltersState extends State<SearchFilters> {
   @override
   Widget build(BuildContext context) {
     final flightProvaider = Provider.of<FlightProvider>(context);
+    final bookFlightProvider = Provider.of<BookFlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.72,
@@ -53,7 +55,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                   width: size.width * 0.318,
                   child: CustomDropDown(
                     hintext: 'Flight Number',
-                    items: flightProvaider.flightNumberList,
+                    items: bookFlightProvider.flightNumber,
                     onChanged: (value) =>
                         flightProvaider.flightNumber = value.toString(),
                     onSaved: (value) =>
@@ -67,7 +69,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 //TODO: Hacer el DropDownMeny de aqui.
                 child: CustomDropDown(
                   hintext: "All",
-                  items: flightProvaider.charterList,
+                  items: bookFlightProvider.charter,
                   onChanged: (value) {
                     flightProvaider.selectedCharter = value.toString();
                   },
@@ -96,7 +98,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                     DateTime? piked = await showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
-                        firstDate: DateTime(2022),
+                        firstDate: DateTime.now(),
                         lastDate: DateTime(2027));
 
                     if (piked != null) {
@@ -168,7 +170,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 width: size.width * 0.318,
                 child: CustomDropDown(
                   hintext: 'From',
-                  items: flightProvaider.routeFromList,
+                  items: bookFlightProvider.destination,
                   onChanged: (value) =>
                       flightProvaider.selectedRouteFrom = value.toString(),
                   onSaved: (value) =>
@@ -183,7 +185,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 width: size.width * 0.318,
                 child: CustomDropDown(
                   hintext: 'To',
-                  items: flightProvaider.routeToList,
+                  items: bookFlightProvider.destination,
                   onChanged: (value) =>
                       flightProvaider.selectedRouteTo = value.toString(),
                   onSaved: (value) =>
@@ -240,6 +242,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 flightProvaider.cleanValues();
 
                 Navigator.pop(context);
+                flightProvaider.cleanIsselectedDays();
                 Navigator.of(context).pushNamed('/result');
               } else {
                 /*Mostrar al Usaqrio el error */
@@ -306,14 +309,20 @@ class WeekDays extends StatelessWidget {
   }
 }
 
-class ColumnStatus1 extends StatelessWidget {
+class ColumnStatus1 extends StatefulWidget {
   const ColumnStatus1({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<ColumnStatus1> createState() => _ColumnStatus1State();
+}
+
+class _ColumnStatus1State extends State<ColumnStatus1> {
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final flightProvaider = Provider.of<FlightProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -321,58 +330,59 @@ class ColumnStatus1 extends StatelessWidget {
         SizedBox(
           height: size.height * 0.004,
         ),
-        Row(
-          children: [
-            CheckStatus(size: size),
-            SizedBox(
-              width: size.width * 0.015,
-            ),
-            const TextSearch(texto: "Open"),
-            SizedBox(
-              width: size.width * 0.010,
-            ),
-            const Icon(
-              Icons.check_circle,
-              size: 18,
-              color: Colors.green,
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: size.height * 0.004,
-                ),
-                Row(
-                  children: [
-                    CheckStatus(size: size),
-                    SizedBox(
-                      width: size.width * 0.015,
-                    ),
-                    const TextSearch(texto: "Closed"),
-                    SizedBox(
-                      width: size.width * 0.010,
-                    ),
-                    const Icon(
-                      Icons.cancel,
-                      size: 18,
-                      color: Colors.red,
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+        flightProvaider.selectedStatus == true
+            ? Row(
+                children: [
+                  CheckStatus(size: size),
+                  SizedBox(
+                    width: size.width * 0.015,
+                  ),
+                  const TextSearch(texto: "Open"),
+                  SizedBox(
+                    width: size.width * 0.010,
+                  ),
+                  const Icon(
+                    Icons.check_circle,
+                    size: 18,
+                    color: Colors.green,
+                  )
+                ],
+              )
+            : Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.004,
+                      ),
+                      Row(
+                        children: [
+                          CheckStatus(size: size),
+                          SizedBox(
+                            width: size.width * 0.015,
+                          ),
+                          const TextSearch(texto: "Closed"),
+                          SizedBox(
+                            width: size.width * 0.010,
+                          ),
+                          const Icon(
+                            Icons.cancel,
+                            size: 18,
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
       ],
     );
   }
 }
 
-class CheckStatus extends StatelessWidget {
+class CheckStatus extends StatefulWidget {
   const CheckStatus({
     Key? key,
     required this.size,
@@ -381,7 +391,13 @@ class CheckStatus extends StatelessWidget {
   final Size size;
 
   @override
+  State<CheckStatus> createState() => _CheckStatusState();
+}
+
+class _CheckStatusState extends State<CheckStatus> {
+  @override
   Widget build(BuildContext context) {
+    final flightProvaider = Provider.of<FlightProvider>(context);
     return Container(
       decoration: BoxDecoration(
           border:
@@ -389,8 +405,21 @@ class CheckStatus extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(6),
           )),
-      height: size.height * 0.030,
-      width: size.width * 0.06,
+      height: widget.size.height * 0.030,
+      width: widget.size.width * 0.06,
+      child: Checkbox(
+        value: flightProvaider.selectedStatus,
+        onChanged: (value) {
+          if (value == true) {
+            flightProvaider.changeValorselectedStatus(true);
+          }
+          if (value == false) {
+            flightProvaider.changeValorselectedStatus(false);
+          }
+
+          // valor = value!;
+        },
+      ),
     );
   }
 }
@@ -434,6 +463,7 @@ class ColumnaStatus2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flightProvaider = Provider.of<FlightProvider>(context);
+    final bookFlightProvider = Provider.of<BookFlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,7 +476,7 @@ class ColumnaStatus2 extends StatelessWidget {
           width: size.width * 0.318,
           child: CustomDropDown(
             hintext: 'Gate Number',
-            items: flightProvaider.gateList,
+            items: bookFlightProvider.gate,
             onChanged: (value) =>
                 flightProvaider.selectedGate = value.toString(),
             onSaved: (value) => flightProvaider.selectedGate = value.toString(),

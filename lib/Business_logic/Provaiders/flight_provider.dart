@@ -20,45 +20,14 @@ class FlightProvider extends ChangeNotifier {
   String selectedRouteTo = '';
   String selectedWeekDay = '';
   String selectedGate = '';
-  bool? selectedStatus;
+  bool selectedStatus = false;
 
   bool isSelectedDay = false;
 
-  /// arreglos d elos filtros */
-  final List<String> charterList = ['Havana Air'];
-  final List<String> routeFromList = [
-    'Miami',
-    'Tampa',
-    'Havana',
-    'Camaguey',
-    'Santa Clara',
-    'Holguin',
-    'Santiago'
-  ];
-  final List<String> routeToList = [
-    'Miami',
-    'Tampa',
-    'Havana',
-    'Camaguey',
-    'Santa Clara',
-    'Holguin',
-    'Santiago'
-  ];
-  final List<String> gateList = [
-    'F',
-    'Terminal 2',
-    'Holguin',
-    'Santiago d',
-    'Santa Clar',
-    'Camaguey',
-    'Tampa',
-  ];
-  final List<String> flightNumberList = [
-    'G6 - 3139',
-    'G6 - 3140',
-    'G6 - 3162',
-    'G6 - 3161',
-  ];
+  changeValorselectedStatus(bool valor) {
+    selectedStatus = valor;
+    notifyListeners();
+  }
 
   List<Flight> flights = [];
 
@@ -136,17 +105,7 @@ class FlightProvider extends ChangeNotifier {
   Future<bool> getFlightsBy() async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('GET', Uri.parse('$ip/flights/getFlightsBy'));
-    request.body = json.encode(body
-        // "flightNumber": "G6 - 3140",
-        // "charter": "Havana Air",
-        // "datefrom": "2022/09/05",
-        // "dateto": "2022/09/20",
-        // "from": "HAV - Havana",
-        // "to": "MIA - Miami",
-        // "weekDays": "Tuesday",
-        // "status": "OPEN",
-        // "gate": "Terminal 2"
-        );
+    request.body = json.encode(body);
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -165,43 +124,33 @@ class FlightProvider extends ChangeNotifier {
   }
 
   void addtoBody() {
-    if (!(flightNumber == "")) {
-      body.addAll({
-        "flightNumber": flightNumber,
-      });
+    if (flightNumber != "") {
+      body.addAll({"flightNumber": flightNumber});
     }
 
-    if (!(dateFrom == "")) {
-      body.addAll({
-        "dateFrom": dateFrom,
-      });
+    if (dateFrom != "") {
+      body.addAll({"dateFrom": dateFrom});
     }
-    if (!(dateTo == "")) {
-      body.addAll({
-        "dateTo": dateTo,
-      });
+    if (dateTo != "") {
+      body.addAll({"dateTo": dateTo});
     }
-    if (!(selectedCharter == "")) {
-      body.addAll({
-        "charter": selectedCharter,
-      });
+    if (selectedCharter != "") {
+      body.addAll({"charter": selectedCharter});
     }
-    if (!(selectedRouteFrom == "")) {
-      body.addAll({
-        "from": selectedRouteFrom,
-      });
+    if (selectedRouteFrom != "") {
+      body.addAll({"from": selectedRouteFrom});
     }
-    if (!(selectedRouteTo == "")) {
-      body.addAll({
-        "to": selectedRouteTo,
-      });
+    if (selectedRouteTo != "") {
+      body.addAll({"to": selectedRouteTo});
     }
-    if (!(selectedWeekDay == "")) {
-      body.addAll({
-        "weekDays": selectedWeekDay,
-      });
+    if (selectedWeekDay != "") {
+      body.addAll({"weekDays": selectedWeekDay});
     }
-    if (!(selectedGate == "")) {}
+    if (selectedGate != "") {
+      body.addAll({"gate": selectedGate});
+    }
+
+    print(body);
   }
 
   // bool? selectedStatus;

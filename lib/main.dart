@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/UI/Pages/airline_info.dart';
 import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
 import 'package:fly_cliente/UI/Pages/search_page.dart';
@@ -15,6 +16,10 @@ void main() {
     providers: [
       ChangeNotifierProvider(
         create: (_) => FlightProvider(),
+        lazy: true,
+      ),
+      ChangeNotifierProvider(
+        create: (_) => BookFlightProvider(),
         lazy: true,
       ),
       ChangeNotifierProvider(
