@@ -6,15 +6,24 @@ class Imputfield extends StatelessWidget {
     required this.hintext,
     this.suffixIcon,
     this.prefixIcon,
+    this.onChanged,
+    this.validator,
+    this.onTap,
   }) : super(key: key);
 
   final String hintext;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final void Function(String)? onChanged;
+  final VoidCallback? onTap;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
+      validator: validator,
+      onChanged: onChanged,
       decoration: InputDecoration(
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,

@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Constants/contants.dart';
+import '../CustomWidget/custom_dropdown.dart';
 import '../imputField.dart';
+import '../weeked_day.dart';
 
-class SearchFilters extends StatelessWidget {
+class SearchFilters extends StatefulWidget {
   const SearchFilters({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<SearchFilters> createState() => _SearchFiltersState();
+}
+
+class _SearchFiltersState extends State<SearchFilters> {
   @override
   Widget build(BuildContext context) {
     final flightProvaider = Provider.of<FlightProvider>(context);
@@ -43,20 +50,32 @@ class SearchFilters extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: size.width * 0.318,
-                child: const Imputfield(hintext: "Flight Number"),
-              ),
+                  width: size.width * 0.318,
+                  child: CustomDropDown(
+                    hintext: 'Flight Number',
+                    items: flightProvaider.flightNumberList,
+                    onChanged: (value) =>
+                        flightProvaider.flightNumber = value.toString(),
+                    onSaved: (value) =>
+                        flightProvaider.flightNumber = value.toString(),
+                  )),
               SizedBox(
                 width: size.width * 0.12,
               ),
               SizedBox(
                 width: size.width * 0.318,
                 //TODO: Hacer el DropDownMeny de aqui.
-                child: const Imputfield(
-                  hintext: " All",
-                  suffixIcon: Icon(Icons.arrow_drop_down),
+                child: CustomDropDown(
+                  hintext: "All",
+                  items: flightProvaider.charterList,
+                  onChanged: (value) {
+                    flightProvaider.selectedCharter = value.toString();
+                  },
+                  onSaved: (value) {
+                    flightProvaider.selectedCharter = value.toString();
+                  },
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -72,12 +91,30 @@ class SearchFilters extends StatelessWidget {
               child: SizedBox(
                 width: size.width * 0.318,
                 child: Imputfield(
-                  hintext: "From",
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    DateTime? piked = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2022),
+                        lastDate: DateTime(2027));
+
+                    if (piked != null) {
+                      flightProvaider.dateFrom =
+                          "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+                    }
+                  },
+
+                  hintext: flightProvaider.dateFrom == ''
+                      ? "From"
+                      : flightProvaider.dateFrom,
                   //Aqui va el action del calendar
-                  prefixIcon: Icon(
-                    Icons.calendar_month,
-                    color: kprimarycolor,
-                  ),
+                  prefixIcon: flightProvaider.dateFrom == ''
+                      ? Icon(
+                          Icons.calendar_month,
+                          color: kprimarycolor,
+                        )
+                      : null,
                 ),
               ),
             ),
@@ -90,11 +127,28 @@ class SearchFilters extends StatelessWidget {
               child: SizedBox(
                 width: size.width * 0.318,
                 child: Imputfield(
-                  hintext: "To",
-                  prefixIcon: Icon(
-                    Icons.calendar_month,
-                    color: kprimarycolor,
-                  ),
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    DateTime? piked = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2022),
+                        lastDate: DateTime(2027));
+
+                    if (piked != null) {
+                      flightProvaider.dateTo =
+                          "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+                    }
+                  },
+                  hintext: flightProvaider.dateTo == ''
+                      ? "To"
+                      : flightProvaider.dateTo,
+                  prefixIcon: flightProvaider.dateTo == ''
+                      ? Icon(
+                          Icons.calendar_month,
+                          color: kprimarycolor,
+                        )
+                      : null,
                 ),
               ),
             ),
@@ -112,8 +166,13 @@ class SearchFilters extends StatelessWidget {
             children: [
               SizedBox(
                 width: size.width * 0.318,
-                child: const Imputfield(
-                  hintext: " From",
+                child: CustomDropDown(
+                  hintext: 'From',
+                  items: flightProvaider.routeFromList,
+                  onChanged: (value) =>
+                      flightProvaider.selectedRouteFrom = value.toString(),
+                  onSaved: (value) =>
+                      flightProvaider.selectedRouteFrom = value.toString(),
                 ),
               ),
               //separador width
@@ -122,8 +181,13 @@ class SearchFilters extends StatelessWidget {
               ),
               SizedBox(
                 width: size.width * 0.318,
-                child: const Imputfield(
-                  hintext: " To",
+                child: CustomDropDown(
+                  hintext: 'To',
+                  items: flightProvaider.routeToList,
+                  onChanged: (value) =>
+                      flightProvaider.selectedRouteTo = value.toString(),
+                  onSaved: (value) =>
+                      flightProvaider.selectedRouteTo = value.toString(),
                 ),
               ),
             ],
@@ -137,23 +201,7 @@ class SearchFilters extends StatelessWidget {
         SizedBox(
           height: size.height * 0.01,
         ),
-        Row(
-          children: const [
-            WeekedDay(texto: "S"),
-            CustomSpacer(),
-            WeekedDay(texto: "M"),
-            CustomSpacer(),
-            WeekedDay(texto: "T"),
-            CustomSpacer(),
-            WeekedDay(texto: "W"),
-            CustomSpacer(),
-            WeekedDay(texto: "T"),
-            CustomSpacer(),
-            WeekedDay(texto: "F"),
-            CustomSpacer(),
-            WeekedDay(texto: "S"),
-          ],
-        ),
+        const WeekDays(),
         SizedBox(
           height: size.height * 0.035,
         ),
@@ -184,11 +232,13 @@ class SearchFilters extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   });
-
-              await flightProvaider.getFlight();
-              var respuesta = flightProvaider.respuesta;
+              /**Logica de las busqueda */
+              flightProvaider.addtoBody();
+              bool respuesta = await flightProvaider.getFlightsBy();
 
               if (respuesta == true) {
+                flightProvaider.cleanValues();
+
                 Navigator.pop(context);
                 Navigator.of(context).pushNamed('/result');
               } else {
@@ -218,6 +268,41 @@ class SearchFilters extends StatelessWidget {
         )
       ]),
     );
+  }
+}
+
+class WeekDays extends StatelessWidget {
+  const WeekDays({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final flightProvaider = Provider.of<FlightProvider>(context);
+    List<Widget> list = [
+      WeekedDay(
+          texto: "Su", isSelected: flightProvaider.dayInWeekList[0].isSelected),
+      const CustomSpacer(),
+      WeekedDay(
+          texto: "M", isSelected: flightProvaider.dayInWeekList[1].isSelected),
+      const CustomSpacer(),
+      WeekedDay(
+          texto: "Tu", isSelected: flightProvaider.dayInWeekList[2].isSelected),
+      const CustomSpacer(),
+      WeekedDay(
+          texto: "W", isSelected: flightProvaider.dayInWeekList[3].isSelected),
+      const CustomSpacer(),
+      WeekedDay(
+          texto: "T", isSelected: flightProvaider.dayInWeekList[4].isSelected),
+      const CustomSpacer(),
+      WeekedDay(
+          texto: "F", isSelected: flightProvaider.dayInWeekList[5].isSelected),
+      const CustomSpacer(),
+      WeekedDay(
+          texto: "S", isSelected: flightProvaider.dayInWeekList[6].isSelected),
+    ];
+
+    return Row(children: list);
   }
 }
 
@@ -324,31 +409,6 @@ class CustomSpacer extends StatelessWidget {
   }
 }
 
-class WeekedDay extends StatelessWidget {
-  const WeekedDay({
-    Key? key,
-    required this.texto,
-  }) : super(key: key);
-
-  final String texto;
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Container(
-      decoration: BoxDecoration(
-          border:
-              Border.all(color: const Color.fromRGBO(1, 1, 1, 1), width: 0.5),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(6),
-          )),
-      height: size.height * 0.045,
-      width: size.width * 0.09,
-      child: Center(child: Text(texto)),
-    );
-  }
-}
-
 class TextSearch extends StatelessWidget {
   const TextSearch({
     Key? key,
@@ -373,6 +433,7 @@ class ColumnaStatus2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flightProvaider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -383,8 +444,12 @@ class ColumnaStatus2 extends StatelessWidget {
         ),
         SizedBox(
           width: size.width * 0.318,
-          child: const Imputfield(
-            hintext: " Gate Number",
+          child: CustomDropDown(
+            hintext: 'Gate Number',
+            items: flightProvaider.gateList,
+            onChanged: (value) =>
+                flightProvaider.selectedGate = value.toString(),
+            onSaved: (value) => flightProvaider.selectedGate = value.toString(),
           ),
         ),
       ],

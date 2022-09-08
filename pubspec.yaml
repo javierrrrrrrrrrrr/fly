@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^3.0.1
   expansion_widget: ^0.0.3
   http: ^0.13.5
+  dropdown_button2: ^1.7.2
 
 dev_dependencies:
   flutter_test:
