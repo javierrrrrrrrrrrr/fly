@@ -9,7 +9,7 @@ import '../../DataLayer/Models/flight_model.dart';
 
 class FlightProvider extends ChangeNotifier {
   String token = '';
-  Map body = {};
+  Map<String, dynamic> body = {};
 
   /// campos del filtro */
   String flightNumber = "";
@@ -26,6 +26,13 @@ class FlightProvider extends ChangeNotifier {
 
   changeValorselectedStatus(bool valor) {
     selectedStatus = valor;
+    notifyListeners();
+  }
+
+  bool _isexpandedDropDown = false;
+  bool get isepandedDropDown => _isexpandedDropDown;
+  set isepandedDropDown(bool value) {
+    _isexpandedDropDown = value;
     notifyListeners();
   }
 
@@ -105,7 +112,9 @@ class FlightProvider extends ChangeNotifier {
   Future<bool> getFlightsBy() async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('GET', Uri.parse('$ip/flights/getFlightsBy'));
+
     request.body = json.encode(body);
+
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

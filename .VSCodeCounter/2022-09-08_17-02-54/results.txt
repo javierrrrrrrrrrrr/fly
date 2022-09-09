@@ -1,0 +1,158 @@
+Date : 2022-09-08 17:02:54
+Directory : g:\proyectos\Flutter app\dddd\fly_cliente
+Total : 80 files,  4087 codes, 325 comments, 545 blanks, all 4957 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Dart       |         36 |      2,657 |         70 |        287 |      3,014 |
+| C++        |         16 |        499 |        107 |        170 |        776 |
+| XML        |         10 |        467 |         48 |         13 |        528 |
+| JSON       |          4 |        248 |          0 |          4 |        252 |
+| Groovy     |          3 |         89 |          5 |         22 |        116 |
+| Swift      |          4 |         38 |          3 |         12 |         53 |
+| HTML       |          1 |         37 |         16 |          6 |         59 |
+| YAML       |          2 |         31 |         75 |         20 |        126 |
+| Markdown   |          2 |         13 |          0 |          9 |         22 |
+| Properties |          2 |          8 |          1 |          2 |         11 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                       |         80 |      4,087 |        325 |        545 |      4,957 |
+| android                                                                                                 |         12 |        160 |         52 |         34 |        246 |
+| android\app                                                                                             |          8 |        117 |         51 |         23 |        191 |
+| android\app\src                                                                                         |          7 |         63 |         46 |         10 |        119 |
+| android\app\src\debug                                                                                   |          1 |          4 |          4 |          1 |          9 |
+| android\app\src\main                                                                                    |          5 |         55 |         38 |          8 |        101 |
+| android\app\src\main\res                                                                                |          4 |         26 |         32 |          6 |         64 |
+| android\app\src\main\res\drawable                                                                       |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\drawable-v21                                                                   |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\values                                                                         |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\main\res\values-night                                                                   |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\profile                                                                                 |          1 |          4 |          4 |          1 |          9 |
+| android\gradle                                                                                          |          1 |          5 |          1 |          1 |          7 |
+| android\gradle\wrapper                                                                                  |          1 |          5 |          1 |          1 |          7 |
+| ios                                                                                                     |          7 |        222 |          2 |          9 |        233 |
+| ios\Runner                                                                                              |          7 |        222 |          2 |          9 |        233 |
+| ios\Runner\Assets.xcassets                                                                              |          3 |        148 |          0 |          4 |        152 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                           |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                         |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                   |          2 |         61 |          2 |          2 |         65 |
+| lib                                                                                                     |         35 |      2,643 |         60 |        280 |      2,983 |
+| lib\Business_logic                                                                                      |          3 |        219 |          2 |         49 |        270 |
+| lib\Business_logic\Provaiders                                                                           |          3 |        219 |          2 |         49 |        270 |
+| lib\Constants                                                                                           |          2 |          9 |          1 |          4 |         14 |
+| lib\DataLayer                                                                                           |          3 |        251 |          3 |         52 |        306 |
+| lib\DataLayer\Models                                                                                    |          3 |        251 |          3 |         52 |        306 |
+| lib\UI                                                                                                  |         26 |      2,114 |         54 |        170 |      2,338 |
+| lib\UI\Pages                                                                                            |          6 |        845 |         13 |         56 |        914 |
+| lib\UI\Widgets                                                                                          |         20 |      1,269 |         41 |        114 |      1,424 |
+| lib\UI\Widgets\CustomWidget                                                                             |          6 |        272 |          4 |         24 |        300 |
+| lib\UI\Widgets\ExpansionWidget                                                                          |          2 |        490 |         11 |         30 |        531 |
+| lib\UI\Widgets\SeparationWidget                                                                         |          2 |         34 |          0 |          6 |         40 |
+| lib\UI\Widgets\fligthDetailWidgets                                                                      |          5 |        239 |          6 |         26 |        271 |
+| linux                                                                                                   |          5 |         94 |         27 |         38 |        159 |
+| linux\flutter                                                                                           |          2 |          8 |          9 |         11 |         28 |
+| macos                                                                                                   |          5 |        437 |          3 |         12 |        452 |
+| macos\Flutter                                                                                           |          1 |          6 |          3 |          4 |         13 |
+| macos\Runner                                                                                            |          4 |        431 |          0 |          8 |        439 |
+| macos\Runner\Assets.xcassets                                                                            |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Assets.xcassets\AppIcon.appiconset                                                         |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Base.lproj                                                                                 |          1 |        343 |          0 |          1 |        344 |
+| test                                                                                                    |          1 |         14 |         10 |          7 |         31 |
+| web                                                                                                     |          2 |         72 |         16 |          7 |         95 |
+| windows                                                                                                 |         10 |        404 |         80 |        131 |        615 |
+| windows\flutter                                                                                         |          2 |          8 |          9 |         11 |         28 |
+| windows\runner                                                                                          |          8 |        396 |         71 |        120 |        587 |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| g:\proyectos\Flutter app\dddd\fly_cliente\README.md                                                     | Markdown   |         10 |          0 |          7 |         17 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\analysis_options.yaml                                         | YAML       |          3 |         23 |          4 |         30 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\build.gradle                                      | Groovy     |         54 |          5 |         13 |         72 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\debug\AndroidManifest.xml                     | XML        |          4 |          4 |          1 |          9 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\main\AndroidManifest.xml                      | XML        |         29 |          6 |          2 |         37 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\main\res\drawable-v21\launch_background.xml   | XML        |          4 |          7 |          2 |         13 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\main\res\drawable\launch_background.xml       | XML        |          4 |          7 |          2 |         13 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\main\res\values-night\styles.xml              | XML        |          9 |          9 |          1 |         19 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\main\res\values\styles.xml                    | XML        |          9 |          9 |          1 |         19 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\app\src\profile\AndroidManifest.xml                   | XML        |          4 |          4 |          1 |          9 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\build.gradle                                          | Groovy     |         27 |          0 |          5 |         32 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\gradle.properties                                     | Properties |          3 |          0 |          1 |          4 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\gradle\wrapper\gradle-wrapper.properties              | Properties |          5 |          1 |          1 |          7 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\android\settings.gradle                                       | Groovy     |          8 |          0 |          4 |         12 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\AppDelegate.swift                                  | Swift      |         12 |          0 |          2 |         14 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json   | JSON       |        122 |          0 |          1 |        123 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json | JSON       |         23 |          0 |          1 |         24 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md     | Markdown   |          3 |          0 |          2 |          5 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\Base.lproj\LaunchScreen.storyboard                 | XML        |         36 |          1 |          1 |         38 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\Base.lproj\Main.storyboard                         | XML        |         25 |          1 |          1 |         27 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\ios\Runner\Runner-Bridging-Header.h                           | C++        |          1 |          0 |          1 |          2 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\Business_logic\Provaiders\book_flight_provider.dart       | Dart       |         35 |          0 |          7 |         42 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\Business_logic\Provaiders\flight_provider.dart            | Dart       |        149 |          2 |         30 |        181 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\Business_logic\Provaiders\news_provider.dart              | Dart       |         35 |          0 |         12 |         47 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\Constants\contants.dart                                   | Dart       |          4 |          1 |          2 |          7 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\Constants\day_in_week.dart                                | Dart       |          5 |          0 |          2 |          7 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\DataLayer\Models\book_flight.dart                         | Dart       |        125 |          3 |         37 |        165 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\DataLayer\Models\flight_model.dart                        | Dart       |         87 |          0 |          7 |         94 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\DataLayer\Models\news_model.dart                          | Dart       |         39 |          0 |          8 |         47 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Pages\airline_info.dart                                | Dart       |         69 |          0 |          7 |         76 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Pages\home_page.dart                                   | Dart       |        207 |          0 |         17 |        224 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Pages\more_details_fly.dart                            | Dart       |        333 |          4 |         12 |        349 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Pages\more_details_ofert.dart                          | Dart       |         94 |          0 |          4 |         98 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Pages\search_page.dart                                 | Dart       |         64 |          2 |          8 |         74 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Pages\search_result.dart                               | Dart       |         78 |          7 |          8 |         93 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\CustomWidget\customDrawer.dart                 | Dart       |         34 |          0 |          5 |         39 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\CustomWidget\custom_appbar_row.dart            | Dart       |         31 |          0 |          3 |         34 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\CustomWidget\custom_card.dart                  | Dart       |         27 |          0 |          4 |         31 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\CustomWidget\custom_circle_avatar.dart         | Dart       |         31 |          0 |          3 |         34 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\CustomWidget\custom_drawer.dart                | Dart       |         84 |          0 |          4 |         88 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\CustomWidget\custom_dropdown.dart              | Dart       |         65 |          4 |          5 |         74 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\ExpansionWidget\custom_dropdown.dart           | Dart       |         57 |          1 |          4 |         62 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\ExpansionWidget\search_filter.dart             | Dart       |        433 |         10 |         26 |        469 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\SeparationWidget\line.dart                     | Dart       |         21 |          0 |          3 |         24 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\SeparationWidget\separador.dart                | Dart       |         13 |          0 |          3 |         16 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\app_background_selection.dart                  | Dart       |         38 |          1 |          4 |         43 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\fligthDetailWidgets\card_flight_details.dart   | Dart       |         55 |          0 |          5 |         60 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\fligthDetailWidgets\flight_details_body.dart   | Dart       |         86 |          3 |          7 |         96 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\fligthDetailWidgets\flight_details_footer.dart | Dart       |         45 |          0 |          5 |         50 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\fligthDetailWidgets\flight_details_header.dart | Dart       |         39 |          3 |          5 |         47 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\fligthDetailWidgets\separador_horizontal.dart  | Dart       |         14 |          0 |          4 |         18 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\imputField.dart                                | Dart       |         38 |         19 |         11 |         68 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\information_card.dart                          | Dart       |         96 |          0 |          5 |        101 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\weeked_day.dart                                | Dart       |         55 |          0 |          5 |         60 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\UI\Widgets\widgets.dart                                   | Dart       |          7 |          0 |          3 |         10 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\lib\main.dart                                                 | Dart       |         50 |          0 |          5 |         55 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\linux\flutter\generated_plugin_registrant.cc                  | C++        |          3 |          4 |          5 |         12 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\linux\flutter\generated_plugin_registrant.h                   | C++        |          5 |          5 |          6 |         16 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\linux\main.cc                                                 | C++        |          5 |          0 |          2 |          7 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\linux\my_application.cc                                       | C++        |         74 |         11 |         20 |        105 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\linux\my_application.h                                        | C++        |          7 |          7 |          5 |         19 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\macos\Flutter\GeneratedPluginRegistrant.swift                 | Swift      |          6 |          3 |          4 |         13 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\macos\Runner\AppDelegate.swift                                | Swift      |          8 |          0 |          2 |         10 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\macos\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json | JSON       |         68 |          0 |          1 |         69 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\macos\Runner\Base.lproj\MainMenu.xib                          | XML        |        343 |          0 |          1 |        344 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\macos\Runner\MainFlutterWindow.swift                          | Swift      |         12 |          0 |          4 |         16 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\pubspec.yaml                                                  | YAML       |         28 |         52 |         16 |         96 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\test\widget_test.dart                                         | Dart       |         14 |         10 |          7 |         31 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\web\index.html                                                | HTML       |         37 |         16 |          6 |         59 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\web\manifest.json                                             | JSON       |         35 |          0 |          1 |         36 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\flutter\generated_plugin_registrant.cc                | C++        |          3 |          4 |          5 |         12 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\flutter\generated_plugin_registrant.h                 | C++        |          5 |          5 |          6 |         16 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\flutter_window.cpp                             | C++        |         45 |          4 |         13 |         62 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\flutter_window.h                               | C++        |         20 |          5 |          9 |         34 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\main.cpp                                       | C++        |         30 |          4 |         10 |         44 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\resource.h                                     | C++        |          9 |          6 |          2 |         17 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\utils.cpp                                      | C++        |         53 |          2 |         10 |         65 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\utils.h                                        | C++        |          8 |          6 |          6 |         20 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\win32_window.cpp                               | C++        |        183 |         15 |         48 |        246 |
+| g:\proyectos\Flutter app\dddd\fly_cliente\windows\runner\win32_window.h                                 | C++        |         48 |         29 |         22 |         99 |
+| Total                                                                                                   |            |      4,087 |        325 |        545 |      4,957 |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

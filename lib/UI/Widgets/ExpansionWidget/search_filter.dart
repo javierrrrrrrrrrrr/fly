@@ -10,7 +10,10 @@ import '../weeked_day.dart';
 class SearchFilters extends StatefulWidget {
   const SearchFilters({
     Key? key,
+    required this.onPreesedFuntionButton,
   }) : super(key: key);
+
+  final VoidCallback onPreesedFuntionButton;
 
   @override
   State<SearchFilters> createState() => _SearchFiltersState();
@@ -225,30 +228,7 @@ class _SearchFiltersState extends State<SearchFilters> {
           child: MaterialButton(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            onPressed: () async {
-              showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  });
-              /**Logica de las busqueda */
-              flightProvaider.addtoBody();
-              bool respuesta = await flightProvaider.getFlightsBy();
-
-              if (respuesta == true) {
-                flightProvaider.cleanValues();
-
-                Navigator.pop(context);
-                flightProvaider.cleanIsselectedDays();
-                Navigator.of(context).pushNamed('/result');
-              } else {
-                /*Mostrar al Usaqrio el error */
-                Navigator.pop(context);
-              }
-            },
+            onPressed: widget.onPreesedFuntionButton,
             height: size.height * 0.05,
             minWidth: size.width * 0.01,
             color: const Color.fromRGBO(1, 63, 148, 1),

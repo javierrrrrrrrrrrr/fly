@@ -6,11 +6,17 @@ import '../../Business_logic/Provaiders/flight_provider.dart';
 import '../Widgets/ExpansionWidget/custom_dropdown.dart';
 import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
 
-class SearchResult extends StatelessWidget {
+class SearchResult extends StatefulWidget {
   const SearchResult({Key? key}) : super(key: key);
 
   @override
+  State<SearchResult> createState() => _SearchResultState();
+}
+
+class _SearchResultState extends State<SearchResult> {
+  @override
   Widget build(BuildContext context) {
+    setState(() {});
     final size = MediaQuery.of(context).size;
     final flightProvaider = Provider.of<FlightProvider>(context);
     return Scaffold(
@@ -29,9 +35,11 @@ class SearchResult extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.08,
               ),
-              const CustomDropDown(
-                expandido: false,
-              ),
+              CustomFilterDropDown(
+                  expandido: false,
+                  onPreesedFuntionButton: () {
+                    onPressedButton(context);
+                  }),
               Expanded(
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -54,5 +62,31 @@ class SearchResult extends StatelessWidget {
       //       top: size.height * 0.03),
       // ),
     );
+  }
+
+  void onPressedButton(BuildContext context) async {
+    final flightProvaider = Provider.of<FlightProvider>(context, listen: false);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+    /**Logica de las busqueda */
+    flightProvaider.addtoBody();
+    bool respuesta = await flightProvaider.getFlightsBy();
+
+    if (respuesta == true) {
+      flightProvaider.cleanValues();
+
+      flightProvaider.cleanIsselectedDays();
+      flightProvaider.isepandedDropDown = false;
+      Navigator.pop(context);
+    } else {
+      /*Mostrar al Usaqrio el error */
+      Navigator.pop(context);
+    }
   }
 }

@@ -39,6 +39,8 @@ dependencies:
   expansion_widget: ^0.0.3
   http: ^0.13.5
   dropdown_button2: ^1.7.2
+  awesome_snackbar_content: ^0.0.8
+  flutter_native_splash: ^2.2.9
 
 dev_dependencies:
   flutter_test:

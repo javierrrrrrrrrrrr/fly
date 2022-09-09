@@ -5,12 +5,13 @@ import 'dart:math' as math;
 
 import 'package:fly_cliente/UI/Widgets/ExpansionWidget/search_filter.dart';
 
-class CustomDropDown extends StatelessWidget {
-  const CustomDropDown({
+class CustomFilterDropDown extends StatelessWidget {
+  const CustomFilterDropDown({
     Key? key,
     required this.expandido,
+    required this.onPreesedFuntionButton,
   }) : super(key: key);
-
+  final VoidCallback onPreesedFuntionButton;
   final bool expandido;
 
   @override
@@ -53,6 +54,8 @@ class CustomDropDown extends StatelessWidget {
                 ),
               ));
         },
-        content: const SearchFilters());
+        content: SearchFilters(
+          onPreesedFuntionButton: onPreesedFuntionButton,
+        ));
   }
 }
