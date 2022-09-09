@@ -1,11 +1,26 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../Widgets/widgets.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  ImageProvider<Object>? image;
+  @override
+  void initState() {
+    image = const AssetImage(
+      'assets/fondo.jpg',
+    ); // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +30,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage(
-            'assets/fondo.jpg',
-          ),
+          image: image!,
           fit: BoxFit.fill,
         )),
         child: Padding(
@@ -44,16 +57,45 @@ class HomePage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       );
                     });
-                bool respuesta2 = await bookProvider.refillFieldBookFlights();
-                await newsProvider.getNewsList();
-                var respuesta = newsProvider.respuesta;
+                try {
+                  bool respuesta2 = await bookProvider.refillFieldBookFlights();
+                  await newsProvider.getNewsList();
 
-                if (respuesta == true && respuesta2 == true) {
+                  var respuesta = newsProvider.respuesta;
+
+                  if (respuesta == true && respuesta2 == true) {
+                    Navigator.pop(context);
+                    Navigator.of(context).pushNamed('/airlines');
+                  } else {
+                    Navigator.pop(context);
+
+                    var snackBar = SnackBar(
+                      elevation: 0,
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      content: AwesomeSnackbarContent(
+                        title: 'Error!',
+                        message: "A ocurrido algun error en la API",
+                        contentType: ContentType.failure,
+                      ),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                } catch (error) {
                   Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/airlines');
-                } else {
-                  Navigator.pop(context);
-                  print("error");
+                  var snackBar = SnackBar(
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    content: AwesomeSnackbarContent(
+                      title: 'Error!',
+                      message: error.toString(),
+                      contentType: ContentType.failure,
+                    ),
+                  );
+
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               }),
               SizedBox(
@@ -76,19 +118,35 @@ class NoAirline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return CustomCard(
-      height: size.height * 0.11,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: const Color.fromRGBO(130, 130, 130, 1),
+    return InkWell(
+      onTap: () {
+        var snackBar = SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'Upss!',
+            message: "Mas aerolineas proximamente",
+            contentType: ContentType.warning,
+          ),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
+      child: CustomCard(
+        height: size.height * 0.11,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: const Color.fromRGBO(130, 130, 130, 1),
+          ),
+          child: const Center(
+              child: Text(
+            'Más aerolíneas próximamente',
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          )),
         ),
-        child: const Center(
-            child: Text(
-          'Más aerolíneas próximamente',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        )),
       ),
     );
   }
