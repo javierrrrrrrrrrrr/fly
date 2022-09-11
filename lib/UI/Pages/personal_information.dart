@@ -10,12 +10,17 @@ class PersonalInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        body: Column(
+        body: Stack(
       children: [
-        const InfoCheckRowProgress(),
-        const InfoCardWIdget(),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: size.height * 0.035),
+        Column(
+          children: const [
+            InfoCheckRowProgress(),
+            InfoCardWIdget(),
+          ],
+        ),
+        Positioned(
+          right: size.width * 0.1,
+          bottom: size.height * 0.05,
           child: const InfoBottom(),
         ),
       ],

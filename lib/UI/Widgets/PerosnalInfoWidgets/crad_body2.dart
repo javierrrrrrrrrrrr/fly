@@ -52,7 +52,9 @@ class CradBody2 extends StatelessWidget {
             prefixIcon: Icon(Icons.flag_outlined, color: Colors.blue),
             suffixIcon: Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
           ),
-          const Separador(),
+          Container(
+            height: size.height * 0.03,
+          ),
         ],
       ),
     );

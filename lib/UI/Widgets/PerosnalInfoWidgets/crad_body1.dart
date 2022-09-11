@@ -60,7 +60,9 @@ class CradBody1 extends StatelessWidget {
             hintext: "Phone",
             prefixIcon: Icon(Icons.phone_android, color: Colors.blue),
           ),
-          const Separador(),
+          Container(
+            height: size.height * 0.03,
+          ),
         ],
       ),
     );
