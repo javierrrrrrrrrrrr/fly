@@ -31,6 +31,7 @@ class FlipProvider extends ChangeNotifier {
     var tiempo = Timer(const Duration(seconds: 1), () async {
       Navigator.pop(context);
       flip++;
+      notifyListeners();
 
       if (flip == 1) {
         controllerLine1.toggleCard();
