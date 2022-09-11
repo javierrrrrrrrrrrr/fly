@@ -1,4 +1,6 @@
+import 'package:fly_cliente/Business_logic/Provaiders/flipProvider.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets.dart';
 
@@ -10,6 +12,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final flipProvaider = Provider.of<FlipProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -58,8 +61,10 @@ class CustomDrawer extends StatelessWidget {
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/PersonalInfo'),
+                  onPressed: () {
+                    flipProvaider.flip = 0;
+                    Navigator.of(context).pushNamed('/PersonalInfo');
+                  },
                   icono: Icons.perm_identity_sharp,
                   texto: "Personal information",
                   tamnofuente: 18),

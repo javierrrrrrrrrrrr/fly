@@ -73,9 +73,18 @@ class FlipProvider extends ChangeNotifier {
             child: const NotificationBody(texto: "Todo listo"),
             context: context);
       }
-      // if (flip > 5) {
-      //   flip = 0;
-      // }
+      if (flip > 5) {
+        controllerLine1.controller?.dispose();
+        controllerCircle1.controller?.dispose();
+        controllerLine2.controller?.dispose();
+        controllerCircle2.controller?.dispose();
+        controllerLine3.controller?.dispose();
+        controllerCircle3.controller?.dispose();
+        controllerLine4.controller?.dispose();
+        controllerCircle4.controller?.dispose();
+        controllerCircle5.controller?.dispose();
+        Navigator.of(context).pushNamed('/airlines');
+      }
     });
   }
 }
