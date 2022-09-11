@@ -1,7 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:provider/provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
-import 'package:provider/provider.dart';
 
 import '../Widgets/widgets.dart';
 
@@ -13,13 +13,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ImageProvider<Object>? image;
+  late Image image1;
   @override
   void initState() {
-    image = const AssetImage(
-      'assets/fondo.jpg',
-    ); // TODO: implement initState
+    image1 = Image.asset("assets/fondocompressed.jpg");
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() async {
+    await precacheImage(image1.image, context);
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -32,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: image!,
+          image: image1.image,
           fit: BoxFit.fill,
         )),
         child: Padding(

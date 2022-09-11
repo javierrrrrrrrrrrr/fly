@@ -41,6 +41,9 @@ dependencies:
   dropdown_button2: ^1.7.2
   awesome_snackbar_content: ^0.0.8
   flutter_native_splash: ^2.2.9
+  asset_cache: ^2.0.0
+  flip_card: ^0.6.0
+  in_app_notification: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -94,3 +97,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  color: "#42a5f5"

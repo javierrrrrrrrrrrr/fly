@@ -215,7 +215,7 @@ class _SearchFiltersState extends State<SearchFilters> {
           children: [
             const ColumnStatus1(),
             SizedBox(
-              width: size.width * 0.15,
+              width: size.width * 0.12,
             ),
             const ColumnaStatus2()
           ],
@@ -303,61 +303,69 @@ class _ColumnStatus1State extends State<ColumnStatus1> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flightProvaider = Provider.of<FlightProvider>(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const TextSearch(texto: "Status"),
-        SizedBox(
-          height: size.height * 0.004,
-        ),
-        flightProvaider.selectedStatus == true
-            ? Row(
-                children: [
-                  CheckStatus(size: size),
-                  SizedBox(
-                    width: size.width * 0.015,
-                  ),
-                  const TextSearch(texto: "Open"),
-                  SizedBox(
-                    width: size.width * 0.010,
-                  ),
-                  const Icon(
-                    Icons.check_circle,
-                    size: 18,
-                    color: Colors.green,
-                  )
-                ],
-              )
-            : Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: size.height * 0.004,
-                      ),
-                      Row(
-                        children: [
-                          CheckStatus(size: size),
-                          SizedBox(
-                            width: size.width * 0.015,
-                          ),
-                          const TextSearch(texto: "Closed"),
-                          SizedBox(
-                            width: size.width * 0.010,
-                          ),
-                          const Icon(
-                            Icons.cancel,
-                            size: 18,
-                            color: Colors.red,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-      ],
+    return SizedBox(
+      height: size.height * 0.11,
+      width: size.width * 0.32,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const TextSearch(texto: "Status"),
+          SizedBox(
+            height: size.height * 0.004,
+          ),
+          flightProvaider.selectedStatus == true
+              ? Row(
+                  children: [
+                    CheckStatus(size: size),
+                    SizedBox(
+                      width: size.width * 0.015,
+                    ),
+                    Column(
+                      children: const [
+                        TextSearch(
+                          texto: "Open",
+                        ),
+                        Icon(
+                          Icons.check_circle,
+                          size: 25,
+                          color: Colors.green,
+                        )
+                      ],
+                    ),
+                  ],
+                )
+              : Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: size.height * 0.004,
+                        ),
+                        Row(
+                          children: [
+                            CheckStatus(size: size),
+                            SizedBox(
+                              width: size.width * 0.015,
+                            ),
+                            Column(
+                              children: const [
+                                TextSearch(texto: "Closed"),
+                                Icon(
+                                  Icons.cancel,
+                                  size: 25,
+                                  color: Colors.red,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+        ],
+      ),
     );
   }
 }
@@ -378,27 +386,24 @@ class _CheckStatusState extends State<CheckStatus> {
   @override
   Widget build(BuildContext context) {
     final flightProvaider = Provider.of<FlightProvider>(context);
-    return Container(
-      decoration: BoxDecoration(
-          border:
-              Border.all(color: const Color.fromRGBO(1, 1, 1, 1), width: 0.5),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(6),
-          )),
-      height: widget.size.height * 0.030,
-      width: widget.size.width * 0.06,
-      child: Checkbox(
-        value: flightProvaider.selectedStatus,
-        onChanged: (value) {
-          if (value == true) {
-            flightProvaider.changeValorselectedStatus(true);
-          }
-          if (value == false) {
-            flightProvaider.changeValorselectedStatus(false);
-          }
+    return SizedBox(
+      height: widget.size.height * 0.045,
+      width: widget.size.width * 0.07,
+      child: Transform.scale(
+        scale: 1.8,
+        child: Checkbox(
+          value: flightProvaider.selectedStatus,
+          onChanged: (value) {
+            if (value == true) {
+              flightProvaider.changeValorselectedStatus(true);
+            }
+            if (value == false) {
+              flightProvaider.changeValorselectedStatus(false);
+            }
 
-          // valor = value!;
-        },
+            // valor = value!;
+          },
+        ),
       ),
     );
   }

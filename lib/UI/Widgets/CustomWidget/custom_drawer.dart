@@ -57,8 +57,12 @@ class CustomDrawer extends StatelessWidget {
                   texto: "Airlaine",
                   tamnofuente: 18),
               const Separador(),
-              const CustomRowDrawer(
-                  icono: Icons.login_sharp, texto: "Log in", tamnofuente: 18),
+              CustomRowDrawer(
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/PersonalInfo'),
+                  icono: Icons.perm_identity_sharp,
+                  texto: "Personal information",
+                  tamnofuente: 18),
               const Separador(),
               const CustomRowDrawer(
                   icono: Icons.feed_outlined,
