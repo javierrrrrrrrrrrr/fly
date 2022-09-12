@@ -17,7 +17,7 @@ class CustomDrawer extends StatelessWidget {
       child: SafeArea(
         child: Padding(
           padding:
-              EdgeInsets.only(top: size.height * 0.05, left: size.width * 0.07),
+              EdgeInsets.only(top: size.height * 0.03, left: size.width * 0.07),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,7 +45,7 @@ class CustomDrawer extends StatelessWidget {
               ),
               CustomRowDrawer(
                   onPressed: () => Navigator.of(context).pushNamed('/home'),
-                  icono: Icons.house,
+                  icono: Icons.house_outlined,
                   texto: "Home",
                   tamnofuente: 18),
               const Separador(),
@@ -70,8 +70,8 @@ class CustomDrawer extends StatelessWidget {
                   tamnofuente: 18),
               const Separador(),
               const CustomRowDrawer(
-                  icono: Icons.feed_outlined,
-                  texto: "General Information",
+                  icono: Icons.contacts_outlined,
+                  texto: "Contacts",
                   tamnofuente: 18),
               const Separador(),
               SizedBox(

@@ -42,7 +42,7 @@ class CustomFilterDropDown extends StatelessWidget {
                       children: [
                         Expanded(
                             child: Text(
-                          'Book Fly',
+                          'Book Flight',
                           style: TextStyle(fontSize: 22, color: kprimarycolor),
                         )),
                         Transform.rotate(

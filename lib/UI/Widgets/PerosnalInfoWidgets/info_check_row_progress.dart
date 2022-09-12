@@ -98,15 +98,33 @@ class Line extends StatelessWidget {
       controller: control,
       front: Container(
         margin: const EdgeInsets.symmetric(horizontal: 1),
-        height: size.height * 0.01,
+        height: size.height * 0.008,
         width: size.width * 0.06,
-        color: Colors.blue,
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 5.0),
+              blurRadius: 5,
+              color: Color.fromRGBO(155, 155, 155, 0.5),
+            ),
+          ],
+        ),
       ),
       back: Container(
         margin: const EdgeInsets.symmetric(horizontal: 1),
-        height: size.height * 0.01,
+        height: size.height * 0.008,
         width: size.width * 0.06,
-        color: const Color.fromRGBO(23, 199, 119, 1),
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 5.0),
+              blurRadius: 5,
+              color: Color.fromRGBO(155, 155, 155, 0.5),
+            ),
+          ],
+          color: Color.fromRGBO(23, 199, 119, 1),
+        ),
       ),
     );
   }
@@ -129,16 +147,23 @@ class CirclewithNumberAndCheck extends StatelessWidget {
       speed: 1000,
       controller: control,
       front: Container(
-        height: size.height * 0.06,
-        width: size.width * 0.12,
+        height: size.height * 0.050,
+        width: size.width * 0.105,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           color: Colors.blue,
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(0, 5.0),
+              blurRadius: 5,
+              color: Color.fromRGBO(155, 155, 155, 0.5),
+            ),
+          ],
         ),
         child: Center(
             child: Text(
           number,
-          style: const TextStyle(color: Colors.white, fontSize: 35),
+          style: const TextStyle(color: Colors.white, fontSize: 30),
         )),
       ),
       back: Container(
@@ -146,6 +171,13 @@ class CirclewithNumberAndCheck extends StatelessWidget {
         width: size.width * 0.12,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(0, 5.0),
+              blurRadius: 5,
+              color: Color.fromRGBO(155, 155, 155, 0.5),
+            ),
+          ],
           color: const Color.fromRGBO(23, 199, 119, 1),
         ),
         child: const Center(

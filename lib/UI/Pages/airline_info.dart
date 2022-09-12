@@ -18,7 +18,7 @@ class AirlineInfoPage extends StatelessWidget {
         child: AppBackgroundSelection(
           padding: EdgeInsets.only(
             left: size.width * 0.06,
-            top: size.height * 0.02,
+            top: size.height * 0.01,
             right: size.width * 0.06,
           ),
           customAppBar: const AppBarRow(),
