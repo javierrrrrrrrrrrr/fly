@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Imputfield extends StatelessWidget {
+class Imputfield extends StatefulWidget {
   const Imputfield({
     Key? key,
     required this.hintext,
@@ -8,9 +8,11 @@ class Imputfield extends StatelessWidget {
     this.prefixIcon,
     this.onChanged,
     this.validator,
+    this.avalible,
     this.onTap,
   }) : super(key: key);
 
+  final bool? avalible;
   final String hintext;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -19,14 +21,20 @@ class Imputfield extends StatelessWidget {
   final String? Function(String?)? validator;
 
   @override
+  State<Imputfield> createState() => _ImputfieldState();
+}
+
+class _ImputfieldState extends State<Imputfield> {
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onTap: onTap,
-      validator: validator,
-      onChanged: onChanged,
+      enabled: widget.avalible,
+      onTap: widget.onTap,
+      validator: widget.validator,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.suffixIcon,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           border: const OutlineInputBorder(
@@ -34,7 +42,7 @@ class Imputfield extends StatelessWidget {
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color.fromRGBO(155, 155, 155, 0.5)),
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          hintText: hintext,
+          hintText: widget.hintext,
           hintStyle: const TextStyle(color: Colors.black54, fontSize: 15)),
     );
   }

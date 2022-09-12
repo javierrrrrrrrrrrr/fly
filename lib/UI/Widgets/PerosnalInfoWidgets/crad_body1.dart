@@ -13,7 +13,6 @@ class CradBody1 extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.02),
@@ -24,13 +23,12 @@ class CradBody1 extends StatelessWidget {
           ),
           const Separador(),
           const Imputfield(
-            hintext: "First Name",
-            prefixIcon: Icon(Icons.assignment, color: Colors.blue),
-          ),
+              hintext: "First Name",
+              prefixIcon: Icon(Icons.badge_outlined, color: Colors.blue)),
           const Separador(),
           const Imputfield(
             hintext: "Last Name",
-            prefixIcon: Icon(Icons.assignment, color: Colors.blue),
+            prefixIcon: Icon(Icons.badge_outlined, color: Colors.blue),
           ),
           const Separador(),
           const Imputfield(
@@ -53,7 +51,7 @@ class CradBody1 extends StatelessWidget {
           const Separador(),
           const Imputfield(
             hintext: "Email",
-            prefixIcon: Icon(Icons.email, color: Colors.blue),
+            prefixIcon: Icon(Icons.contact_mail_outlined, color: Colors.blue),
           ),
           const Separador(),
           const Imputfield(

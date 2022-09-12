@@ -25,7 +25,9 @@ class CustomFilterDropDown extends StatelessWidget {
               onTap: () => toogleFunction(animated: true),
               child: Padding(
                 //ver
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.only(
+                  bottom: 10,
+                ),
                 child: Container(
                   height: size.height * 0.06,
                   decoration: BoxDecoration(
@@ -40,7 +42,7 @@ class CustomFilterDropDown extends StatelessWidget {
                       children: [
                         Expanded(
                             child: Text(
-                          'Schedule',
+                          'Book Fly',
                           style: TextStyle(fontSize: 22, color: kprimarycolor),
                         )),
                         Transform.rotate(

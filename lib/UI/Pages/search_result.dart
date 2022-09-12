@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -66,14 +67,7 @@ class _SearchResultState extends State<SearchResult> {
 
   void onPressedButton(BuildContext context) async {
     final flightProvaider = Provider.of<FlightProvider>(context, listen: false);
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+    loadingSpinner(context);
     /**Logica de las busqueda */
     flightProvaider.addtoBody();
     bool respuesta = await flightProvaider.getFlightsBy();

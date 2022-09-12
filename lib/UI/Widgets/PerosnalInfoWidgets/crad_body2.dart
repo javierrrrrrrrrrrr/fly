@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Business_logic/Provaiders/flipProvider.dart';
 import '../imputField.dart';
 
 class CradBody2 extends StatelessWidget {
@@ -8,6 +10,7 @@ class CradBody2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flipProvaider = Provider.of<FlipProvider>(context);
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
@@ -22,35 +25,55 @@ class CradBody2 extends StatelessWidget {
             ),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Address",
-            prefixIcon: Icon(Icons.house_outlined, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.house_outlined, color: Colors.blue)
+                : const Icon(Icons.house_outlined, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "City",
-            prefixIcon: Icon(Icons.location_city, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.location_city, color: Colors.blue)
+                : const Icon(Icons.location_city, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "State",
-            prefixIcon: Icon(Icons.clean_hands, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.real_estate_agent, color: Colors.blue)
+                : const Icon(Icons.real_estate_agent, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Zip",
-            prefixIcon: Icon(Icons.folder_zip, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.pin_outlined, color: Colors.blue)
+                : const Icon(Icons.pin_outlined, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Country",
-            prefixIcon: Icon(Icons.location_city_sharp, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.location_city_sharp, color: Colors.blue)
+                : const Icon(Icons.location_city_sharp, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Nationality",
-            prefixIcon: Icon(Icons.flag_outlined, color: Colors.blue),
-            suffixIcon: Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.flag_outlined, color: Colors.blue)
+                : const Icon(Icons.flag_outlined, color: Colors.grey),
+            suffixIcon: flipProvaider.avalible
+                ? const Icon(Icons.arrow_drop_down_sharp, color: Colors.blue)
+                : const Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
           ),
           Container(
             height: size.height * 0.03,

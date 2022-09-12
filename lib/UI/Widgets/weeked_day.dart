@@ -28,7 +28,7 @@ class _WeekedDayState extends State<WeekedDay> {
         flightProvaider.selectedWeekDay =
             flightProvaider.convertDayWeekToLongDay(widget.texto);
         flightProvaider.cleanIsselectedDays();
-        print('Cambiar booleano');
+
         setState(() {
           for (var i = 0; i < flightProvaider.dayInWeekList.length; i++) {
             if (flightProvaider.dayInWeekList[i].dayName == widget.texto) {

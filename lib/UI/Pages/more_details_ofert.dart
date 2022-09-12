@@ -19,7 +19,7 @@ class MoreDetailsOfert extends StatelessWidget {
       body: SafeArea(
         child: AppBackgroundSelection(
           padding: EdgeInsets.only(
-            top: size.height * 0.05,
+            top: size.height * 0.02,
           ),
           customAppBar: Padding(
             padding: EdgeInsets.symmetric(
@@ -43,7 +43,7 @@ class MoreDetailsOfert extends StatelessWidget {
           body: Expanded(
               child: Container(
             width: double.infinity,
-            margin: EdgeInsets.only(top: size.height * 0.05),
+            margin: EdgeInsets.only(top: size.height * 0.02),
             decoration: const BoxDecoration(color: Colors.white),
             child: Padding(
               padding: EdgeInsets.only(
@@ -60,10 +60,16 @@ class MoreDetailsOfert extends StatelessWidget {
                         fontSize: 22,
                         fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
                   Container(
                     height: 2,
                     width: size.width * 0.8,
-                    color: Colors.grey,
+                    color: const Color.fromRGBO(155, 155, 155, 0.5),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
                   ),
                   SizedBox(
                     height: size.height * 0.63,

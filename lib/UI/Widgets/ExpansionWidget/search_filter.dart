@@ -26,7 +26,7 @@ class _SearchFiltersState extends State<SearchFilters> {
     final bookFlightProvider = Provider.of<BookFlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.72,
+      height: size.height * 0.75,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
@@ -36,9 +36,9 @@ class _SearchFiltersState extends State<SearchFilters> {
         borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
       ),
       padding: EdgeInsets.only(
-          left: size.width * 0.070,
-          right: size.width * 0.050,
-          top: size.width * 0.08),
+          left: size.width * 0.060,
+          right: size.width * 0.040,
+          top: size.width * 0.03),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           children: [
@@ -46,7 +46,6 @@ class _SearchFiltersState extends State<SearchFilters> {
             SizedBox(
               width: size.width * 0.12,
             ),
-            const TextSearch(texto: 'Charter'),
           ],
         ),
         //Segunda Row
@@ -55,7 +54,7 @@ class _SearchFiltersState extends State<SearchFilters> {
           child: Row(
             children: [
               SizedBox(
-                  width: size.width * 0.318,
+                  width: size.width * 0.76,
                   child: CustomDropDown(
                     hintext: 'Flight Number',
                     items: bookFlightProvider.flightNumber,
@@ -64,29 +63,38 @@ class _SearchFiltersState extends State<SearchFilters> {
                     onSaved: (value) =>
                         flightProvaider.flightNumber = value.toString(),
                   )),
-              SizedBox(
-                width: size.width * 0.12,
-              ),
-              SizedBox(
-                width: size.width * 0.318,
-                //TODO: Hacer el DropDownMeny de aqui.
-                child: CustomDropDown(
-                  hintext: "All",
-                  items: bookFlightProvider.charter,
-                  onChanged: (value) {
-                    flightProvaider.selectedCharter = value.toString();
-                  },
-                  onSaved: (value) {
-                    flightProvaider.selectedCharter = value.toString();
-                  },
-                ),
-              )
             ],
           ),
         ),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        const TextSearch(texto: 'Charter'),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        SizedBox(
+          width: size.width * 0.76,
+
+          //TODO: Hacer el DropDownMeny de aqui.
+          child: CustomDropDown(
+            hintext: "All",
+            items: bookFlightProvider.charter,
+            onChanged: (value) {
+              flightProvaider.selectedCharter = value.toString();
+            },
+            onSaved: (value) {
+              flightProvaider.selectedCharter = value.toString();
+            },
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        const ColumnaStatus2(),
         //separador
         SizedBox(
-          height: size.height * 0.02,
+          height: size.height * 0.01,
         ),
         const TextSearch(texto: 'Date from:/To:'),
         Row(
@@ -161,7 +169,7 @@ class _SearchFiltersState extends State<SearchFilters> {
         ),
         //separador height
         SizedBox(
-          height: size.height * 0.02,
+          height: size.height * 0.01,
         ),
         const TextSearch(texto: 'Route'),
         //ROw
@@ -200,28 +208,29 @@ class _SearchFiltersState extends State<SearchFilters> {
         ),
         //separador height
         SizedBox(
-          height: size.height * 0.02,
+          height: size.height * 0.01,
         ),
         const TextSearch(texto: 'Weekdays'),
+
         SizedBox(
           height: size.height * 0.01,
         ),
         const WeekDays(),
-        SizedBox(
-          height: size.height * 0.035,
-        ),
+        // SizedBox(
+        //   height: size.height * 0.035,
+        // ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ColumnStatus1(),
+            //const ColumnaStatus2(),
             SizedBox(
-              width: size.width * 0.12,
+              width: size.width * 0.08,
             ),
-            const ColumnaStatus2()
+            // const ColumnStatus1(),
           ],
         ),
         SizedBox(
-          height: size.height * 0.03,
+          height: size.height * 0.02,
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: size.width * 0.18),
@@ -229,7 +238,7 @@ class _SearchFiltersState extends State<SearchFilters> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             onPressed: widget.onPreesedFuntionButton,
-            height: size.height * 0.05,
+            height: size.height * 0.063,
             minWidth: size.width * 0.01,
             color: const Color.fromRGBO(1, 63, 148, 1),
             child: Row(
@@ -458,7 +467,7 @@ class ColumnaStatus2 extends StatelessWidget {
           height: size.height * 0.01,
         ),
         SizedBox(
-          width: size.width * 0.318,
+          width: size.width * 0.75,
           child: CustomDropDown(
             hintext: 'Gate Number',
             items: bookFlightProvider.gate,

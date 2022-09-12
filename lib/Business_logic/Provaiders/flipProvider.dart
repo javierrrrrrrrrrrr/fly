@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Constants/contants.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 
 import '../../UI/Widgets/notification_body.dart';
 
 class FlipProvider extends ChangeNotifier {
+  bool avalible = true;
   int flip = 0;
   var controllerLine1 = FlipCardController();
   var controllerCircle1 = FlipCardController();
@@ -18,16 +20,14 @@ class FlipProvider extends ChangeNotifier {
   var controllerCircle4 = FlipCardController();
   var controllerCircle5 = FlipCardController();
 
-  checkFlip(BuildContext context) async {
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+  void chnageAvalibleValor(bool val) {
+    avalible = val;
+    notifyListeners();
+  }
 
+  checkFlip(BuildContext context) async {
+    chnageAvalibleValor(false);
+    loadingSpinner(context);
     var tiempo = Timer(const Duration(seconds: 1), () async {
       Navigator.pop(context);
       flip++;
@@ -37,10 +37,13 @@ class FlipProvider extends ChangeNotifier {
         controllerLine1.toggleCard();
         controllerCircle1.toggleCard();
         InAppNotification.show(
-            duration: const Duration(seconds: 2),
+            duration: const Duration(seconds: 1),
             child: const NotificationBody(texto: "Buen Comienzo"),
             context: context);
       }
+      var tiempo = Timer(const Duration(seconds: 2), () async {
+        chnageAvalibleValor(true);
+      });
 
       if (flip == 2) {
         controllerLine2.toggleCard();

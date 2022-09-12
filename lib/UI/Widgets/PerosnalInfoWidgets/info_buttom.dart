@@ -17,6 +17,7 @@ class InfoBottom extends StatelessWidget {
       color: Colors.blue,
       height: size.height * 0.075,
       onPressed: () {
+        FocusManager.instance.primaryFocus?.unfocus();
         flipProvaider.checkFlip(context);
       },
       child: const Text(

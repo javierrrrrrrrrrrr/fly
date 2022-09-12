@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
 
+import '../../Constants/contants.dart';
 import '../Widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,18 +14,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late Image image1;
+  Image? image1;
+
   @override
   void initState() {
-    image1 = Image.asset("assets/fondocompressed.jpg");
     super.initState();
+    image1 = Image.asset("assets/fondo.jpg");
   }
 
   @override
   void didChangeDependencies() async {
-    await precacheImage(image1.image, context);
-
     super.didChangeDependencies();
+
+    precacheImage(image1!.image, context);
   }
 
   @override
@@ -35,9 +37,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: SafeArea(
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
-          image: image1.image,
+          image: AssetImage("assets/fondo.jpg"),
           fit: BoxFit.fill,
         )),
         child: Padding(
@@ -54,14 +56,7 @@ class _HomePageState extends State<HomePage> {
                 height: size.height * 0.2,
               ),
               HavanaAirWidget(onPressed: () async {
-                showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    });
+                loadingSpinner(context);
                 try {
                   bool respuesta2 = await bookProvider.refillFieldBookFlights();
                   await newsProvider.getNewsList();

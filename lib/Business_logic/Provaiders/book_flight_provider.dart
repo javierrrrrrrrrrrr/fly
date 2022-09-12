@@ -17,7 +17,6 @@ class BookFlightProvider extends ChangeNotifier {
     destination.clear();
     charter.clear();
     var response = await http.get(Uri.parse('$ip/flights/getBookFlight'));
-    print(response.body);
     if (response.statusCode == 200) {
       var respuesta = BookFlight.fromJson(response.body);
 
@@ -31,7 +30,6 @@ class BookFlightProvider extends ChangeNotifier {
       }));
 
       charter.addAll(bookFlight!.charter.map((e) => e.charter));
-      print(flightNumber);
       notifyListeners();
       return true;
     } else {

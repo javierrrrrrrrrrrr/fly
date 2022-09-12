@@ -94,6 +94,7 @@ class Line extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return FlipCard(
+      speed: 1000,
       controller: control,
       front: Container(
         margin: const EdgeInsets.symmetric(horizontal: 1),
@@ -125,6 +126,7 @@ class CirclewithNumberAndCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return FlipCard(
+      speed: 1000,
       controller: control,
       front: Container(
         height: size.height * 0.06,

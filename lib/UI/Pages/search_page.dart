@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/ExpansionWidget/custom_dropdown.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
           child: AppBackgroundSelection(
               padding: EdgeInsets.only(
                 left: size.width * 0.06,
-                top: size.height * 0.05,
+                top: size.height * 0.02,
                 right: size.width * 0.06,
               ),
               customAppBar: const AppBarRow(),
@@ -47,14 +48,7 @@ class _SearchPageState extends State<SearchPage> {
 
   void onPressedButton(BuildContext context) async {
     final flightProvaider = Provider.of<FlightProvider>(context, listen: false);
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+    loadingSpinner(context);
     /**Logica de las busqueda */
     flightProvaider.addtoBody();
     bool respuesta = await flightProvaider.getFlightsBy();

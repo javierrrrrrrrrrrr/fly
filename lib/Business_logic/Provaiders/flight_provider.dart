@@ -158,8 +158,6 @@ class FlightProvider extends ChangeNotifier {
     if (selectedGate != "") {
       body.addAll({"gate": selectedGate});
     }
-
-    print(body);
   }
 
   // bool? selectedStatus;

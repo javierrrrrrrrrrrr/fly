@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/flipProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../SeparationWidget/separador.dart';
 import '../imputField.dart';
@@ -9,6 +11,7 @@ class CradBody4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final flipProvaider = Provider.of<FlipProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -22,19 +25,27 @@ class CradBody4 extends StatelessWidget {
             ),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Emergency phone",
-            prefixIcon: Icon(Icons.phone_android_outlined, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.phone_android_outlined, color: Colors.blue)
+                : const Icon(Icons.phone_android_outlined, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
-            hintext: "Cuban First Name",
-            prefixIcon: Icon(Icons.description_outlined, color: Colors.blue),
-          ),
+          Imputfield(
+              avalible: flipProvaider.avalible,
+              hintext: "Cuban First Name",
+              prefixIcon: flipProvaider.avalible
+                  ? const Icon(Icons.badge_outlined, color: Colors.blue)
+                  : const Icon(Icons.badge_outlined, color: Colors.grey)),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Cuban Last Name",
-            prefixIcon: Icon(Icons.house_outlined, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.badge_outlined, color: Colors.blue)
+                : const Icon(Icons.badge_outlined, color: Colors.grey),
           ),
           const Separador(),
           Padding(
@@ -45,21 +56,34 @@ class CradBody4 extends StatelessWidget {
             ),
           ),
           const Separador(),
-          const Imputfield(
-            suffixIcon: Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
+          Imputfield(
+            avalible: flipProvaider.avalible,
+            suffixIcon: flipProvaider.avalible
+                ? const Icon(Icons.arrow_drop_down_sharp, color: Colors.blue)
+                : const Icon(Icons.arrow_drop_down_sharp, color: Colors.grey),
             hintext: "Arrival Doc",
-            prefixIcon: Icon(Icons.location_city, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.flight_land, color: Colors.blue)
+                : const Icon(Icons.flight_land, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
-            suffixIcon: Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
+          Imputfield(
+            avalible: flipProvaider.avalible,
+            suffixIcon: flipProvaider.avalible
+                ? const Icon(Icons.arrow_drop_down_sharp, color: Colors.blue)
+                : const Icon(Icons.arrow_drop_down_sharp, color: Colors.grey),
             hintext: "Country Issuse",
-            prefixIcon: Icon(Icons.folder_zip_outlined, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.flag_outlined, color: Colors.blue)
+                : const Icon(Icons.flag_outlined, color: Colors.grey),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            avalible: flipProvaider.avalible,
             hintext: "Arrival Doc No",
-            prefixIcon: Icon(Icons.phone_android, color: Colors.blue),
+            prefixIcon: flipProvaider.avalible
+                ? const Icon(Icons.flight_land, color: Colors.blue)
+                : const Icon(Icons.flight_land, color: Colors.grey),
           ),
           Container(
             height: size.height * 0.03,

@@ -60,7 +60,6 @@ class BodyAirlineDetails extends StatelessWidget {
                                 title: userProvider.news[index].title,
                               ))),
                     ),
-                    buttonText: 'Miranda Charters',
                     description: userProvider.news[index].description,
                     title: userProvider.news[index].title,
                   ),
