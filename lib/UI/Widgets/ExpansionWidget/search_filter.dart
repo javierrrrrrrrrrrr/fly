@@ -181,7 +181,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 width: size.width * 0.318,
                 child: CustomDropDown(
                   hintext: 'From',
-                  items: bookFlightProvider.destination,
+                  items: bookFlightProvider.origen,
                   onChanged: (value) =>
                       flightProvaider.selectedRouteFrom = value.toString(),
                   onSaved: (value) =>
