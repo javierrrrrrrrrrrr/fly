@@ -47,11 +47,24 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void onPressedButton(BuildContext context) async {
+    bool respuesta;
     final flightProvaider = Provider.of<FlightProvider>(context, listen: false);
     loadingSpinner(context);
     /**Logica de las busqueda */
-    flightProvaider.addtoBody();
-    bool respuesta = await flightProvaider.getFlightsBy();
+
+    if (flightProvaider.flightNumber == "" &&
+        flightProvaider.dateFrom == '' &&
+        flightProvaider.dateTo == '' &&
+        flightProvaider.selectedCharter == '' &&
+        flightProvaider.selectedRouteFrom == '' &&
+        flightProvaider.selectedRouteTo == '' &&
+        flightProvaider.selectedWeekDay == '' &&
+        flightProvaider.selectedGate == '') {
+      respuesta = await flightProvaider.getFlights();
+    } else {
+      flightProvaider.addtoBody();
+      respuesta = await flightProvaider.getFlightsBy();
+    }
 
     if (respuesta == true) {
       flightProvaider.cleanValues();

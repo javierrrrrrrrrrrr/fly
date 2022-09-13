@@ -8,14 +8,8 @@ class BookFlightProvider extends ChangeNotifier {
   BookFlight? bookFlight;
   List<String> flightNumber = [];
   List<String> gate = [];
-  List<String> origen = ["Miami", "Tampa"];
-  List<String> destination = [
-    "Camaguey",
-    "Holguin",
-    "Santiago",
-    "Santa Clara",
-    "Havana"
-  ];
+  List<String> origen = [];
+  List<String> destination = [];
   List<String> charter = [];
 
   Future<bool> refillFieldBookFlights() async {
@@ -28,14 +22,18 @@ class BookFlightProvider extends ChangeNotifier {
       var respuesta = BookFlight.fromJson(response.body);
 
       bookFlight = respuesta;
-
+/** llenando los arreglos desde el modelo */
       flightNumber.addAll(bookFlight!.flightNumber.map((e) => e.flightNumber));
       gate.addAll(bookFlight!.gate.map((e) => e.gate));
-/*Solucioon parcial hasta que migue arregle la base de datos*/
-      // destination.addAll(bookFlight!.destination.map((e) {
-      //   List palabaras = e.from.split('-');
-      //   return palabaras[1];
-      // }));
+
+      destination.addAll(bookFlight!.destination.map((e) {
+        List palabaras = e.from.split('-');
+        return palabaras[1];
+      }));
+      origen.addAll(bookFlight!.origin.map((e) {
+        List palabaras = e.from.split('-');
+        return palabaras[1];
+      }));
 
       charter.addAll(bookFlight!.charter.map((e) => e.charter));
       notifyListeners();

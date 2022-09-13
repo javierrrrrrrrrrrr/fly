@@ -8,24 +8,28 @@ class BookFlight {
   BookFlight({
     required this.flightNumber,
     required this.charter,
+    required this.origin,
     required this.destination,
     required this.gate,
   });
 
   List<FlightNumber> flightNumber;
   List<Charter> charter;
+  List<Destination> origin;
   List<Destination> destination;
   List<Gate> gate;
 
   BookFlight copyWith({
     List<FlightNumber>? flightNumber,
     List<Charter>? charter,
+    List<Destination>? origin,
     List<Destination>? destination,
     List<Gate>? gate,
   }) =>
       BookFlight(
         flightNumber: flightNumber ?? this.flightNumber,
         charter: charter ?? this.charter,
+        origin: origin ?? this.origin,
         destination: destination ?? this.destination,
         gate: gate ?? this.gate,
       );
@@ -40,6 +44,8 @@ class BookFlight {
             json["flightNumber"].map((x) => FlightNumber.fromMap(x))),
         charter:
             List<Charter>.from(json["charter"].map((x) => Charter.fromMap(x))),
+        origin: List<Destination>.from(
+            json["origin"].map((x) => Destination.fromMap(x))),
         destination: List<Destination>.from(
             json["destination"].map((x) => Destination.fromMap(x))),
         gate: List<Gate>.from(json["gate"].map((x) => Gate.fromMap(x))),
@@ -48,6 +54,7 @@ class BookFlight {
   Map<String, dynamic> toMap() => {
         "flightNumber": List<dynamic>.from(flightNumber.map((x) => x.toMap())),
         "charter": List<dynamic>.from(charter.map((x) => x.toMap())),
+        "origin": List<dynamic>.from(origin.map((x) => x.toMap())),
         "destination": List<dynamic>.from(destination.map((x) => x.toMap())),
         "gate": List<dynamic>.from(gate.map((x) => x.toMap())),
       };
