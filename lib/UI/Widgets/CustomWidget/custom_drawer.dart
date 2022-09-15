@@ -64,7 +64,7 @@ class CustomDrawer extends StatelessWidget {
               CustomRowDrawer(
                   onPressed: () {
                     flipProvaider.flip = 0;
-                    Navigator.of(context).pushNamed('/PersonalInfo');
+                    Navigator.of(context).pushNamed('/PersonalInfoHome');
                   },
                   icono: Icons.perm_identity_sharp,
                   texto: "Personal information",

@@ -3,7 +3,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/UI/Pages/airline_info.dart';
 import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
-import 'package:fly_cliente/UI/Pages/personal_information.dart';
+import 'package:fly_cliente/UI/Pages/add_personal_information.dart';
+import 'package:fly_cliente/UI/Pages/personal_info_home.dart';
 import 'package:fly_cliente/UI/Pages/search_page.dart';
 import 'package:fly_cliente/UI/Pages/search_result.dart';
 import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           '/result': (context) => const SearchResult(),
           '/MoreDetailsFly': (context) => const MoreDetailsFly(),
           '/PersonalInfo': (context) => const PersonalInformation(),
+          '/PersonalInfoHome': (context) => const PersonalInfoHome(),
         },
       ),
     );

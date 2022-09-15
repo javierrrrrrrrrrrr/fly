@@ -62,7 +62,6 @@ class BigCardReturn extends StatelessWidget {
                         child: ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          //TODO:Falta hacer un ternario para ver como devolver cuando existe la fecha de retorno que introduce el usario
                           itemBuilder: (context, index) => GestureDetector(
                             onTap: () {
                               flightProvaider
@@ -127,7 +126,7 @@ class BigCardReturn extends StatelessWidget {
                               width: size.width * 0.2,
                               child: Center(
                                 child: Text(
-                                  " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date).substring(0, 3)} ${flightProvaider.returnflights[index].date.substring(flightProvaider.returnflights[index].date.length - 2, flightProvaider.returnflights[index].date.length)} ",
+                                  " ${flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date).substring(0, 3)} ${flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date.substring(flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date.length - 2, flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date.length)} ",
                                   style: const TextStyle(fontSize: 14),
                                 ),
                               ),
