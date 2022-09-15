@@ -18,7 +18,6 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    final flightProvaider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
         drawer: const CustomDrawer(),
@@ -69,11 +68,14 @@ class _SearchPageState extends State<SearchPage> {
     if (respuesta == true) {
       flightProvaider.cleanValues();
 
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
       flightProvaider.cleanIsselectedDays();
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamed('/result');
     } else {
       /*Mostrar al Usaqrio el error */
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     }
   }

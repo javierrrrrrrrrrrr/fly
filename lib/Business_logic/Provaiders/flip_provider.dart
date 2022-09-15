@@ -33,7 +33,7 @@ class FlipProvider extends ChangeNotifier {
   checkFlip(BuildContext context) async {
     chnageAvalibleValor(false);
     loadingSpinner(context);
-    var tiempo = Timer(const Duration(seconds: 1), () async {
+    Timer(const Duration(seconds: 1), () async {
       Navigator.pop(context);
       flip++;
       notifyListeners();
@@ -46,9 +46,6 @@ class FlipProvider extends ChangeNotifier {
             child: const NotificationBody(texto: "Buen Comienzo"),
             context: context);
       }
-      var tiempo = Timer(const Duration(seconds: 2), () async {
-        chnageAvalibleValor(true);
-      });
 
       if (flip == 2) {
         controllerLine2.toggleCard();

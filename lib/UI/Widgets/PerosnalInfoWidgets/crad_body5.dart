@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flipProvider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
-import 'package:fly_cliente/UI/Widgets/imputField.dart';
+import 'package:fly_cliente/UI/Widgets/imput_field.dart';
 import 'package:provider/provider.dart';
 
 class CradBody5 extends StatelessWidget {

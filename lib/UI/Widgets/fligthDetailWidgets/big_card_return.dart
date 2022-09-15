@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
@@ -61,43 +62,41 @@ class BigCardReturn extends StatelessWidget {
                         child: ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => Container(
-                            child: GestureDetector(
-                              onTap: () {
-                                flightProvaider
-                                    .setindexselectedFlightReturn(index);
-                              },
-                              child: SizedBox(
-                                width: size.width * 0.26,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    flightProvaider.returnflights.isNotEmpty
-                                        ? Text(
-                                            " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date)} ",
-                                            style: flightProvaider
-                                                        .indexselectedFlightReturn ==
-                                                    index
-                                                ? const TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.green)
-                                                : const TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.black),
-                                          )
-                                        : const Text(''),
-                                    Text('\$0.00',
-                                        style: flightProvaider
-                                                    .indexselectedFlightReturn ==
-                                                index
-                                            ? const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.green)
-                                            : const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.black))
-                                  ],
-                                ),
+                          //TODO:Falta hacer un ternario para ver como devolver cuando existe la fecha de retorno que introduce el usario
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: () {
+                              flightProvaider
+                                  .setindexselectedFlightReturn(index);
+                            },
+                            child: SizedBox(
+                              width: size.width * 0.26,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  flightProvaider.returnflights.isNotEmpty
+                                      ? Text(
+                                          " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date)} ",
+                                          style: flightProvaider
+                                                      .indexselectedFlightReturn ==
+                                                  index
+                                              ? const TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.green)
+                                              : const TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black),
+                                        )
+                                      : const Text(''),
+                                  Text('\$0.00',
+                                      style: flightProvaider
+                                                  .indexselectedFlightReturn ==
+                                              index
+                                          ? const TextStyle(
+                                              fontSize: 16, color: Colors.green)
+                                          : const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black))
+                                ],
                               ),
                             ),
                           ),

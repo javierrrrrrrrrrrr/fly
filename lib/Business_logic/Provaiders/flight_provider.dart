@@ -125,7 +125,7 @@ class FlightProvider extends ChangeNotifier {
   String convertDayMonthToLeterDay(String fecha) {
     // 2022/09/20
     String mes = fecha.substring(5, 7);
-    print(mes);
+
     String dia = fecha.substring(fecha.length - 2, fecha.length);
 
     if (mes == "01") {
@@ -245,12 +245,11 @@ class FlightProvider extends ChangeNotifier {
       decodedResp.map((item) {
         returnflights.add(Flight.fromMap(item));
       }).toList();
-      print(returnflights[0].from);
+
       notifyListeners();
 
       return true;
     } else {
-      print(response.reasonPhrase);
       return false;
     }
   }

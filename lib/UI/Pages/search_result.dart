@@ -77,9 +77,11 @@ class _SearchResultState extends State<SearchResult> {
 
       flightProvaider.cleanIsselectedDays();
       flightProvaider.isepandedDropDown = false;
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } else {
       /*Mostrar al Usaqrio el error */
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     }
   }

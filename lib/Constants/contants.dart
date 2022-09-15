@@ -1,9 +1,9 @@
 /*Colores*/
-import 'package:flutter/cupertino.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../UI/Widgets/widgets.dart';
 
+// ignore: use_full_hex_values_for_flutter_colors
 Color kprimarycolor = const Color(0xfff003f91);
 Color kiconocolor = const Color(0xfff2ebe9);
 String ip = 'https://api.mirandacharters.com';

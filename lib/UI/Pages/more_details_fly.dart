@@ -1,14 +1,14 @@
 import 'package:flip_card/flip_card.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flipProvider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/app_background_selection.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/Big_card_return.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/big_card_departure.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/custom_bottom_Card.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/flight_provider.dart';
+import '../Widgets/fligthDetailWidgets/big_card_return.dart';
+import '../Widgets/fligthDetailWidgets/custom_bottom_in_card.dart';
 
 class MoreDetailsFly extends StatelessWidget {
   const MoreDetailsFly({Key? key, this.index}) : super(key: key);

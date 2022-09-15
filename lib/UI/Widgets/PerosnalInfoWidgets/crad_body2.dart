@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/flipProvider.dart';
-import '../imputField.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
+import '../imput_field.dart';
 
 class CradBody2 extends StatelessWidget {
   const CradBody2({Key? key}) : super(key: key);

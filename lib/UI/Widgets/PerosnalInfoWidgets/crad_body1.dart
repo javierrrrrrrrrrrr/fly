@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
-import 'package:fly_cliente/UI/Widgets/imputField.dart';
+import 'package:fly_cliente/UI/Widgets/imput_field.dart';
 
 class CradBody1 extends StatelessWidget {
   const CradBody1({

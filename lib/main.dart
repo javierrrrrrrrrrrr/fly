@@ -11,7 +11,7 @@ import 'package:in_app_notification/in_app_notification.dart';
 import 'package:provider/provider.dart';
 
 import 'Business_logic/Provaiders/flight_provider.dart';
-import 'Business_logic/Provaiders/flipProvider.dart';
+import 'Business_logic/Provaiders/flip_provider.dart';
 import 'Business_logic/Provaiders/news_provider.dart';
 import 'UI/Pages/home_page.dart';
 

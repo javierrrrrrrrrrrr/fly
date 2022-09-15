@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../DataLayer/Models/flight_model.dart';
 
 class RowCheckInInfo extends StatelessWidget {
@@ -21,7 +19,6 @@ class RowCheckInInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flightProvaider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: padding,

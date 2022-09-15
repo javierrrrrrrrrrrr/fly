@@ -1,10 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/flipProvider.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
 
 class CustomButtomCard extends StatefulWidget {
   const CustomButtomCard({
@@ -49,6 +51,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
                 to: flightProvider.departureflights[widget.index].to);
 
             if (respuesta == true) {
+              // ignore: use_build_context_synchronously
               Navigator.pop(context);
               flipProvider.controllerBigCard.toggleCard();
               flipProvider.controllerbuttomCard.toggleCard();

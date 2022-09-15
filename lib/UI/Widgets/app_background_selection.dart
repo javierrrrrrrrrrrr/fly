@@ -14,7 +14,6 @@ class AppBackgroundSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Container(
