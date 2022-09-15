@@ -68,35 +68,43 @@ class BigCardReturn extends StatelessWidget {
                               flightProvaider
                                   .setindexselectedFlightReturn(index);
                             },
-                            child: SizedBox(
-                              width: size.width * 0.26,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  flightProvaider.returnflights.isNotEmpty
-                                      ? Text(
-                                          " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date).substring(0, 3)} ${flightProvaider.returnflights[index].date.substring(flightProvaider.returnflights[index].date.length - 2, flightProvaider.returnflights[index].date.length)} ",
-                                          style: flightProvaider
-                                                      .indexselectedFlightReturn ==
-                                                  index
-                                              ? const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.green)
-                                              : const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black),
-                                        )
-                                      : const Text(''),
-                                  Text('\$0.00',
-                                      style: flightProvaider
-                                                  .indexselectedFlightReturn ==
-                                              index
-                                          ? const TextStyle(
-                                              fontSize: 16, color: Colors.green)
-                                          : const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black))
-                                ],
+                            child: Padding(
+                              padding: flightProvaider.returnflights.length == 1
+                                  ? EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.25)
+                                  : const EdgeInsets.symmetric(horizontal: 0),
+                              child: SizedBox(
+                                width: size.width * 0.26,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    flightProvaider.returnflights.isNotEmpty
+                                        ? Text(
+                                            " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date).substring(0, 3)} ${flightProvaider.returnflights[index].date.substring(flightProvaider.returnflights[index].date.length - 2, flightProvaider.returnflights[index].date.length)} ",
+                                            style: flightProvaider
+                                                        .indexselectedFlightReturn ==
+                                                    index
+                                                ? const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold)
+                                                : const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey),
+                                          )
+                                        : const Text(''),
+                                    Text('\$0.00',
+                                        style: flightProvaider
+                                                    .indexselectedFlightReturn ==
+                                                index
+                                            ? const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.green)
+                                            : const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.grey))
+                                  ],
+                                ),
                               ),
                             ),
                           ),
