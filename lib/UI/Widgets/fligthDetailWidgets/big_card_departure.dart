@@ -23,7 +23,7 @@ class BigCardDeparture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flightProvaider = Provider.of<FlightProvider>(context);
+    final flightProvider = Provider.of<FlightProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Container(
@@ -43,10 +43,10 @@ class BigCardDeparture extends StatelessWidget {
           Column(
             children: [
               FlightDetailsHeader(
-                flight: flightProvaider.departureflights[index],
+                flight: flightProvider.departureflights[index],
                 lastRowWidget: Row(
                   children: [
-                    Text(flightProvaider.departureflights[index].day
+                    Text(flightProvider.departureflights[index].day
                         .substring(0, 3)
                         .toUpperCase()),
                     const Icon(
@@ -58,25 +58,25 @@ class BigCardDeparture extends StatelessWidget {
               ),
               const Line(),
               RowCardBodyFromToInfo(
-                selected: flightProvaider.departureflights[index],
+                selected: flightProvider.departureflights[index],
               ),
               SizedBox(
                 height: size.height * 0.022,
               ),
               const Line(),
               RowCheckInInfo(
-                selected: flightProvaider.departureflights[index],
+                selected: flightProvider.departureflights[index],
                 padding: EdgeInsets.only(
                     left: size.width * 0.05,
                     top: size.height * 0.02,
                     bottom: size.height * 0.02),
                 index: index,
                 miniContainerGreen1: MiniContainerGreen(
-                    valor: flightProvaider.departureflights[index].adultPrice
+                    valor: flightProvider.departureflights[index].adultPrice
                         .toString()),
                 miniContainerGreen2: MiniContainerGreen(
                     icono: true,
-                    valor: flightProvaider.departureflights[index].openSeats),
+                    valor: flightProvider.departureflights[index].openSeats),
               ),
               const Line(),
               Padding(
@@ -93,9 +93,10 @@ class BigCardDeparture extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: size.height * 0.005),
-                          child: const Text(
-                            '04 Aug',
-                            style: TextStyle(fontSize: 22),
+                          child: Text(
+                            flightProvaider.convertDayMonthToLeterDay(
+                                flightProvaider.returnflights[index].date),
+                            style: const TextStyle(fontSize: 22),
                           ),
                         ),
                         const Text(
@@ -126,12 +127,12 @@ class BigCardDeparture extends StatelessWidget {
                                     lastDate: DateTime(2027));
 
                                 if (piked != null) {
-                                  flightProvaider.changeuserReturnDay(
+                                  flightProvider.changeuserReturnDay(
                                       "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}");
                                 }
                               },
-                              hintext: flightProvaider.userReturnDay,
-                              suffixIcon: flightProvaider.userReturnDay == ""
+                              hintext: flightProvider.userReturnDay,
+                              suffixIcon: flightProvider.userReturnDay == ""
                                   ? const Icon(Icons.calendar_month,
                                       color: Colors.blue)
                                   : null),
@@ -155,21 +156,19 @@ class BigCardDeparture extends StatelessWidget {
                     PriceColumn(
                         icon: Icons.accessibility_new_outlined,
                         person: "Adult",
-                        price: flightProvaider
-                            .departureflights[index].adultPrice
+                        price: flightProvider.departureflights[index].adultPrice
                             .toString()),
                     const VerticalDiscontinuosLine(),
                     PriceColumn(
                         icon: Icons.family_restroom,
                         person: "Child",
-                        price: flightProvaider
-                            .departureflights[index].childPrice
+                        price: flightProvider.departureflights[index].childPrice
                             .toString()),
                     const VerticalDiscontinuosLine(),
                     PriceColumn(
                         icon: Icons.child_friendly_rounded,
                         person: "Infant",
-                        price: flightProvaider.departureflights[index].boysPrice
+                        price: flightProvider.departureflights[index].boysPrice
                             .toString()),
                   ],
                 ),
@@ -197,7 +196,7 @@ class BigCardDeparture extends StatelessWidget {
             bottom: size.height * 0.24,
             left: size.width * 0.33,
             child: Text(
-              flightProvaider.departureflights[index].flightNumber,
+              flightProvider.departureflights[index].flightNumber,
               style: const TextStyle(fontSize: 20, color: Colors.grey),
             ),
           )
