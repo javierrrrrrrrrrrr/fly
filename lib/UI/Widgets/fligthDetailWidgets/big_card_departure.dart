@@ -95,7 +95,7 @@ class BigCardDeparture extends StatelessWidget {
                               vertical: size.height * 0.005),
                           child: Text(
                             flightProvaider.convertDayMonthToLeterDay(
-                                flightProvaider.returnflights[index].date),
+                                flightProvaider.departureflights[index].date),
                             style: const TextStyle(fontSize: 22),
                           ),
                         ),

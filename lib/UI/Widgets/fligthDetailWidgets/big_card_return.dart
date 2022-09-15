@@ -148,8 +148,8 @@ class BigCardReturn extends StatelessWidget {
                       index: flightProvaider.indexselectedFlightReturn,
                       miniContainerGreen2: MiniContainerGreen(
                           icono: true,
-                          valor: flightProvaider
-                              .departureflights[index].openSeats),
+                          valor:
+                              flightProvaider.returnflights[index].openSeats),
                     ),
                     const Line(),
                   ],
