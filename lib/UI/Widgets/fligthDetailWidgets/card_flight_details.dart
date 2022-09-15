@@ -19,6 +19,7 @@ class CardFlightDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flightProvaider = Provider.of<FlightProvider>(context);
+
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.25,
