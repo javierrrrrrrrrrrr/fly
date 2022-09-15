@@ -8,6 +8,11 @@ import 'package:in_app_notification/in_app_notification.dart';
 import '../../UI/Widgets/notification_body.dart';
 
 class FlipProvider extends ChangeNotifier {
+  //Control del flip carta grande y botton //
+  var controllerBigCard = FlipCardController();
+  var controllerbuttomCard = FlipCardController();
+
+  //Controles de fomrulario de pasos //
   bool avalible = true;
   int flip = 0;
   var controllerLine1 = FlipCardController();

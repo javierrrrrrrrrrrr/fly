@@ -45,7 +45,7 @@ class _SearchResultState extends State<SearchResult> {
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  itemCount: flightProvaider.flights.length,
+                  itemCount: flightProvaider.departureflights.length,
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: EdgeInsets.only(bottom: size.height * 0.03),
@@ -70,7 +70,7 @@ class _SearchResultState extends State<SearchResult> {
     loadingSpinner(context);
     /**Logica de las busqueda */
     flightProvaider.addtoBody();
-    bool respuesta = await flightProvaider.getFlightsBy();
+    bool respuesta = await flightProvaider.getFlightsByFilters();
 
     if (respuesta == true) {
       flightProvaider.cleanValues();

@@ -63,7 +63,7 @@ class _SearchPageState extends State<SearchPage> {
       respuesta = await flightProvaider.getFlights();
     } else {
       flightProvaider.addtoBody();
-      respuesta = await flightProvaider.getFlightsBy();
+      respuesta = await flightProvaider.getFlightsByFilters();
     }
 
     if (respuesta == true) {

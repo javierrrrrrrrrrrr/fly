@@ -3,11 +3,11 @@ import 'package:fly_cliente/UI/Widgets/SeparationWidget/line.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';
-import '../SeparationWidget/line.dart';
 import 'flight_details_body.dart';
 import 'flight_details_footer.dart';
 import 'flight_details_header.dart';
 
+/// Carta pequena */
 class CardFlightDetails extends StatelessWidget {
   const CardFlightDetails({
     Key? key,
@@ -21,7 +21,7 @@ class CardFlightDetails extends StatelessWidget {
     final flightProvaider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.24,
+      height: size.height * 0.25,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: const [
@@ -34,7 +34,19 @@ class CardFlightDetails extends StatelessWidget {
       ),
       child: Column(
         children: [
-          FlightDetailsHeader(flightProvaider: flightProvaider.flights[index]),
+          FlightDetailsHeader(
+              flight: flightProvaider.departureflights[index],
+              lastRowWidget: Row(
+                children: [
+                  Text(flightProvaider.departureflights[index].day
+                      .substring(0, 3)
+                      .toUpperCase()),
+                  const Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                  )
+                ],
+              )),
           const Line(),
           Padding(
             padding: EdgeInsets.only(
@@ -42,14 +54,14 @@ class CardFlightDetails extends StatelessWidget {
                 left: size.width * 0.05,
                 right: size.width * 0.05),
             child: FlightDetailsBody(
-                flightProvaider: flightProvaider.flights[index]),
+                flight: flightProvaider.departureflights[index]),
           ),
           SizedBox(
-            height: size.height * 0.022,
+            height: size.height * 0.002,
           ),
           const Line(),
           FlightDetailsFooter(
-            flightProvaider: flightProvaider.flights[index],
+            flightProvaider: flightProvaider.departureflights[index],
             index: index,
           )
         ],

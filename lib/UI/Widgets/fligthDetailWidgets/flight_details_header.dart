@@ -4,10 +4,12 @@ import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 class FlightDetailsHeader extends StatelessWidget {
   const FlightDetailsHeader({
     Key? key,
-    required this.flightProvaider,
+    required this.flight,
+    required this.lastRowWidget,
   }) : super(key: key);
 
-  final Flight flightProvaider;
+  final Flight flight;
+  final Widget lastRowWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +21,22 @@ class FlightDetailsHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // SeparadorHorizontal(numero: size.width * 0.06),
-          Text(flightProvaider.charter),
+          Text(flight.charter),
           // SeparadorHorizontal(numero: size.width * 0.09),
-          Padding(
-            padding: EdgeInsets.only(right: size.width * 0.08),
-            child: SizedBox(
-              height: size.height * 0.06,
-              width: size.width * 0.2,
-              child: Image.asset('assets/logo.png'),
-            ),
+          SizedBox(
+            height: size.height * 0.06,
+            width: size.width * 0.2,
+            child: Image.asset('assets/logo.png'),
           ),
           //   SeparadorHorizontal(numero: size.width * 0.14),
-          Row(
-            children: [
-              Text(flightProvaider.day.substring(0, 3).toUpperCase()),
-              const Icon(
-                Icons.check_circle,
-                color: Colors.green,
-              )
-            ],
-          )
+          SizedBox(
+              width: size.width * 0.2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  lastRowWidget,
+                ],
+              ))
         ],
       ),
     );
