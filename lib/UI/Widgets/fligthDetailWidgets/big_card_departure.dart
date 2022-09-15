@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/flight_details_header.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/mini_container_green.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/row_card_body_from_to_info.dart';
@@ -15,11 +16,11 @@ class BigCardDeparture extends StatelessWidget {
   const BigCardDeparture({
     Key? key,
     required this.flightProvaider,
-    required this.index,
+    required this.departureflight,
   }) : super(key: key);
 
   final FlightProvider flightProvaider;
-  final int index;
+  final Flight departureflight;
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +44,10 @@ class BigCardDeparture extends StatelessWidget {
           Column(
             children: [
               FlightDetailsHeader(
-                flight: flightProvider.departureflights[index],
+                flight: departureflight,
                 lastRowWidget: Row(
                   children: [
-                    Text(flightProvider.departureflights[index].day
-                        .substring(0, 3)
-                        .toUpperCase()),
+                    Text(departureflight.day.substring(0, 3).toUpperCase()),
                     const Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -58,25 +57,22 @@ class BigCardDeparture extends StatelessWidget {
               ),
               const Line(),
               RowCardBodyFromToInfo(
-                selected: flightProvider.departureflights[index],
+                selected: departureflight,
               ),
               SizedBox(
                 height: size.height * 0.022,
               ),
               const Line(),
               RowCheckInInfo(
-                selected: flightProvider.departureflights[index],
+                selected: departureflight,
                 padding: EdgeInsets.only(
                     left: size.width * 0.05,
                     top: size.height * 0.02,
                     bottom: size.height * 0.02),
-                index: index,
                 miniContainerGreen1: MiniContainerGreen(
-                    valor: flightProvider.departureflights[index].adultPrice
-                        .toString()),
+                    valor: departureflight.adultPrice.toString()),
                 miniContainerGreen2: MiniContainerGreen(
-                    icono: true,
-                    valor: flightProvider.departureflights[index].openSeats),
+                    icono: true, valor: departureflight.openSeats),
               ),
               const Line(),
               Padding(
@@ -95,7 +91,7 @@ class BigCardDeparture extends StatelessWidget {
                               vertical: size.height * 0.005),
                           child: Text(
                             flightProvaider.convertDayMonthToLeterDay(
-                                flightProvaider.departureflights[index].date),
+                                departureflight.date),
                             style: const TextStyle(fontSize: 22),
                           ),
                         ),
@@ -156,20 +152,17 @@ class BigCardDeparture extends StatelessWidget {
                     PriceColumn(
                         icon: Icons.accessibility_new_outlined,
                         person: "Adult",
-                        price: flightProvider.departureflights[index].adultPrice
-                            .toString()),
+                        price: departureflight.adultPrice.toString()),
                     const VerticalDiscontinuosLine(),
                     PriceColumn(
                         icon: Icons.family_restroom,
                         person: "Child",
-                        price: flightProvider.departureflights[index].childPrice
-                            .toString()),
+                        price: departureflight.childPrice.toString()),
                     const VerticalDiscontinuosLine(),
                     PriceColumn(
                         icon: Icons.child_friendly_rounded,
                         person: "Infant",
-                        price: flightProvider.departureflights[index].boysPrice
-                            .toString()),
+                        price: departureflight.boysPrice.toString()),
                   ],
                 ),
               ),
@@ -196,7 +189,7 @@ class BigCardDeparture extends StatelessWidget {
             bottom: size.height * 0.24,
             left: size.width * 0.33,
             child: Text(
-              flightProvider.departureflights[index].flightNumber,
+              departureflight.flightNumber,
               style: const TextStyle(fontSize: 20, color: Colors.grey),
             ),
           )

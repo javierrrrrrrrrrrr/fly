@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flightProvaider = Provider.of<FlightProvider>(context);
     return InAppNotification(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -60,7 +61,9 @@ class MyApp extends StatelessWidget {
           '/search': (context) => const SearchPage(),
           '/vermas': (context) => const MoreDetailsOfert(),
           '/result': (context) => const SearchResult(),
-          '/MoreDetailsFly': (context) => const MoreDetailsFly(),
+          '/MoreDetailsFly': (context) => MoreDetailsFly(
+                departureflight: flightProvaider.selectedDepartureFlight!,
+              ),
           '/PersonalInfo': (context) => const PersonalInformation(),
           '/PersonalInfoHome': (context) => const PersonalInfoHome(),
         },

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
+import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/flight_details_header.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/mini_container_green.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/row_card_body_from_to_info.dart';
@@ -11,13 +12,16 @@ import 'package:provider/provider.dart';
 import '../SeparationWidget/line.dart';
 
 class BigCardReturn extends StatelessWidget {
-  const BigCardReturn({Key? key, required this.index}) : super(key: key);
+  const BigCardReturn({
+    Key? key,
+    required this.selectedReturnFlight,
+  }) : super(key: key);
 
-  final int index;
+  final Flight? selectedReturnFlight;
 
   @override
   Widget build(BuildContext context) {
-    final flightProvaider = Provider.of<FlightProvider>(context);
+    final flightProvider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -64,11 +68,14 @@ class BigCardReturn extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => GestureDetector(
                             onTap: () {
-                              flightProvaider
+                              flightProvider.selectedReturnFlight =
+                                  flightProvider.returnflights[index];
+
+                              flightProvider
                                   .setindexselectedFlightReturn(index);
                             },
                             child: Padding(
-                              padding: flightProvaider.returnflights.length == 1
+                              padding: flightProvider.returnflights.length == 1
                                   ? EdgeInsets.symmetric(
                                       horizontal: size.width * 0.25)
                                   : const EdgeInsets.symmetric(horizontal: 0),
@@ -77,10 +84,10 @@ class BigCardReturn extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    flightProvaider.returnflights.isNotEmpty
+                                    flightProvider.returnflights.isNotEmpty
                                         ? Text(
-                                            " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date).substring(0, 3)} ${flightProvaider.returnflights[index].date.substring(flightProvaider.returnflights[index].date.length - 2, flightProvaider.returnflights[index].date.length)} ",
-                                            style: flightProvaider
+                                            " ${selectedReturnFlight!.day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.returnflights[index].date).substring(0, 3)} ${flightProvider.returnflights[index].date.substring(flightProvider.returnflights[index].date.length - 2, flightProvider.returnflights[index].date.length)} ",
+                                            style: flightProvider
                                                         .indexselectedFlightReturn ==
                                                     index
                                                 ? const TextStyle(
@@ -93,7 +100,7 @@ class BigCardReturn extends StatelessWidget {
                                           )
                                         : const Text(''),
                                     Text('\$0.00',
-                                        style: flightProvaider
+                                        style: flightProvider
                                                     .indexselectedFlightReturn ==
                                                 index
                                             ? const TextStyle(
@@ -110,7 +117,7 @@ class BigCardReturn extends StatelessWidget {
                           separatorBuilder: (context, index) => Container(
                               width: size.width * 0.002,
                               color: const Color.fromRGBO(155, 155, 155, 1)),
-                          itemCount: flightProvaider.returnflights.length,
+                          itemCount: flightProvider.returnflights.length,
                         ),
                       ),
                     ),
@@ -119,14 +126,14 @@ class BigCardReturn extends StatelessWidget {
                       height: size.height * 0.03,
                     ),
                     FlightDetailsHeader(
-                      flight: flightProvaider.departureflights[index],
-                      lastRowWidget: flightProvaider.returnflights.isNotEmpty
+                      flight: selectedReturnFlight!,
+                      lastRowWidget: flightProvider.returnflights.isNotEmpty
                           ? SizedBox(
                               height: size.height * 0.05,
                               width: size.width * 0.2,
                               child: Center(
                                 child: Text(
-                                  " ${flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date).substring(0, 3)} ${flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date.substring(flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date.length - 2, flightProvaider.returnflights[flightProvaider.indexselectedFlightReturn].date.length)} ",
+                                  " ${flightProvider.returnflights[flightProvider.indexselectedFlightReturn].day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date).substring(0, 3)} ${flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.substring(flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.length - 2, flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.length)} ",
                                   style: const TextStyle(fontSize: 14),
                                 ),
                               ),
@@ -137,25 +144,22 @@ class BigCardReturn extends StatelessWidget {
                     //TODO:Revisar despues lo de Cambiar el index por Selected Fligt y en este caso el index del que viene del modelo
 
                     RowCardBodyFromToInfo(
-                      selected: flightProvaider.returnflights[
-                          flightProvaider.indexselectedFlightReturn],
+                      selected: flightProvider.returnflights[
+                          flightProvider.indexselectedFlightReturn],
                     ),
                     SizedBox(
                       height: size.height * 0.025,
                     ),
                     const Line(),
                     RowCheckInInfo(
-                      selected: flightProvaider.returnflights[
-                          flightProvaider.indexselectedFlightReturn],
+                      selected: flightProvider.returnflights[
+                          flightProvider.indexselectedFlightReturn],
                       padding: EdgeInsets.only(
                           left: size.width * 0.02,
                           top: size.height * 0.02,
                           bottom: size.height * 0.02),
-                      index: flightProvaider.indexselectedFlightReturn,
                       miniContainerGreen2: MiniContainerGreen(
-                          icono: true,
-                          valor:
-                              flightProvaider.returnflights[index].openSeats),
+                          icono: true, valor: selectedReturnFlight!.openSeats),
                     ),
                     const Line(),
                   ],
@@ -172,7 +176,7 @@ class BigCardReturn extends StatelessWidget {
                   bottom: size.height * 0.055,
                   left: size.width * 0.31,
                   child: Text(
-                    flightProvaider.returnflights[index].flightNumber,
+                    selectedReturnFlight!.flightNumber,
                     style: const TextStyle(fontSize: 20, color: Colors.grey),
                   ),
                 )

@@ -1,17 +1,19 @@
 import 'dart:convert';
 
-class News {
-  News({
+import 'package:equatable/equatable.dart';
+
+class News extends Equatable {
+  const News({
     required this.id,
     required this.title,
     required this.description,
     required this.date,
   });
 
-  int id;
-  String title;
-  String description;
-  DateTime date;
+  final int id;
+  final String title;
+  final String description;
+  final DateTime date;
 
   News copyWith({
     int? id,
@@ -43,4 +45,8 @@ class News {
         "description": description,
         "date": date.toIso8601String(),
       };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id, description, title, date];
 }

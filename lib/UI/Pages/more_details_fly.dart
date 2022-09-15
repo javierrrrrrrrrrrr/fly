@@ -1,6 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
+import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:fly_cliente/UI/Widgets/app_background_selection.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/big_card_departure.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
@@ -11,13 +12,15 @@ import '../Widgets/fligthDetailWidgets/big_card_return.dart';
 import '../Widgets/fligthDetailWidgets/custom_bottom_in_card.dart';
 
 class MoreDetailsFly extends StatelessWidget {
-  const MoreDetailsFly({Key? key, this.index}) : super(key: key);
+  const MoreDetailsFly({
+    Key? key,
+    required this.departureflight,
+  }) : super(key: key);
 
-  final int? index;
+  final Flight departureflight;
 
   @override
   Widget build(BuildContext context) {
-    final int index = ModalRoute.of(context)?.settings.arguments as int;
     final size = MediaQuery.of(context).size;
     final flightProvaider = Provider.of<FlightProvider>(context);
     final flipProvider = Provider.of<FlipProvider>(context);
@@ -59,19 +62,22 @@ class MoreDetailsFly extends StatelessWidget {
                 flipOnTouch: false,
                 back: flightProvaider.returnflights.isNotEmpty
                     ? BigCardReturn(
-                        index: flightProvaider.indexselectedFlightReturn)
+                        //TODO: Revisar despues si Hay algun error aqui.... con el null safety de abajo..
+                        selectedReturnFlight:
+                            flightProvaider.selectedReturnFlight,
+                      )
                     : Container(),
                 front: BigCardDeparture(
+                  departureflight: departureflight,
                   flightProvaider: flightProvaider,
-                  index: index,
                 ),
               ),
               SizedBox(
                 height: size.height * 0.025,
               ),
               CustomButtomCard(
+                departureFlight: departureflight,
                 flightProvaider: flightProvaider,
-                index: index,
               )
             ],
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/separador_horizontal.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Constants/contants.dart';
 import '../../../DataLayer/Models/flight_model.dart';
 
@@ -8,15 +10,15 @@ class FlightDetailsFooter extends StatelessWidget {
   const FlightDetailsFooter({
     Key? key,
     required this.flight,
-    required this.index,
   }) : super(key: key);
 
   final Flight flight;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
-    int primervalorfrom = int.parse(flight.departure.split(":")[0]);
+    final flightProvaider = Provider.of<FlightProvider>(context);
+
+    int primervalorfrom = int.parse(flight.checkIn.split(":")[0]);
     final size = MediaQuery.of(context).size;
     return Row(
       children: [
@@ -25,13 +27,13 @@ class FlightDetailsFooter extends StatelessWidget {
           children: [
             primervalorfrom >= 10
                 ? Text(
-                    "Check in ${flight.departure.trim().substring(0, 5)}",
+                    "Check in ${flight.checkIn.trim().substring(0, 5)}",
                     style: const TextStyle(fontSize: 15),
                   )
-                : Text("Check in ${flight.departure.trim().substring(0, 4)}",
+                : Text("Check in ${flight.checkIn.trim().substring(0, 4)}",
                     style: const TextStyle(fontSize: 15)),
             Text(
-                " ${flight.departure.trim().substring(flight.departure.length - 2, flight.departure.length)}",
+                " ${flight.checkIn.trim().substring(flight.checkIn.length - 2, flight.checkIn.length)}",
                 style: const TextStyle(fontSize: 15)),
           ],
         ),
@@ -46,8 +48,12 @@ class FlightDetailsFooter extends StatelessWidget {
                 child: Text("More Details",
                     style: TextStyle(fontSize: 14, color: Colors.white))),
             onPressed: () {
-              Navigator.of(context)
-                  .pushNamed("/MoreDetailsFly", arguments: index);
+              //Esto es para actualizar el flight selecionado...
+              flightProvaider.selectedDepartureFlight = flight;
+              ////////////////////////////////////////////////////////
+              Navigator.of(context).pushNamed(
+                "/MoreDetailsFly",
+              );
             }),
       ],
     );

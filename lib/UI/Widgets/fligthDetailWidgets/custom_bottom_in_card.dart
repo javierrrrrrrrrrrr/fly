@@ -4,6 +4,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
+import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';
@@ -12,11 +13,11 @@ class CustomButtomCard extends StatefulWidget {
   const CustomButtomCard({
     Key? key,
     required this.flightProvaider,
-    required this.index,
+    required this.departureFlight,
   }) : super(key: key);
 
   final FlightProvider flightProvaider;
-  final int index;
+  final Flight departureFlight;
 
   @override
   State<CustomButtomCard> createState() => _CustomButtomCardState();
@@ -47,8 +48,8 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
 
             bool respuesta = await flightProvider.verifyReturnFlights(
                 dateReturn: flightProvider.userReturnDay,
-                from: flightProvider.departureflights[widget.index].from,
-                to: flightProvider.departureflights[widget.index].to);
+                from: widget.departureFlight.from,
+                to: widget.departureFlight.to);
 
             if (respuesta == true) {
               // ignore: use_build_context_synchronously

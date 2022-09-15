@@ -49,7 +49,11 @@ class _SearchResultState extends State<SearchResult> {
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: EdgeInsets.only(bottom: size.height * 0.03),
-                        child: CardFlightDetails(index: index));
+                        child: CardFlightDetails(
+                          index: index,
+                          departureFlight:
+                              flightProvaider.departureflights[index],
+                        ));
                   },
                 ),
               )

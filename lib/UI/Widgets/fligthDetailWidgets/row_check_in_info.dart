@@ -5,7 +5,6 @@ import '../../../DataLayer/Models/flight_model.dart';
 class RowCheckInInfo extends StatelessWidget {
   const RowCheckInInfo({
     Key? key,
-    required this.index,
     this.miniContainerGreen1,
     this.miniContainerGreen2,
     required this.padding,
@@ -13,7 +12,6 @@ class RowCheckInInfo extends StatelessWidget {
   }) : super(key: key);
   final Widget? miniContainerGreen1;
   final Widget? miniContainerGreen2;
-  final int index;
   final Flight selected;
   final EdgeInsetsGeometry padding;
 

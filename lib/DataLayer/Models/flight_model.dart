@@ -1,7 +1,9 @@
 import 'dart:convert';
 
-class Flight {
-  Flight({
+import 'package:equatable/equatable.dart';
+
+class Flight extends Equatable {
+  const Flight({
     required this.id,
     required this.date,
     required this.day,
@@ -23,25 +25,25 @@ class Flight {
     required this.isDeleted,
   });
 
-  int id;
-  String date;
-  String day;
-  String charter;
-  String flightNumber;
-  String from;
-  String to;
-  String checkIn;
-  String departure;
-  String arrival;
-  String gate;
-  String reservedSeats;
-  String openSeats;
-  String status;
-  int adultPrice;
-  int childPrice;
-  int boysPrice;
-  DateTime createdAt;
-  bool isDeleted;
+  final int id;
+  final String date;
+  final String day;
+  final String charter;
+  final String flightNumber;
+  final String from;
+  final String to;
+  final String checkIn;
+  final String departure;
+  final String arrival;
+  final String gate;
+  final String reservedSeats;
+  final String openSeats;
+  final String status;
+  final int adultPrice;
+  final int childPrice;
+  final int boysPrice;
+  final DateTime createdAt;
+  final bool isDeleted;
 
   factory Flight.fromJson(String str) => Flight.fromMap(json.decode(str));
 
@@ -90,4 +92,27 @@ class Flight {
         "createdAt": createdAt.toIso8601String(),
         "isDeleted": isDeleted,
       };
+
+  @override
+  List<Object?> get props => [
+        id,
+        date,
+        day,
+        charter,
+        flightNumber,
+        from,
+        to,
+        checkIn,
+        departure,
+        arrival,
+        gate,
+        reservedSeats,
+        openSeats,
+        status,
+        adultPrice,
+        childPrice,
+        boysPrice,
+        createdAt,
+        isDeleted,
+      ];
 }

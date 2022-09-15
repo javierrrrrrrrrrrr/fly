@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/line.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +12,10 @@ import 'flight_details_header.dart';
 class CardFlightDetails extends StatelessWidget {
   const CardFlightDetails({
     Key? key,
+    required this.departureFlight,
     required this.index,
   }) : super(key: key);
-
+  final Flight departureFlight;
   final int index;
 
   @override
@@ -36,12 +38,10 @@ class CardFlightDetails extends StatelessWidget {
       child: Column(
         children: [
           FlightDetailsHeader(
-              flight: flightProvaider.departureflights[index],
+              flight: departureFlight,
               lastRowWidget: Row(
                 children: [
-                  Text(flightProvaider.departureflights[index].day
-                      .substring(0, 3)
-                      .toUpperCase()),
+                  Text(departureFlight.day.substring(0, 3).toUpperCase()),
                   const Icon(
                     Icons.check_circle,
                     color: Colors.green,
@@ -54,16 +54,14 @@ class CardFlightDetails extends StatelessWidget {
                 top: size.width * 0.03,
                 left: size.width * 0.05,
                 right: size.width * 0.05),
-            child: FlightDetailsBody(
-                flight: flightProvaider.departureflights[index]),
+            child: FlightDetailsBody(flight: departureFlight),
           ),
           SizedBox(
             height: size.height * 0.002,
           ),
           const Line(),
           FlightDetailsFooter(
-            flight: flightProvaider.departureflights[index],
-            index: index,
+            flight: departureFlight,
           )
         ],
       ),

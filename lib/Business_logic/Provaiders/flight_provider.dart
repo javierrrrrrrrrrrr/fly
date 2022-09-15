@@ -39,6 +39,9 @@ class FlightProvider extends ChangeNotifier {
   //   notifyListeners();
   // }
 
+  Flight? selectedDepartureFlight;
+  Flight? selectedReturnFlight;
+
   String token = '';
   Map<String, dynamic> body = {};
 
@@ -245,6 +248,8 @@ class FlightProvider extends ChangeNotifier {
       decodedResp.map((item) {
         returnflights.add(Flight.fromMap(item));
       }).toList();
+
+      selectedReturnFlight = returnflights[0];
 
       notifyListeners();
 
