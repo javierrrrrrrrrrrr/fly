@@ -14,12 +14,14 @@ class FlightDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+//variables para controlar el largo de la fecha
     /* from*/
+    int primervalorfrom = int.parse(flight.departure.split(":")[0]);
     final String base = flight.from;
     final String nombreCiudadEntero = flight.from.substring(5, base.length);
     final String nombreCiudadReducido = flight.from.substring(0, 3);
 /* to*/
+    int primervalorto = int.parse(flight.arrival.split(":")[0]);
     final String base1 = flight.to;
     final String nombreCiudadEntero1 = flight.to.substring(5, base1.length);
     final String nombreCiudadReducido1 = flight.to.substring(0, 3);
@@ -44,8 +46,15 @@ class FlightDetailsBody extends StatelessWidget {
             Text(nombreCiudadReducido, style: const TextStyle(fontSize: 23)),
             Row(
               children: [
-                Text(flight.departure.trim().substring(0, 4),
-                    style: const TextStyle(fontSize: 16)),
+                primervalorfrom >= 10
+                    ? Text(
+                        flight.departure.trim().substring(0, 5),
+                        style: const TextStyle(fontSize: 16),
+                      )
+                    : Text(
+                        flight.departure.trim().substring(0, 4),
+                        style: const TextStyle(fontSize: 16),
+                      ),
                 Text(
                     " ${flight.departure.trim().substring(flight.departure.length - 2, flight.departure.length)}",
                     style: const TextStyle(fontSize: 16)),
@@ -93,8 +102,15 @@ class FlightDetailsBody extends StatelessWidget {
             Text(nombreCiudadReducido1, style: const TextStyle(fontSize: 23)),
             Row(
               children: [
-                Text(flight.arrival.trim().substring(0, 4),
-                    style: const TextStyle(fontSize: 16)),
+                primervalorto >= 10
+                    ? Text(
+                        flight.arrival.trim().substring(0, 5),
+                        style: const TextStyle(fontSize: 16),
+                      )
+                    : Text(
+                        flight.arrival.trim().substring(0, 4),
+                        style: const TextStyle(fontSize: 16),
+                      ),
                 Text(
                     " ${flight.arrival.trim().substring(flight.arrival.length - 2, flight.arrival.length)}",
                     style: const TextStyle(fontSize: 16)),

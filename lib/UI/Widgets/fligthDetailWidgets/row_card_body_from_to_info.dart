@@ -15,6 +15,7 @@ class RowCardBodyFromToInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /* from*/
+    int primervalorfrom = int.parse(selected.departure.split(":")[0]);
     final String base = selected.from;
     final String nombreCiudadEntero = selected.from.substring(5, base.length);
     final String nombreCiudadReducido = selected.from.substring(0, 3);
@@ -22,6 +23,7 @@ class RowCardBodyFromToInfo extends StatelessWidget {
     final String base1 = selected.to;
     final String nombreCiudadEntero1 = selected.to.substring(5, base1.length);
     final String nombreCiudadReducido1 = selected.to.substring(0, 3);
+    int primervalorto = int.parse(selected.arrival.split(":")[0]);
 
     final size = MediaQuery.of(context).size;
     return Padding(
@@ -38,8 +40,11 @@ class RowCardBodyFromToInfo extends StatelessWidget {
               Text(nombreCiudadReducido, style: const TextStyle(fontSize: 23)),
               Row(
                 children: [
-                  Text(selected.departure.trim().substring(0, 4),
-                      style: const TextStyle(fontSize: 16)),
+                  primervalorfrom >= 10
+                      ? Text(selected.departure.trim().substring(0, 5),
+                          style: const TextStyle(fontSize: 16))
+                      : Text(selected.departure.trim().substring(0, 4),
+                          style: const TextStyle(fontSize: 16)),
                   Text(
                       " ${selected.departure.trim().substring(selected.departure.length - 2, selected.departure.length)}",
                       style: const TextStyle(fontSize: 16)),
@@ -76,8 +81,11 @@ class RowCardBodyFromToInfo extends StatelessWidget {
               Text(nombreCiudadReducido1, style: const TextStyle(fontSize: 23)),
               Row(
                 children: [
-                  Text(selected.arrival.trim().substring(0, 4),
-                      style: const TextStyle(fontSize: 16)),
+                  primervalorto >= 10
+                      ? Text(selected.arrival.trim().substring(0, 5),
+                          style: const TextStyle(fontSize: 16))
+                      : Text(selected.arrival.trim().substring(0, 4),
+                          style: const TextStyle(fontSize: 16)),
                   Text(
                       " ${selected.arrival.trim().substring(selected.arrival.length - 2, selected.arrival.length)}",
                       style: const TextStyle(fontSize: 16)),
