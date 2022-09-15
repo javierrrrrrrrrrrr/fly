@@ -75,7 +75,7 @@ class BigCardReturn extends StatelessWidget {
                                 children: [
                                   flightProvaider.returnflights.isNotEmpty
                                       ? Text(
-                                          " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date)} ",
+                                          " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date).substring(0, 3)} ${flightProvaider.returnflights[index].date.substring(flightProvaider.returnflights[index].date.length - 2, flightProvaider.returnflights[index].date.length)} ",
                                           style: flightProvaider
                                                       .indexselectedFlightReturn ==
                                                   index
@@ -119,7 +119,7 @@ class BigCardReturn extends StatelessWidget {
                               width: size.width * 0.2,
                               child: Center(
                                 child: Text(
-                                  " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date)} ",
+                                  " ${flightProvaider.returnflights[index].day.substring(0, 3)},${flightProvaider.convertDayMonthToLeterDay(flightProvaider.returnflights[index].date).substring(0, 3)} ${flightProvaider.returnflights[index].date.substring(flightProvaider.returnflights[index].date.length - 2, flightProvaider.returnflights[index].date.length)} ",
                                   style: const TextStyle(fontSize: 14),
                                 ),
                               ),

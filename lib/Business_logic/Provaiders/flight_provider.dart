@@ -122,48 +122,48 @@ class FlightProvider extends ChangeNotifier {
     }
   }
 
-  String convertDayMonthToLeterDay(String fecha) {
+  String convertDayMonthToLeterDay(
+    String fecha,
+  ) {
     // 2022/09/20
     String mes = fecha.substring(5, 7);
 
-    String dia = fecha.substring(fecha.length - 2, fecha.length);
-
     if (mes == "01") {
-      return "Jan" "$dia";
+      return "January";
     }
     if (mes == "02") {
-      return "Feb" "$dia";
+      return "February";
     }
     if (mes == "03") {
-      return "Mar" "$dia";
+      return "March";
     }
 
     if (mes == "04") {
-      return "Apr" "$dia";
+      return "April";
     }
     if (mes == "05") {
-      return "May" "$dia";
+      return "May";
     }
     if (mes == "06") {
-      return "Jun" "$dia";
+      return "June";
     }
     if (mes == "07") {
-      return "Jul" "$dia";
+      return "July";
     }
     if (mes == "08") {
-      return "Aug" "$dia";
+      return "August";
     }
     if (mes == "09") {
-      return "Sep" "$dia";
+      return "September";
     }
     if (mes == "10") {
-      return "Oct" "$dia";
+      return "October";
     }
     if (mes == "11") {
-      return "Nov" "$dia";
+      return "November";
     }
     if (mes == "12") {
-      return "Dec" "$dia";
+      return "December";
     }
 
     return "";

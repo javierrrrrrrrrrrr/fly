@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Business_logic/Provaiders/flight_provider.dart';
 
 class FlightDetailsHeader extends StatelessWidget {
   const FlightDetailsHeader({
@@ -14,6 +17,7 @@ class FlightDetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final flightProvaider = Provider.of<FlightProvider>(context);
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),
@@ -21,7 +25,8 @@ class FlightDetailsHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // SeparadorHorizontal(numero: size.width * 0.06),
-          Text(flight.charter),
+          Text(
+              "${flight.date.substring(flight.date.length - 2, flight.date.length)} ${flightProvaider.convertDayMonthToLeterDay(flight.date)}"),
           // SeparadorHorizontal(numero: size.width * 0.09),
           SizedBox(
             height: size.height * 0.06,
