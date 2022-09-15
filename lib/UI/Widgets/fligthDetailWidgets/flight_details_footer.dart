@@ -7,25 +7,31 @@ import '../../../DataLayer/Models/flight_model.dart';
 class FlightDetailsFooter extends StatelessWidget {
   const FlightDetailsFooter({
     Key? key,
-    required this.flightProvaider,
+    required this.flight,
     required this.index,
   }) : super(key: key);
 
-  final Flight flightProvaider;
+  final Flight flight;
   final int index;
 
   @override
   Widget build(BuildContext context) {
+    int primervalorfrom = int.parse(flight.departure.split(":")[0]);
     final size = MediaQuery.of(context).size;
     return Row(
       children: [
         SeparadorHorizontal(numero: size.width * 0.05),
         Row(
           children: [
-            Text("Check in ${flightProvaider.departure.trim().substring(0, 4)}",
-                style: const TextStyle(fontSize: 15)),
+            primervalorfrom >= 10
+                ? Text(
+                    "Check in ${flight.departure.trim().substring(0, 5)}",
+                    style: const TextStyle(fontSize: 15),
+                  )
+                : Text("Check in ${flight.departure.trim().substring(0, 4)}",
+                    style: const TextStyle(fontSize: 15)),
             Text(
-                " ${flightProvaider.departure.trim().substring(flightProvaider.departure.length - 2, flightProvaider.departure.length)}",
+                " ${flight.departure.trim().substring(flight.departure.length - 2, flight.departure.length)}",
                 style: const TextStyle(fontSize: 15)),
           ],
         ),

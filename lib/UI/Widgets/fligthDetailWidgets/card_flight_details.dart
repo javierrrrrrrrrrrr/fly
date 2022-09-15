@@ -62,7 +62,7 @@ class CardFlightDetails extends StatelessWidget {
           ),
           const Line(),
           FlightDetailsFooter(
-            flightProvaider: flightProvaider.departureflights[index],
+            flight: flightProvaider.departureflights[index],
             index: index,
           )
         ],
