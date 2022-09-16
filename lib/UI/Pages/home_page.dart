@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
 
+import '../../Business_logic/Provaiders/login_provider.dart';
 import '../../Constants/contants.dart';
 import '../Widgets/widgets.dart';
 
@@ -121,9 +122,11 @@ class NoAirline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context);
     final size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        //  await loginProvider.loginMobileUser();
         var snackBar = SnackBar(
           elevation: 0,
           behavior: SnackBarBehavior.floating,

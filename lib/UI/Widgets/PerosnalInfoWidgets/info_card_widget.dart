@@ -16,6 +16,7 @@ class InfoCardWIdget extends StatelessWidget {
   Widget build(BuildContext context) {
     final flipProvaider = Provider.of<FlipProvider>(context);
     final size = MediaQuery.of(context).size;
+    final formKey = GlobalKey<FormState>();
     return Container(
         margin: EdgeInsets.symmetric(horizontal: size.height * 0.02),
         // height: size.height * 0.63,
@@ -30,14 +31,18 @@ class InfoCardWIdget extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(5),
         ),
-        child: flipProvaider.flip == 0
-            ? const CradBody1()
-            : flipProvaider.flip == 1
-                ? const CradBody2()
-                : flipProvaider.flip == 2
-                    ? const CradBody3()
-                    : flipProvaider.flip == 3
-                        ? const CradBody4()
-                        : const CradBody5());
+        child: Form(
+          key: formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: flipProvaider.flip == 0
+              ? const CradBody1()
+              : flipProvaider.flip == 1
+                  ? const CradBody2()
+                  : flipProvaider.flip == 2
+                      ? const CradBody3()
+                      : flipProvaider.flip == 3
+                          ? const CradBody4()
+                          : const CradBody5(),
+        ));
   }
 }

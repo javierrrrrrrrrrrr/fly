@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/personal_info_provider.dart';
+import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_dropdown.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:fly_cliente/UI/Widgets/imput_field.dart';
+import 'package:provider/provider.dart';
+
+import 'custom_piked_date.dart';
 
 class CradBody1 extends StatelessWidget {
   const CradBody1({
@@ -10,6 +15,7 @@ class CradBody1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final personalInfoProvider = Provider.of<PersonalInfoProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -22,41 +28,65 @@ class CradBody1 extends StatelessWidget {
             ),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+              onChanged: (value) => personalInfoProvider.fistName,
               hintext: "First Name",
-              prefixIcon: Icon(Icons.badge_outlined, color: Colors.blue)),
+              prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue)),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            onChanged: (value) => personalInfoProvider.lastName,
             hintext: "Last Name",
-            prefixIcon: Icon(Icons.badge_outlined, color: Colors.blue),
+            prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
           ),
           const Separador(),
-          const Imputfield(
-            hintext: "Passenger Type",
-            suffixIcon: Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
-            prefixIcon: Icon(Icons.family_restroom, color: Colors.blue),
+          CustomDropDown(
+            iconData: Icons.family_restroom,
+            contentPadding: EdgeInsets.only(left: size.width * 0.095),
+            items: const [
+              'Adult',
+              'Child',
+              'Infant',
+            ],
+            hintext: 'Passenger Typer',
+            onChanged: (value) =>
+                personalInfoProvider.passengerType = value.toString(),
+            onSaved: (value) =>
+                personalInfoProvider.passengerType = value.toString(),
           ),
           const Separador(),
-          const Imputfield(
-            suffixIcon: Icon(Icons.calendar_month, color: Colors.blue),
-            hintext: "Birth Date",
-            prefixIcon: Icon(Icons.cake, color: Colors.blue),
+          CustomPikedDate(
+            hintText: 'Birth Date',
+            onSelectedDate: (piked) {
+              personalInfoProvider.birthDate =
+                  "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+            },
           ),
           const Separador(),
-          const Imputfield(
-            hintext: "Gender",
-            prefixIcon: Icon(Icons.man, color: Colors.blue),
-            suffixIcon: Icon(Icons.arrow_drop_down_sharp, color: Colors.blue),
+          CustomDropDown(
+            iconData: Icons.man,
+            contentPadding: EdgeInsets.only(left: size.width * 0.095),
+            items: const [
+              'Male',
+              'Female',
+              'Other',
+            ],
+            hintext: 'Gender',
+            onChanged: (value) =>
+                personalInfoProvider.gender = value.toString(),
+            onSaved: (value) => personalInfoProvider.gender = value.toString(),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            onChanged: (value) => personalInfoProvider.email = value.toString(),
             hintext: "Email",
-            prefixIcon: Icon(Icons.contact_mail_outlined, color: Colors.blue),
+            prefixIcon:
+                const Icon(Icons.contact_mail_outlined, color: Colors.blue),
           ),
           const Separador(),
-          const Imputfield(
+          Imputfield(
+            onChanged: (value) => personalInfoProvider.phone = value.toString(),
             hintext: "Phone",
-            prefixIcon: Icon(Icons.phone_android, color: Colors.blue),
+            prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
           ),
           Container(
             height: size.height * 0.03,

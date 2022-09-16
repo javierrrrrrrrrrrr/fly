@@ -46,6 +46,9 @@ dependencies:
   in_app_notification: ^1.1.2
   loading_animation_widget: ^1.2.0+3
   equatable: ^2.0.5
+  platform_device_id: ^1.0.1
+  uuid: ^3.0.6
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

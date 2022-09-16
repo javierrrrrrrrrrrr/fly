@@ -51,7 +51,7 @@ class _SearchPageState extends State<SearchPage> {
     loadingSpinner(context);
     /**Logica de las busqueda */
 
-    if (flightProvaider.flightNumber == "" &&
+    if (flightProvaider.flightNumber == '' &&
         flightProvaider.dateFrom == '' &&
         flightProvaider.dateTo == '' &&
         flightProvaider.selectedCharter == '' &&
