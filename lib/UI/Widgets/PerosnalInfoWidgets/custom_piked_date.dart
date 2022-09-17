@@ -31,7 +31,7 @@ class _CustomPikedDateState extends State<CustomPikedDate> {
               lastDate: DateTime(2027));
 
           if (piked != null) {
-            widget.onSelectedDate;
+            widget.onSelectedDate(piked);
             setState(() {
               selectedDate =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";

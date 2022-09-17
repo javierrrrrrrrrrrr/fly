@@ -17,7 +17,6 @@ class LoginProvider extends ChangeNotifier {
 
   LoginProvider() {
     uUIDMaker();
-    loginMobileUser();
 
     // initPlatformState();
   }
@@ -35,62 +34,83 @@ class LoginProvider extends ChangeNotifier {
     print("deviceId->$_deviceId");
   }
 
-  void uUIDMaker() async {
+  Future<void> uUIDMaker() async {
     final prefs = await SharedPreferences.getInstance();
     var uuid = const Uuid();
     bool? isUuidWritten = prefs.getBool('uuid');
-    if (isUuidWritten == false || isUuidWritten == null) {
+    String? valueUuidSharedP = prefs.getString('uuidValue');
+
+    if (isUuidWritten == false ||
+        isUuidWritten == null ||
+        valueUuidSharedP == null ||
+        valueUuidSharedP == '') {
       uuidGenerated = uuid.v4();
-      await createMobileUser();
 
       await prefs.setBool('uuid', true);
       await prefs.setString('uuidValue', uuidGenerated!);
+      await createMobileUser();
     }
+
+    loginMobileUser();
 
     print(prefs.getString('uuidValue'));
   }
 
   Future<bool> createMobileUser() async {
     final prefs = await SharedPreferences.getInstance();
-    var uuidValue = prefs.getString('uuidValue');
-    var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('POST', Uri.parse('$ip/auth/register_mobile'));
-    request.body = json.encode({"mobile_uuid": uuidValue});
-    request.headers.addAll(headers);
+    try {
+      var uuidValue = prefs.getString('uuidValue');
+      var headers = {'Content-Type': 'application/json'};
+      var request = http.Request('POST', Uri.parse('$ip/auth/register_mobile'));
+      request.body = json.encode({"mobile_uuid": uuidValue});
+      request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
-      String respuesta = await response.stream.bytesToString();
-      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      if (response.statusCode == 200) {
+        String respuesta = await response.stream.bytesToString();
+        final Map<String, dynamic> decodedResp = json.decode(respuesta);
 
-      token = decodedResp["jwt"];
-      return true;
-    } else {
-      print(response.reasonPhrase);
+        token = decodedResp["jwt"];
+        return true;
+      } else {
+        await prefs.setString('uuidValue', '');
+        print(response.reasonPhrase);
+        return false;
+      }
+    } catch (e) {
+      await prefs.setString('uuidValue', '');
+      print(e);
       return false;
     }
   }
 
   Future<bool> loginMobileUser() async {
     final prefs = await SharedPreferences.getInstance();
-    var uuidValue = prefs.getString('uuidValue');
-    var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('POST', Uri.parse('$ip/auth/login_mobile'));
-    request.body = json.encode({"mobile_uuid": uuidValue});
-    request.headers.addAll(headers);
+    try {
+      var uuidValue = prefs.getString('uuidValue');
+      var headers = {'Content-Type': 'application/json'};
+      var request = http.Request('POST', Uri.parse('$ip/auth/login_mobile'));
+      request.body = json.encode({"mobile_uuid": uuidValue});
+      request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
-      String respuesta = await response.stream.bytesToString();
-      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      if (response.statusCode == 200) {
+        String respuesta = await response.stream.bytesToString();
+        final Map<String, dynamic> decodedResp = json.decode(respuesta);
 
-      token = decodedResp["jwt"];
-      print(token);
-      return true;
-    } else {
-      print(response.reasonPhrase);
+        token = decodedResp["jwt"];
+        print(token);
+        return true;
+      } else {
+        print(response.reasonPhrase);
+        await prefs.setString('uuidValue', '');
+        return false;
+      }
+    } catch (e) {
+      await prefs.setString('uuidValue', '');
+      print(e);
       return false;
     }
   }

@@ -31,7 +31,7 @@ class FlipProvider extends ChangeNotifier {
   }
 
   checkFlip(BuildContext context) async {
-    chnageAvalibleValor(false);
+    chnageAvalibleValor(true);
     loadingSpinner(context);
     Timer(const Duration(seconds: 1), () async {
       Navigator.pop(context);
