@@ -29,12 +29,12 @@ class CradBody1 extends StatelessWidget {
           ),
           const Separador(),
           Imputfield(
-              onChanged: (value) => personalInfoProvider.fistName,
+              onChanged: (value) => personalInfoProvider.fistName = value,
               hintext: "First Name",
               prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue)),
           const Separador(),
           Imputfield(
-            onChanged: (value) => personalInfoProvider.lastName,
+            onChanged: (value) => personalInfoProvider.lastName = value,
             hintext: "Last Name",
             prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
           ),
@@ -84,7 +84,7 @@ class CradBody1 extends StatelessWidget {
           ),
           const Separador(),
           Imputfield(
-            onChanged: (value) => personalInfoProvider.phone = value.toString(),
+            onChanged: (value) => personalInfoProvider.phone = value,
             hintext: "Phone",
             prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
           ),
