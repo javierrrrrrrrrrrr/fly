@@ -36,6 +36,7 @@ class PersonalInfoProvider extends ChangeNotifier {
 
   Future<void> storeInfoInSharedPref() async {
     final prefs = await SharedPreferences.getInstance();
+
     await prefs.setString('firsname', fistName ?? '');
     await prefs.setString('lastName', lastName ?? '');
     await prefs.setString('passengerType', passengerType ?? '');

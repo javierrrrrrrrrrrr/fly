@@ -59,6 +59,7 @@ class CradBody1 extends StatelessWidget {
             onSelectedDate: (piked) {
               personalInfoProvider.birthDate =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+              print(personalInfoProvider.birthDate.toString());
             },
           ),
           const Separador(),
