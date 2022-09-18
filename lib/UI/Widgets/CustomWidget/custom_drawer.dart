@@ -1,5 +1,5 @@
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_drawer2.dart';
+import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
@@ -70,10 +70,12 @@ class CustomDrawer extends StatelessWidget {
                   texto: "Personal information",
                   tamnofuente: 18),
               const Separador(),
-              const CustomRowDrawer(
-                  icono: Icons.contacts_outlined,
-                  texto: "Contacts",
-                  tamnofuente: 18),
+              CustomRowDrawer(
+                icono: Icons.contacts_outlined,
+                texto: "Contacts",
+                tamnofuente: 18,
+                onPressed: () => Navigator.of(context).pushNamed('/contacts'),
+              ),
               const Separador(),
               SizedBox(
                 height: size.height * 0.41,
