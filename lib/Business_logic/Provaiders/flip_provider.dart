@@ -31,13 +31,13 @@ class FlipProvider extends ChangeNotifier {
   }
 
   checkFlip(BuildContext context) async {
-    chnageAvalibleValor(true);
+    chnageAvalibleValor(false);
     loadingSpinner(context);
     Timer(const Duration(seconds: 1), () async {
       Navigator.pop(context);
       flip++;
       notifyListeners();
-
+      chnageAvalibleValor(true);
       if (flip == 1) {
         controllerLine1.toggleCard();
         controllerCircle1.toggleCard();
@@ -74,21 +74,23 @@ class FlipProvider extends ChangeNotifier {
       if (flip == 5) {
         controllerCircle5.toggleCard();
         InAppNotification.show(
-            duration: const Duration(seconds: 2),
+            duration: const Duration(seconds: 1),
             child: const NotificationBody(texto: "Todo listo"),
             context: context);
-      }
-      if (flip > 5) {
-        controllerLine1.controller?.dispose();
-        controllerCircle1.controller?.dispose();
-        controllerLine2.controller?.dispose();
-        controllerCircle2.controller?.dispose();
-        controllerLine3.controller?.dispose();
-        controllerCircle3.controller?.dispose();
-        controllerLine4.controller?.dispose();
-        controllerCircle4.controller?.dispose();
-        controllerCircle5.controller?.dispose();
-        Navigator.of(context).pushNamed('/airlines');
+
+        Timer(const Duration(seconds: 2), () {
+          controllerLine1.controller?.dispose();
+          controllerCircle1.controller?.dispose();
+          controllerLine2.controller?.dispose();
+          controllerCircle2.controller?.dispose();
+          controllerLine3.controller?.dispose();
+          controllerCircle3.controller?.dispose();
+          controllerLine4.controller?.dispose();
+          controllerCircle4.controller?.dispose();
+          controllerCircle5.controller?.dispose();
+          Navigator.of(context).pushNamed('/PersonalInfoHome');
+          flip = 0;
+        });
       }
     });
   }
