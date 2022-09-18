@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class PersonalInfoProvider extends ChangeNotifier {
   String? fistName;
@@ -67,5 +70,54 @@ class PersonalInfoProvider extends ChangeNotifier {
     await prefs.setString('countryOfIssue', countryOfIssue ?? '');
     await prefs.setString('secundaryArrivalDocNo', secundaryArrivalDocNo ?? '');
     await prefs.setString('secundaryExpDate', secundaryExpDate ?? '');
+  }
+
+  Future<bool> storeUserInfo() async {
+    var url = Uri.parse(':3000/contacts');
+
+    var response = await http.post(url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          "firstName": fistName,
+          "lastName": "test",
+          "passengerType": "test",
+          "birthDate": "2022/09/01",
+          "gender": "test",
+          "email": "test",
+          "phone": "test",
+          "address": "test",
+          "cyti": "test",
+          "state": "test",
+          "zip": "test",
+          "country": "test",
+          "nationality": "test",
+          "ofacCode": "test",
+          "mothersMaiden": "ttest",
+          "foreignAddress": "test",
+          "foreignCity": "test",
+          "foreignProvince": "test",
+          "foreignZip": "test",
+          "emergencyName": "test",
+          "emergencyPhone": "test",
+          "cubanFirstName": "test",
+          "cubanLastName": "test",
+          "arrivalDoc": "test",
+          "countryOfIssue": "tets",
+          "arrivalDocNo": "test",
+          "expDate": "2022/09/03",
+          "arrivalDocSec": "test",
+          "countryOfIssueSec": "test",
+          "arrivalDocNoSec": "test",
+          "expDateSec": "2022/09/03",
+          "usersId": 1,
+          "bookingsId": 1
+        }));
+
+    if (response.statusCode == 200) {
+    } else {
+      print(response.reasonPhrase);
+    }
+
+    return false;
   }
 }
