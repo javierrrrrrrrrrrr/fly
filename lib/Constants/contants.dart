@@ -21,10 +21,11 @@ dynamic loadingSpinner(context) {
       });
 }
 
-dynamic confirmDialog(contexto) {
-  final size = MediaQuery.of(contexto).size;
+dynamic confirmDialog(
+    {required BuildContext context, required String messageBody}) {
+  final size = MediaQuery.of(context).size;
   return showDialog(
-    context: contexto,
+    context: context,
     builder: (context) => AlertDialog(
       title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(
@@ -36,9 +37,9 @@ dynamic confirmDialog(contexto) {
           color: kprimarycolor,
         )
       ]),
-      content: const Text(
-        "Do you want to buy now?",
-        style: TextStyle(fontSize: 21),
+      content: Text(
+        messageBody,
+        style: const TextStyle(fontSize: 21),
       ),
       actionsAlignment: MainAxisAlignment.center,
       actions: [

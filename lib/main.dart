@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 import 'Business_logic/Provaiders/flight_provider.dart';
 import 'Business_logic/Provaiders/flip_provider.dart';
 import 'Business_logic/Provaiders/news_provider.dart';
+import 'UI/Pages/contact/contacts_page.dart';
 import 'UI/Pages/home_page.dart';
 
 void main() {
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
               ),
           '/PersonalInfo': (context) => const PersonalInformation(),
           '/PersonalInfoHome': (context) => const PersonalInfoHome(),
+          '/contacts': (context) => const ContactsPage(),
         },
       ),
     );
