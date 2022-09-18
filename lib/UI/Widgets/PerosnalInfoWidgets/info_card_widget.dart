@@ -35,14 +35,14 @@ class InfoCardWIdget extends StatelessWidget {
           key: formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: flipProvaider.flip == 0
-              ? const CradBody1()
+              ? const CardBody1()
               : flipProvaider.flip == 1
-                  ? const CradBody2()
+                  ? const CardBody2()
                   : flipProvaider.flip == 2
-                      ? const CradBody3()
+                      ? const CardBody3()
                       : flipProvaider.flip == 3
-                          ? const CradBody4()
-                          : const CradBody5(),
+                          ? const CardBody4()
+                          : const CardBody5(),
         ));
   }
 }

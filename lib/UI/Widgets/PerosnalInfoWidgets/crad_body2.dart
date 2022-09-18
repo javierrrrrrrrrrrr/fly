@@ -7,8 +7,8 @@ import '../../../Business_logic/Provaiders/personal_info_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 import '../imput_field.dart';
 
-class CradBody2 extends StatelessWidget {
-  const CradBody2({Key? key}) : super(key: key);
+class CardBody2 extends StatelessWidget {
+  const CardBody2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

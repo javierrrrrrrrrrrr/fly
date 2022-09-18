@@ -7,8 +7,8 @@ import '../CustomWidget/custom_dropdown.dart';
 import '../SeparationWidget/separador.dart';
 import '../imput_field.dart';
 
-class CradBody4 extends StatelessWidget {
-  const CradBody4({Key? key}) : super(key: key);
+class CardBody4 extends StatelessWidget {
+  const CardBody4({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

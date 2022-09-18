@@ -7,10 +7,13 @@ import 'package:provider/provider.dart';
 
 import 'custom_piked_date.dart';
 
-class CradBody1 extends StatelessWidget {
-  const CradBody1({
+class CardBody1 extends StatelessWidget {
+  const CardBody1({
     Key? key,
+    this.space,
   }) : super(key: key);
+
+  final double? space;
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +30,27 @@ class CradBody1 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "First Name",
+          ),
           Imputfield(
               onChanged: (value) => personalInfoProvider.fistName = value,
               hintext: "First Name",
               prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue)),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Last Name",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.lastName = value,
             hintext: "Last Name",
             prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Passenger Typer",
+          ),
           CustomDropDown(
             iconData: Icons.family_restroom,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -53,7 +65,10 @@ class CradBody1 extends StatelessWidget {
             onSaved: (value) =>
                 personalInfoProvider.passengerType = value.toString(),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Birth Date",
+          ),
           CustomPikedDate(
             hintText: 'Birth Date',
             onSelectedDate: (piked) {
@@ -62,7 +77,10 @@ class CradBody1 extends StatelessWidget {
               print(personalInfoProvider.birthDate.toString());
             },
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Gender",
+          ),
           CustomDropDown(
             iconData: Icons.man,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -76,14 +94,20 @@ class CradBody1 extends StatelessWidget {
                 personalInfoProvider.gender = value.toString(),
             onSaved: (value) => personalInfoProvider.gender = value.toString(),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Email",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.email = value.toString(),
             hintext: "Email",
             prefixIcon:
                 const Icon(Icons.contact_mail_outlined, color: Colors.blue),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Phone",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.phone = value,
             hintext: "Phone",

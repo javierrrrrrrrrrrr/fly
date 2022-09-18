@@ -7,8 +7,8 @@ import '../CustomWidget/custom_dropdown.dart';
 import '../SeparationWidget/separador.dart';
 import '../imput_field.dart';
 
-class CradBody3 extends StatelessWidget {
-  const CradBody3({Key? key}) : super(key: key);
+class CardBody3 extends StatelessWidget {
+  const CardBody3({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
