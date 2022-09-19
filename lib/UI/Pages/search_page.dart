@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8),
+                    padding: EdgeInsets.only(top: size.height * 0.01),
                     child: SingleChildScrollView(
                         child: CustomFilterDropDown(
                       expandido: true,
