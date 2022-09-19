@@ -70,7 +70,7 @@ class BigCardReturn extends StatelessWidget {
                             onTap: () {
                               flightProvider.selectedReturnFlight =
                                   flightProvider.returnflights[index];
-
+                              //TODO:cambiar el index
                               flightProvider
                                   .setindexselectedFlightReturn(index);
                             },
@@ -133,6 +133,7 @@ class BigCardReturn extends StatelessWidget {
                               width: size.width * 0.2,
                               child: Center(
                                 child: Text(
+                                  //TODO:problema con el index al buscar y volver a buscar pq no se vacia el arreglo
                                   " ${flightProvider.returnflights[flightProvider.indexselectedFlightReturn].day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date).substring(0, 3)} ${flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.substring(flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.length - 2, flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.length)} ",
                                   style: const TextStyle(fontSize: 14),
                                 ),

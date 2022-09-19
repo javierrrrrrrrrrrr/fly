@@ -8,7 +8,9 @@ import '../CustomWidget/custom_dropdown.dart';
 import '../imput_field.dart';
 
 class CardBody2 extends StatelessWidget {
-  const CardBody2({Key? key}) : super(key: key);
+  const CardBody2({Key? key, this.space}) : super(key: key);
+
+  final double? space;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,10 @@ class CardBody2 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Address",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.address = value,
             avalible: flipProvaider.avalible,
@@ -36,7 +41,10 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.house_outlined, color: Colors.blue)
                 : const Icon(Icons.house_outlined, color: Colors.grey),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "City",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.city = value,
             avalible: flipProvaider.avalible,
@@ -45,7 +53,10 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.location_city, color: Colors.blue)
                 : const Icon(Icons.location_city, color: Colors.grey),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "State",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.state = value,
             avalible: flipProvaider.avalible,
@@ -54,7 +65,10 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.real_estate_agent, color: Colors.blue)
                 : const Icon(Icons.real_estate_agent, color: Colors.grey),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Zip",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.zip = value,
             avalible: flipProvaider.avalible,
@@ -63,7 +77,10 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.pin_outlined, color: Colors.blue)
                 : const Icon(Icons.pin_outlined, color: Colors.grey),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Country",
+          ),
           Imputfield(
             onChanged: (value) => personalInfoProvider.country = value,
             avalible: flipProvaider.avalible,
@@ -72,7 +89,10 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.location_city_sharp, color: Colors.blue)
                 : const Icon(Icons.location_city_sharp, color: Colors.grey),
           ),
-          const Separador(),
+          Separador(
+            space: space,
+            texto: "Nationality",
+          ),
           CustomDropDown(
             iconData: Icons.flag_outlined,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),

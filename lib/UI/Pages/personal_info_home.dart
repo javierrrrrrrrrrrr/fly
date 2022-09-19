@@ -63,45 +63,65 @@ class PersonalInfoHome extends StatelessWidget {
             ))
           : PageView(
               scrollDirection: Axis.vertical,
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: size.height,
-                      width: size.width,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                        image: AssetImage("assets/fondo.jpg"),
-                        fit: BoxFit.fill,
-                      )),
-                    ),
-                    Positioned(
-                      top: size.height * 0.1,
-                      left: size.width * 0.05,
-                      child: Container(
-                          color: Colors.white,
-                          height: size.height * 0.87,
-                          width: size.width * 0.9,
-                          child: const CardBody1(
-                            space: 40,
-                          )),
-                    ),
-                  ],
-                ),
-                Container(
-                  child: const CardBody2(),
-                ),
-                Container(
-                  child: const CardBody3(),
-                ),
-                Container(
-                  child: const CardBody4(),
-                ),
-                Container(
-                  child: const CardBody5(),
-                ),
+              children: const [
+                BodyCustom(
+                    body: CardBody1(
+                  space: 40,
+                )),
+                BodyCustom(
+                    body: CardBody2(
+                  space: 40,
+                )),
+                BodyCustom(
+                    body: CardBody3(
+                  space: 40,
+                )),
+                BodyCustom(
+                    body: CardBody4(
+                  space: 40,
+                )),
+                BodyCustom(
+                    body: CardBody5(
+                  space: 40,
+                )),
               ],
             ),
+    );
+  }
+}
+
+class BodyCustom extends StatelessWidget {
+  const BodyCustom({
+    Key? key,
+    required this.body,
+  }) : super(key: key);
+
+  final Widget body;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Stack(
+      children: [
+        Container(
+          height: size.height,
+          width: size.width,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("assets/fondo.jpg"),
+            fit: BoxFit.fill,
+          )),
+        ),
+        Positioned(
+          top: size.height * 0.1,
+          left: size.width * 0.05,
+          child: Container(
+              color: Colors.white,
+              //  height: size.height * 0.87,
+              width: size.width * 0.9,
+              child: body),
+        ),
+      ],
     );
   }
 }
