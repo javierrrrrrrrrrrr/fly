@@ -1,4 +1,5 @@
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
@@ -22,23 +23,47 @@ class CustomDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              Column(
                 children: [
-                  GestureDetector(
-                    onTap: () => Scaffold.of(context).closeDrawer(),
-                    child: const CircleAvatar(
-                      backgroundImage: AssetImage('assets/fondo.png'),
-                      radius: 30,
-                      backgroundColor: Colors.grey,
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => Scaffold.of(context).closeDrawer(),
+                        child: const CircleAvatar(
+                          backgroundImage: AssetImage('assets/fondo.png'),
+                          radius: 20,
+                          backgroundColor: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.03,
+                      ),
+                      Column(
+                        children: const [
+                          Text(
+                            'Miranda Charter',
+                            style: TextStyle(fontSize: 21),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width * 0.12),
+                    child: GestureDetector(
+                      onTap: () => updateEmail(context),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.add,
+                            size: 25,
+                          ),
+                          Text('Add your email',
+                              style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    width: size.width * 0.03,
-                  ),
-                  const Text(
-                    'Miranda Charter',
-                    style: TextStyle(fontSize: 21),
-                  )
                 ],
               ),
               SizedBox(
@@ -94,6 +119,62 @@ class CustomDrawer extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  updateEmail(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            "Add your email",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold, color: kprimarycolor),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: size.height * 0.045,
+                child: TextField(
+                    decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: size.height * 0.003),
+                  hintText: 'Email',
+                  enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromRGBO(155, 155, 155, 0.5))),
+                )),
+              ),
+              SizedBox(
+                height: size.height * 0.025,
+              ),
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(size.width * 0.02),
+                child: SizedBox(
+                  height: size.height * 0.04,
+                  width: size.width * 0.25,
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(size.width * 0.02)),
+                    onPressed: () {
+                      //TODO: Aqui va el metodo de actualizar el user email.
+                    },
+                    color: kprimarycolor,
+                    child: const Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

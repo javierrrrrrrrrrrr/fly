@@ -1,22 +1,30 @@
+import 'package:fly_cliente/Business_logic/Provaiders/search_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../../../DataLayer/Models/user_model.dart';
 
 class ContactsPage extends StatelessWidget {
   const ContactsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final seacrhProvider = Provider.of<SearchProvider>(context);
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             const _AppBarRow(),
-            const _SearchContactField(),
+            _SearchContactField(contacts: seacrhProvider.foundedContacts),
             SizedBox(
               height: size.height * 0.005,
             ),
-            const _ContactsList()
+            _ContactsList(
+              contacts: seacrhProvider.foundedContacts,
+            )
           ],
         ),
       ),
@@ -27,7 +35,9 @@ class ContactsPage extends StatelessWidget {
 class _ContactsList extends StatelessWidget {
   const _ContactsList({
     Key? key,
+    required this.contacts,
   }) : super(key: key);
+  final List<User> contacts;
 
   @override
   Widget build(BuildContext context) {
@@ -36,51 +46,7 @@ class _ContactsList extends StatelessWidget {
       child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.1,
-                  top: size.height * 0.02,
-                  bottom: size.height * 0.02),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        //TODO: Hacer el overflow de los textos.
-                        'Javier Dias Serrano',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'phone number',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: size.width * 0.13,
-                  ),
-                  Icon(
-                    color: kprimarycolor,
-                    Icons.edit_note_outlined,
-                    size: 35,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      confirmDialog(
-                          context: context,
-                          messageBody:
-                              'Are you sure you want to delete this contact');
-                    },
-                    child: const Icon(
-                      color: Colors.red,
-                      Icons.delete_forever_outlined,
-                      size: 35,
-                    ),
-                  ),
-                ],
-              ),
-            );
+            return _ListViewBody(size: size, user: contacts[index]);
           },
           separatorBuilder: (context, index) {
             return Container(
@@ -88,7 +54,84 @@ class _ContactsList extends StatelessWidget {
                 height: size.height * 0.001,
                 color: const Color.fromRGBO(155, 155, 155, 1));
           },
-          itemCount: 18),
+          itemCount: contacts.length),
+    );
+  }
+}
+
+class _ListViewBody extends StatelessWidget {
+  const _ListViewBody({
+    Key? key,
+    required this.size,
+    required this.user,
+  }) : super(key: key);
+
+  final Size size;
+  final User user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: size.width * 0.1,
+          right: size.width * 0.1,
+          top: size.height * 0.02,
+          bottom: size.height * 0.02),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: size.width * 0.6,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: size.width * 0.6,
+                  child: Text(
+                    '${user.firstName} ${user.lastName}',
+                    style: const TextStyle(fontSize: 20),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.emoji_people_outlined,
+                      color: kprimarycolor,
+                    ),
+                    Text(
+                      user.passengerType,
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              Icon(
+                color: kprimarycolor,
+                Icons.edit_note_outlined,
+                size: 35,
+              ),
+              GestureDetector(
+                onTap: () {
+                  confirmDialog(
+                      context: context,
+                      messageBody:
+                          'Are you sure you want to delete this contact');
+                },
+                child: const Icon(
+                  color: Colors.red,
+                  Icons.delete_forever_outlined,
+                  size: 35,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -96,11 +139,17 @@ class _ContactsList extends StatelessWidget {
 class _SearchContactField extends StatelessWidget {
   const _SearchContactField({
     Key? key,
+    required this.contacts,
   }) : super(key: key);
+  final List<User> contacts;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final seacrhProvider = Provider.of<SearchProvider>(context);
+
+// poner el metodo aqui
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: size.width * 0.07,
@@ -109,6 +158,7 @@ class _SearchContactField extends StatelessWidget {
         elevation: 3,
         borderRadius: BorderRadius.circular(10),
         child: TextField(
+          onChanged: (value) => seacrhProvider.udateListContacts(value),
           cursorColor: kprimarycolor,
           decoration: InputDecoration(
               hintText: 'Type name or number',
