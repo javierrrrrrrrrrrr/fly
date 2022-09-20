@@ -10,14 +10,18 @@ class CustomFilterDropDown extends StatelessWidget {
     Key? key,
     required this.expandido,
     required this.onPreesedFuntionButton,
+    this.onRestoreState,
   }) : super(key: key);
   final VoidCallback onPreesedFuntionButton;
   final bool expandido;
+  final bool? Function()? onRestoreState;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ExpansionWidget(
+        maintainState: true,
+        onRestoreState: onRestoreState,
         initiallyExpanded: expandido,
         titleBuilder:
             (double animationValue, _, bool isExpaned, toogleFunction) {
