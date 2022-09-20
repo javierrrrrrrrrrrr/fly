@@ -81,9 +81,12 @@ class CustomDrawer extends StatelessWidget {
                   texto: "Reservations",
                   tamnofuente: 18),
               const Separador(),
-              const CustomRowDrawer(
-                  icono: Icons.connecting_airports_outlined,
-                  texto: "Airlaine",
+              CustomRowDrawer(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/login');
+                  },
+                  icono: Icons.account_circle_outlined,
+                  texto: "Login/Register",
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
