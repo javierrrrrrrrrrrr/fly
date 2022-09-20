@@ -1,11 +1,12 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../../Business_logic/Provaiders/login_provider.dart';
+
+class LoginRegisterPage extends StatelessWidget {
+  const LoginRegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,16 +62,24 @@ class LoginPage extends StatelessWidget {
             Positioned(
               bottom: size.height * 0.55,
               left: size.width * 0.1,
-              child: CustomLoginImput(
-                onChanged: (value) {
-                  loginProvider.email = value;
-                },
-                hintext: "Email",
+              child: const CustomLoginImput(
+                hintext: "Name",
                 iconodata: Icons.person_outline,
               ),
             ),
             Positioned(
               bottom: size.height * 0.45,
+              left: size.width * 0.1,
+              child: CustomLoginImput(
+                onChanged: (value) {
+                  loginProvider.email = value;
+                },
+                hintext: "Email",
+                iconodata: Icons.contact_mail_outlined,
+              ),
+            ),
+            Positioned(
+              bottom: size.height * 0.35,
               left: size.width * 0.1,
               child: CustomLoginImput(
                 onChanged: (value) {
@@ -81,7 +90,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: size.height * 0.25,
+              bottom: size.height * 0.18,
               left: size.width * 0.1,
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
@@ -92,7 +101,7 @@ class LoginPage extends StatelessWidget {
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
                   loadingSpinner(context);
-                  bool respuesta = await loginProvider.loginNormalUser();
+                  bool respuesta = await loginProvider.createNomralUser();
 
                   if (respuesta == true) {
                     Navigator.pop(context);
@@ -115,28 +124,9 @@ class LoginPage extends StatelessWidget {
                 },
                 child: const Center(
                     child: Text(
-                  "Log in",
+                  "Sigin up",
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 )),
-              ),
-            ),
-            Positioned(
-              bottom: size.height * 0.2,
-              left: size.width * 0.23,
-              child: Text("Forgot your password ?",
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.5), fontSize: 20)),
-            ),
-            Positioned(
-              bottom: size.height * 0.07,
-              left: size.width * 0.2,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/loginRegister');
-                },
-                child: Text("Don't have an account ?",
-                    style: TextStyle(
-                        color: Colors.black.withOpacity(0.5), fontSize: 20)),
               ),
             ),
             Container(

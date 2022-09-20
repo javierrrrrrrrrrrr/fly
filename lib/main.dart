@@ -20,6 +20,7 @@ import 'Business_logic/Provaiders/news_provider.dart';
 import 'UI/Pages/contact/contacts_page.dart';
 import 'UI/Pages/home_page.dart';
 import 'UI/Pages/login_page.dart';
+import 'UI/Pages/login_register_page.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
           '/PersonalInfoHome': (context) => const PersonalInfoHome(),
           '/contacts': (context) => const ContactsPage(),
           '/login': (context) => const LoginPage(),
+          '/loginRegister': (context) => const LoginRegisterPage(),
         },
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
@@ -15,6 +16,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
+    final loginProvider = Provider.of<LoginProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -48,22 +50,28 @@ class CustomDrawer extends StatelessWidget {
                       )
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.12),
-                    child: GestureDetector(
-                      onTap: () => updateEmail(context),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.add,
-                            size: 25,
+                  loginProvider.email == ""
+                      ? Padding(
+                          padding: EdgeInsets.only(left: size.width * 0.12),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('/login');
+                            },
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  Icons.add,
+                                  size: 25,
+                                ),
+                                Text('Sign in', style: TextStyle(fontSize: 16)),
+                              ],
+                            ),
                           ),
-                          Text('Add your email',
-                              style: TextStyle(fontSize: 16)),
-                        ],
-                      ),
-                    ),
-                  ),
+                        )
+                      : Text(
+                          loginProvider.email,
+                          style: const TextStyle(fontSize: 16),
+                        ),
                 ],
               ),
               SizedBox(
@@ -83,10 +91,10 @@ class CustomDrawer extends StatelessWidget {
               const Separador(),
               CustomRowDrawer(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/login');
+                    // Navigator.of(context).pushNamed('/login');
                   },
-                  icono: Icons.account_circle_outlined,
-                  texto: "Login/Register",
+                  icono: Icons.connecting_airports_outlined,
+                  texto: "Airline",
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(

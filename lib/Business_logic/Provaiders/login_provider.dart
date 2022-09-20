@@ -15,6 +15,12 @@ class LoginProvider extends ChangeNotifier {
   String? uuidGenerated;
   bool isUuidGenerated = false;
 
+  //Datos de login nomral
+
+  String email = '';
+  String password = '';
+  String error = "";
+
   LoginProvider() {
     uUIDMaker();
 
@@ -111,6 +117,46 @@ class LoginProvider extends ChangeNotifier {
     } catch (e) {
       await prefs.setString('uuidValue', '');
       print(e);
+      return false;
+    }
+  }
+
+  Future<bool> createNomralUser() async {
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse('$ip/auth/register'));
+    request.body = json.encode({"email": email, "password": password});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    String respuesta = await response.stream.bytesToString();
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      token = decodedResp["jwt"];
+      return true;
+    } else {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      error = decodedResp["clientErrorMessage"];
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> loginNormalUser() async {
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse('$ip/auth/login'));
+    request.body = json.encode({"email": email, "password": password});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    String respuesta = await response.stream.bytesToString();
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      token = decodedResp["jwt"];
+      return true;
+    } else {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      error = decodedResp["clientErrorMessage"];
+      notifyListeners();
       return false;
     }
   }
