@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
@@ -5,6 +6,7 @@ import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Business_logic/Provaiders/personal_info_provider.dart';
 import '../widgets.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -17,6 +19,7 @@ class CustomDrawer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
     final loginProvider = Provider.of<LoginProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -107,11 +110,35 @@ class CustomDrawer extends StatelessWidget {
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
-                icono: Icons.contacts_outlined,
-                texto: "Contacts",
-                tamnofuente: 18,
-                onPressed: () => Navigator.of(context).pushNamed('/contacts'),
-              ),
+                  icono: Icons.contacts_outlined,
+                  texto: "Contacts",
+                  tamnofuente: 18,
+                  onPressed: () async {
+                    FocusScope.of(context).unfocus();
+                    loadingSpinner(context);
+                    bool respuesta =
+                        await userProvider.getsContacts("loginProvider.token");
+
+                    if (respuesta == true) {
+                      Navigator.pop(context);
+                      Navigator.of(context).pushNamed('/contacts');
+                    } else {
+                      Navigator.pop(context);
+
+                      Scaffold.of(context).closeDrawer();
+                      var snackBar = SnackBar(
+                        elevation: 0,
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        content: AwesomeSnackbarContent(
+                          title: 'Error!',
+                          message: userProvider.error,
+                          contentType: ContentType.failure,
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  }),
               const Separador(),
               SizedBox(
                 height: size.height * 0.41,

@@ -4,7 +4,14 @@ import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-class PersonalInfoProvider extends ChangeNotifier {
+import '../../Constants/contants.dart';
+import '../../DataLayer/Models/user_model.dart';
+
+class UserProvider extends ChangeNotifier {
+  List<User> contacts = [];
+
+  String error = "";
+
   String? fistName;
   String? lastName;
   String? passengerType;
@@ -119,5 +126,39 @@ class PersonalInfoProvider extends ChangeNotifier {
     }
 
     return false;
+  }
+
+  List<User> foundedContacts = [];
+  UserProvider() {
+    foundedContacts = contacts;
+  }
+
+  udateListContacts(String search) {
+    foundedContacts = contacts
+        .where((user) => user.firstName.toLowerCase().contains(search))
+        .toList();
+    notifyListeners();
+  }
+
+  Future<bool> getsContacts(String token) async {
+    var headers = {'Authorization': token};
+    var request = http.Request('GET', Uri.parse('$ip/contacts'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    String respuesta = await response.stream.bytesToString();
+    if (response.statusCode == 200) {
+      final List<dynamic> decodedResp = json.decode(respuesta);
+      decodedResp.map((item) {
+        contacts.add(User.fromMap(item));
+      }).toList();
+
+      return true;
+    } else {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      error = decodedResp["clientErrorMessage"];
+      return false;
+    }
   }
 }

@@ -1,8 +1,8 @@
-import 'package:fly_cliente/Business_logic/Provaiders/search_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Business_logic/Provaiders/personal_info_provider.dart';
 import '../../../DataLayer/Models/user_model.dart';
 
 class ContactsPage extends StatelessWidget {
@@ -10,7 +10,8 @@ class ContactsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final seacrhProvider = Provider.of<SearchProvider>(context);
+    //final seacrhProvider = Provider.of<SearchProvider>(context);
+    final userprovider = Provider.of<UserProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -18,12 +19,12 @@ class ContactsPage extends StatelessWidget {
         child: Column(
           children: [
             const _AppBarRow(),
-            _SearchContactField(contacts: seacrhProvider.foundedContacts),
+            _SearchContactField(contacts: userprovider.foundedContacts),
             SizedBox(
               height: size.height * 0.005,
             ),
             _ContactsList(
-              contacts: seacrhProvider.foundedContacts,
+              contacts: userprovider.foundedContacts,
             )
           ],
         ),
@@ -149,7 +150,8 @@ class _SearchContactField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final seacrhProvider = Provider.of<SearchProvider>(context);
+    final userprovider = Provider.of<UserProvider>(context);
+    // final seacrhProvider = Provider.of<SearchProvider>(context);
 
 // poner el metodo aqui
 
@@ -161,7 +163,7 @@ class _SearchContactField extends StatelessWidget {
         elevation: 3,
         borderRadius: BorderRadius.circular(10),
         child: TextField(
-          onChanged: (value) => seacrhProvider.udateListContacts(value),
+          onChanged: (value) => userprovider.udateListContacts(value),
           cursorColor: kprimarycolor,
           decoration: InputDecoration(
               hintText: 'Type name or number',

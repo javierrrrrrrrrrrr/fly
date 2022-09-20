@@ -17,7 +17,7 @@ class CardBody5 extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
-    final personalInfoProvider = Provider.of<PersonalInfoProvider>(context);
+    final personalInfoProvider = Provider.of<UserProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(

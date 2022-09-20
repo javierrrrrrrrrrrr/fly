@@ -11,6 +11,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context);
+    final userProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
