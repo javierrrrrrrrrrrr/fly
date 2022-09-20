@@ -43,18 +43,21 @@ class _ContactsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Expanded(
-      child: ListView.separated(
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) {
-            return _ListViewBody(size: size, user: contacts[index]);
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-                margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
-                height: size.height * 0.001,
-                color: const Color.fromRGBO(155, 155, 155, 1));
-          },
-          itemCount: contacts.length),
+      child: RefreshIndicator(
+        onRefresh: () => Future.delayed(const Duration(seconds: 1)),
+        child: ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              return _ListViewBody(size: size, user: contacts[index]);
+            },
+            separatorBuilder: (context, index) {
+              return Container(
+                  margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
+                  height: size.height * 0.001,
+                  color: const Color.fromRGBO(155, 155, 155, 1));
+            },
+            itemCount: contacts.length),
+      ),
     );
   }
 }

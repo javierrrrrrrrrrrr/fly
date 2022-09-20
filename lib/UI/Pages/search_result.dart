@@ -42,19 +42,22 @@ class _SearchResultState extends State<SearchResult> {
                     onPressedButton(context);
                   }),
               Expanded(
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: flightProvaider.departureflights.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: EdgeInsets.only(bottom: size.height * 0.03),
-                        child: CardFlightDetails(
-                          index: index,
-                          departureFlight:
-                              flightProvaider.departureflights[index],
-                        ));
-                  },
+                child: RefreshIndicator(
+                  onRefresh: () => Future.delayed(const Duration(seconds: 1)),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: flightProvaider.departureflights.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                          padding: EdgeInsets.only(bottom: size.height * 0.03),
+                          child: CardFlightDetails(
+                            index: index,
+                            departureFlight:
+                                flightProvaider.departureflights[index],
+                          ));
+                    },
+                  ),
                 ),
               )
             ],

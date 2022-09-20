@@ -44,27 +44,30 @@ class BodyAirlineDetails extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: userProvider.news.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.03),
-                  child: InformationCard(
-                    verMasOnpressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: ((context) => MoreDetailsOfert(
-                                buttonText: 'Miranda Charters',
-                                description:
-                                    userProvider.news[index].description,
-                                title: userProvider.news[index].title,
-                              ))),
+            child: RefreshIndicator(
+              onRefresh: () => Future.delayed(const Duration(seconds: 1)),
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: userProvider.news.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: size.height * 0.03),
+                    child: InformationCard(
+                      verMasOnpressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: ((context) => MoreDetailsOfert(
+                                  buttonText: 'Miranda Charters',
+                                  description:
+                                      userProvider.news[index].description,
+                                  title: userProvider.news[index].title,
+                                ))),
+                      ),
+                      description: userProvider.news[index].description,
+                      title: userProvider.news[index].title,
                     ),
-                    description: userProvider.news[index].description,
-                    title: userProvider.news[index].title,
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ],
