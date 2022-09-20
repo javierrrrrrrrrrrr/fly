@@ -4,7 +4,7 @@ import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/flight_provider.dart';
-import '../Widgets/ExpansionWidget/custom_dropdown.dart';
+import '../Widgets/ExpansionWidget/custom_filter_dropdown.dart';
 import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
 
 class SearchResult extends StatefulWidget {
@@ -32,6 +32,7 @@ class _SearchResultState extends State<SearchResult> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: size.height * 0.08,
@@ -41,6 +42,10 @@ class _SearchResultState extends State<SearchResult> {
                   onPreesedFuntionButton: () {
                     onPressedButton(context);
                   }),
+              Text(
+                '${flightProvaider.departureflights.length} Results',
+                style: TextStyle(fontSize: 20, color: kprimarycolor),
+              ),
               Expanded(
                 child: RefreshIndicator(
                   onRefresh: () => Future.delayed(const Duration(seconds: 1)),

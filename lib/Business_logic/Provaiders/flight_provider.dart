@@ -9,12 +9,6 @@ import '../../DataLayer/Models/flight_model.dart';
 
 class FlightProvider extends ChangeNotifier {
 //vuelo seleccionado  llegada y metodos get y set//
-  int indexselectedFlightReturn = 0;
-
-  setindexselectedFlightReturn(int valor) {
-    indexselectedFlightReturn = valor;
-    notifyListeners();
-  }
 
   // int get indexselectedFlightReturn => _indexselectedFlightReturn;
 
@@ -60,7 +54,6 @@ class FlightProvider extends ChangeNotifier {
 
   //campo de fecha de retorno elejida por el usuario//
   String userReturnDay = "";
-
   //campo de fecha de retorno notificar para redibujar//
 
   void changeuserReturnDay(String x) {
@@ -100,6 +93,11 @@ class FlightProvider extends ChangeNotifier {
 
   void cleanIsselectedDays() {
     dayInWeekList.map((e) => e.isSelected = false).toList();
+    notifyListeners();
+  }
+
+  void updateSelectedFlight(int index) {
+    selectedReturnFlight = returnflights[index];
     notifyListeners();
   }
 

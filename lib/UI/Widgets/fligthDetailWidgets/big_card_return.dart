@@ -67,13 +67,8 @@ class BigCardReturn extends StatelessWidget {
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => GestureDetector(
-                            onTap: () {
-                              flightProvider.selectedReturnFlight =
-                                  flightProvider.returnflights[index];
-                              //TODO:cambiar el index
-                              flightProvider
-                                  .setindexselectedFlightReturn(index);
-                            },
+                            onTap: () =>
+                                flightProvider.updateSelectedFlight(index),
                             child: Padding(
                               padding: flightProvider.returnflights.length == 1
                                   ? EdgeInsets.symmetric(
@@ -86,10 +81,11 @@ class BigCardReturn extends StatelessWidget {
                                   children: [
                                     flightProvider.returnflights.isNotEmpty
                                         ? Text(
-                                            " ${selectedReturnFlight!.day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.returnflights[index].date).substring(0, 3)} ${flightProvider.returnflights[index].date.substring(flightProvider.returnflights[index].date.length - 2, flightProvider.returnflights[index].date.length)} ",
+                                            " ${flightProvider.returnflights[index].day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.returnflights[index].date).substring(0, 3)} ${flightProvider.returnflights[index].date.substring(flightProvider.returnflights[index].date.length - 2, flightProvider.returnflights[index].date.length)} ",
                                             style: flightProvider
-                                                        .indexselectedFlightReturn ==
-                                                    index
+                                                        .returnflights[index] ==
+                                                    flightProvider
+                                                        .selectedReturnFlight
                                                 ? const TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.black,
@@ -101,8 +97,9 @@ class BigCardReturn extends StatelessWidget {
                                         : const Text(''),
                                     Text('\$0.00',
                                         style: flightProvider
-                                                    .indexselectedFlightReturn ==
-                                                index
+                                                    .returnflights[index] ==
+                                                flightProvider
+                                                    .selectedReturnFlight
                                             ? const TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.green)
@@ -134,7 +131,7 @@ class BigCardReturn extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   //TODO:problema con el index al buscar y volver a buscar pq no se vacia el arreglo
-                                  " ${flightProvider.returnflights[flightProvider.indexselectedFlightReturn].day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date).substring(0, 3)} ${flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.substring(flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.length - 2, flightProvider.returnflights[flightProvider.indexselectedFlightReturn].date.length)} ",
+                                  " ${flightProvider.selectedReturnFlight!.day.substring(0, 3)},${flightProvider.convertDayMonthToLeterDay(flightProvider.selectedReturnFlight!.date).substring(0, 3)} ${flightProvider.selectedReturnFlight!.date.substring(flightProvider.selectedReturnFlight!.date.length - 2, flightProvider.selectedReturnFlight!.date.length)} ",
                                   style: const TextStyle(fontSize: 14),
                                 ),
                               ),
@@ -145,16 +142,14 @@ class BigCardReturn extends StatelessWidget {
                     //TODO:Revisar despues lo de Cambiar el index por Selected Fligt y en este caso el index del que viene del modelo
 
                     RowCardBodyFromToInfo(
-                      selected: flightProvider.returnflights[
-                          flightProvider.indexselectedFlightReturn],
+                      selected: flightProvider.selectedReturnFlight!,
                     ),
                     SizedBox(
                       height: size.height * 0.025,
                     ),
                     const Line(),
                     RowCheckInInfo(
-                      selected: flightProvider.returnflights[
-                          flightProvider.indexselectedFlightReturn],
+                      selected: flightProvider.selectedReturnFlight!,
                       padding: EdgeInsets.only(
                           left: size.width * 0.02,
                           top: size.height * 0.02,
