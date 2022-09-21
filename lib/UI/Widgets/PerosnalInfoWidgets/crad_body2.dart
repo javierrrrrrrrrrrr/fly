@@ -8,9 +8,24 @@ import '../CustomWidget/custom_dropdown.dart';
 import '../imput_field.dart';
 
 class CardBody2 extends StatelessWidget {
-  const CardBody2({Key? key, this.space}) : super(key: key);
+  const CardBody2(
+      {Key? key,
+      this.space,
+      required this.address,
+      required this.city,
+      required this.state,
+      required this.zipCode,
+      required this.country,
+      required this.nationality})
+      : super(key: key);
 
   final double? space;
+  final String address;
+  final String city;
+  final String state;
+  final String zipCode;
+  final String country;
+  final String nationality;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +51,7 @@ class CardBody2 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.address = value,
             avalible: flipProvaider.avalible,
-            hintext: "Address",
+            hintext: address,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.house_outlined, color: Colors.blue)
                 : const Icon(Icons.house_outlined, color: Colors.grey),
@@ -48,7 +63,7 @@ class CardBody2 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.city = value,
             avalible: flipProvaider.avalible,
-            hintext: "City",
+            hintext: city,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.location_city, color: Colors.blue)
                 : const Icon(Icons.location_city, color: Colors.grey),
@@ -60,7 +75,7 @@ class CardBody2 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.state = value,
             avalible: flipProvaider.avalible,
-            hintext: "State",
+            hintext: state,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.real_estate_agent, color: Colors.blue)
                 : const Icon(Icons.real_estate_agent, color: Colors.grey),
@@ -72,7 +87,7 @@ class CardBody2 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.zip = value,
             avalible: flipProvaider.avalible,
-            hintext: "Zip",
+            hintext: zipCode,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.pin_outlined, color: Colors.blue)
                 : const Icon(Icons.pin_outlined, color: Colors.grey),
@@ -84,7 +99,7 @@ class CardBody2 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.country = value,
             avalible: flipProvaider.avalible,
-            hintext: "Country",
+            hintext: country,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.location_city_sharp, color: Colors.blue)
                 : const Icon(Icons.location_city_sharp, color: Colors.grey),
@@ -102,7 +117,7 @@ class CardBody2 extends StatelessWidget {
               'Amarican',
               'Others',
             ],
-            hintext: 'Nationality',
+            hintext: nationality,
             onChanged: (value) =>
                 personalInfoProvider.nationality = value.toString(),
             onSaved: (value) =>

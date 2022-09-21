@@ -8,9 +8,25 @@ import '../SeparationWidget/separador.dart';
 import '../imput_field.dart';
 
 class CardBody4 extends StatelessWidget {
-  const CardBody4({Key? key, this.space}) : super(key: key);
+  const CardBody4(
+      {Key? key,
+      this.space,
+      required this.emergencyPhone,
+      required this.cubanFirstName,
+      required this.cubanLastName,
+      required this.arrivalDocs,
+      required this.countryIssue,
+      required this.arrivalDocNo})
+      : super(key: key);
 
   final double? space;
+
+  final String emergencyPhone;
+  final String cubanFirstName;
+  final String cubanLastName;
+  final String arrivalDocs;
+  final String countryIssue;
+  final String arrivalDocNo;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +51,7 @@ class CardBody4 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.emergencyphone = value,
             avalible: flipProvaider.avalible,
-            hintext: "Emergency phone",
+            hintext: emergencyPhone,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.phone_android_outlined, color: Colors.blue)
                 : const Icon(Icons.phone_android_outlined, color: Colors.grey),
@@ -47,7 +63,7 @@ class CardBody4 extends StatelessWidget {
           Imputfield(
               onChanged: (value) => personalInfoProvider.cubanFirstName = value,
               avalible: flipProvaider.avalible,
-              hintext: "Cuban First Name",
+              hintext: cubanFirstName,
               prefixIcon: flipProvaider.avalible
                   ? const Icon(Icons.badge_outlined, color: Colors.blue)
                   : const Icon(Icons.badge_outlined, color: Colors.grey)),
@@ -58,7 +74,7 @@ class CardBody4 extends StatelessWidget {
           Imputfield(
             onChanged: (value) => personalInfoProvider.cubanLastName = value,
             avalible: flipProvaider.avalible,
-            hintext: "Cuban Last Name",
+            hintext: cubanLastName,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.badge_outlined, color: Colors.blue)
                 : const Icon(Icons.badge_outlined, color: Colors.grey),
@@ -86,7 +102,7 @@ class CardBody4 extends StatelessWidget {
               'Document 2',
               'Document 3',
             ],
-            hintext: 'Arrival Docs',
+            hintext: arrivalDocs,
             onChanged: (value) =>
                 personalInfoProvider.arrivalDoc = value.toString(),
             onSaved: (value) =>
@@ -116,7 +132,7 @@ class CardBody4 extends StatelessWidget {
               'Country 2',
               'Country 3',
             ],
-            hintext: 'Country Issue',
+            hintext: countryIssue,
             onChanged: (value) =>
                 personalInfoProvider.countryIssue = value.toString(),
             onSaved: (value) =>
@@ -140,7 +156,7 @@ class CardBody4 extends StatelessWidget {
             onChanged: (value) =>
                 personalInfoProvider.primaryArrivalDocNo = value,
             avalible: flipProvaider.avalible,
-            hintext: "Arrival Doc No",
+            hintext: arrivalDocNo,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.flight_land, color: Colors.blue)
                 : const Icon(Icons.flight_land, color: Colors.grey),

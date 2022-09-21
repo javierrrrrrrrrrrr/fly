@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/user_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body1.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body2.dart';
@@ -17,6 +18,7 @@ class PersonalInfoHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
+    final userprovider = Provider.of<UserProvider>(context);
     return Scaffold(
       //TODO:cambiar la condicion por si tiene o no agregada su info personal
       body: flipProvaider.flip >= 6
@@ -63,25 +65,59 @@ class PersonalInfoHome extends StatelessWidget {
             ))
           : PageView(
               scrollDirection: Axis.vertical,
-              children: const [
+              children: [
                 BodyCustom(
                     body: CardBody1(
                   space: 40,
+                  firstname: userprovider.userSelected!.firstName,
+                  lastname: userprovider.userSelected!.lastName,
+                  passengerType: userprovider.userSelected!.passengerType,
+                  birthDate: userprovider.userSelected!.birthDate!,
+                  gender: userprovider.userSelected!.gender!,
+                  email: userprovider.userSelected!.email!,
+                  phone: userprovider.userSelected!.phone!,
                 )),
                 BodyCustom(
                     body: CardBody2(
+                  address: userprovider.userSelected!.address!,
+                  city: userprovider.userSelected!.city!,
+                  state: userprovider.userSelected!.state!,
+                  zipCode: userprovider.userSelected!.zip!,
+                  country: userprovider.userSelected!.country!,
+                  nationality: userprovider.userSelected!.nationality!,
                   space: 40,
                 )),
                 BodyCustom(
                     body: CardBody3(
+                  ofacCode: userprovider.userSelected!.ofacCode!,
+                  motherMaiden: userprovider.userSelected!.mothersMaiden!,
+                  foreignAdress: userprovider.userSelected!.foreignAddress!,
+                  foreignCity: userprovider.userSelected!.foreignCity!,
+                  foreignprovince: userprovider.userSelected!.foreignProvince!,
+                  emergencyNumber: userprovider.userSelected!.emergencyPhone!,
+                  foreignZipCode: userprovider.userSelected!.foreignZip!,
                   space: 40,
                 )),
                 BodyCustom(
                     body: CardBody4(
+                  emergencyPhone: userprovider.userSelected!.emergencyPhone!,
+                  cubanFirstName: userprovider.userSelected!.cubanFirstName!,
+                  cubanLastName: userprovider.userSelected!.cubanLastName!,
+                  arrivalDocs: userprovider.userSelected!.arrivalDoc!,
+                  countryIssue: userprovider.userSelected!.countryOfIssue!,
+                  arrivalDocNo: userprovider.userSelected!.arrivalDocNo!,
                   space: 40,
                 )),
                 BodyCustom(
                     body: CardBody5(
+                  expDate: userprovider.userSelected!.expDate!,
+                  passportNumbersec:
+                      userprovider.userSelected!.passportNumberSec!,
+                  contryOfIssuesec:
+                      userprovider.userSelected!.countryOfIssueSec!,
+                  arrivalDocNumbersec:
+                      userprovider.userSelected!.arrivalDocNoSec!,
+                  expDatesec: userprovider.userSelected!.expDateSec!,
                   space: 40,
                 )),
               ],

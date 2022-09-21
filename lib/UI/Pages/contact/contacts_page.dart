@@ -75,6 +75,8 @@ class _ListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userprovider = Provider.of<UserProvider>(context);
+
     return Padding(
       padding: EdgeInsets.only(
           left: size.width * 0.1,
@@ -114,10 +116,17 @@ class _ListViewBody extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(
-                color: kprimarycolor,
-                Icons.edit_note_outlined,
-                size: 35,
+              GestureDetector(
+                onTap: () {
+                  userprovider.userSelected = user;
+                  print(userprovider.userSelected!.firstName.toString());
+                  Navigator.of(context).pushNamed('/PersonalInfoHome');
+                },
+                child: Icon(
+                  color: kprimarycolor,
+                  Icons.edit_note_outlined,
+                  size: 35,
+                ),
               ),
               GestureDetector(
                 onTap: () {

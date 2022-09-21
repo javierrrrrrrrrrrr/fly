@@ -20,7 +20,7 @@ class User extends Equatable {
     this.email,
     this.phone,
     this.address,
-    this.cyti,
+    this.city,
     this.state,
     this.zip,
     this.country,
@@ -39,7 +39,7 @@ class User extends Equatable {
     this.countryOfIssue,
     this.arrivalDocNo,
     this.expDate,
-    this.arrivalDocSec,
+    this.passportNumberSec,
     this.countryOfIssueSec,
     this.arrivalDocNoSec,
     this.expDateSec,
@@ -55,7 +55,7 @@ class User extends Equatable {
   String? email;
   String? phone;
   String? address;
-  String? cyti;
+  String? city;
   String? state;
   String? zip;
   String? country;
@@ -74,7 +74,7 @@ class User extends Equatable {
   String? countryOfIssue;
   String? arrivalDocNo;
   String? expDate;
-  String? arrivalDocSec;
+  String? passportNumberSec;
   String? countryOfIssueSec;
   String? arrivalDocNoSec;
   String? expDateSec;
@@ -125,7 +125,7 @@ class User extends Equatable {
         email: email ?? this.email,
         phone: phone ?? this.phone,
         address: address ?? this.address,
-        cyti: cyti ?? this.cyti,
+        city: cyti ?? city,
         state: state ?? this.state,
         zip: zip ?? this.zip,
         country: country ?? this.country,
@@ -144,7 +144,7 @@ class User extends Equatable {
         countryOfIssue: countryOfIssue ?? this.countryOfIssue,
         arrivalDocNo: arrivalDocNo ?? this.arrivalDocNo,
         expDate: expDate ?? this.expDate,
-        arrivalDocSec: arrivalDocSec ?? this.arrivalDocSec,
+        passportNumberSec: arrivalDocSec ?? passportNumberSec,
         countryOfIssueSec: countryOfIssueSec ?? this.countryOfIssueSec,
         arrivalDocNoSec: arrivalDocNoSec ?? this.arrivalDocNoSec,
         expDateSec: expDateSec ?? this.expDateSec,
@@ -161,7 +161,7 @@ class User extends Equatable {
         email: json["email"],
         phone: json["phone"],
         address: json["address"],
-        cyti: json["cyti"],
+        city: json["cyti"],
         state: json["state"],
         zip: json["zip"],
         country: json["country"],
@@ -180,7 +180,7 @@ class User extends Equatable {
         countryOfIssue: json["countryOfIssue"],
         arrivalDocNo: json["arrivalDocNo"],
         expDate: json["expDate"],
-        arrivalDocSec: json["arrivalDocSec"],
+        passportNumberSec: json["arrivalDocSec"],
         countryOfIssueSec: json["countryOfIssueSec"],
         arrivalDocNoSec: json["arrivalDocNoSec"],
         expDateSec: json["expDateSec"],
@@ -197,7 +197,7 @@ class User extends Equatable {
         "email": email,
         "phone": phone,
         "address": address,
-        "cyti": cyti,
+        "cyti": city,
         "state": state,
         "zip": zip,
         "country": country,
@@ -216,7 +216,7 @@ class User extends Equatable {
         "countryOfIssue": countryOfIssue,
         "arrivalDocNo": arrivalDocNo,
         "expDate": expDate,
-        "arrivalDocSec": arrivalDocSec,
+        "arrivalDocSec": passportNumberSec,
         "countryOfIssueSec": countryOfIssueSec,
         "arrivalDocNoSec": arrivalDocNoSec,
         "expDateSec": expDateSec,
@@ -234,7 +234,7 @@ class User extends Equatable {
         email,
         phone,
         address,
-        cyti,
+        city,
         state,
         zip,
         country,
@@ -253,7 +253,7 @@ class User extends Equatable {
         countryOfIssue,
         arrivalDocNo,
         expDate,
-        arrivalDocSec,
+        passportNumberSec,
         countryOfIssueSec,
         arrivalDocNoSec,
         expDateSec,

@@ -9,6 +9,7 @@ import '../../DataLayer/Models/user_model.dart';
 
 class UserProvider extends ChangeNotifier {
   List<User> contacts = [];
+  User? userSelected;
 
   String error = "";
 

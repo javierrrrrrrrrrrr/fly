@@ -9,9 +9,23 @@ import '../../../Business_logic/Provaiders/user_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 
 class CardBody5 extends StatelessWidget {
-  const CardBody5({Key? key, this.space}) : super(key: key);
+  const CardBody5(
+      {Key? key,
+      this.space,
+      required this.expDate,
+      required this.passportNumbersec,
+      required this.contryOfIssuesec,
+      required this.arrivalDocNumbersec,
+      required this.expDatesec})
+      : super(key: key);
 
   final double? space;
+
+  final String expDate;
+  final String passportNumbersec;
+  final String contryOfIssuesec;
+  final String arrivalDocNumbersec;
+  final String expDatesec;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +50,7 @@ class CardBody5 extends StatelessWidget {
           ),
           CustomPikedDate(
             //TODO : mandar por parametros en icono del campo
-            hintText: 'Exp Date',
+            hintText: expDate,
             onSelectedDate: (piked) {
               personalInfoProvider.primaryExpDate =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
@@ -75,7 +89,7 @@ class CardBody5 extends StatelessWidget {
               'Document 2',
               'Document 3',
             ],
-            hintext: 'Passport',
+            hintext: passportNumbersec,
             onChanged: (value) =>
                 personalInfoProvider.passport = value.toString(),
             onSaved: (value) =>
@@ -105,7 +119,7 @@ class CardBody5 extends StatelessWidget {
               'Document 2',
               'Document 3',
             ],
-            hintext: 'Country of Issue',
+            hintext: contryOfIssuesec,
             onChanged: (value) =>
                 personalInfoProvider.countryOfIssue = value.toString(),
             onSaved: (value) =>
@@ -129,7 +143,7 @@ class CardBody5 extends StatelessWidget {
             onChanged: (value) =>
                 personalInfoProvider.secundaryArrivalDocNo = value,
             avalible: flipProvaider.avalible,
-            hintext: "Arrival Doc No",
+            hintext: arrivalDocNumbersec,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.flight_land, color: Colors.blue)
                 : const Icon(Icons.flight_land, color: Colors.grey),
@@ -140,7 +154,7 @@ class CardBody5 extends StatelessWidget {
           ),
           CustomPikedDate(
             //TODO : mandar por parametros en icono del campo
-            hintText: 'Exp Date',
+            hintText: expDatesec,
             onSelectedDate: (piked) {
               personalInfoProvider.secundaryExpDate =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";

@@ -11,14 +11,28 @@ class CardBody1 extends StatelessWidget {
   const CardBody1({
     Key? key,
     this.space,
+    required this.firstname,
+    required this.lastname,
+    required this.passengerType,
+    required this.birthDate,
+    required this.gender,
+    required this.email,
+    required this.phone,
   }) : super(key: key);
 
   final double? space;
+  final String firstname;
+  final String lastname;
+  final String passengerType;
+  final String birthDate;
+  final String gender;
+  final String email;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final personalInfoProvider = Provider.of<UserProvider>(context);
+    final userprovider = Provider.of<UserProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -35,16 +49,16 @@ class CardBody1 extends StatelessWidget {
             texto: "First Name",
           ),
           Imputfield(
-              onChanged: (value) => personalInfoProvider.fistName = value,
-              hintext: "First Name",
+              onChanged: (value) => userprovider.fistName = value,
+              hintext: firstname,
               prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue)),
           Separador(
             space: space,
             texto: "Last Name",
           ),
           Imputfield(
-            onChanged: (value) => personalInfoProvider.lastName = value,
-            hintext: "Last Name",
+            onChanged: (value) => userprovider.lastName = value,
+            hintext: lastname,
             prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
           ),
           Separador(
@@ -59,22 +73,20 @@ class CardBody1 extends StatelessWidget {
               'Child',
               'Infant',
             ],
-            hintext: 'Passenger Typer',
-            onChanged: (value) =>
-                personalInfoProvider.passengerType = value.toString(),
-            onSaved: (value) =>
-                personalInfoProvider.passengerType = value.toString(),
+            hintext: passengerType,
+            onChanged: (value) => userprovider.passengerType = value.toString(),
+            onSaved: (value) => userprovider.passengerType = value.toString(),
           ),
           Separador(
             space: space,
             texto: "Birth Date",
           ),
           CustomPikedDate(
-            hintText: 'Birth Date',
+            hintText: birthDate,
             onSelectedDate: (piked) {
-              personalInfoProvider.birthDate =
+              userprovider.birthDate =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
-              print(personalInfoProvider.birthDate.toString());
+              print(userprovider.birthDate.toString());
             },
           ),
           Separador(
@@ -89,18 +101,17 @@ class CardBody1 extends StatelessWidget {
               'Female',
               'Other',
             ],
-            hintext: 'Gender',
-            onChanged: (value) =>
-                personalInfoProvider.gender = value.toString(),
-            onSaved: (value) => personalInfoProvider.gender = value.toString(),
+            hintext: gender,
+            onChanged: (value) => userprovider.gender = value.toString(),
+            onSaved: (value) => userprovider.gender = value.toString(),
           ),
           Separador(
             space: space,
             texto: "Email",
           ),
           Imputfield(
-            onChanged: (value) => personalInfoProvider.email = value.toString(),
-            hintext: "Email",
+            onChanged: (value) => userprovider.email = value.toString(),
+            hintext: email,
             prefixIcon:
                 const Icon(Icons.contact_mail_outlined, color: Colors.blue),
           ),
@@ -109,8 +120,8 @@ class CardBody1 extends StatelessWidget {
             texto: "Phone",
           ),
           Imputfield(
-            onChanged: (value) => personalInfoProvider.phone = value,
-            hintext: "Phone",
+            onChanged: (value) => userprovider.phone = value,
+            hintext: phone,
             prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
           ),
           Container(

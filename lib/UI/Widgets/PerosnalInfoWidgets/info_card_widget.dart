@@ -35,14 +35,49 @@ class InfoCardWIdget extends StatelessWidget {
           key: formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: flipProvaider.flip == 0
-              ? const CardBody1()
+              ? const CardBody1(
+                  firstname: "First Name",
+                  lastname: "Last Name",
+                  passengerType: "Passenger Typer",
+                  birthDate: "Birth Date",
+                  email: "Email",
+                  gender: "Gender",
+                  phone: "Phone",
+                )
               : flipProvaider.flip == 1
-                  ? const CardBody2()
+                  ? const CardBody2(
+                      address: "Address",
+                      city: "City",
+                      state: "State",
+                      zipCode: "Zip Code",
+                      country: "Country",
+                      nationality: "Nationality")
                   : flipProvaider.flip == 2
-                      ? const CardBody3()
+                      ? const CardBody3(
+                          ofacCode: "Ofac Code",
+                          motherMaiden: "Mother Maiden",
+                          foreignAdress: "Foreign Adress",
+                          foreignCity: "Foreign City",
+                          foreignprovince: "Foreign Province",
+                          foreignZipCode: "Foreign Zip Code",
+                          emergencyNumber: "Emergency Number",
+                        )
                       : flipProvaider.flip == 3
-                          ? const CardBody4()
-                          : const CardBody5(),
+                          ? const CardBody4(
+                              emergencyPhone: "Emergency Phone",
+                              cubanFirstName: "Cuban First Name",
+                              cubanLastName: "Cuban Last Name",
+                              arrivalDocs: "Arrival Docs",
+                              countryIssue: "Country Issue",
+                              arrivalDocNo: "Arrival Doc No",
+                            )
+                          : const CardBody5(
+                              expDate: "Exp Date",
+                              passportNumbersec: "Passport Number",
+                              contryOfIssuesec: "Country Of Issue",
+                              arrivalDocNumbersec: "Arrival Doc Number",
+                              expDatesec: "Exp Date",
+                            ),
         ));
   }
 }
