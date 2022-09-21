@@ -141,6 +141,7 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<bool> getsContacts(String token) async {
+    contacts.clear();
     var headers = {'Authorization': token};
     var request = http.Request('GET', Uri.parse('$ip/contacts'));
 
@@ -149,6 +150,8 @@ class UserProvider extends ChangeNotifier {
     http.StreamedResponse response = await request.send();
     String respuesta = await response.stream.bytesToString();
     if (response.statusCode == 200) {
+      //para igualar las lista ya q como se muestra es la filtrada no dejar de motrar los valores q no coincidan con el criterio de busqueda
+      foundedContacts = contacts;
       final List<dynamic> decodedResp = json.decode(respuesta);
       decodedResp.map((item) {
         contacts.add(User.fromMap(item));
