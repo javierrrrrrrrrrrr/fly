@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/personal_info_provider.dart';
+import '../../../Business_logic/Provaiders/user_provider.dart';
 
 class InfoBottom extends StatelessWidget {
   const InfoBottom({

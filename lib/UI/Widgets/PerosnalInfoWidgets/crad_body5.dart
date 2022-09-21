@@ -5,7 +5,7 @@ import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:fly_cliente/UI/Widgets/imput_field.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/personal_info_provider.dart';
+import '../../../Business_logic/Provaiders/user_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 
 class CardBody5 extends StatelessWidget {

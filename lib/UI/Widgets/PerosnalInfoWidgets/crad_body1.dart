@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/personal_info_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/user_provider.dart';
 import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_dropdown.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:fly_cliente/UI/Widgets/imput_field.dart';

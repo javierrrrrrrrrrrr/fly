@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/personal_info_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/user_provider.dart';
 import 'package:fly_cliente/UI/Pages/airline_info.dart';
 import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
 import 'package:fly_cliente/UI/Pages/add_personal_information.dart';

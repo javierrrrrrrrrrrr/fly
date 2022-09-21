@@ -2,7 +2,7 @@ import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/personal_info_provider.dart';
+import '../../../Business_logic/Provaiders/user_provider.dart';
 import '../../../DataLayer/Models/user_model.dart';
 
 class ContactsPage extends StatelessWidget {
@@ -163,7 +163,8 @@ class _SearchContactField extends StatelessWidget {
         elevation: 3,
         borderRadius: BorderRadius.circular(10),
         child: TextField(
-          onChanged: (value) => userprovider.udateListContacts(value),
+          onChanged: (value) =>
+              userprovider.udateListContacts(value.toLowerCase()),
           cursorColor: kprimarycolor,
           decoration: InputDecoration(
               hintText: 'Type name or number',

@@ -3,7 +3,7 @@ import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';
-import '../../../Business_logic/Provaiders/personal_info_provider.dart';
+import '../../../Business_logic/Provaiders/user_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 import '../imput_field.dart';
 

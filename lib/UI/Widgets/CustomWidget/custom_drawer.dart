@@ -6,7 +6,7 @@ import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/personal_info_provider.dart';
+import '../../../Business_logic/Provaiders/user_provider.dart';
 import '../widgets.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -117,7 +117,7 @@ class CustomDrawer extends StatelessWidget {
                     FocusScope.of(context).unfocus();
                     loadingSpinner(context);
                     bool respuesta =
-                        await userProvider.getsContacts("loginProvider.token");
+                        await userProvider.getsContacts(loginProvider.token);
 
                     if (respuesta == true) {
                       Navigator.pop(context);
