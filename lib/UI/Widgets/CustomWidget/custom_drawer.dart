@@ -1,5 +1,4 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
@@ -17,7 +16,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final flipProvaider = Provider.of<FlipProvider>(context);
+
     final loginProvider = Provider.of<LoginProvider>(context);
     final userProvider = Provider.of<ContactProvider>(context);
     return Drawer(
