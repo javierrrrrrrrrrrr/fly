@@ -3,8 +3,8 @@ import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/info_buttom.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/info_card_widget.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/info_check_row_progress.dart';
 
-class AddPersonalInformation extends StatelessWidget {
-  const AddPersonalInformation({Key? key}) : super(key: key);
+class CreateContactPage extends StatelessWidget {
+  const CreateContactPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';
-import '../../../Business_logic/Provaiders/user_provider.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 import '../imput_field.dart';
 
@@ -35,7 +35,7 @@ class CardBody2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final flipProvaider = Provider.of<FlipProvider>(context);
     final size = MediaQuery.of(context).size;
-    final personalInfoProvider = Provider.of<UserProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -56,7 +56,8 @@ class CardBody2 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.address = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.address = value,
             avalible: flipProvaider.avalible,
             hintext: address,
             prefixIcon: flipProvaider.avalible
@@ -71,7 +72,7 @@ class CardBody2 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.city = value,
+            onChanged: (value) => contactProvider.selectedContact!.city = value,
             avalible: flipProvaider.avalible,
             hintext: city,
             prefixIcon: flipProvaider.avalible
@@ -86,7 +87,8 @@ class CardBody2 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.state = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.state = value,
             avalible: flipProvaider.avalible,
             hintext: state,
             prefixIcon: flipProvaider.avalible
@@ -101,7 +103,7 @@ class CardBody2 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.zip = value,
+            onChanged: (value) => contactProvider.selectedContact!.zip = value,
             avalible: flipProvaider.avalible,
             hintext: zipCode,
             prefixIcon: flipProvaider.avalible
@@ -116,7 +118,8 @@ class CardBody2 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.country = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.country = value,
             avalible: flipProvaider.avalible,
             hintext: country,
             prefixIcon: flipProvaider.avalible
@@ -141,9 +144,9 @@ class CardBody2 extends StatelessWidget {
             ],
             hintext: nationality,
             onChanged: (value) =>
-                personalInfoProvider.nationality = value.toString(),
+                contactProvider.selectedContact!.nationality = value.toString(),
             onSaved: (value) =>
-                personalInfoProvider.nationality = value.toString(),
+                contactProvider.selectedContact!.nationality = value.toString(),
           ),
           // Imputfield(
           //   avalible: flipProvaider.avalible,

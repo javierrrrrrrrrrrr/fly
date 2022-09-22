@@ -6,7 +6,7 @@ import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
 import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/user_provider.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
 import '../widgets.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -19,7 +19,7 @@ class CustomDrawer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
     final loginProvider = Provider.of<LoginProvider>(context);
-    final userProvider = Provider.of<UserProvider>(context);
+    final userProvider = Provider.of<ContactProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -98,15 +98,6 @@ class CustomDrawer extends StatelessWidget {
                   },
                   icono: Icons.connecting_airports_outlined,
                   texto: "Airline",
-                  tamnofuente: 18),
-              const Separador(),
-              CustomRowDrawer(
-                  onPressed: () {
-                    flipProvaider.flip = 0;
-                    Navigator.of(context).pushNamed('/PersonalInfoHome');
-                  },
-                  icono: Icons.perm_identity_sharp,
-                  texto: "Personal information",
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(

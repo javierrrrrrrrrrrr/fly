@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/user_provider.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 import '../SeparationWidget/separador.dart';
 import '../imput_field.dart';
@@ -35,7 +35,7 @@ class CardBody4 extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
-    final personalInfoProvider = Provider.of<UserProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -55,7 +55,8 @@ class CardBody4 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.emergencyphone = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.emergencyPhone = value,
             avalible: flipProvaider.avalible,
             hintext: emergencyPhone,
             prefixIcon: flipProvaider.avalible
@@ -70,7 +71,8 @@ class CardBody4 extends StatelessWidget {
                 ),
 
           Imputfield(
-              onChanged: (value) => personalInfoProvider.cubanFirstName = value,
+              onChanged: (value) =>
+                  contactProvider.selectedContact!.cubanFirstName = value,
               avalible: flipProvaider.avalible,
               hintext: cubanFirstName,
               prefixIcon: flipProvaider.avalible
@@ -84,7 +86,8 @@ class CardBody4 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.cubanLastName = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.cubanLastName = value,
             avalible: flipProvaider.avalible,
             hintext: cubanLastName,
             prefixIcon: flipProvaider.avalible
@@ -123,9 +126,9 @@ class CardBody4 extends StatelessWidget {
             ],
             hintext: arrivalDocs,
             onChanged: (value) =>
-                personalInfoProvider.arrivalDoc = value.toString(),
+                contactProvider.selectedContact!.arrivalDoc = value.toString(),
             onSaved: (value) =>
-                personalInfoProvider.arrivalDoc = value.toString(),
+                contactProvider.selectedContact!.arrivalDoc = value.toString(),
           ),
           // Imputfield(
 
@@ -155,10 +158,10 @@ class CardBody4 extends StatelessWidget {
               'Country 3',
             ],
             hintext: countryIssue,
-            onChanged: (value) =>
-                personalInfoProvider.countryIssue = value.toString(),
-            onSaved: (value) =>
-                personalInfoProvider.countryIssue = value.toString(),
+            onChanged: (value) => contactProvider
+                .selectedContact!.countryOfIssue = value.toString(),
+            onSaved: (value) => contactProvider
+                .selectedContact!.countryOfIssue = value.toString(),
           ),
           // Imputfield(
           //   avalible: flipProvaider.avalible,
@@ -179,7 +182,7 @@ class CardBody4 extends StatelessWidget {
 
           Imputfield(
             onChanged: (value) =>
-                personalInfoProvider.primaryArrivalDocNo = value,
+                contactProvider.selectedContact!.arrivalDocNo = value,
             avalible: flipProvaider.avalible,
             hintext: arrivalDocNo,
             prefixIcon: flipProvaider.avalible

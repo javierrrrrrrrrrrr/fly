@@ -5,7 +5,7 @@ import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:fly_cliente/UI/Widgets/imput_field.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/user_provider.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 
 class CardBody5 extends StatelessWidget {
@@ -35,7 +35,7 @@ class CardBody5 extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
-    final personalInfoProvider = Provider.of<UserProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -59,7 +59,7 @@ class CardBody5 extends StatelessWidget {
             //TODO : mandar por parametros en icono del campo
             hintText: expDate,
             onSelectedDate: (piked) {
-              personalInfoProvider.primaryExpDate =
+              contactProvider.selectedContact!.expDate =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
             },
           ),
@@ -101,10 +101,10 @@ class CardBody5 extends StatelessWidget {
               'Document 3',
             ],
             hintext: passportNumbersec,
-            onChanged: (value) =>
-                personalInfoProvider.passport = value.toString(),
-            onSaved: (value) =>
-                personalInfoProvider.passport = value.toString(),
+            onChanged: (value) => contactProvider
+                .selectedContact!.passportNumberSec = value.toString(),
+            onSaved: (value) => contactProvider
+                .selectedContact!.passportNumberSec = value.toString(),
           ),
           // Imputfield(
           //   avalible: flipProvaider.avalible,
@@ -134,10 +134,10 @@ class CardBody5 extends StatelessWidget {
               'Document 3',
             ],
             hintext: contryOfIssuesec,
-            onChanged: (value) =>
-                personalInfoProvider.countryOfIssue = value.toString(),
-            onSaved: (value) =>
-                personalInfoProvider.countryOfIssue = value.toString(),
+            onChanged: (value) => contactProvider
+                .selectedContact!.countryOfIssueSec = value.toString(),
+            onSaved: (value) => contactProvider
+                .selectedContact!.countryOfIssueSec = value.toString(),
           ),
           // Imputfield(
           //   avalible: flipProvaider.avalible,
@@ -158,7 +158,7 @@ class CardBody5 extends StatelessWidget {
 
           Imputfield(
             onChanged: (value) =>
-                personalInfoProvider.secundaryArrivalDocNo = value,
+                contactProvider.selectedContact!.arrivalDocNoSec = value,
             avalible: flipProvaider.avalible,
             hintext: arrivalDocNumbersec,
             prefixIcon: flipProvaider.avalible
@@ -176,7 +176,7 @@ class CardBody5 extends StatelessWidget {
             //TODO : mandar por parametros en icono del campo
             hintText: expDatesec,
             onSelectedDate: (piked) {
-              personalInfoProvider.secundaryExpDate =
+              contactProvider.selectedContact!.expDateSec =
                   "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
             },
           ),

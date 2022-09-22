@@ -63,7 +63,7 @@ class InfoCardWIdget extends StatelessWidget {
                           foreignCity: "Foreign City",
                           foreignprovince: "Foreign Province",
                           foreignZipCode: "Foreign Zip Code",
-                          emergencyNumber: "Emergency Number",
+                          emergencyName: "Emergency Number",
                         )
                       : flipProvaider.flip == 3
                           ? const CardBody4(
