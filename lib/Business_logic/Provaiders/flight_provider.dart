@@ -171,7 +171,7 @@ class FlightProvider extends ChangeNotifier {
   }
 
   Future<bool> getFlights() async {
-    var request = http.Request('GET', Uri.parse('$ip/flights'));
+    var request = http.Request('GET', Uri.parse('$kip/flights'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String respuesta = await response.stream.bytesToString();
@@ -188,7 +188,7 @@ class FlightProvider extends ChangeNotifier {
 
   Future<List<Flight>> getFlightwithoutStream() async {
     departureflights.clear();
-    var response = await http.get(Uri.parse('$ip/flights'));
+    var response = await http.get(Uri.parse('$kip/flights'));
 
     if (response.statusCode == 200) {
       final List<dynamic> decodedResp = json.decode(response.body);
@@ -204,7 +204,7 @@ class FlightProvider extends ChangeNotifier {
 
   Future<bool> getFlightsByFilters() async {
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('GET', Uri.parse('$ip/flights/getFlightsBy'));
+    var request = http.Request('GET', Uri.parse('$kip/flights/getFlightsBy'));
 
     request.body = json.encode(body);
 
@@ -232,7 +232,7 @@ class FlightProvider extends ChangeNotifier {
   }) async {
     returnflights.clear();
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('GET', Uri.parse('$ip/flights/verifyReturn'));
+    var request = http.Request('GET', Uri.parse('$kip/flights/verifyReturn'));
     request.body =
         json.encode({"dateReturn": dateReturn, "from": from, "to": to});
     request.headers.addAll(headers);

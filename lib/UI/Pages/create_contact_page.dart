@@ -9,6 +9,7 @@ class CreateContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
         body: SingleChildScrollView(
       child: SizedBox(
@@ -17,15 +18,15 @@ class CreateContactPage extends StatelessWidget {
         child: Stack(
           children: [
             Column(
-              children: const [
-                InfoCheckRowProgress(),
-                InfoCardWIdget(),
+              children: [
+                const InfoCheckRowProgress(),
+                InfoCardWIdget(formKey: formKey),
               ],
             ),
             Positioned(
               right: size.width * 0.1,
               bottom: size.height * 0.05,
-              child: const InfoButtom(),
+              child: InfoButtom(formKey: formKey),
             ),
           ],
         ),

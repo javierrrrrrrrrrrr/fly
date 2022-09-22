@@ -10,13 +10,15 @@ import 'crad_body1.dart';
 class InfoCardWIdget extends StatelessWidget {
   const InfoCardWIdget({
     Key? key,
+    required this.formKey,
   }) : super(key: key);
 
+  final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
     final flipProvaider = Provider.of<FlipProvider>(context);
     final size = MediaQuery.of(context).size;
-    final formKey = GlobalKey<FormState>();
+
     return Container(
         margin: EdgeInsets.symmetric(horizontal: size.height * 0.02),
         // height: size.height * 0.63,
