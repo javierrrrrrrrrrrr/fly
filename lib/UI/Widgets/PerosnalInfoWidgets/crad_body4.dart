@@ -16,10 +16,13 @@ class CardBody4 extends StatelessWidget {
       required this.cubanLastName,
       required this.arrivalDocs,
       required this.countryIssue,
-      required this.arrivalDocNo})
+      required this.arrivalDocNo,
+      this.spacenamed})
       : super(key: key);
 
   final double? space;
+  //bool para controlar el espacio entre los campos
+  final bool? spacenamed;
 
   final String emergencyPhone;
   final String cubanFirstName;
@@ -44,10 +47,13 @@ class CardBody4 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            texto: "Emergency phone",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Emergency Phone",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.emergencyphone = value,
             avalible: flipProvaider.avalible,
@@ -56,10 +62,13 @@ class CardBody4 extends StatelessWidget {
                 ? const Icon(Icons.phone_android_outlined, color: Colors.blue)
                 : const Icon(Icons.phone_android_outlined, color: Colors.grey),
           ),
-          Separador(
-            texto: "Cuban First Name",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Cuban First Name",
+                ),
+
           Imputfield(
               onChanged: (value) => personalInfoProvider.cubanFirstName = value,
               avalible: flipProvaider.avalible,
@@ -67,10 +76,13 @@ class CardBody4 extends StatelessWidget {
               prefixIcon: flipProvaider.avalible
                   ? const Icon(Icons.badge_outlined, color: Colors.blue)
                   : const Icon(Icons.badge_outlined, color: Colors.grey)),
-          Separador(
-            texto: "Cuban Last Name",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Cuban Last Name",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.cubanLastName = value,
             avalible: flipProvaider.avalible,
@@ -79,9 +91,13 @@ class CardBody4 extends StatelessWidget {
                 ? const Icon(Icons.badge_outlined, color: Colors.blue)
                 : const Icon(Icons.badge_outlined, color: Colors.grey),
           ),
-          Separador(
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Arrival Docs",
+                ),
+
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.02),
             child: const Text(
@@ -89,10 +105,13 @@ class CardBody4 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            texto: "Arrival Docs",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Arrival Docs",
+                ),
+
           CustomDropDown(
             iconData: Icons.flight_land,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -119,10 +138,13 @@ class CardBody4 extends StatelessWidget {
           //       ? const Icon(Icons.flight_land, color: Colors.blue)
           //       : const Icon(Icons.flight_land, color: Colors.grey),
           // ),
-          Separador(
-            texto: "Country Issue",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Country Issue",
+                ),
+
           CustomDropDown(
             iconData: Icons.flag_outlined,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -148,10 +170,13 @@ class CardBody4 extends StatelessWidget {
           //       ? const Icon(Icons.flag_outlined, color: Colors.blue)
           //       : const Icon(Icons.flag_outlined, color: Colors.grey),
           // ),
-          Separador(
-            texto: "Arrival Doc No",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Arrival Doc No",
+                ),
+
           Imputfield(
             onChanged: (value) =>
                 personalInfoProvider.primaryArrivalDocNo = value,

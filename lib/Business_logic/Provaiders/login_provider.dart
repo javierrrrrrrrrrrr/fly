@@ -122,9 +122,10 @@ class LoginProvider extends ChangeNotifier {
   }
 
   Future<bool> createNomralUser() async {
-    var headers = {'Content-Type': 'application/json'};
+    var headers = {'Authorization': token, 'Content-Type': 'application/json'};
     var request = http.Request('POST', Uri.parse('$ip/auth/register'));
-    request.body = json.encode({"email": email, "password": password});
+    request.body =
+        json.encode({"name": "Adonys", "email": email, "password": password});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

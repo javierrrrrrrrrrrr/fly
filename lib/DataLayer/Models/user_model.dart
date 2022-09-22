@@ -10,11 +10,13 @@ User userFromMap(String str) => User.fromMap(json.decode(str));
 
 String userToMap(User data) => json.encode(data.toMap());
 
+// ignore: must_be_immutable
 class User extends Equatable {
   User({
     required this.firstName,
     required this.lastName,
     required this.passengerType,
+    this.id,
     this.birthDate,
     this.gender,
     this.email,
@@ -50,6 +52,7 @@ class User extends Equatable {
   String firstName;
   String lastName;
   String passengerType;
+  int? id;
   String? birthDate;
   String? gender;
   String? email;
@@ -85,12 +88,13 @@ class User extends Equatable {
     String? firstName,
     String? lastName,
     String? passengerType,
+    int? id,
     String? birthDate,
     String? gender,
     String? email,
     String? phone,
     String? address,
-    String? cyti,
+    String? city,
     String? state,
     String? zip,
     String? country,
@@ -120,12 +124,13 @@ class User extends Equatable {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         passengerType: passengerType ?? this.passengerType,
+        id: id ?? this.id,
         birthDate: birthDate ?? this.birthDate,
         gender: gender ?? this.gender,
         email: email ?? this.email,
         phone: phone ?? this.phone,
         address: address ?? this.address,
-        city: cyti ?? city,
+        city: city ?? city,
         state: state ?? this.state,
         zip: zip ?? this.zip,
         country: country ?? this.country,
@@ -156,6 +161,7 @@ class User extends Equatable {
         firstName: json["firstName"],
         lastName: json["lastName"],
         passengerType: json["passengerType"],
+        id: json["id"],
         birthDate: json["birthDate"],
         gender: json["gender"],
         email: json["email"],
@@ -192,6 +198,7 @@ class User extends Equatable {
         "firstName": firstName,
         "lastName": lastName,
         "passengerType": passengerType,
+        "id": id,
         "birthDate": birthDate,
         "gender": gender,
         "email": email,
@@ -229,6 +236,7 @@ class User extends Equatable {
         firstName,
         lastName,
         passengerType,
+        id,
         birthDate,
         gender,
         email,

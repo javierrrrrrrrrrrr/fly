@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
           '/MoreDetailsFly': (context) => MoreDetailsFly(
                 departureflight: flightProvaider.selectedDepartureFlight!,
               ),
-          '/PersonalInfo': (context) => const PersonalInformation(),
+          '/PersonalInfo': (context) => const AddPersonalInformation(),
           '/PersonalInfoHome': (context) => const PersonalInfoHome(),
           '/contacts': (context) => const ContactsPage(),
           '/login': (context) => const LoginPage(),

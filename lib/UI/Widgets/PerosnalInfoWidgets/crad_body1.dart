@@ -18,8 +18,13 @@ class CardBody1 extends StatelessWidget {
     required this.gender,
     required this.email,
     required this.phone,
+    this.spacenamed,
   }) : super(key: key);
 
+  //bool para controlar el espacio entre los campos
+  final bool? spacenamed;
+
+  //
   final double? space;
   final String firstname;
   final String lastname;
@@ -44,27 +49,33 @@ class CardBody1 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            space: space,
-            texto: "First Name",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "First Name",
+                ),
           Imputfield(
               onChanged: (value) => userprovider.fistName = value,
               hintext: firstname,
               prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue)),
-          Separador(
-            space: space,
-            texto: "Last Name",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Last Name",
+                ),
           Imputfield(
             onChanged: (value) => userprovider.lastName = value,
             hintext: lastname,
             prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
           ),
-          Separador(
-            space: space,
-            texto: "Passenger Typer",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Passenger Type",
+                ),
           CustomDropDown(
             iconData: Icons.family_restroom,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -77,10 +88,12 @@ class CardBody1 extends StatelessWidget {
             onChanged: (value) => userprovider.passengerType = value.toString(),
             onSaved: (value) => userprovider.passengerType = value.toString(),
           ),
-          Separador(
-            space: space,
-            texto: "Birth Date",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Birth Date",
+                ),
           CustomPikedDate(
             hintText: birthDate,
             onSelectedDate: (piked) {
@@ -89,10 +102,12 @@ class CardBody1 extends StatelessWidget {
               print(userprovider.birthDate.toString());
             },
           ),
-          Separador(
-            space: space,
-            texto: "Gender",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Gender",
+                ),
           CustomDropDown(
             iconData: Icons.man,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -105,20 +120,24 @@ class CardBody1 extends StatelessWidget {
             onChanged: (value) => userprovider.gender = value.toString(),
             onSaved: (value) => userprovider.gender = value.toString(),
           ),
-          Separador(
-            space: space,
-            texto: "Email",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Email",
+                ),
           Imputfield(
             onChanged: (value) => userprovider.email = value.toString(),
             hintext: email,
             prefixIcon:
                 const Icon(Icons.contact_mail_outlined, color: Colors.blue),
           ),
-          Separador(
-            space: space,
-            texto: "Phone",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Phone",
+                ),
           Imputfield(
             onChanged: (value) => userprovider.phone = value,
             hintext: phone,

@@ -22,7 +22,9 @@ dynamic loadingSpinner(context) {
 }
 
 dynamic confirmDialog(
-    {required BuildContext context, required String messageBody}) {
+    {required BuildContext context,
+    required String messageBody,
+    required Function function}) {
   final size = MediaQuery.of(context).size;
   return showDialog(
     context: context,
@@ -43,7 +45,13 @@ dynamic confirmDialog(
       ),
       actionsAlignment: MainAxisAlignment.center,
       actions: [
-        const Icon(Icons.check_circle_outline, color: Colors.green, size: 40),
+        GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              function();
+            },
+            child: const Icon(Icons.check_circle_outline,
+                color: Colors.green, size: 40)),
         SizedBox(
           width: size.width * 0.08,
         ),

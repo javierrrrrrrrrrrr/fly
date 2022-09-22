@@ -17,10 +17,14 @@ class CardBody3 extends StatelessWidget {
       required this.foreignCity,
       required this.foreignprovince,
       required this.foreignZipCode,
-      required this.emergencyNumber})
+      required this.emergencyNumber,
+      this.spacenamed})
       : super(key: key);
 
   final double? space;
+
+  //bool para controlar el espacio entre los campos
+  final bool? spacenamed;
 
   final String ofacCode;
   final String motherMaiden;
@@ -47,10 +51,13 @@ class CardBody3 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            texto: "Ofac Code",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "OFAC Code",
+                ),
+
           CustomDropDown(
             iconData: Icons.description_outlined,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -76,10 +83,13 @@ class CardBody3 extends StatelessWidget {
           //       ? const Icon(Icons.description_outlined, color: Colors.blue)
           //       : const Icon(Icons.description_outlined, color: Colors.grey),
           // ),
-          Separador(
-            texto: "Mothers Maiden",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Mother Maiden",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.motherMaiden = value,
             avalible: flipProvaider.avalible,
@@ -88,10 +98,13 @@ class CardBody3 extends StatelessWidget {
                 ? const Icon(Icons.description_outlined, color: Colors.blue)
                 : const Icon(Icons.description_outlined, color: Colors.grey),
           ),
-          Separador(
-            texto: "Foreign Adress",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Foreign Address",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.foreingAddress = value,
             avalible: flipProvaider.avalible,
@@ -100,10 +113,13 @@ class CardBody3 extends StatelessWidget {
                 ? const Icon(Icons.house_outlined, color: Colors.blue)
                 : const Icon(Icons.house_outlined, color: Colors.grey),
           ),
-          Separador(
-            texto: "Foreign City",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Foreign City",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.foreingCity = value,
             avalible: flipProvaider.avalible,
@@ -112,10 +128,13 @@ class CardBody3 extends StatelessWidget {
                 ? const Icon(Icons.location_city, color: Colors.blue)
                 : const Icon(Icons.location_city, color: Colors.grey),
           ),
-          Separador(
-            texto: "Fore Province",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Foreign Province",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.foreingProvince = value,
             avalible: flipProvaider.avalible,
@@ -124,10 +143,13 @@ class CardBody3 extends StatelessWidget {
                 ? const Icon(Icons.location_city, color: Colors.blue)
                 : const Icon(Icons.location_city, color: Colors.grey),
           ),
-          Separador(
-            texto: "Foreign Zip",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Foreign Zip Code",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.foreingZip = value,
             avalible: flipProvaider.avalible,
@@ -136,10 +158,13 @@ class CardBody3 extends StatelessWidget {
                 ? const Icon(Icons.pin_outlined, color: Colors.blue)
                 : const Icon(Icons.pin_outlined, color: Colors.grey),
           ),
-          Separador(
-            texto: "Emergency Number",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Emergency Number",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.emergencyNumber = value,
             avalible: flipProvaider.avalible,

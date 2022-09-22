@@ -88,7 +88,7 @@ class FlipProvider extends ChangeNotifier {
           controllerLine4.controller?.dispose();
           controllerCircle4.controller?.dispose();
           controllerCircle5.controller?.dispose();
-          Navigator.of(context).pushNamed('/PersonalInfoHome');
+          Navigator.of(context).pushNamed('/contacts');
           flip = 0;
         });
       }

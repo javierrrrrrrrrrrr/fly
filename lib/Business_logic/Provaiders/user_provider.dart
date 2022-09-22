@@ -165,4 +165,84 @@ class UserProvider extends ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> createContact(String token) async {
+    var headers = {'Authorization': token, 'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse('$ip/contacts'));
+    request.body = json.encode({
+      "firstName": "Adonys",
+      "lastName": "Valdez",
+      "passengerType": "test",
+      "birthDate": "2022/09/01",
+      "gender": "test",
+      "email": "test",
+      "phone": "test",
+      "address": "test",
+      "cyti": "test",
+      "state": "test",
+      "zip": "test",
+      "country": "test",
+      "nationality": "test",
+      "ofacCode": "test",
+      "mothersMaiden": "ttest",
+      "foreignAddress": "test",
+      "foreignCity": "test",
+      "foreignProvince": "test",
+      "foreignZip": "test",
+      "emergencyName": "test",
+      "emergencyPhone": "test",
+      "cubanFirstName": "test",
+      "cubanLastName": "test",
+      "arrivalDoc": "test",
+      "countryOfIssue": "tets",
+      "arrivalDocNo": "test",
+      "expDate": "2022/09/03",
+      "arrivalDocSec": "test",
+      "countryOfIssueSec": "test",
+      "arrivalDocNoSec": "test",
+      "expDateSec": "2022/09/03"
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    var respuesta = await response.stream.bytesToString();
+
+    if (response.statusCode == 200) {
+      final List<dynamic> decodedResp = json.decode(respuesta);
+      // userSelected = json.decode(respuesta);
+      print(userSelected!.firstName.toString());
+
+      return true;
+    } else {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      error = decodedResp["clientErrorMessage"];
+      return false;
+    }
+  }
+
+  Future<bool> deleteContact(String token) async {
+    var headers = {'Authorization': token, 'Content-Type': 'application/json'};
+    var request = http.Request('DELETE', Uri.parse('$ip/contacts'));
+    request.body = json.encode({"id": userSelected!.id});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    var respuesta = await response.stream.bytesToString();
+
+    if (response.statusCode == 200) {
+      for (int i = 0; i < contacts.length; i++) {
+        if (contacts[i].id == userSelected!.id) {
+          contacts.removeAt(i);
+        }
+      }
+
+      notifyListeners();
+    } else {
+      final Map<String, dynamic> decodedResp = json.decode(respuesta);
+      error = decodedResp["clientErrorMessage"];
+      print(decodedResp["clientErrorMessage"]);
+    }
+
+    return true;
+  }
 }

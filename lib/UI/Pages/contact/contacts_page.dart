@@ -1,3 +1,5 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -75,6 +77,7 @@ class _ListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginprovider = Provider.of<LoginProvider>(context);
     final userprovider = Provider.of<UserProvider>(context);
 
     return Padding(
@@ -119,7 +122,7 @@ class _ListViewBody extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   userprovider.userSelected = user;
-                  print(userprovider.userSelected!.firstName.toString());
+
                   Navigator.of(context).pushNamed('/PersonalInfoHome');
                 },
                 child: Icon(
@@ -129,11 +132,40 @@ class _ListViewBody extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () {
+                onTap: () async {
                   confirmDialog(
-                      context: context,
                       messageBody:
-                          'Are you sure you want to delete this contact');
+                          "are you sure you want to delete the contact",
+                      context: context,
+                      function: () async {
+                        loadingSpinner(context);
+                        userprovider.userSelected = user;
+                        bool respuesta = await userprovider
+                            .deleteContact(loginprovider.token);
+                        if (respuesta == true) {
+                          Navigator.pop(context);
+                        } else {
+                          var snackBar = SnackBar(
+                            elevation: 0,
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Colors.transparent,
+                            content: AwesomeSnackbarContent(
+                              title: 'Error!',
+                              message: userprovider.error,
+                              contentType: ContentType.failure,
+                            ),
+                          );
+
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      });
+
+                  // confirmDialog(
+
+                  //     context: context,
+                  //     messageBody:
+                  //         'Are you sure you want to delete this contact');
                 },
                 child: const Icon(
                   color: Colors.red,
@@ -220,6 +252,9 @@ class _AppBarRow extends StatelessWidget {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed('/PersonalInfo');
+            },
             child: Icon(
               Icons.group_add_outlined,
               size: 40,

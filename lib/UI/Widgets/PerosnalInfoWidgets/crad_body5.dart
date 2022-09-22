@@ -16,10 +16,14 @@ class CardBody5 extends StatelessWidget {
       required this.passportNumbersec,
       required this.contryOfIssuesec,
       required this.arrivalDocNumbersec,
-      required this.expDatesec})
+      required this.expDatesec,
+      this.spacenamed})
       : super(key: key);
 
   final double? space;
+
+  //bool para controlar el espacio entre los campos
+  final bool? spacenamed;
 
   final String expDate;
   final String passportNumbersec;
@@ -44,10 +48,13 @@ class CardBody5 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            texto: "Exp Date",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Expiration Date",
+                ),
+
           CustomPikedDate(
             //TODO : mandar por parametros en icono del campo
             hintText: expDate,
@@ -66,6 +73,7 @@ class CardBody5 extends StatelessWidget {
           //       ? const Icon(Icons.article_outlined, color: Colors.blue)
           //       : const Icon(Icons.article_outlined, color: Colors.grey),
           // ),
+
           Separador(
             space: space,
           ),
@@ -76,10 +84,13 @@ class CardBody5 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            texto: "Passport Number",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Passport Number",
+                ),
+
           CustomDropDown(
             iconData: Icons.import_contacts_outlined,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -106,10 +117,13 @@ class CardBody5 extends StatelessWidget {
           //       : const Icon(Icons.import_contacts_outlined,
           //           color: Colors.grey),
           // ),
-          Separador(
-            texto: "Country of Issue",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Country of Issue",
+                ),
+
           CustomDropDown(
             iconData: Icons.flag_outlined,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
@@ -135,10 +149,13 @@ class CardBody5 extends StatelessWidget {
           //       ? const Icon(Icons.flag_outlined, color: Colors.blue)
           //       : const Icon(Icons.flag_outlined, color: Colors.grey),
           // ),
-          Separador(
-            texto: "Arrival Doc Number",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Arrival Document Number",
+                ),
+
           Imputfield(
             onChanged: (value) =>
                 personalInfoProvider.secundaryArrivalDocNo = value,
@@ -148,10 +165,13 @@ class CardBody5 extends StatelessWidget {
                 ? const Icon(Icons.flight_land, color: Colors.blue)
                 : const Icon(Icons.flight_land, color: Colors.grey),
           ),
-          Separador(
-            texto: "Exp Date",
-            space: space,
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Expiration Date",
+                ),
+
           CustomPikedDate(
             //TODO : mandar por parametros en icono del campo
             hintText: expDatesec,

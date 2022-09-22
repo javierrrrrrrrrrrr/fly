@@ -36,6 +36,7 @@ class InfoCardWIdget extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: flipProvaider.flip == 0
               ? const CardBody1(
+                  spacenamed: false,
                   firstname: "First Name",
                   lastname: "Last Name",
                   passengerType: "Passenger Typer",
@@ -46,6 +47,7 @@ class InfoCardWIdget extends StatelessWidget {
                 )
               : flipProvaider.flip == 1
                   ? const CardBody2(
+                      spacenamed: false,
                       address: "Address",
                       city: "City",
                       state: "State",
@@ -54,6 +56,7 @@ class InfoCardWIdget extends StatelessWidget {
                       nationality: "Nationality")
                   : flipProvaider.flip == 2
                       ? const CardBody3(
+                          spacenamed: false,
                           ofacCode: "Ofac Code",
                           motherMaiden: "Mother Maiden",
                           foreignAdress: "Foreign Adress",
@@ -64,6 +67,7 @@ class InfoCardWIdget extends StatelessWidget {
                         )
                       : flipProvaider.flip == 3
                           ? const CardBody4(
+                              spacenamed: false,
                               emergencyPhone: "Emergency Phone",
                               cubanFirstName: "Cuban First Name",
                               cubanLastName: "Cuban Last Name",
@@ -72,6 +76,7 @@ class InfoCardWIdget extends StatelessWidget {
                               arrivalDocNo: "Arrival Doc No",
                             )
                           : const CardBody5(
+                              spacenamed: false,
                               expDate: "Exp Date",
                               passportNumbersec: "Passport Number",
                               contryOfIssuesec: "Country Of Issue",

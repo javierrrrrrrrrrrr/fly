@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/user_provider.dart';
 
-class InfoBottom extends StatelessWidget {
-  const InfoBottom({
+class InfoButtom extends StatelessWidget {
+  const InfoButtom({
     Key? key,
   }) : super(key: key);
 

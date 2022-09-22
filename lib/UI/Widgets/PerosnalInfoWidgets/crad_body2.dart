@@ -16,8 +16,12 @@ class CardBody2 extends StatelessWidget {
       required this.state,
       required this.zipCode,
       required this.country,
-      required this.nationality})
+      required this.nationality,
+      this.spacenamed})
       : super(key: key);
+
+//bool para controlar el espacio entre los campos
+  final bool? spacenamed;
 
   final double? space;
   final String address;
@@ -44,10 +48,13 @@ class CardBody2 extends StatelessWidget {
               style: TextStyle(fontSize: 25),
             ),
           ),
-          Separador(
-            space: space,
-            texto: "Address",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Address",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.address = value,
             avalible: flipProvaider.avalible,
@@ -56,10 +63,13 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.house_outlined, color: Colors.blue)
                 : const Icon(Icons.house_outlined, color: Colors.grey),
           ),
-          Separador(
-            space: space,
-            texto: "City",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "City",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.city = value,
             avalible: flipProvaider.avalible,
@@ -68,10 +78,13 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.location_city, color: Colors.blue)
                 : const Icon(Icons.location_city, color: Colors.grey),
           ),
-          Separador(
-            space: space,
-            texto: "State",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "State",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.state = value,
             avalible: flipProvaider.avalible,
@@ -80,10 +93,13 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.real_estate_agent, color: Colors.blue)
                 : const Icon(Icons.real_estate_agent, color: Colors.grey),
           ),
-          Separador(
-            space: space,
-            texto: "Zip",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Zip Code",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.zip = value,
             avalible: flipProvaider.avalible,
@@ -92,10 +108,13 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.pin_outlined, color: Colors.blue)
                 : const Icon(Icons.pin_outlined, color: Colors.grey),
           ),
-          Separador(
-            space: space,
-            texto: "Country",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Country",
+                ),
+
           Imputfield(
             onChanged: (value) => personalInfoProvider.country = value,
             avalible: flipProvaider.avalible,
@@ -104,10 +123,13 @@ class CardBody2 extends StatelessWidget {
                 ? const Icon(Icons.location_city_sharp, color: Colors.blue)
                 : const Icon(Icons.location_city_sharp, color: Colors.grey),
           ),
-          Separador(
-            space: space,
-            texto: "Nationality",
-          ),
+          spacenamed == false
+              ? const Separador()
+              : Separador(
+                  space: space,
+                  texto: "Nationality",
+                ),
+
           CustomDropDown(
             iconData: Icons.flag_outlined,
             contentPadding: EdgeInsets.only(left: size.width * 0.095),
