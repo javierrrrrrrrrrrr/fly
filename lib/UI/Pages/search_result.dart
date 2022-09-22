@@ -15,9 +15,15 @@ class SearchResult extends StatefulWidget {
 }
 
 class _SearchResultState extends State<SearchResult> {
+  bool? isExpandedDropdown;
+  @override
+  void initState() {
+    isExpandedDropdown = false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    setState(() {});
     final size = MediaQuery.of(context).size;
     final flightProvaider = Provider.of<FlightProvider>(context);
     return Scaffold(
@@ -38,9 +44,14 @@ class _SearchResultState extends State<SearchResult> {
                 height: size.height * 0.08,
               ),
               CustomFilterDropDown(
-                  expandido: false,
+                  onRestoreState: () {
+                    return false;
+                  },
+                  expandido: isExpandedDropdown!,
                   onPreesedFuntionButton: () {
-                    onPressedButton(context);
+                    setState(() {
+                      onPressedButton(context);
+                    });
                   }),
               Text(
                 '${flightProvaider.departureflights.length} Results',
@@ -89,6 +100,7 @@ class _SearchResultState extends State<SearchResult> {
 
       flightProvaider.cleanIsselectedDays();
       flightProvaider.isepandedDropDown = false;
+
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } else {
