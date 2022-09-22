@@ -116,8 +116,8 @@ class CustomDrawer extends StatelessWidget {
                   onPressed: () async {
                     FocusScope.of(context).unfocus();
                     loadingSpinner(context);
-                    bool respuesta =
-                        await userProvider.getsContacts(loginProvider.token);
+                    bool respuesta = await userProvider
+                        .getsContacts(loginProvider.loggedUser!.jwt);
 
                     if (respuesta == true) {
                       Navigator.pop(context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/user_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body1.dart';
@@ -19,9 +20,10 @@ class PersonalInfoHome extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
     final userprovider = Provider.of<UserProvider>(context);
+    final loginprovider = Provider.of<LoginProvider>(context);
     return Scaffold(
       //TODO:cambiar la condicion por si tiene o no agregada su info personal
-      body: flipProvaider.flip >= 6
+      body: loginprovider.loggedUser!.user.userContacts!.isEmpty
           ? Center(
               child: Column(
               //mainAxisAlignment: MainAxisAlignment.center,
@@ -69,55 +71,57 @@ class PersonalInfoHome extends StatelessWidget {
                 BodyCustom(
                     body: CardBody1(
                   space: 40,
-                  firstname: userprovider.userSelected!.firstName,
-                  lastname: userprovider.userSelected!.lastName,
-                  passengerType: userprovider.userSelected!.passengerType,
-                  birthDate: userprovider.userSelected!.birthDate!,
-                  gender: userprovider.userSelected!.gender!,
-                  email: userprovider.userSelected!.email!,
-                  phone: userprovider.userSelected!.phone!,
+                  firstname: userprovider.selectedContact!.firstName,
+                  lastname: userprovider.selectedContact!.lastName,
+                  passengerType: userprovider.selectedContact!.passengerType,
+                  birthDate: userprovider.selectedContact!.birthDate!,
+                  gender: userprovider.selectedContact!.gender!,
+                  email: userprovider.selectedContact!.email!,
+                  phone: userprovider.selectedContact!.phone!,
                 )),
                 BodyCustom(
                     body: CardBody2(
-                  address: userprovider.userSelected!.address!,
-                  city: userprovider.userSelected!.city!,
-                  state: userprovider.userSelected!.state!,
-                  zipCode: userprovider.userSelected!.zip!,
-                  country: userprovider.userSelected!.country!,
-                  nationality: userprovider.userSelected!.nationality!,
+                  address: userprovider.selectedContact!.address!,
+                  city: userprovider.selectedContact!.city!,
+                  state: userprovider.selectedContact!.state!,
+                  zipCode: userprovider.selectedContact!.zip!,
+                  country: userprovider.selectedContact!.country!,
+                  nationality: userprovider.selectedContact!.nationality!,
                   space: 40,
                 )),
                 BodyCustom(
                     body: CardBody3(
-                  ofacCode: userprovider.userSelected!.ofacCode!,
-                  motherMaiden: userprovider.userSelected!.mothersMaiden!,
-                  foreignAdress: userprovider.userSelected!.foreignAddress!,
-                  foreignCity: userprovider.userSelected!.foreignCity!,
-                  foreignprovince: userprovider.userSelected!.foreignProvince!,
-                  emergencyNumber: userprovider.userSelected!.emergencyPhone!,
-                  foreignZipCode: userprovider.userSelected!.foreignZip!,
+                  ofacCode: userprovider.selectedContact!.ofacCode!,
+                  motherMaiden: userprovider.selectedContact!.mothersMaiden!,
+                  foreignAdress: userprovider.selectedContact!.foreignAddress!,
+                  foreignCity: userprovider.selectedContact!.foreignCity!,
+                  foreignprovince:
+                      userprovider.selectedContact!.foreignProvince!,
+                  emergencyNumber:
+                      userprovider.selectedContact!.emergencyPhone!,
+                  foreignZipCode: userprovider.selectedContact!.foreignZip!,
                   space: 40,
                 )),
                 BodyCustom(
                     body: CardBody4(
-                  emergencyPhone: userprovider.userSelected!.emergencyPhone!,
-                  cubanFirstName: userprovider.userSelected!.cubanFirstName!,
-                  cubanLastName: userprovider.userSelected!.cubanLastName!,
-                  arrivalDocs: userprovider.userSelected!.arrivalDoc!,
-                  countryIssue: userprovider.userSelected!.countryOfIssue!,
-                  arrivalDocNo: userprovider.userSelected!.arrivalDocNo!,
+                  emergencyPhone: userprovider.selectedContact!.emergencyPhone!,
+                  cubanFirstName: userprovider.selectedContact!.cubanFirstName!,
+                  cubanLastName: userprovider.selectedContact!.cubanLastName!,
+                  arrivalDocs: userprovider.selectedContact!.arrivalDoc!,
+                  countryIssue: userprovider.selectedContact!.countryOfIssue!,
+                  arrivalDocNo: userprovider.selectedContact!.arrivalDocNo!,
                   space: 40,
                 )),
                 BodyCustom(
                     body: CardBody5(
-                  expDate: userprovider.userSelected!.expDate!,
+                  expDate: userprovider.selectedContact!.expDate!,
                   passportNumbersec:
-                      userprovider.userSelected!.passportNumberSec!,
+                      userprovider.selectedContact!.passportNumberSec!,
                   contryOfIssuesec:
-                      userprovider.userSelected!.countryOfIssueSec!,
+                      userprovider.selectedContact!.countryOfIssueSec!,
                   arrivalDocNumbersec:
-                      userprovider.userSelected!.arrivalDocNoSec!,
-                  expDatesec: userprovider.userSelected!.expDateSec!,
+                      userprovider.selectedContact!.arrivalDocNoSec!,
+                  expDatesec: userprovider.selectedContact!.expDateSec!,
                   space: 40,
                 )),
               ],
@@ -139,20 +143,27 @@ class BodyCustom extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        Container(
+        SizedBox(
           height: size.height,
           width: size.width,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage("assets/fondo.jpg"),
-            fit: BoxFit.fill,
-          )),
         ),
         Positioned(
           top: size.height * 0.1,
           left: size.width * 0.05,
           child: Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 1,
+                    offset: const Offset(0, 1), // changes position of shadow
+                  ),
+                ],
+              ),
+              // color: Colors.white,
               //  height: size.height * 0.87,
               width: size.width * 0.9,
               child: body),

@@ -4,268 +4,95 @@
 
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
+import 'contact_model.dart';
 
-User userFromMap(String str) => User.fromMap(json.decode(str));
-
-String userToMap(User data) => json.encode(data.toMap());
-
-// ignore: must_be_immutable
-class User extends Equatable {
+class User {
   User({
-    required this.firstName,
-    required this.lastName,
-    required this.passengerType,
-    this.id,
-    this.birthDate,
-    this.gender,
-    this.email,
-    this.phone,
-    this.address,
-    this.city,
-    this.state,
-    this.zip,
-    this.country,
-    this.nationality,
-    this.ofacCode,
-    this.mothersMaiden,
-    this.foreignAddress,
-    this.foreignCity,
-    this.foreignProvince,
-    this.foreignZip,
-    this.emergencyName,
-    this.emergencyPhone,
-    this.cubanFirstName,
-    this.cubanLastName,
-    this.arrivalDoc,
-    this.countryOfIssue,
-    this.arrivalDocNo,
-    this.expDate,
-    this.passportNumberSec,
-    this.countryOfIssueSec,
-    this.arrivalDocNoSec,
-    this.expDateSec,
-    this.usersId,
-    this.bookingsId,
+    required this.user,
+    required this.jwt,
   });
 
-  String firstName;
-  String lastName;
-  String passengerType;
-  int? id;
-  String? birthDate;
-  String? gender;
-  String? email;
-  String? phone;
-  String? address;
-  String? city;
-  String? state;
-  String? zip;
-  String? country;
-  String? nationality;
-  String? ofacCode;
-  String? mothersMaiden;
-  String? foreignAddress;
-  String? foreignCity;
-  String? foreignProvince;
-  String? foreignZip;
-  String? emergencyName;
-  String? emergencyPhone;
-  String? cubanFirstName;
-  String? cubanLastName;
-  String? arrivalDoc;
-  String? countryOfIssue;
-  String? arrivalDocNo;
-  String? expDate;
-  String? passportNumberSec;
-  String? countryOfIssueSec;
-  String? arrivalDocNoSec;
-  String? expDateSec;
-  int? usersId;
-  int? bookingsId;
+  UserClass user;
+  String jwt;
 
   User copyWith({
-    String? firstName,
-    String? lastName,
-    String? passengerType,
-    int? id,
-    String? birthDate,
-    String? gender,
-    String? email,
-    String? phone,
-    String? address,
-    String? city,
-    String? state,
-    String? zip,
-    String? country,
-    String? nationality,
-    String? ofacCode,
-    String? mothersMaiden,
-    String? foreignAddress,
-    String? foreignCity,
-    String? foreignProvince,
-    String? foreignZip,
-    String? emergencyName,
-    String? emergencyPhone,
-    String? cubanFirstName,
-    String? cubanLastName,
-    String? arrivalDoc,
-    String? countryOfIssue,
-    String? arrivalDocNo,
-    String? expDate,
-    String? arrivalDocSec,
-    String? countryOfIssueSec,
-    String? arrivalDocNoSec,
-    String? expDateSec,
-    int? usersId,
-    int? bookingsId,
+    UserClass? user,
+    String? jwt,
   }) =>
       User(
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        passengerType: passengerType ?? this.passengerType,
-        id: id ?? this.id,
-        birthDate: birthDate ?? this.birthDate,
-        gender: gender ?? this.gender,
-        email: email ?? this.email,
-        phone: phone ?? this.phone,
-        address: address ?? this.address,
-        city: city ?? city,
-        state: state ?? this.state,
-        zip: zip ?? this.zip,
-        country: country ?? this.country,
-        nationality: nationality ?? this.nationality,
-        ofacCode: ofacCode ?? this.ofacCode,
-        mothersMaiden: mothersMaiden ?? this.mothersMaiden,
-        foreignAddress: foreignAddress ?? this.foreignAddress,
-        foreignCity: foreignCity ?? this.foreignCity,
-        foreignProvince: foreignProvince ?? this.foreignProvince,
-        foreignZip: foreignZip ?? this.foreignZip,
-        emergencyName: emergencyName ?? this.emergencyName,
-        emergencyPhone: emergencyPhone ?? this.emergencyPhone,
-        cubanFirstName: cubanFirstName ?? this.cubanFirstName,
-        cubanLastName: cubanLastName ?? this.cubanLastName,
-        arrivalDoc: arrivalDoc ?? this.arrivalDoc,
-        countryOfIssue: countryOfIssue ?? this.countryOfIssue,
-        arrivalDocNo: arrivalDocNo ?? this.arrivalDocNo,
-        expDate: expDate ?? this.expDate,
-        passportNumberSec: arrivalDocSec ?? passportNumberSec,
-        countryOfIssueSec: countryOfIssueSec ?? this.countryOfIssueSec,
-        arrivalDocNoSec: arrivalDocNoSec ?? this.arrivalDocNoSec,
-        expDateSec: expDateSec ?? this.expDateSec,
-        usersId: usersId ?? this.usersId,
-        bookingsId: bookingsId ?? this.bookingsId,
+        user: user ?? this.user,
+        jwt: jwt ?? this.jwt,
       );
 
+  factory User.fromJson(String str) => User.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
   factory User.fromMap(Map<String, dynamic> json) => User(
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        passengerType: json["passengerType"],
-        id: json["id"],
-        birthDate: json["birthDate"],
-        gender: json["gender"],
-        email: json["email"],
-        phone: json["phone"],
-        address: json["address"],
-        city: json["cyti"],
-        state: json["state"],
-        zip: json["zip"],
-        country: json["country"],
-        nationality: json["nationality"],
-        ofacCode: json["ofacCode"],
-        mothersMaiden: json["mothersMaiden"],
-        foreignAddress: json["foreignAddress"],
-        foreignCity: json["foreignCity"],
-        foreignProvince: json["foreignProvince"],
-        foreignZip: json["foreignZip"],
-        emergencyName: json["emergencyName"],
-        emergencyPhone: json["emergencyPhone"],
-        cubanFirstName: json["cubanFirstName"],
-        cubanLastName: json["cubanLastName"],
-        arrivalDoc: json["arrivalDoc"],
-        countryOfIssue: json["countryOfIssue"],
-        arrivalDocNo: json["arrivalDocNo"],
-        expDate: json["expDate"],
-        passportNumberSec: json["arrivalDocSec"],
-        countryOfIssueSec: json["countryOfIssueSec"],
-        arrivalDocNoSec: json["arrivalDocNoSec"],
-        expDateSec: json["expDateSec"],
-        usersId: json["usersId"],
-        bookingsId: json["bookingsId"],
+        user: UserClass.fromMap(json["user"]),
+        jwt: json["jwt"],
       );
 
   Map<String, dynamic> toMap() => {
-        "firstName": firstName,
-        "lastName": lastName,
-        "passengerType": passengerType,
-        "id": id,
-        "birthDate": birthDate,
-        "gender": gender,
-        "email": email,
-        "phone": phone,
-        "address": address,
-        "cyti": city,
-        "state": state,
-        "zip": zip,
-        "country": country,
-        "nationality": nationality,
-        "ofacCode": ofacCode,
-        "mothersMaiden": mothersMaiden,
-        "foreignAddress": foreignAddress,
-        "foreignCity": foreignCity,
-        "foreignProvince": foreignProvince,
-        "foreignZip": foreignZip,
-        "emergencyName": emergencyName,
-        "emergencyPhone": emergencyPhone,
-        "cubanFirstName": cubanFirstName,
-        "cubanLastName": cubanLastName,
-        "arrivalDoc": arrivalDoc,
-        "countryOfIssue": countryOfIssue,
-        "arrivalDocNo": arrivalDocNo,
-        "expDate": expDate,
-        "arrivalDocSec": passportNumberSec,
-        "countryOfIssueSec": countryOfIssueSec,
-        "arrivalDocNoSec": arrivalDocNoSec,
-        "expDateSec": expDateSec,
-        "usersId": usersId,
-        "bookingsId": bookingsId,
+        "user": user.toMap(),
+        "jwt": jwt,
       };
+}
 
-  @override
-  List<Object?> get props => [
-        firstName,
-        lastName,
-        passengerType,
-        id,
-        birthDate,
-        gender,
-        email,
-        phone,
-        address,
-        city,
-        state,
-        zip,
-        country,
-        nationality,
-        ofacCode,
-        mothersMaiden,
-        foreignAddress,
-        foreignCity,
-        foreignProvince,
-        foreignZip,
-        emergencyName,
-        emergencyPhone,
-        cubanFirstName,
-        cubanLastName,
-        arrivalDoc,
-        countryOfIssue,
-        arrivalDocNo,
-        expDate,
-        passportNumberSec,
-        countryOfIssueSec,
-        arrivalDocNoSec,
-        expDateSec,
-        usersId,
-        bookingsId,
-      ];
+class UserClass {
+  UserClass({
+    this.email,
+    this.id,
+    this.role,
+    this.userContacts,
+    this.isDeleted,
+    this.isVerified,
+  });
+
+  String? email;
+  int? id;
+  dynamic role;
+  List<Contact>? userContacts;
+  bool? isDeleted;
+  bool? isVerified;
+
+  UserClass copyWith({
+    String? email,
+    int? id,
+    dynamic role,
+    List<Contact>? userContacts,
+    bool? isDeleted,
+    bool? isVerified,
+  }) =>
+      UserClass(
+        email: email ?? this.email,
+        id: id ?? this.id,
+        role: role ?? this.role,
+        userContacts: userContacts ?? this.userContacts,
+        isDeleted: isDeleted ?? this.isDeleted,
+        isVerified: isVerified ?? this.isVerified,
+      );
+
+  factory UserClass.fromJson(String str) => UserClass.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserClass.fromMap(Map<String, dynamic> json) => UserClass(
+        email: json["email"],
+        id: json["id"],
+        role: json["role"],
+        userContacts: List<Contact>.from(
+            json["UserContacts"].map((x) => Contact.fromMap(x))),
+        isDeleted: json["isDeleted"],
+        isVerified: json["isVerified"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "email": email,
+        "id": id,
+        "role": role,
+        "UserContacts": List<Contact>.from(userContacts!.map((x) => x.toMap())),
+        "isDeleted": isDeleted,
+        "isVerified": isVerified,
+      };
 }

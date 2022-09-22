@@ -5,7 +5,7 @@ import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/user_provider.dart';
-import '../../../DataLayer/Models/user_model.dart';
+import '../../../DataLayer/Models/contact_model.dart';
 
 class ContactsPage extends StatelessWidget {
   const ContactsPage({super.key});
@@ -40,7 +40,7 @@ class _ContactsList extends StatelessWidget {
     Key? key,
     required this.contacts,
   }) : super(key: key);
-  final List<User> contacts;
+  final List<Contact> contacts;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _ListViewBody extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-  final User user;
+  final Contact user;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class _ListViewBody extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  userprovider.userSelected = user;
+                  userprovider.selectedContact = user;
 
                   Navigator.of(context).pushNamed('/PersonalInfoHome');
                 },
@@ -139,9 +139,9 @@ class _ListViewBody extends StatelessWidget {
                       context: context,
                       function: () async {
                         loadingSpinner(context);
-                        userprovider.userSelected = user;
+                        userprovider.selectedContact = user;
                         bool respuesta = await userprovider
-                            .deleteContact(loginprovider.token);
+                            .deleteContact(loginprovider.loggedUser!.jwt);
                         if (respuesta == true) {
                           Navigator.pop(context);
                         } else {
@@ -186,7 +186,7 @@ class _SearchContactField extends StatelessWidget {
     Key? key,
     required this.contacts,
   }) : super(key: key);
-  final List<User> contacts;
+  final List<Contact> contacts;
 
   @override
   Widget build(BuildContext context) {

@@ -104,22 +104,26 @@ class LoginRegisterPage extends StatelessWidget {
                   bool respuesta = await loginProvider.createNomralUser();
 
                   if (respuesta == true) {
-                    Navigator.pop(context);
-                    Navigator.of(context).pushNamed('/airlines');
-                    print('correcto');
-                  } else {
-                    Navigator.pop(context);
-                    var snackBar = SnackBar(
-                      elevation: 0,
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Colors.transparent,
-                      content: AwesomeSnackbarContent(
-                        title: 'Error!',
-                        message: loginProvider.error,
-                        contentType: ContentType.failure,
-                      ),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    bool respuesta2 = await loginProvider.loginNormalUser();
+                    if (respuesta2 == true) {
+                      Navigator.pop(context);
+                      Navigator.of(context).pushNamed('/airlines');
+                      print('correcto');
+                    }
+                    if (respuesta == false || respuesta2 == false) {
+                      Navigator.pop(context);
+                      var snackBar = SnackBar(
+                        elevation: 0,
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        content: AwesomeSnackbarContent(
+                          title: 'Error!',
+                          message: loginProvider.error,
+                          contentType: ContentType.failure,
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   }
                 },
                 child: const Center(

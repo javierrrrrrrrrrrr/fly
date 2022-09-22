@@ -5,11 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../Constants/contants.dart';
-import '../../DataLayer/Models/user_model.dart';
+import '../../DataLayer/Models/contact_model.dart';
 
 class UserProvider extends ChangeNotifier {
-  List<User> contacts = [];
-  User? userSelected;
+  List<Contact> contacts = [];
+  Contact? selectedContact;
 
   String error = "";
 
@@ -129,7 +129,7 @@ class UserProvider extends ChangeNotifier {
     return false;
   }
 
-  List<User> foundedContacts = [];
+  List<Contact> foundedContacts = [];
   UserProvider() {
     foundedContacts = contacts;
   }
@@ -152,12 +152,13 @@ class UserProvider extends ChangeNotifier {
     String respuesta = await response.stream.bytesToString();
     if (response.statusCode == 200) {
       //para igualar las lista ya q como se muestra es la filtrada no dejar de motrar los valores q no coincidan con el criterio de busqueda
-      foundedContacts = contacts;
       final List<dynamic> decodedResp = json.decode(respuesta);
       decodedResp.map((item) {
-        contacts.add(User.fromMap(item));
+        contacts.add(Contact.fromMap(item));
       }).toList();
 
+      foundedContacts = contacts;
+      foundedContacts.sort((a, b) => a.firstName.compareTo(b.firstName));
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
@@ -210,7 +211,7 @@ class UserProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       final List<dynamic> decodedResp = json.decode(respuesta);
       // userSelected = json.decode(respuesta);
-      print(userSelected!.firstName.toString());
+      print(selectedContact!.firstName.toString());
 
       return true;
     } else {
@@ -223,16 +224,17 @@ class UserProvider extends ChangeNotifier {
   Future<bool> deleteContact(String token) async {
     var headers = {'Authorization': token, 'Content-Type': 'application/json'};
     var request = http.Request('DELETE', Uri.parse('$ip/contacts'));
-    request.body = json.encode({"id": userSelected!.id});
+    request.body = json.encode({"id": selectedContact!.id});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     var respuesta = await response.stream.bytesToString();
 
     if (response.statusCode == 200) {
-      for (int i = 0; i < contacts.length; i++) {
-        if (contacts[i].id == userSelected!.id) {
-          contacts.removeAt(i);
+      for (int i = 0; i < foundedContacts.length; i++) {
+        if (foundedContacts[i].id == selectedContact!.id) {
+          foundedContacts.removeAt(i);
+          // foundedContacts.removeAt(i);
         }
       }
 
