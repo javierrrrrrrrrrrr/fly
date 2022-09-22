@@ -8,9 +8,11 @@ import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 import '../../Constants/contants.dart';
+import '../../DataLayer/Models/user_model.dart';
 
 class LoginProvider extends ChangeNotifier {
-  String token = '';
+  User? loggedUser;
+
   String? _deviceId;
   String? uuidGenerated;
   bool isUuidGenerated = false;
@@ -74,10 +76,6 @@ class LoginProvider extends ChangeNotifier {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        String respuesta = await response.stream.bytesToString();
-        final Map<String, dynamic> decodedResp = json.decode(respuesta);
-
-        token = decodedResp["jwt"];
         return true;
       } else {
         await prefs.setString('uuidValue', '');
@@ -106,8 +104,8 @@ class LoginProvider extends ChangeNotifier {
         String respuesta = await response.stream.bytesToString();
         final Map<String, dynamic> decodedResp = json.decode(respuesta);
 
-        token = decodedResp["jwt"];
-        print(token);
+        loggedUser = User.fromMap(decodedResp);
+
         return true;
       } else {
         print(response.reasonPhrase);
@@ -122,7 +120,10 @@ class LoginProvider extends ChangeNotifier {
   }
 
   Future<bool> createNomralUser() async {
-    var headers = {'Authorization': token, 'Content-Type': 'application/json'};
+    var headers = {
+      'Authorization': loggedUser!.jwt,
+      'Content-Type': 'application/json'
+    };
     var request = http.Request('POST', Uri.parse('$ip/auth/register'));
     request.body =
         json.encode({"name": "Adonys", "email": email, "password": password});
@@ -131,8 +132,6 @@ class LoginProvider extends ChangeNotifier {
     http.StreamedResponse response = await request.send();
     String respuesta = await response.stream.bytesToString();
     if (response.statusCode == 200) {
-      final Map<String, dynamic> decodedResp = json.decode(respuesta);
-      token = decodedResp["jwt"];
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
@@ -152,7 +151,8 @@ class LoginProvider extends ChangeNotifier {
     String respuesta = await response.stream.bytesToString();
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
-      token = decodedResp["jwt"];
+      loggedUser = User.fromMap(decodedResp);
+
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
