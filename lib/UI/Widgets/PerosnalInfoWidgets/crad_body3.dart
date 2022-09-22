@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/user_provider.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
 import '../CustomWidget/custom_dropdown.dart';
 import '../SeparationWidget/separador.dart';
 import '../imput_field.dart';
@@ -17,7 +17,7 @@ class CardBody3 extends StatelessWidget {
       required this.foreignCity,
       required this.foreignprovince,
       required this.foreignZipCode,
-      required this.emergencyNumber,
+      required this.emergencyName,
       this.spacenamed})
       : super(key: key);
 
@@ -32,13 +32,13 @@ class CardBody3 extends StatelessWidget {
   final String foreignCity;
   final String foreignprovince;
   final String foreignZipCode;
-  final String emergencyNumber;
+  final String emergencyName;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
-    final personalInfoProvider = Provider.of<UserProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
       child: Column(
@@ -69,9 +69,9 @@ class CardBody3 extends StatelessWidget {
             ],
             hintext: ofacCode,
             onChanged: (value) =>
-                personalInfoProvider.ofacCode = value.toString(),
+                contactProvider.selectedContact!.ofacCode = value.toString(),
             onSaved: (value) =>
-                personalInfoProvider.ofacCode = value.toString(),
+                contactProvider.selectedContact!.ofacCode = value.toString(),
           ),
           // Imputfield(
           //   avalible: flipProvaider.avalible,
@@ -91,7 +91,8 @@ class CardBody3 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.motherMaiden = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.mothersMaiden = value,
             avalible: flipProvaider.avalible,
             hintext: motherMaiden,
             prefixIcon: flipProvaider.avalible
@@ -106,7 +107,8 @@ class CardBody3 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.foreingAddress = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.foreignAddress = value,
             avalible: flipProvaider.avalible,
             hintext: foreignAdress,
             prefixIcon: flipProvaider.avalible
@@ -121,7 +123,8 @@ class CardBody3 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.foreingCity = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.foreignCity = value,
             avalible: flipProvaider.avalible,
             hintext: foreignCity,
             prefixIcon: flipProvaider.avalible
@@ -136,7 +139,8 @@ class CardBody3 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.foreingProvince = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.foreignProvince = value,
             avalible: flipProvaider.avalible,
             hintext: foreignprovince,
             prefixIcon: flipProvaider.avalible
@@ -151,7 +155,8 @@ class CardBody3 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.foreingZip = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.foreignZip = value,
             avalible: flipProvaider.avalible,
             hintext: foreignZipCode,
             prefixIcon: flipProvaider.avalible
@@ -166,9 +171,10 @@ class CardBody3 extends StatelessWidget {
                 ),
 
           Imputfield(
-            onChanged: (value) => personalInfoProvider.emergencyNumber = value,
+            onChanged: (value) =>
+                contactProvider.selectedContact!.emergencyName = value,
             avalible: flipProvaider.avalible,
-            hintext: emergencyNumber,
+            hintext: emergencyName,
             prefixIcon: flipProvaider.avalible
                 ? const Icon(Icons.phone_android, color: Colors.blue)
                 : const Icon(Icons.phone_android, color: Colors.grey),

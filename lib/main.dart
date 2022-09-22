@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/user_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/UI/Pages/airline_info.dart';
 import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
 import 'package:fly_cliente/UI/Pages/add_personal_information.dart';
-import 'package:fly_cliente/UI/Pages/personal_info_home.dart';
+import 'package:fly_cliente/UI/Pages/contact_show_info.page.dart';
 import 'package:fly_cliente/UI/Pages/search_page.dart';
 import 'package:fly_cliente/UI/Pages/search_result.dart';
 import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
@@ -47,7 +47,7 @@ void main() {
         lazy: false,
       ),
       ChangeNotifierProvider(
-        create: (_) => UserProvider(),
+        create: (_) => ContactProvider(),
         lazy: true,
       ),
       // ChangeNotifierProvider(
@@ -81,8 +81,8 @@ class MyApp extends StatelessWidget {
           '/MoreDetailsFly': (context) => MoreDetailsFly(
                 departureflight: flightProvaider.selectedDepartureFlight!,
               ),
-          '/PersonalInfo': (context) => const AddPersonalInformation(),
-          '/PersonalInfoHome': (context) => const PersonalInfoHome(),
+          '/create_contat_page': (context) => const CreateContactPage(),
+          '/contacts_show_info': (context) => const ContactInformation(),
           '/contacts': (context) => const ContactsPage(),
           '/login': (context) => const LoginPage(),
           '/loginRegister': (context) => const LoginRegisterPage(),

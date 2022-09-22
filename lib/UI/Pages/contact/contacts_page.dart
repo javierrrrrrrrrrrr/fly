@@ -4,7 +4,7 @@ import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Business_logic/Provaiders/user_provider.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
 import '../../../DataLayer/Models/contact_model.dart';
 
 class ContactsPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class ContactsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final seacrhProvider = Provider.of<SearchProvider>(context);
-    final userprovider = Provider.of<UserProvider>(context);
+    final userprovider = Provider.of<ContactProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -78,7 +78,7 @@ class _ListViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginprovider = Provider.of<LoginProvider>(context);
-    final userprovider = Provider.of<UserProvider>(context);
+    final userprovider = Provider.of<ContactProvider>(context);
 
     return Padding(
       padding: EdgeInsets.only(
@@ -123,7 +123,7 @@ class _ListViewBody extends StatelessWidget {
                 onTap: () {
                   userprovider.selectedContact = user;
 
-                  Navigator.of(context).pushNamed('/PersonalInfoHome');
+                  Navigator.of(context).pushNamed('/contacts_show_info');
                 },
                 child: Icon(
                   color: kprimarycolor,
@@ -191,7 +191,7 @@ class _SearchContactField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final userprovider = Provider.of<UserProvider>(context);
+    final userprovider = Provider.of<ContactProvider>(context);
     // final seacrhProvider = Provider.of<SearchProvider>(context);
 
 // poner el metodo aqui
@@ -253,7 +253,7 @@ class _AppBarRow extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed('/PersonalInfo');
+              Navigator.of(context).pushNamed('/create_contat_page');
             },
             child: Icon(
               Icons.group_add_outlined,
