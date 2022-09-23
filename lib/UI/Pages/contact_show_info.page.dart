@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body1.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body2.dart';
@@ -15,7 +16,9 @@ class ContactInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userprovider = Provider.of<ContactProvider>(context);
+    final size = MediaQuery.of(context).size;
+    final contactProvider = Provider.of<ContactProvider>(context);
+    final loginProvider = Provider.of<LoginProvider>(context);
 
     return Scaffold(
       body: PageView(
@@ -24,54 +27,78 @@ class ContactInformation extends StatelessWidget {
           BodyCustom(
               body: CardBody1(
             space: 40,
-            firstname: userprovider.selectedContact!.firstName,
-            lastname: userprovider.selectedContact!.lastName,
-            passengerType: userprovider.selectedContact!.passengerType,
-            birthDate: userprovider.selectedContact!.birthDate!,
-            gender: userprovider.selectedContact!.gender!,
-            email: userprovider.selectedContact!.email!,
-            phone: userprovider.selectedContact!.phone!,
+            firstname: contactProvider.selectedContact!.firstName,
+            lastname: contactProvider.selectedContact!.lastName,
+            passengerType: contactProvider.selectedContact!.passengerType,
+            birthDate: contactProvider.selectedContact!.birthDate!,
+            gender: contactProvider.selectedContact!.gender!,
+            email: contactProvider.selectedContact!.email!,
+            phone: contactProvider.selectedContact!.phone!,
           )),
           BodyCustom(
               body: CardBody2(
-            address: userprovider.selectedContact!.address!,
-            city: userprovider.selectedContact!.city!,
-            state: userprovider.selectedContact!.state!,
-            zipCode: userprovider.selectedContact!.zip!,
-            country: userprovider.selectedContact!.country!,
-            nationality: userprovider.selectedContact!.nationality!,
+            address: contactProvider.selectedContact!.address!,
+            city: contactProvider.selectedContact!.city!,
+            state: contactProvider.selectedContact!.state!,
+            zipCode: contactProvider.selectedContact!.zip!,
+            country: contactProvider.selectedContact!.country!,
+            nationality: contactProvider.selectedContact!.nationality!,
             space: 40,
           )),
           BodyCustom(
               body: CardBody3(
-            ofacCode: userprovider.selectedContact!.ofacCode!,
-            motherMaiden: userprovider.selectedContact!.mothersMaiden!,
-            foreignAdress: userprovider.selectedContact!.foreignAddress!,
-            foreignCity: userprovider.selectedContact!.foreignCity!,
-            foreignprovince: userprovider.selectedContact!.foreignProvince!,
-            emergencyName: userprovider.selectedContact!.emergencyPhone!,
-            foreignZipCode: userprovider.selectedContact!.foreignZip!,
+            ofacCode: contactProvider.selectedContact!.ofacCode!,
+            motherMaiden: contactProvider.selectedContact!.mothersMaiden!,
+            foreignAdress: contactProvider.selectedContact!.foreignAddress!,
+            foreignCity: contactProvider.selectedContact!.foreignCity!,
+            foreignprovince: contactProvider.selectedContact!.foreignProvince!,
+            emergencyName: contactProvider.selectedContact!.emergencyPhone!,
+            foreignZipCode: contactProvider.selectedContact!.foreignZip!,
             space: 40,
           )),
           BodyCustom(
               body: CardBody4(
-            emergencyPhone: userprovider.selectedContact!.emergencyPhone!,
-            cubanFirstName: userprovider.selectedContact!.cubanFirstName!,
-            cubanLastName: userprovider.selectedContact!.cubanLastName!,
-            arrivalDocs: userprovider.selectedContact!.arrivalDoc!,
-            countryIssue: userprovider.selectedContact!.countryOfIssue!,
-            arrivalDocNo: userprovider.selectedContact!.arrivalDocNo!,
+            emergencyPhone: contactProvider.selectedContact!.emergencyPhone!,
+            cubanFirstName: contactProvider.selectedContact!.cubanFirstName!,
+            cubanLastName: contactProvider.selectedContact!.cubanLastName!,
+            arrivalDocs: contactProvider.selectedContact!.arrivalDoc!,
+            countryIssue: contactProvider.selectedContact!.countryOfIssue!,
+            arrivalDocNo: contactProvider.selectedContact!.arrivalDocNo!,
             space: 40,
           )),
-          BodyCustom(
-              body: CardBody5(
-            expDate: userprovider.selectedContact!.expDate!,
-            passportNumbersec: userprovider.selectedContact!.passportNumberSec!,
-            contryOfIssuesec: userprovider.selectedContact!.countryOfIssueSec!,
-            arrivalDocNumbersec: userprovider.selectedContact!.arrivalDocNoSec!,
-            expDatesec: userprovider.selectedContact!.expDateSec!,
-            space: 40,
-          )),
+          Column(
+            children: [
+              BodyCustom(
+                  body: CardBody5(
+                expDate: contactProvider.selectedContact!.expDate!,
+                passportNumbersec:
+                    contactProvider.selectedContact!.passportNumberSec!,
+                contryOfIssuesec:
+                    contactProvider.selectedContact!.countryOfIssueSec!,
+                arrivalDocNumbersec:
+                    contactProvider.selectedContact!.arrivalDocNoSec!,
+                expDatesec: contactProvider.selectedContact!.expDateSec!,
+                space: 40,
+              )),
+              MaterialButton(
+                onPressed: () {
+                  contactProvider.updateContact(
+                      contact: contactProvider.selectedContact!,
+                      token: loginProvider.loggedUser!.jwt);
+                  //TODO: Aqui Va el metodo de update.
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(size.width * 0.02)),
+                height: size.height * 0.07,
+                minWidth: size.width * 0.5,
+                color: kprimarycolor,
+                child: const Text(
+                  'Update Contact',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -92,7 +119,7 @@ class BodyCustom extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          height: size.height,
+          height: size.height * 0.9,
           width: size.width,
         ),
         Positioned(

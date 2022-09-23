@@ -86,12 +86,11 @@ class ContactProvider extends ChangeNotifier {
 
   Future<Contact?> createContact(
       {required Contact contact, required String token}) async {
-    var url = Uri.https(kip, '/contacts');
+    var url = Uri.parse('$kip/contacts');
 
     final response = await http.post(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
         body: contactToMap(contact));
-    print(contactToMap(contact));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(response.body);
@@ -109,7 +108,7 @@ class ContactProvider extends ChangeNotifier {
 
   Future<Contact?> updateContact(
       {required Contact contact, required String token}) async {
-    var url = Uri.https(kip, '/contacts');
+    var url = Uri.parse('$kip/contacts');
 
     final response = await http.put(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
