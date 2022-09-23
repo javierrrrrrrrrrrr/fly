@@ -61,6 +61,7 @@ class CardBody2 extends StatelessWidget {
                   ),
 
             Imputfield(
+              keyboardType: TextInputType.streetAddress,
               onChanged: (value) =>
                   contactProvider.selectedContact!.address = value,
               avalible: flipProvaider.avalible,

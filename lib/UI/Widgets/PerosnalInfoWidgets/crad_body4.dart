@@ -60,6 +60,7 @@ class CardBody4 extends StatelessWidget {
                   ),
 
             Imputfield(
+              keyboardType: TextInputType.phone,
               onChanged: (value) =>
                   contactProvider.selectedContact!.emergencyPhone = value,
               avalible: flipProvaider.avalible,

@@ -6,6 +6,7 @@ import 'package:fly_cliente/UI/Widgets/imput_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
+import '../../../Constants/validacion.dart';
 import 'custom_piked_date.dart';
 
 class CardBody1 extends StatelessWidget {
@@ -61,6 +62,7 @@ class CardBody1 extends StatelessWidget {
                     texto: "First Name",
                   ),
             Imputfield(
+                keyboardType: TextInputType.name,
                 onChanged: (value) =>
                     contactProvider.selectedContact!.firstName = value,
                 hintext: firstname,
@@ -73,6 +75,7 @@ class CardBody1 extends StatelessWidget {
                     texto: "Last Name",
                   ),
             Imputfield(
+              keyboardType: TextInputType.name,
               onChanged: (value) =>
                   contactProvider.selectedContact!.lastName = value,
               hintext: lastname,
@@ -139,6 +142,8 @@ class CardBody1 extends StatelessWidget {
                     texto: "Email",
                   ),
             Imputfield(
+              keyboardType: TextInputType.emailAddress,
+              validator: mail,
               onChanged: (value) =>
                   contactProvider.selectedContact!.email = value.toString(),
               hintext: email,
@@ -152,6 +157,7 @@ class CardBody1 extends StatelessWidget {
                     texto: "Phone",
                   ),
             Imputfield(
+              keyboardType: TextInputType.phone,
               onChanged: (value) =>
                   contactProvider.selectedContact!.phone = value,
               hintext: phone,
