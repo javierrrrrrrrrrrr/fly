@@ -130,7 +130,7 @@ class Contact extends Equatable {
         email: email ?? this.email,
         phone: phone ?? this.phone,
         address: address ?? this.address,
-        city: city ?? city,
+        city: city ?? this.city,
         state: state ?? this.state,
         zip: zip ?? this.zip,
         country: country ?? this.country,
