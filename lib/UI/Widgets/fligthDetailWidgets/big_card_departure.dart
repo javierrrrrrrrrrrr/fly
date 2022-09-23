@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/flight_details_header.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/mini_container_green.dart';
@@ -7,7 +8,6 @@ import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/vertical_discontinuos
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';
-import '../CustomWidget/custom_dropdown.dart';
 import '../SeparationWidget/line.dart';
 import '../imput_field.dart';
 import 'row_check_in_info.dart';
@@ -25,6 +25,7 @@ class BigCardDeparture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flightProvider = Provider.of<FlightProvider>(context);
+    final loginProvider = Provider.of<LoginProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Container(
@@ -167,14 +168,38 @@ class BigCardDeparture extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.03,
-                    vertical: size.height * 0.02),
-                child: const CustomDropDown(
-                  items: [],
-                  hintext: 'Contacts',
-                ),
-              ),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.03,
+                      vertical: size.height * 0.02),
+                  child: DropdownButton(
+                      onChanged: ((value) {}),
+                      items: loginProvider.contactNamesList.map((item) {
+                        return DropdownMenuItem<String>(
+                            value: item,
+                            child: Row(
+                              children: [
+                                Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Checkbox(
+                                  value: true,
+                                  onChanged: (value) {},
+                                ),
+                              ],
+                            ));
+                      }).toList())
+
+                  // CustomDropDown(
+                  //   onChanged: (value) {
+
+                  //   },
+                  //   items: loginProvider.contactNamesList,
+                  //   hintext: 'Contacts',
+                  // ),
+                  ),
             ],
           ),
           Positioned(

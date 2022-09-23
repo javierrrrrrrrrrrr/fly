@@ -49,6 +49,7 @@ class ContactProvider extends ChangeNotifier {
 
       foundedContacts = contacts;
       foundedContacts.sort((a, b) => a.firstName.compareTo(b.firstName));
+
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
