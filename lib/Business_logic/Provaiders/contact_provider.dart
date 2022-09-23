@@ -87,42 +87,10 @@ class ContactProvider extends ChangeNotifier {
   Future<Contact?> createContact(
       {required Contact contact, required String token}) async {
     var url = Uri.parse('$kip/contacts');
-    var body = json.encode({
-      "firstName": contact.firstName,
-      "lastName": contact.lastName,
-      "passengerType": contact.passengerType,
-      "birthDate": contact.birthDate,
-      "gender": contact.gender,
-      "email": contact.email,
-      "phone": contact.phone,
-      "address": contact.address,
-      "cyti": contact.city,
-      "state": contact.state,
-      "zip": contact.zip,
-      "country": contact.country,
-      "nationality": contact.nationality,
-      "ofacCode": contact.ofacCode,
-      "mothersMaiden": contact.mothersMaiden,
-      "foreignAddress": contact.foreignAddress,
-      "foreignCity": contact.foreignCity,
-      "foreignProvince": contact.foreignProvince,
-      "foreignZip": contact.foreignZip,
-      "emergencyName": contact.emergencyName,
-      "emergencyPhone": contact.emergencyPhone,
-      "cubanFirstName": contact.cubanFirstName,
-      "cubanLastName": contact.cubanLastName,
-      "arrivalDoc": contact.arrivalDoc,
-      "countryOfIssue": contact.countryOfIssue,
-      "arrivalDocNo": contact.arrivalDocNo,
-      "expDate": contact.expDate,
-      "arrivalDocSec": contact.arrivalDocNoSec,
-      "countryOfIssueSec": contact.countryOfIssueSec,
-      "arrivalDocNoSec": contact.arrivalDocNoSec,
-      "expDateSec": contact.expDateSec
-    });
+
     final response = await http.post(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
-        body: body);
+        body: json.encode(contact.toMap()));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(response.body);
