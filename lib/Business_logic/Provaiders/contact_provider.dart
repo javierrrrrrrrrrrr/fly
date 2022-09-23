@@ -105,9 +105,9 @@ class ContactProvider extends ChangeNotifier {
     }
   }
 
-  Future<Contact?> editContact(
+  Future<Contact?> updateContact(
       {required Contact contact, required String token}) async {
-    var url = Uri.https(kip, '/contacts/${contact.id}');
+    var url = Uri.https(kip, '/contacts');
 
     final response = await http.put(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
@@ -116,12 +116,13 @@ class ContactProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(response.body);
 
-      Contact newContact = Contact.fromMap(decodedResp).copyWith();
+      Contact newContact = Contact.fromMap(decodedResp);
 
       final index =
           foundedContacts.indexWhere((element) => element.id == contact.id);
 
       foundedContacts[index] = newContact;
+
       return newContact;
     } else {
       return null;
