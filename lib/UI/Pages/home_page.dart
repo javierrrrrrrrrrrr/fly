@@ -59,12 +59,13 @@ class _HomePageState extends State<HomePage> {
               HavanaAirWidget(onPressed: () async {
                 loadingSpinner(context);
                 try {
-                  bool respuesta2 = await bookProvider.refillFieldBookFlights();
+                  Future<bool> respuesta2 =
+                      bookProvider.refillFieldBookFlights();
                   await newsProvider.getNewsList();
 
                   var respuesta = newsProvider.respuesta;
 
-                  if (respuesta == true && respuesta2 == true) {
+                  if (respuesta == true && await respuesta2 == true) {
                     // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                     // ignore: use_build_context_synchronously
