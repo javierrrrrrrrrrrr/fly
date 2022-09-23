@@ -9,25 +9,24 @@ class CreateContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final formKey = GlobalKey<FormState>();
     return Scaffold(
-        body: SingleChildScrollView(
-      child: SizedBox(
-        height: size.height,
-        width: size.width,
-        child: Stack(
+        body: SizedBox(
+      height: size.height,
+      width: size.width,
+      child: SingleChildScrollView(
+        child: Column(
           children: [
-            Column(
-              children: [
-                const InfoCheckRowProgress(),
-                InfoCardWIdget(formKey: formKey),
-              ],
+            const InfoCheckRowProgress(),
+            const InfoCardWIdget(),
+            Container(
+              height: size.height * 0.035,
             ),
-            Positioned(
-              right: size.width * 0.1,
-              bottom: size.height * 0.05,
-              child: InfoButtom(formKey: formKey),
-            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: size.height * 0.01),
+              child: Container(
+                child: const InfoButtom(),
+              ),
+            )
           ],
         ),
       ),

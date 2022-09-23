@@ -90,7 +90,8 @@ class ContactProvider extends ChangeNotifier {
 
     final response = await http.post(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
-        body: json.encode(contact.toMap()));
+        body: contactToMap(contact));
+    print(contactToMap(contact));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(response.body);
@@ -101,6 +102,7 @@ class ContactProvider extends ChangeNotifier {
 
       return newContact;
     } else {
+      //print
       return null;
     }
   }

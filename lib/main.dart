@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 import 'Business_logic/Provaiders/flight_provider.dart';
 import 'Business_logic/Provaiders/flip_provider.dart';
+import 'Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
 import 'Business_logic/Provaiders/news_provider.dart';
 import 'UI/Pages/contact/contacts_page.dart';
 import 'UI/Pages/home_page.dart';
@@ -48,6 +49,10 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (_) => FlipProvider(),
+        lazy: false,
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ContactFormProvider(),
         lazy: false,
       ),
     ],

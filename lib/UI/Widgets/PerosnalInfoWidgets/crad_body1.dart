@@ -5,6 +5,7 @@ import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
 import 'package:fly_cliente/UI/Widgets/imput_field.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
 import 'custom_piked_date.dart';
 
 class CardBody1 extends StatelessWidget {
@@ -38,123 +39,129 @@ class CardBody1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final contactProvider = Provider.of<ContactProvider>(context);
+    final contactFormProvider = Provider.of<ContactFormProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: size.height * 0.02),
-            child: const Text(
-              "Personal Information",
-              style: TextStyle(fontSize: 25),
+      child: Form(
+        key: contactFormProvider.formkey1,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.02),
+              child: const Text(
+                "Personal Information",
+                style: TextStyle(fontSize: 25),
+              ),
             ),
-          ),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "First Name",
-                ),
-          Imputfield(
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "First Name",
+                  ),
+            Imputfield(
+                onChanged: (value) =>
+                    contactProvider.selectedContact!.firstName = value,
+                hintext: firstname,
+                prefixIcon:
+                    const Icon(Icons.badge_outlined, color: Colors.blue)),
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "Last Name",
+                  ),
+            Imputfield(
               onChanged: (value) =>
-                  contactProvider.selectedContact!.firstName = value,
-              hintext: firstname,
-              prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue)),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "Last Name",
-                ),
-          Imputfield(
-            onChanged: (value) =>
-                contactProvider.selectedContact!.lastName = value,
-            hintext: lastname,
-            prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
-          ),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "Passenger Type",
-                ),
-          CustomDropDown(
-            iconData: Icons.family_restroom,
-            contentPadding: EdgeInsets.only(left: size.width * 0.095),
-            items: const [
-              'Adult',
-              'Child',
-              'Infant',
-            ],
-            hintext: passengerType,
-            onChanged: (value) => contactProvider
-                .selectedContact!.passengerType = value.toString(),
-            onSaved: (value) => contactProvider.selectedContact!.passengerType =
-                value.toString(),
-          ),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "Birth Date",
-                ),
-          CustomPikedDate(
-            hintText: birthDate,
-            onSelectedDate: (piked) {
-              contactProvider.selectedContact!.birthDate =
-                  "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
-              print(contactProvider.selectedContact!.birthDate.toString());
-            },
-          ),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "Gender",
-                ),
-          CustomDropDown(
-            iconData: Icons.man,
-            contentPadding: EdgeInsets.only(left: size.width * 0.095),
-            items: const [
-              'Male',
-              'Female',
-              'Other',
-            ],
-            hintext: gender,
-            onChanged: (value) =>
-                contactProvider.selectedContact!.gender = value.toString(),
-            onSaved: (value) =>
-                contactProvider.selectedContact!.gender = value.toString(),
-          ),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "Email",
-                ),
-          Imputfield(
-            onChanged: (value) =>
-                contactProvider.selectedContact!.email = value.toString(),
-            hintext: email,
-            prefixIcon:
-                const Icon(Icons.contact_mail_outlined, color: Colors.blue),
-          ),
-          spacenamed == false
-              ? const Separador()
-              : Separador(
-                  space: space,
-                  texto: "Phone",
-                ),
-          Imputfield(
-            onChanged: (value) =>
-                contactProvider.selectedContact!.phone = value,
-            hintext: phone,
-            prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
-          ),
-          Container(
-            height: size.height * 0.03,
-          ),
-        ],
+                  contactProvider.selectedContact!.lastName = value,
+              hintext: lastname,
+              prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
+            ),
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "Passenger Type",
+                  ),
+            CustomDropDown(
+              iconData: Icons.family_restroom,
+              contentPadding: EdgeInsets.only(left: size.width * 0.095),
+              items: const [
+                'Adult',
+                'Child',
+                'Infant',
+              ],
+              hintext: passengerType,
+              onChanged: (value) => contactProvider
+                  .selectedContact!.passengerType = value.toString(),
+              onSaved: (value) => contactProvider
+                  .selectedContact!.passengerType = value.toString(),
+            ),
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "Birth Date",
+                  ),
+            CustomPikedDate(
+              hintText: birthDate,
+              onSelectedDate: (piked) {
+                contactProvider.selectedContact!.birthDate =
+                    "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+                print(contactProvider.selectedContact!.birthDate.toString());
+              },
+            ),
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "Gender",
+                  ),
+            CustomDropDown(
+              iconData: Icons.man,
+              contentPadding: EdgeInsets.only(left: size.width * 0.095),
+              items: const [
+                'Male',
+                'Female',
+                'Other',
+              ],
+              hintext: gender,
+              onChanged: (value) =>
+                  contactProvider.selectedContact!.gender = value.toString(),
+              onSaved: (value) =>
+                  contactProvider.selectedContact!.gender = value.toString(),
+            ),
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "Email",
+                  ),
+            Imputfield(
+              onChanged: (value) =>
+                  contactProvider.selectedContact!.email = value.toString(),
+              hintext: email,
+              prefixIcon:
+                  const Icon(Icons.contact_mail_outlined, color: Colors.blue),
+            ),
+            spacenamed == false
+                ? const Separador()
+                : Separador(
+                    space: space,
+                    texto: "Phone",
+                  ),
+            Imputfield(
+              onChanged: (value) =>
+                  contactProvider.selectedContact!.phone = value,
+              hintext: phone,
+              prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
+            ),
+            Container(
+              height: size.height * 0.03,
+            ),
+          ],
+        ),
       ),
     );
   }

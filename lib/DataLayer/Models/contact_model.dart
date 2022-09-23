@@ -6,9 +6,9 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-Contact userFromMap(String str) => Contact.fromMap(json.decode(str));
+Contact contactFromMap(String str) => Contact.fromMap(json.decode(str));
 
-String userToMap(Contact data) => json.encode(data.toMap());
+String contactToMap(Contact data) => json.encode(data.toMap());
 
 // ignore: must_be_immutable
 class Contact extends Equatable {

@@ -30,12 +30,13 @@ class _ImputfieldState extends State<Imputfield> {
     return TextFormField(
       enabled: widget.avalible,
       onTap: widget.onTap,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        }
-        return null;
-      },
+      validator: widget.validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
       onChanged: widget.onChanged,
       decoration: InputDecoration(
           prefixIcon: widget.prefixIcon,

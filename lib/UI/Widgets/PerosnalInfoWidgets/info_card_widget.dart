@@ -10,10 +10,7 @@ import 'crad_body1.dart';
 class InfoCardWIdget extends StatelessWidget {
   const InfoCardWIdget({
     Key? key,
-    required this.formKey,
   }) : super(key: key);
-
-  final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
     final flipProvaider = Provider.of<FlipProvider>(context);
@@ -33,58 +30,54 @@ class InfoCardWIdget extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(5),
         ),
-        child: Form(
-          key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: flipProvaider.flip == 0
-              ? const CardBody1(
-                  spacenamed: false,
-                  firstname: "First Name",
-                  lastname: "Last Name",
-                  passengerType: "Passenger Typer",
-                  birthDate: "Birth Date",
-                  email: "Email",
-                  gender: "Gender",
-                  phone: "Phone",
-                )
-              : flipProvaider.flip == 1
-                  ? const CardBody2(
-                      spacenamed: false,
-                      address: "Address",
-                      city: "City",
-                      state: "State",
-                      zipCode: "Zip Code",
-                      country: "Country",
-                      nationality: "Nationality")
-                  : flipProvaider.flip == 2
-                      ? const CardBody3(
-                          spacenamed: false,
-                          ofacCode: "Ofac Code",
-                          motherMaiden: "Mother Maiden",
-                          foreignAdress: "Foreign Adress",
-                          foreignCity: "Foreign City",
-                          foreignprovince: "Foreign Province",
-                          foreignZipCode: "Foreign Zip Code",
-                          emergencyName: "Emergency Number",
-                        )
-                      : flipProvaider.flip == 3
-                          ? const CardBody4(
-                              spacenamed: false,
-                              emergencyPhone: "Emergency Phone",
-                              cubanFirstName: "Cuban First Name",
-                              cubanLastName: "Cuban Last Name",
-                              arrivalDocs: "Arrival Docs",
-                              countryIssue: "Country Issue",
-                              arrivalDocNo: "Arrival Doc No",
-                            )
-                          : const CardBody5(
-                              spacenamed: false,
-                              expDate: "Exp Date",
-                              passportNumbersec: "Passport Number",
-                              contryOfIssuesec: "Country Of Issue",
-                              arrivalDocNumbersec: "Arrival Doc Number",
-                              expDatesec: "Exp Date",
-                            ),
-        ));
+        child: flipProvaider.flip == 0
+            ? const CardBody1(
+                spacenamed: false,
+                firstname: "First Name",
+                lastname: "Last Name",
+                passengerType: "Passenger Typer",
+                birthDate: "Birth Date",
+                email: "Email",
+                gender: "Gender",
+                phone: "Phone",
+              )
+            : flipProvaider.flip == 1
+                ? const CardBody2(
+                    spacenamed: false,
+                    address: "Address",
+                    city: "City",
+                    state: "State",
+                    zipCode: "Zip Code",
+                    country: "Country",
+                    nationality: "Nationality")
+                : flipProvaider.flip == 2
+                    ? const CardBody3(
+                        spacenamed: false,
+                        ofacCode: "Ofac Code",
+                        motherMaiden: "Mother Maiden",
+                        foreignAdress: "Foreign Adress",
+                        foreignCity: "Foreign City",
+                        foreignprovince: "Foreign Province",
+                        foreignZipCode: "Foreign Zip Code",
+                        emergencyName: "Emergency Number",
+                      )
+                    : flipProvaider.flip == 3
+                        ? const CardBody4(
+                            spacenamed: false,
+                            emergencyPhone: "Emergency Phone",
+                            cubanFirstName: "Cuban First Name",
+                            cubanLastName: "Cuban Last Name",
+                            arrivalDocs: "Arrival Docs",
+                            countryIssue: "Country Issue",
+                            arrivalDocNo: "Arrival Doc No",
+                          )
+                        : const CardBody5(
+                            spacenamed: false,
+                            expDate: "Exp Date",
+                            passportNumbersec: "Passport Number",
+                            contryOfIssuesec: "Country Of Issue",
+                            arrivalDocNumbersec: "Arrival Doc Number",
+                            expDatesec: "Exp Date",
+                          ));
   }
 }
