@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:in_app_notification/in_app_notification.dart';
+import 'package:provider/provider.dart';
 
 import '../../UI/Widgets/notification_body.dart';
+import 'login_provider.dart';
 
 class FlipProvider extends ChangeNotifier {
   //Control del flip carta grande y botton //
@@ -30,7 +33,9 @@ class FlipProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  checkFlip(BuildContext context) async {
+  checkFlip(BuildContext context) {
+    final contactProvider = context.read<ContactProvider>();
+    final loginProvider = context.read<LoginProvider>();
     chnageAvalibleValor(false);
     loadingSpinner(context);
     Timer(const Duration(seconds: 1), () async {
@@ -78,16 +83,20 @@ class FlipProvider extends ChangeNotifier {
             child: const NotificationBody(texto: "Todo listo"),
             context: context);
 
-        Timer(const Duration(seconds: 2), () {
-          controllerLine1.controller?.dispose();
-          controllerCircle1.controller?.dispose();
-          controllerLine2.controller?.dispose();
-          controllerCircle2.controller?.dispose();
-          controllerLine3.controller?.dispose();
-          controllerCircle3.controller?.dispose();
-          controllerLine4.controller?.dispose();
-          controllerCircle4.controller?.dispose();
-          controllerCircle5.controller?.dispose();
+        contactProvider
+            .createContact(
+                contact: contactProvider.selectedContact!,
+                token: loginProvider.loggedUser!.jwt)
+            .whenComplete(() {
+          // controllerLine1.controller?.dispose();
+          // controllerCircle1.controller?.dispose();
+          // controllerLine2.controller?.dispose();
+          // controllerCircle2.controller?.dispose();
+          // controllerLine3.controller?.dispose();
+          // controllerCircle3.controller?.dispose();
+          // controllerLine4.controller?.dispose();
+          // controllerCircle4.controller?.dispose();
+          // controllerCircle5.controller?.dispose();
           Navigator.of(context).pushNamed('/contacts');
           flip = 0;
         });

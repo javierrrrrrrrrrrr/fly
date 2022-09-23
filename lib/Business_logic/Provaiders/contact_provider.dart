@@ -13,7 +13,14 @@ class ContactProvider extends ChangeNotifier {
   String error = "";
 
   List<Contact> foundedContacts = [];
+
   ContactProvider() {
+    selectedContact = Contact(
+      firstName: '',
+      lastName: '',
+      email: '',
+      passengerType: '',
+    );
     foundedContacts = contacts;
   }
 
@@ -27,7 +34,7 @@ class ContactProvider extends ChangeNotifier {
   Future<bool> getsContacts(String token) async {
     contacts.clear();
     var headers = {'Authorization': token};
-    var request = http.Request('GET', Uri.parse('$ip/contacts'));
+    var request = http.Request('GET', Uri.parse('$kip/contacts'));
 
     request.headers.addAll(headers);
 
@@ -50,63 +57,9 @@ class ContactProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> createContact(String token) async {
-    var headers = {'Authorization': token, 'Content-Type': 'application/json'};
-    var request = http.Request('POST', Uri.parse('$ip/contacts'));
-    request.body = json.encode({
-      "firstName": "Adonys",
-      "lastName": "Valdez",
-      "passengerType": "test",
-      "birthDate": "2022/09/01",
-      "gender": "test",
-      "email": "test",
-      "phone": "test",
-      "address": "test",
-      "cyti": "test",
-      "state": "test",
-      "zip": "test",
-      "country": "test",
-      "nationality": "test",
-      "ofacCode": "test",
-      "mothersMaiden": "ttest",
-      "foreignAddress": "test",
-      "foreignCity": "test",
-      "foreignProvince": "test",
-      "foreignZip": "test",
-      "emergencyName": "test",
-      "emergencyPhone": "test",
-      "cubanFirstName": "test",
-      "cubanLastName": "test",
-      "arrivalDoc": "test",
-      "countryOfIssue": "tets",
-      "arrivalDocNo": "test",
-      "expDate": "2022/09/03",
-      "arrivalDocSec": "test",
-      "countryOfIssueSec": "test",
-      "arrivalDocNoSec": "test",
-      "expDateSec": "2022/09/03"
-    });
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-    var respuesta = await response.stream.bytesToString();
-
-    if (response.statusCode == 200) {
-      final List<dynamic> decodedResp = json.decode(respuesta);
-      // userSelected = json.decode(respuesta);
-      print(selectedContact!.firstName.toString());
-
-      return true;
-    } else {
-      final Map<String, dynamic> decodedResp = json.decode(respuesta);
-      error = decodedResp["clientErrorMessage"];
-      return false;
-    }
-  }
-
   Future<bool> deleteContact(String token) async {
     var headers = {'Authorization': token, 'Content-Type': 'application/json'};
-    var request = http.Request('DELETE', Uri.parse('$ip/contacts'));
+    var request = http.Request('DELETE', Uri.parse('$kip/contacts'));
     request.body = json.encode({"id": selectedContact!.id});
     request.headers.addAll(headers);
 
@@ -129,5 +82,58 @@ class ContactProvider extends ChangeNotifier {
     }
 
     return true;
+  }
+
+  Future<Contact?> createContact(
+      {required Contact contact, required String token}) async {
+    var url = Uri.parse('$kip/contacts');
+    var body = json.encode({
+      "firstName": contact.firstName,
+      "lastName": contact.lastName,
+      "passengerType": contact.passengerType,
+      "birthDate": contact.birthDate,
+      "gender": contact.gender,
+      "email": contact.email,
+      "phone": contact.phone,
+      "address": contact.address,
+      "cyti": contact.city,
+      "state": contact.state,
+      "zip": contact.zip,
+      "country": contact.country,
+      "nationality": contact.nationality,
+      "ofacCode": contact.ofacCode,
+      "mothersMaiden": contact.mothersMaiden,
+      "foreignAddress": contact.foreignAddress,
+      "foreignCity": contact.foreignCity,
+      "foreignProvince": contact.foreignProvince,
+      "foreignZip": contact.foreignZip,
+      "emergencyName": contact.emergencyName,
+      "emergencyPhone": contact.emergencyPhone,
+      "cubanFirstName": contact.cubanFirstName,
+      "cubanLastName": contact.cubanLastName,
+      "arrivalDoc": contact.arrivalDoc,
+      "countryOfIssue": contact.countryOfIssue,
+      "arrivalDocNo": contact.arrivalDocNo,
+      "expDate": contact.expDate,
+      "arrivalDocSec": contact.arrivalDocNoSec,
+      "countryOfIssueSec": contact.countryOfIssueSec,
+      "arrivalDocNoSec": contact.arrivalDocNoSec,
+      "expDateSec": contact.expDateSec
+    });
+    final response = await http.post(url,
+        headers: {'Authorization': token, 'Content-Type': 'application/json'},
+        body: body);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> decodedResp = json.decode(response.body);
+      Contact newContact = Contact.fromMap(decodedResp);
+
+      foundedContacts.add(newContact);
+      foundedContacts.sort((a, b) => a.firstName.compareTo(b.firstName));
+
+      return newContact;
+    } else {
+      return null;
+    }
   }
 }

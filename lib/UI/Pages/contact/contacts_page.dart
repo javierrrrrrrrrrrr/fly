@@ -45,13 +45,16 @@ class _ContactsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final contactProvider = Provider.of<ContactProvider>(context);
+    final loginProvider = Provider.of<LoginProvider>(context);
     return Expanded(
       child: RefreshIndicator(
-        onRefresh: () => Future.delayed(const Duration(seconds: 1)),
+        onRefresh: () =>
+            contactProvider.getsContacts(loginProvider.loggedUser!.jwt),
         child: ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return _ListViewBody(size: size, user: contacts[index]);
+              return _ListViewBody(size: size, contact: contacts[index]);
             },
             separatorBuilder: (context, index) {
               return Container(
@@ -69,11 +72,11 @@ class _ListViewBody extends StatelessWidget {
   const _ListViewBody({
     Key? key,
     required this.size,
-    required this.user,
+    required this.contact,
   }) : super(key: key);
 
   final Size size;
-  final Contact user;
+  final Contact contact;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,7 @@ class _ListViewBody extends StatelessWidget {
                 SizedBox(
                   width: size.width * 0.6,
                   child: Text(
-                    '${user.firstName} ${user.lastName}',
+                    '${contact.firstName} ${contact.lastName}',
                     style: const TextStyle(fontSize: 20),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -109,7 +112,7 @@ class _ListViewBody extends StatelessWidget {
                       color: kprimarycolor,
                     ),
                     Text(
-                      user.passengerType,
+                      contact.passengerType,
                       style: const TextStyle(fontSize: 15),
                     ),
                   ],
@@ -121,7 +124,7 @@ class _ListViewBody extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  userprovider.selectedContact = user;
+                  userprovider.selectedContact = contact;
 
                   Navigator.of(context).pushNamed('/contacts_show_info');
                 },
@@ -139,7 +142,7 @@ class _ListViewBody extends StatelessWidget {
                       context: context,
                       function: () async {
                         loadingSpinner(context);
-                        userprovider.selectedContact = user;
+                        userprovider.selectedContact = contact;
                         bool respuesta = await userprovider
                             .deleteContact(loginprovider.loggedUser!.jwt);
                         if (respuesta == true) {
@@ -238,6 +241,7 @@ class _AppBarRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.05, vertical: size.width * 0.05),
@@ -245,7 +249,7 @@ class _AppBarRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-              onTap: () => Navigator.pop(context),
+              onTap: () => Navigator.of(context).pushNamed('/airlines'),
               child: const Icon(Icons.navigate_before, size: 40)),
           const Text(
             'Contacts List',

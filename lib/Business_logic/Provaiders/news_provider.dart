@@ -13,7 +13,7 @@ class NewsProvider extends ChangeNotifier {
   bool respuesta = false;
 
   Future<bool> getNews() async {
-    var request = http.Request('GET', Uri.parse('$ip/news'));
+    var request = http.Request('GET', Uri.parse('$kip/news'));
 
     http.StreamedResponse response = await request.send();
 
@@ -33,7 +33,7 @@ class NewsProvider extends ChangeNotifier {
 
   Future<List<News>> getNewsList() async {
     news.clear();
-    var response = await http.get(Uri.parse('$ip/news'));
+    var response = await http.get(Uri.parse('$kip/news'));
 
     if (response.statusCode == 200) {
       final List<dynamic> decodedResp = json.decode(response.body);

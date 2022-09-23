@@ -69,7 +69,8 @@ class LoginProvider extends ChangeNotifier {
     try {
       var uuidValue = prefs.getString('uuidValue');
       var headers = {'Content-Type': 'application/json'};
-      var request = http.Request('POST', Uri.parse('$ip/auth/register_mobile'));
+      var request =
+          http.Request('POST', Uri.parse('$kip/auth/register_mobile'));
       request.body = json.encode({"mobile_uuid": uuidValue});
       request.headers.addAll(headers);
 
@@ -94,7 +95,7 @@ class LoginProvider extends ChangeNotifier {
     try {
       var uuidValue = prefs.getString('uuidValue');
       var headers = {'Content-Type': 'application/json'};
-      var request = http.Request('POST', Uri.parse('$ip/auth/login_mobile'));
+      var request = http.Request('POST', Uri.parse('$kip/auth/login_mobile'));
       request.body = json.encode({"mobile_uuid": uuidValue});
       request.headers.addAll(headers);
 
@@ -105,6 +106,7 @@ class LoginProvider extends ChangeNotifier {
         final Map<String, dynamic> decodedResp = json.decode(respuesta);
 
         loggedUser = User.fromMap(decodedResp);
+        prefs.setString('jwt', loggedUser!.jwt);
 
         return true;
       } else {
@@ -124,7 +126,7 @@ class LoginProvider extends ChangeNotifier {
       'Authorization': loggedUser!.jwt,
       'Content-Type': 'application/json'
     };
-    var request = http.Request('POST', Uri.parse('$ip/auth/register'));
+    var request = http.Request('POST', Uri.parse('$kip/auth/register'));
     request.body =
         json.encode({"name": "Adonys", "email": email, "password": password});
     request.headers.addAll(headers);
@@ -142,8 +144,9 @@ class LoginProvider extends ChangeNotifier {
   }
 
   Future<bool> loginNormalUser() async {
+    final prefs = await SharedPreferences.getInstance();
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('POST', Uri.parse('$ip/auth/login'));
+    var request = http.Request('POST', Uri.parse('$kip/auth/login'));
     request.body = json.encode({"email": email, "password": password});
     request.headers.addAll(headers);
 
@@ -152,6 +155,7 @@ class LoginProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
       loggedUser = User.fromMap(decodedResp);
+      prefs.setString('jwt', loggedUser!.jwt);
 
       return true;
     } else {

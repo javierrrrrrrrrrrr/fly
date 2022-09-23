@@ -17,7 +17,7 @@ class BookFlightProvider extends ChangeNotifier {
     gate.clear();
     //destination.clear();
     charter.clear();
-    var response = await http.get(Uri.parse('$ip/flights/getBookFlight'));
+    var response = await http.get(Uri.parse('$kip/flights/getBookFlight'));
     if (response.statusCode == 200) {
       var respuesta = BookFlight.fromJson(response.body);
 
