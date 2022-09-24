@@ -12,7 +12,7 @@ import '../../DataLayer/Models/user_model.dart';
 
 class LoginProvider extends ChangeNotifier {
   User? loggedUser;
-
+  List<String> contactNamesList = [];
   String? _deviceId;
   String? uuidGenerated;
   bool isUuidGenerated = false;
@@ -40,6 +40,13 @@ class LoginProvider extends ChangeNotifier {
     }
     _deviceId = deviceId;
     print("deviceId->$_deviceId");
+  }
+
+  getAllContactsNames() {
+    loggedUser!.user.userContacts!.map((item) {
+      contactNamesList.add(item.firstName);
+    }).toList();
+    notifyListeners();
   }
 
   Future<void> uUIDMaker() async {
@@ -107,6 +114,7 @@ class LoginProvider extends ChangeNotifier {
 
         loggedUser = User.fromMap(decodedResp);
         prefs.setString('jwt', loggedUser!.jwt);
+        getAllContactsNames();
         print(prefs.getString('jwt'));
         return true;
       } else {
@@ -156,7 +164,7 @@ class LoginProvider extends ChangeNotifier {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
       loggedUser = User.fromMap(decodedResp);
       prefs.setString('jwt', loggedUser!.jwt);
-
+      getAllContactsNames();
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
