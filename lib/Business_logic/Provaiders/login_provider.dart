@@ -107,7 +107,7 @@ class LoginProvider extends ChangeNotifier {
 
         loggedUser = User.fromMap(decodedResp);
         prefs.setString('jwt', loggedUser!.jwt);
-
+        print(prefs.getString('jwt'));
         return true;
       } else {
         print(response.reasonPhrase);

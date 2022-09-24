@@ -10,7 +10,11 @@ class Imputfield extends StatefulWidget {
     this.validator,
     this.avalible,
     this.onTap,
+
     this.initialValue,
+
+    this.keyboardType,
+
   }) : super(key: key);
 
   final bool? avalible;
@@ -20,7 +24,11 @@ class Imputfield extends StatefulWidget {
   final void Function(String)? onChanged;
   final VoidCallback? onTap;
   final String? Function(String?)? validator;
+
   final String? initialValue;
+
+  final TextInputType? keyboardType;
+
 
   @override
   State<Imputfield> createState() => _ImputfieldState();
@@ -30,7 +38,11 @@ class _ImputfieldState extends State<Imputfield> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+
       initialValue: widget.initialValue,
+
+      keyboardType: widget.keyboardType,
+
       enabled: widget.avalible,
       onTap: widget.onTap,
       validator: widget.validator ??
