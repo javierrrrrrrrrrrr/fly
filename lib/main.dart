@@ -21,6 +21,7 @@ import 'UI/Pages/contact/contacts_page.dart';
 import 'UI/Pages/home_page.dart';
 import 'UI/Pages/login_page.dart';
 import 'UI/Pages/login_register_page.dart';
+import 'UI/Widgets/fligthDetailWidgets/drop_down_check_list.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -87,6 +88,7 @@ class MyApp extends StatelessWidget {
           '/contacts': (context) => const ContactsPage(),
           '/login': (context) => const LoginPage(),
           '/loginRegister': (context) => const LoginRegisterPage(),
+          '/l': (context) => const DropDownListExample(),
         },
       ),
     );

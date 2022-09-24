@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../SeparationWidget/line.dart';
 import '../imput_field.dart';
+import 'drop_down_check_list.dart';
 import 'row_check_in_info.dart';
 
 class BigCardDeparture extends StatelessWidget {
@@ -29,7 +30,7 @@ class BigCardDeparture extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.67,
+      height: size.height * 0.69,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: const [
@@ -145,8 +146,9 @@ class BigCardDeparture extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.008),
+                  horizontal: size.width * 0.05,
+                  vertical: size.height * 0.02,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -167,39 +169,14 @@ class BigCardDeparture extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.03,
-                      vertical: size.height * 0.02),
-                  child: DropdownButton(
-                      onChanged: ((value) {}),
-                      items: loginProvider.contactNamesList.map((item) {
-                        return DropdownMenuItem<String>(
-                            value: item,
-                            child: Row(
-                              children: [
-                                Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                Checkbox(
-                                  value: true,
-                                  onChanged: (value) {},
-                                ),
-                              ],
-                            ));
-                      }).toList())
 
-                  // CustomDropDown(
-                  //   onChanged: (value) {
+              // CustomDropDown(
+              //   onChanged: (value) {
 
-                  //   },
-                  //   items: loginProvider.contactNamesList,
-                  //   hintext: 'Contacts',
-                  // ),
-                  ),
+              //   },
+              //   items: loginProvider.contactNamesList,
+              //   hintext: 'Contacts',
+              // ),
             ],
           ),
           Positioned(
@@ -217,6 +194,14 @@ class BigCardDeparture extends StatelessWidget {
               departureflight.flightNumber,
               style: const TextStyle(fontSize: 20, color: Colors.grey),
             ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.03,
+                ),
+                child: const DropDownListExample()),
           )
         ],
       ),

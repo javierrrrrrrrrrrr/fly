@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:fly_cliente/DataLayer/Models/contact_model.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,10 +13,32 @@ import '../../DataLayer/Models/user_model.dart';
 
 class LoginProvider extends ChangeNotifier {
   User? loggedUser;
-  List<String> contactNamesList = [];
+  List<Contact> contactList = [];
+  List<String> selectedcontactIDList = [];
   String? _deviceId;
   String? uuidGenerated;
   bool isUuidGenerated = false;
+
+  //add selected contact list
+  void addselectedcontactlist(value) {
+    selectedcontactIDList.add(value);
+    notifyListeners();
+  }
+
+  void deleteselectedcontactlist(value) {
+    selectedcontactIDList.remove(value);
+    notifyListeners();
+  }
+
+  String findNameByid(String id) {
+    String resp = '';
+    for (int i = 0; i < contactList.length; i++) {
+      if (contactList[i].id.toString() == id) {
+        resp = contactList[i].firstName;
+      }
+    }
+    return resp;
+  }
 
   //Datos de login nomral
 
@@ -42,9 +65,9 @@ class LoginProvider extends ChangeNotifier {
     print("deviceId->$_deviceId");
   }
 
-  getAllContactsNames() {
+  getAllContacts() {
     loggedUser!.user.userContacts!.map((item) {
-      contactNamesList.add(item.firstName);
+      contactList.add(item);
     }).toList();
     notifyListeners();
   }
@@ -114,7 +137,7 @@ class LoginProvider extends ChangeNotifier {
 
         loggedUser = User.fromMap(decodedResp);
         prefs.setString('jwt', loggedUser!.jwt);
-        getAllContactsNames();
+        getAllContacts();
         print(prefs.getString('jwt'));
         return true;
       } else {
@@ -164,7 +187,7 @@ class LoginProvider extends ChangeNotifier {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
       loggedUser = User.fromMap(decodedResp);
       prefs.setString('jwt', loggedUser!.jwt);
-      getAllContactsNames();
+      getAllContacts();
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);

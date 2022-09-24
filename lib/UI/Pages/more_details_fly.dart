@@ -28,62 +28,67 @@ class MoreDetailsFly extends StatelessWidget {
     return Scaffold(
       drawer: const CustomDrawer(),
       body: SafeArea(
-          child: AppBackgroundSelection(
-        customAppBar: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: size.height * 0.025,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(
-                  Icons.navigate_before,
-                  size: 40,
-                  color: kprimarycolor,
-                ),
-              ),
-              const CustomCircleAvatar()
-            ],
-          ),
-        ),
-        body: Padding(
+          child: SingleChildScrollView(
+        child: AppBackgroundSelection(
           padding: EdgeInsets.only(
-            left: size.width * 0.05,
             top: size.height * 0.05,
-            right: size.width * 0.05,
           ),
-          child: Column(
-            children: [
-              /**Carta grande Departure*/
-              FlipCard(
-                controller: flipProvider.controllerBigCard,
-                flipOnTouch: false,
-                back: flightProvaider.returnflights.isNotEmpty
-                    ? BigCardReturn(
-                        //TODO: Revisar despues si Hay algun error aqui.... con el null safety de abajo..
-                        selectedReturnFlight:
-                            flightProvaider.selectedReturnFlight,
-                      )
-                    : Container(),
-                front: BigCardDeparture(
-                  departureflight: departureflight,
-                  flightProvaider: flightProvaider,
+          customAppBar: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size.height * 0.025,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.navigate_before,
+                    size: 40,
+                    color: kprimarycolor,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: size.height * 0.025,
-              ),
-              CustomButtomCard(
-                departureFlight: departureflight,
-                flightProvaider: flightProvaider,
-              )
-            ],
+                const CustomCircleAvatar()
+              ],
+            ),
           ),
-        ),
-        padding: EdgeInsets.only(
-          top: size.height * 0.05,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: size.width * 0.05,
+                top: size.height * 0.05,
+                right: size.width * 0.05,
+              ),
+              child: Column(
+                children: [
+                  /**Carta grande Departure*/
+                  FlipCard(
+                    controller: flipProvider.controllerBigCard,
+                    flipOnTouch: false,
+                    back: flightProvaider.returnflights.isNotEmpty
+                        ? BigCardReturn(
+                            //TODO: Revisar despues si Hay algun error aqui.... con el null safety de abajo..
+                            selectedReturnFlight:
+                                flightProvaider.selectedReturnFlight,
+                          )
+                        : Container(),
+                    front: BigCardDeparture(
+                      departureflight: departureflight,
+                      flightProvaider: flightProvaider,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.025,
+                  ),
+                  CustomButtomCard(
+                    departureFlight: departureflight,
+                    flightProvaider: flightProvaider,
+                  )
+                ],
+              ),
+            ),
+          ),
+          //
         ),
       )),
     );

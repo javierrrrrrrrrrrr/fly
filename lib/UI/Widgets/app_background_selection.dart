@@ -14,28 +14,15 @@ class AppBackgroundSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(
-              'assets/fondo.jpg',
-            ),
-            fit: BoxFit.fill,
-          )),
-        ),
-        Padding(
-          padding: padding,
-          child: Column(
-            children: [
-              customAppBar ?? Container(),
-              // Primera Row de la Vista esto es para guirnos despues en el disenno
-              body,
-            ],
-          ),
-        ),
-      ],
+    return Padding(
+      padding: padding,
+      child: Column(
+        children: [
+          customAppBar ?? Container(),
+          // Primera Row de la Vista esto es para guirnos despues en el disenno
+          body,
+        ],
+      ),
     );
   }
 }
