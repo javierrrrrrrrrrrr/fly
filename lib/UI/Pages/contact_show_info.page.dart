@@ -22,82 +22,93 @@ class ContactInformation extends StatelessWidget {
 
     return Scaffold(
       body: PageView(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         children: [
-          BodyCustom(
-              body: CardBody1(
-            space: 40,
-            firstname: contactProvider.selectedContact!.firstName,
-            lastname: contactProvider.selectedContact!.lastName,
-            passengerType: contactProvider.selectedContact!.passengerType,
-            birthDate: contactProvider.selectedContact!.birthDate!,
-            gender: contactProvider.selectedContact!.gender!,
-            email: contactProvider.selectedContact!.email!,
-            phone: contactProvider.selectedContact!.phone!,
-          )),
-          BodyCustom(
-              body: CardBody2(
-            address: contactProvider.selectedContact!.address!,
-            city: contactProvider.selectedContact!.city!,
-            state: contactProvider.selectedContact!.state!,
-            zipCode: contactProvider.selectedContact!.zip!,
-            country: contactProvider.selectedContact!.country!,
-            nationality: contactProvider.selectedContact!.nationality!,
-            space: 40,
-          )),
-          BodyCustom(
-              body: CardBody3(
-            ofacCode: contactProvider.selectedContact!.ofacCode!,
-            motherMaiden: contactProvider.selectedContact!.mothersMaiden!,
-            foreignAdress: contactProvider.selectedContact!.foreignAddress!,
-            foreignCity: contactProvider.selectedContact!.foreignCity!,
-            foreignprovince: contactProvider.selectedContact!.foreignProvince!,
-            emergencyName: contactProvider.selectedContact!.emergencyPhone!,
-            foreignZipCode: contactProvider.selectedContact!.foreignZip!,
-            space: 40,
-          )),
-          BodyCustom(
-              body: CardBody4(
-            emergencyPhone: contactProvider.selectedContact!.emergencyPhone!,
-            cubanFirstName: contactProvider.selectedContact!.cubanFirstName!,
-            cubanLastName: contactProvider.selectedContact!.cubanLastName!,
-            arrivalDocs: contactProvider.selectedContact!.arrivalDoc!,
-            countryIssue: contactProvider.selectedContact!.countryOfIssue!,
-            arrivalDocNo: contactProvider.selectedContact!.arrivalDocNo!,
-            space: 40,
-          )),
-          Column(
-            children: [
-              BodyCustom(
-                  body: CardBody5(
-                expDate: contactProvider.selectedContact!.expDate!,
-                passportNumbersec:
-                    contactProvider.selectedContact!.passportNumberSec!,
-                contryOfIssuesec:
-                    contactProvider.selectedContact!.countryOfIssueSec!,
-                arrivalDocNumbersec:
-                    contactProvider.selectedContact!.arrivalDocNoSec!,
-                expDatesec: contactProvider.selectedContact!.expDateSec!,
-                space: 40,
-              )),
-              MaterialButton(
-                onPressed: () {
-                  contactProvider.updateContact(
-                      contact: contactProvider.selectedContact!,
-                      token: loginProvider.loggedUser!.jwt);
-                  //TODO: Aqui Va el metodo de update.
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(size.width * 0.02)),
-                height: size.height * 0.07,
-                minWidth: size.width * 0.5,
-                color: kprimarycolor,
-                child: const Text(
-                  'Update Contact',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              )
-            ],
+          SingleChildScrollView(
+            child: BodyCustom(
+                body: CardBody1(
+              space: 40,
+              firstname: contactProvider.selectedContact!.firstName,
+              lastname: contactProvider.selectedContact!.lastName,
+              passengerType: contactProvider.selectedContact!.passengerType,
+              birthDate: contactProvider.selectedContact!.birthDate!,
+              gender: contactProvider.selectedContact!.gender!,
+              email: contactProvider.selectedContact!.email!,
+              phone: contactProvider.selectedContact!.phone!,
+            )),
+          ),
+          SingleChildScrollView(
+            child: BodyCustom(
+                body: CardBody2(
+              address: contactProvider.selectedContact!.address!,
+              city: contactProvider.selectedContact!.city!,
+              state: contactProvider.selectedContact!.state!,
+              zipCode: contactProvider.selectedContact!.zip!,
+              country: contactProvider.selectedContact!.country!,
+              nationality: contactProvider.selectedContact!.nationality!,
+              space: 40,
+            )),
+          ),
+          SingleChildScrollView(
+            child: BodyCustom(
+                body: CardBody3(
+              ofacCode: contactProvider.selectedContact!.ofacCode!,
+              motherMaiden: contactProvider.selectedContact!.mothersMaiden!,
+              foreignAdress: contactProvider.selectedContact!.foreignAddress!,
+              foreignCity: contactProvider.selectedContact!.foreignCity!,
+              foreignprovince:
+                  contactProvider.selectedContact!.foreignProvince!,
+              emergencyName: contactProvider.selectedContact!.emergencyPhone!,
+              foreignZipCode: contactProvider.selectedContact!.foreignZip!,
+              space: 40,
+            )),
+          ),
+          SingleChildScrollView(
+            child: BodyCustom(
+                body: CardBody4(
+              emergencyPhone: contactProvider.selectedContact!.emergencyPhone!,
+              cubanFirstName: contactProvider.selectedContact!.cubanFirstName!,
+              cubanLastName: contactProvider.selectedContact!.cubanLastName!,
+              arrivalDocs: contactProvider.selectedContact!.arrivalDoc!,
+              countryIssue: contactProvider.selectedContact!.countryOfIssue!,
+              arrivalDocNo: contactProvider.selectedContact!.arrivalDocNo!,
+              space: 40,
+            )),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                BodyCustom(
+                    body: CardBody5(
+                  expDate: contactProvider.selectedContact!.expDate!,
+                  passportNumbersec:
+                      contactProvider.selectedContact!.passportNumberSec!,
+                  contryOfIssuesec:
+                      contactProvider.selectedContact!.countryOfIssueSec!,
+                  arrivalDocNumbersec:
+                      contactProvider.selectedContact!.arrivalDocNoSec!,
+                  expDatesec: contactProvider.selectedContact!.expDateSec!,
+                  space: 40,
+                )),
+                MaterialButton(
+                  onPressed: () {
+                    contactProvider.updateContact(
+                        contact: contactProvider.selectedContact!,
+                        token: loginProvider.loggedUser!.jwt);
+                    //TODO: Aqui Va el metodo de update.
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(size.width * 0.02)),
+                  height: size.height * 0.07,
+                  minWidth: size.width * 0.5,
+                  color: kprimarycolor,
+                  child: const Text(
+                    'Update Contact',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
