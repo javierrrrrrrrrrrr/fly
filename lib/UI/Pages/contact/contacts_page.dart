@@ -144,8 +144,8 @@ class _ListViewBody extends StatelessWidget {
                       function: () async {
                         loadingSpinner(context);
                         userprovider.selectedContact = contact;
-                        bool respuesta = await userprovider
-                            .deleteContact(loginprovider.loggedUser!.jwt);
+                        bool respuesta = await userprovider.deleteContact(
+                            loginprovider.loggedUser!.jwt, context);
                         if (respuesta == true) {
                           Navigator.pop(context);
                         } else {
