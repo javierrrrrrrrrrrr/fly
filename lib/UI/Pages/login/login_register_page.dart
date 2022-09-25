@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:provider/provider.dart';
 
-import '../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
 
 class LoginRegisterPage extends StatelessWidget {
   const LoginRegisterPage({Key? key}) : super(key: key);
@@ -147,7 +147,44 @@ class LoginRegisterPage extends StatelessWidget {
                 //           // fit: BoxFit.fill)),
                 // ),
               ),
-            ))
+            )),
+            Positioned(
+              bottom: size.height * 0.04,
+              left: size.width * 0.17,
+              child: Container(
+                height: size.height * 0.05,
+                width: size.width * 0.65,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(size.width * 0.02),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 0), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: size.height * 0.05,
+                      width: size.width * 0.1,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("assets/google.png"),
+                              fit: BoxFit.fill)),
+                    ),
+                    Text("Sign in Google",
+                        style: TextStyle(
+                            color: Colors.black.withOpacity(0.5),
+                            fontSize: 18)),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

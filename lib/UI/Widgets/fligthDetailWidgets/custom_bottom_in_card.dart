@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';

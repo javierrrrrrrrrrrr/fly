@@ -129,7 +129,7 @@ class LoginPage extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5), fontSize: 20)),
             ),
             Positioned(
-              bottom: size.height * 0.07,
+              bottom: size.height * 0.085,
               left: size.width * 0.2,
               child: GestureDetector(
                 onTap: () {
@@ -140,21 +140,43 @@ class LoginPage extends StatelessWidget {
                         color: Colors.black.withOpacity(0.5), fontSize: 20)),
               ),
             ),
-            Container(
-                //google icon with color
-                child: Positioned(
-              bottom: size.height * 0.07,
-              left: size.width * 0.7,
-              child: SizedBox(
-                height: size.height * 0.07,
-                width: size.width * 0.2,
-                //   decoration: const BoxDecoration(
-                //       image: DecorationImage(
-                //           // image: AssetImage("assets/googleicon.png"),
-                //           // fit: BoxFit.fill)),
-                // ),
+            Positioned(
+              bottom: size.height * 0.02,
+              left: size.width * 0.17,
+              child: Container(
+                height: size.height * 0.05,
+                width: size.width * 0.65,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(size.width * 0.02),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 0), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: size.height * 0.05,
+                      width: size.width * 0.1,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("assets/google.png"),
+                              fit: BoxFit.fill)),
+                    ),
+                    Text("Continue with Google",
+                        style: TextStyle(
+                            color: Colors.black.withOpacity(0.5),
+                            fontSize: 18)),
+                  ],
+                ),
               ),
-            ))
+            )
           ],
         ),
       ),

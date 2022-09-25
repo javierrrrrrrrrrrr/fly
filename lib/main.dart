@@ -19,8 +19,8 @@ import 'Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
 import 'Business_logic/Provaiders/news_provider.dart';
 import 'UI/Pages/contact/contacts_page.dart';
 import 'UI/Pages/home_page.dart';
-import 'UI/Pages/login_page.dart';
-import 'UI/Pages/login_register_page.dart';
+import 'UI/Pages/login/login_page.dart';
+import 'UI/Pages/login/login_register_page.dart';
 import 'UI/Widgets/fligthDetailWidgets/drop_down_check_list.dart';
 
 void main() {
