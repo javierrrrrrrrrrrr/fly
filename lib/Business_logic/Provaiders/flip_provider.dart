@@ -85,6 +85,7 @@ class FlipProvider extends ChangeNotifier {
 
         contactProvider
             .createContact(
+                context: context,
                 contact: contactProvider.selectedContact!,
                 token: loginProvider.loggedUser!.jwt)
             .whenComplete(() {

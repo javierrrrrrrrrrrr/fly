@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/UI/Widgets/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 import '../../Constants/contants.dart';
 import '../../DataLayer/Models/contact_model.dart';
@@ -58,7 +60,8 @@ class ContactProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> deleteContact(String token) async {
+  Future<bool> deleteContact(String token, BuildContext context) async {
+    final loginProvider = context.read<LoginProvider>();
     var headers = {'Authorization': token, 'Content-Type': 'application/json'};
     var request = http.Request('DELETE', Uri.parse('$kip/contacts'));
     request.body = json.encode({"id": selectedContact!.id});
@@ -71,6 +74,8 @@ class ContactProvider extends ChangeNotifier {
       for (int i = 0; i < foundedContacts.length; i++) {
         if (foundedContacts[i].id == selectedContact!.id) {
           foundedContacts.removeAt(i);
+          loginProvider.contactList.removeAt(i);
+
           // foundedContacts.removeAt(i);
         }
       }
@@ -86,9 +91,11 @@ class ContactProvider extends ChangeNotifier {
   }
 
   Future<Contact?> createContact(
-      {required Contact contact, required String token}) async {
+      {required Contact contact,
+      required String token,
+      required BuildContext context}) async {
+    final loginProvider = context.read<LoginProvider>();
     var url = Uri.parse('$kip/contacts');
-
     final response = await http.post(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
         body: contactToMap(contact));
@@ -99,6 +106,8 @@ class ContactProvider extends ChangeNotifier {
 
       foundedContacts.add(newContact);
       foundedContacts.sort((a, b) => a.firstName.compareTo(b.firstName));
+      loginProvider.contactList.add(newContact);
+      notifyListeners();
 
       return newContact;
     } else {
