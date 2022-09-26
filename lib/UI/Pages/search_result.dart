@@ -28,56 +28,51 @@ class _SearchResultState extends State<SearchResult> {
     final flightProvaider = Provider.of<FlightProvider>(context);
     return Scaffold(
       drawer: const CustomDrawer(),
-      body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/fondo.jpg',
-                ),
-                fit: BoxFit.fill)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: size.height * 0.08,
-              ),
-              CustomFilterDropDown(
-                  onRestoreState: () {
-                    return false;
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: size.height * 0.08,
+            ),
+            CustomFilterDropDown(
+                onRestoreState: () {
+                  return false;
+                },
+                expandido: isExpandedDropdown!,
+                onPreesedFuntionButton: () {
+                  setState(() {
+                    onPressedButton(context);
+                  });
+                }),
+            Text(
+              '${flightProvaider.departureflights.length} Results',
+              style: TextStyle(fontSize: 20, color: kprimarycolor),
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () => Future.delayed(const Duration(seconds: 1)),
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: flightProvaider.departureflights.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                        padding: EdgeInsets.only(bottom: size.height * 0.03,
+                        left:  size.height * 0.003,
+                        right: size.height * 0.003,
+                        ),
+                        child: CardFlightDetails(
+                          index: index,
+                          departureFlight:
+                              flightProvaider.departureflights[index],
+                        ));
                   },
-                  expandido: isExpandedDropdown!,
-                  onPreesedFuntionButton: () {
-                    setState(() {
-                      onPressedButton(context);
-                    });
-                  }),
-              Text(
-                '${flightProvaider.departureflights.length} Results',
-                style: TextStyle(fontSize: 20, color: kprimarycolor),
-              ),
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: () => Future.delayed(const Duration(seconds: 1)),
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: flightProvaider.departureflights.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                          padding: EdgeInsets.only(bottom: size.height * 0.03),
-                          child: CardFlightDetails(
-                            index: index,
-                            departureFlight:
-                                flightProvaider.departureflights[index],
-                          ));
-                    },
-                  ),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
       //   padding: EdgeInsets.only(

@@ -50,6 +50,7 @@ dependencies:
   uuid: ^3.0.6
   shared_preferences: ^2.0.15
   drop_down_list: ^0.0.4
+  square_in_app_payments: ^1.7.5
 
 dev_dependencies:
   flutter_test:

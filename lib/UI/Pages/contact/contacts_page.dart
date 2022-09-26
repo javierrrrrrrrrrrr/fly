@@ -13,7 +13,7 @@ class ContactsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final seacrhProvider = Provider.of<SearchProvider>(context);
-    final userprovider = Provider.of<ContactProvider>(context);
+    final contactprovider = Provider.of<ContactProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -21,12 +21,12 @@ class ContactsPage extends StatelessWidget {
         child: Column(
           children: [
             const _AppBarRow(),
-            _SearchContactField(contacts: userprovider.foundedContacts),
+            _SearchContactField(contacts: contactprovider.foundedContacts),
             SizedBox(
               height: size.height * 0.005,
             ),
             _ContactsList(
-              contacts: userprovider.foundedContacts,
+              contacts: contactprovider.foundedContacts,
             )
           ],
         ),
@@ -171,7 +171,7 @@ class _ListViewBody extends StatelessWidget {
                   //     messageBody:
                   //         'Are you sure you want to delete this contact');
                 },
-                child: const Icon(
+                child:   const Icon(
                   color: Colors.red,
                   Icons.delete_forever_outlined,
                   size: 35,
