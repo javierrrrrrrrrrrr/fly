@@ -3,6 +3,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ class CustomButtomCard extends StatefulWidget {
 class _CustomButtomCardState extends State<CustomButtomCard> {
   @override
   Widget build(BuildContext context) {
+    final paymentsProvider  = Provider.of<PaymentsProvider>(context);
     final flipProvider = Provider.of<FlipProvider>(context);
     final flightProvider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
@@ -68,7 +70,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           height: size.height * 0.08,
           color: kprimarycolor,
           onPressed: () {
-            //TODO: Mandar peticion
+           paymentsProvider.pay();
           },
           child: const Text(
             "!Buy Now",
