@@ -9,10 +9,12 @@ class CustomPikedDate extends StatefulWidget {
   const CustomPikedDate({
     Key? key,
     required this.onSelectedDate,
-    required this.hintText,
+    required this.hintText, this.initialvalue,
+
   }) : super(key: key);
 
   final String hintText;
+  final String? initialvalue;
   final void Function(DateTime value) onSelectedDate;
 
   @override
@@ -25,6 +27,7 @@ class _CustomPikedDateState extends State<CustomPikedDate> {
   Widget build(BuildContext context) {
     final contactFormProvider = Provider.of<ContactFormProvider>(context);
     return Imputfield(
+      initialValue: widget.initialvalue,
         validator: (value) {
           if (selectedDate == null) {
             return 'Please select a valid date';

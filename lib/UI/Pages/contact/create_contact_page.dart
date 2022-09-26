@@ -23,10 +23,10 @@ class CreateContactPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(bottom: size.height * 0.01),
-              child: Container(
+           
                 child: const InfoButtom(),
               ),
-            )
+         
           ],
         ),
       ),

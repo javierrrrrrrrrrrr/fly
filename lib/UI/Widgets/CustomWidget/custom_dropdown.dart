@@ -7,10 +7,11 @@ class CustomDropDown extends StatefulWidget {
       required this.items,
       this.onChanged,
       this.onSaved,
+     
       required this.hintext,
       this.itemPadding,
       this.contentPadding,
-      this.iconData})
+      this.iconData, this.value})
       : super(key: key);
 
   final List<String>? items;
@@ -20,6 +21,7 @@ class CustomDropDown extends StatefulWidget {
   final EdgeInsetsGeometry? itemPadding;
   final EdgeInsetsGeometry? contentPadding;
   final IconData? iconData;
+  final Object? value;
 
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
@@ -32,6 +34,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
     return Stack(
       children: [
         DropdownButtonFormField2(
+          value:widget. value,
+
+
+       
           decoration: InputDecoration(
             //Add isDense true and zero Padding.
             //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.

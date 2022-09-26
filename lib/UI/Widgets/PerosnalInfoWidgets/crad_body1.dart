@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
 import '../../../Constants/validacion.dart';
+import '../../../DataLayer/Models/contact_model.dart';
 import 'custom_piked_date.dart';
 
 class CardBody1 extends StatelessWidget {
@@ -20,7 +21,7 @@ class CardBody1 extends StatelessWidget {
     required this.gender,
     required this.email,
     required this.phone,
-    this.spacenamed,
+    this.spacenamed, this.selectedContact,
   }) : super(key: key);
 
   //bool para controlar el espacio entre los campos
@@ -35,6 +36,8 @@ class CardBody1 extends StatelessWidget {
   final String gender;
   final String email;
   final String phone;
+
+  final Contact? selectedContact;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +65,14 @@ class CardBody1 extends StatelessWidget {
                     texto: "First Name",
                   ),
             Imputfield(
+              initialValue: selectedContact == null ? '' : selectedContact!.firstName,
                 keyboardType: TextInputType.name,
                 onChanged: (value) =>
                     contactProvider.selectedContact!.firstName = value,
-                hintext: firstname,
+                hintext: selectedContact == null ? firstname : selectedContact!.firstName,
+                
+                 
+
                 prefixIcon:
                     const Icon(Icons.badge_outlined, color: Colors.blue)),
             spacenamed == false
@@ -75,10 +82,11 @@ class CardBody1 extends StatelessWidget {
                     texto: "Last Name",
                   ),
             Imputfield(
+              initialValue: selectedContact == null ? '' : selectedContact!.lastName,
+              hintext: selectedContact == null ? lastname : selectedContact!.lastName,
               keyboardType: TextInputType.name,
               onChanged: (value) =>
                   contactProvider.selectedContact!.lastName = value,
-              hintext: lastname,
               prefixIcon: const Icon(Icons.badge_outlined, color: Colors.blue),
             ),
             spacenamed == false
@@ -88,6 +96,8 @@ class CardBody1 extends StatelessWidget {
                     texto: "Passenger Type",
                   ),
             CustomDropDown(
+
+              value: selectedContact == null ? '' : selectedContact!.passengerType,
               iconData: Icons.family_restroom,
               contentPadding: EdgeInsets.only(left: size.width * 0.095),
               items: const [
@@ -107,12 +117,13 @@ class CardBody1 extends StatelessWidget {
                     space: space,
                     texto: "Birth Date",
                   ),
+                  
             CustomPikedDate(
-              hintText: birthDate,
+              hintText: selectedContact == null ? birthDate : selectedContact!.birthDate!,
               onSelectedDate: (piked) {
                 contactProvider.selectedContact!.birthDate =
                     "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
-                print(contactProvider.selectedContact!.birthDate.toString());
+               
               },
             ),
             spacenamed == false
@@ -122,6 +133,7 @@ class CardBody1 extends StatelessWidget {
                     texto: "Gender",
                   ),
             CustomDropDown(
+              value: selectedContact == null ? '' : selectedContact!.gender,
               iconData: Icons.man,
               contentPadding: EdgeInsets.only(left: size.width * 0.095),
               items: const [
@@ -142,11 +154,12 @@ class CardBody1 extends StatelessWidget {
                     texto: "Email",
                   ),
             Imputfield(
+              initialValue: selectedContact == null ? '' : selectedContact!.email,
+              hintext: selectedContact == null ? email : selectedContact!.email!,
               keyboardType: TextInputType.emailAddress,
               validator: mail,
               onChanged: (value) =>
                   contactProvider.selectedContact!.email = value.toString(),
-              hintext: email,
               prefixIcon:
                   const Icon(Icons.contact_mail_outlined, color: Colors.blue),
             ),
@@ -157,10 +170,11 @@ class CardBody1 extends StatelessWidget {
                     texto: "Phone",
                   ),
             Imputfield(
+             initialValue: selectedContact == null ? '' : selectedContact!.phone,
+              hintext:  selectedContact == null ? phone : selectedContact!.phone!,
               keyboardType: TextInputType.phone,
               onChanged: (value) =>
                   contactProvider.selectedContact!.phone = value,
-              hintext: phone,
               prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
             ),
             Container(

@@ -8,8 +8,8 @@ import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body4.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body5.dart';
 import 'package:provider/provider.dart';
 
-import '../Widgets/CustomWidget/custom_circle_avatar.dart';
-import '../Widgets/PerosnalInfoWidgets/crad_body3.dart';
+import '../../Widgets/CustomWidget/custom_circle_avatar.dart';
+import '../../Widgets/PerosnalInfoWidgets/crad_body3.dart';
 
 class ContactInformation extends StatelessWidget {
   const ContactInformation({Key? key}) : super(key: key);
@@ -27,6 +27,7 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody1(
+              selectedContact: contactProvider.selectedContact,
               space: 40,
               firstname: contactProvider.selectedContact!.firstName,
               lastname: contactProvider.selectedContact!.lastName,
@@ -95,7 +96,7 @@ class ContactInformation extends StatelessWidget {
                     contactProvider.updateContact(
                         contact: contactProvider.selectedContact!,
                         token: loginProvider.loggedUser!.jwt);
-                    //TODO: Aqui Va el metodo de update.
+                   
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(size.width * 0.02)),
