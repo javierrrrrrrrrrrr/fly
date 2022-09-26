@@ -101,6 +101,8 @@ class ContactInformation extends StatelessWidget {
                     contactProvider.updateContact(
                         contact: contactProvider.selectedContact!,
                         token: loginProvider.loggedUser!.jwt);
+
+                    Navigator.pop(context);    
                    
                   },
                   shape: RoundedRectangleBorder(
