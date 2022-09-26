@@ -26,12 +26,10 @@ class _SearchFiltersState extends State<SearchFilters> {
     final bookFlightProvider = Provider.of<BookFlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Container(
+    
       height: size.height * 0.75,
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          width: 0.1,
-        ),
+        
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
       ),

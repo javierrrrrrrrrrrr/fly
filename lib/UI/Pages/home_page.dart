@@ -66,12 +66,12 @@ class _HomePageState extends State<HomePage> {
                   var respuesta = newsProvider.respuesta;
 
                   if (respuesta == true && await respuesta2 == true) {
-                    // ignore: use_build_context_synchronously
+              
                     Navigator.pop(context);
-                    // ignore: use_build_context_synchronously
+                
                     Navigator.of(context).pushNamed('/airlines');
                   } else {
-                    // ignore: use_build_context_synchronously
+                  
                     Navigator.pop(context);
 
                     var snackBar = SnackBar(

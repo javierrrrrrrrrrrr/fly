@@ -32,29 +32,35 @@ class CustomFilterDropDown extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   bottom: 10,
                 ),
-                child: Container(
-                  height: size.height * 0.06,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(size.height * 0.01))),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.09),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            child: Text(
-                          'Book Flight',
-                          style: TextStyle(fontSize: 22, color: kprimarycolor),
-                        )),
-                        Transform.rotate(
-                          angle: math.pi * animationValue / 2,
-                          alignment: Alignment.center,
-                          child: const Icon(Icons.arrow_right, size: 40),
-                        )
-                      ],
+                child: Material(
+                  borderRadius: BorderRadius.all(
+                            Radius.circular(size.height * 0.01)),
+                  elevation: 3,
+                  child: Container(
+                    
+                    height: size.height * 0.06,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(size.height * 0.01))),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.09),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: Text(
+                            'Book Flight',
+                            style: TextStyle(fontSize: 22, color: kprimarycolor),
+                          )),
+                          Transform.rotate(
+                            angle: math.pi * animationValue / 2,
+                            alignment: Alignment.center,
+                            child: const Icon(Icons.arrow_right, size: 40),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -47,11 +47,12 @@ class BodyAirlineDetails extends StatelessWidget {
             child: RefreshIndicator(
               onRefresh: () => Future.delayed(const Duration(seconds: 1)),
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemCount: userProvider.news.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: size.height * 0.03),
+                    padding: EdgeInsets.only(bottom: size.height * 0.03,top:  size.height * 0.01),
                     child: InformationCard(
                       verMasOnpressed: () => Navigator.of(context).push(
                         MaterialPageRoute(

@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/UI/Pages/airline_info.dart';
 import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
 import 'package:fly_cliente/UI/Pages/create_contact_page.dart';
@@ -55,6 +56,10 @@ void main() {
       ChangeNotifierProvider(
         create: (_) => ContactFormProvider(),
         lazy: false,
+      ),
+      ChangeNotifierProvider(
+        create: (_) => PaymentsProvider(),
+        lazy: true,
       ),
     ],
     child: const MyApp(),
