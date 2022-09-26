@@ -43,6 +43,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  built_collection:
+    dependency: transitive
+    description:
+      name: built_collection
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.1"
+  built_value:
+    dependency: transitive
+    description:
+      name: built_value
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.4.1"
   characters:
     dependency: transitive
     description:
@@ -148,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
+  fixnum:
+    dependency: transitive
+    description:
+      name: fixnum
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flip_card:
     dependency: "direct main"
     description:
@@ -504,6 +525,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.0"
+  square_in_app_payments:
+    dependency: "direct main"
+    description:
+      name: square_in_app_payments
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.7.5"
   stack_trace:
     dependency: transitive
     description:

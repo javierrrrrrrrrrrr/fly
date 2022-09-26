@@ -171,8 +171,8 @@ class _ListViewBody extends StatelessWidget {
                   //     messageBody:
                   //         'Are you sure you want to delete this contact');
                 },
-                child: const Icon(
-                  color: Colors.red,
+                child:   Icon(
+                  color: kprimarycolor,
                   Icons.delete_forever_outlined,
                   size: 35,
                 ),
