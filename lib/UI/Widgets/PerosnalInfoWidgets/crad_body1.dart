@@ -97,7 +97,7 @@ class CardBody1 extends StatelessWidget {
                   ),
             CustomDropDown(
 
-              value: selectedContact == null ? '' : selectedContact!.passengerType,
+              
               iconData: Icons.family_restroom,
               contentPadding: EdgeInsets.only(left: size.width * 0.095),
               items: const [
@@ -133,7 +133,7 @@ class CardBody1 extends StatelessWidget {
                     texto: "Gender",
                   ),
             CustomDropDown(
-              value: selectedContact == null ? '' : selectedContact!.gender,
+              
               iconData: Icons.man,
               contentPadding: EdgeInsets.only(left: size.width * 0.095),
               items: const [
