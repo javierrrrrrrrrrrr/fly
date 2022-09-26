@@ -29,7 +29,7 @@ class _CustomPikedDateState extends State<CustomPikedDate> {
     return Imputfield(
       initialValue: widget.initialvalue,
         validator: (value) {
-          if (selectedDate == null) {
+          if (value == null) {
             return 'Please select a valid date';
           } else {
             return null;

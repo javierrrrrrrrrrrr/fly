@@ -119,6 +119,7 @@ class CardBody1 extends StatelessWidget {
                   ),
                   
             CustomPikedDate(
+              initialvalue: selectedContact == null ? '' : selectedContact!.birthDate!,
               hintText: selectedContact == null ? birthDate : selectedContact!.birthDate!,
               onSelectedDate: (piked) {
                 contactProvider.selectedContact!.birthDate =
