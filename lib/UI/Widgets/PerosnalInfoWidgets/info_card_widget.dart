@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body3.dart';
+import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body4.dart';
+import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body5.dart';
 import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body2.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body3.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body4.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body5.dart';
 import 'package:provider/provider.dart';
-import 'crad_body1.dart';
+import 'card_body1.dart';
 
 class InfoCardWIdget extends StatelessWidget {
   const InfoCardWIdget({
@@ -57,7 +57,7 @@ class InfoCardWIdget extends StatelessWidget {
                         motherMaiden: "Mother Maiden",
                         foreignAdress: "Foreign Adress",
                         foreignCity: "Foreign City",
-                        foreignprovince: "Foreign Province",
+                        foreignProvince: "Foreign Province",
                         foreignZipCode: "Foreign Zip Code",
                         emergencyName: "Emergency Number",
                       )

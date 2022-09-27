@@ -22,40 +22,35 @@ class InfoButtom extends StatelessWidget {
       onPressed: () async {
         if (flipProvaider.flip == 0) {
           if (contactFormProvider.isValidForm1()) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Processing Data')));
+           
             FocusManager.instance.primaryFocus?.unfocus();
             flipProvaider.checkFlip(context);
           }
         }
         if (flipProvaider.flip == 1) {
           if (contactFormProvider.isValidForm2()) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Processing Data')));
+          
             FocusManager.instance.primaryFocus?.unfocus();
             flipProvaider.checkFlip(context);
           }
         }
         if (flipProvaider.flip == 2) {
           if (contactFormProvider.isValidForm3()) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Processing Data')));
+           
             FocusManager.instance.primaryFocus?.unfocus();
             flipProvaider.checkFlip(context);
           }
         }
         if (flipProvaider.flip == 3) {
           if (contactFormProvider.isValidForm4()) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Processing Data')));
+           
             FocusManager.instance.primaryFocus?.unfocus();
             flipProvaider.checkFlip(context);
           }
         }
         if (flipProvaider.flip == 4) {
           if (contactFormProvider.isValidForm5()) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Processing Data')));
+           
             FocusManager.instance.primaryFocus?.unfocus();
             flipProvaider.checkFlip(context);
           }

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body1.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body2.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body4.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body5.dart';
+import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body1.dart';
+
+import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body4.dart';
+import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body5.dart';
 import 'package:provider/provider.dart';
 
 import '../../Widgets/CustomWidget/custom_circle_avatar.dart';
-import '../../Widgets/PerosnalInfoWidgets/crad_body3.dart';
+import '../../Widgets/PerosnalInfoWidgets/card_body3.dart';
+import '../../Widgets/PerosnalInfoWidgets/crad_body2.dart';
 
 class ContactInformation extends StatelessWidget {
   const ContactInformation({Key? key}) : super(key: key);
@@ -41,6 +42,7 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody2(
+                  selectedContact: contactProvider.selectedContact,
               address: contactProvider.selectedContact!.address!,
               city: contactProvider.selectedContact!.city!,
               state: contactProvider.selectedContact!.state!,
@@ -53,11 +55,12 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody3(
+                  selectedContact: contactProvider.selectedContact,
               ofacCode: contactProvider.selectedContact!.ofacCode!,
               motherMaiden: contactProvider.selectedContact!.mothersMaiden!,
               foreignAdress: contactProvider.selectedContact!.foreignAddress!,
               foreignCity: contactProvider.selectedContact!.foreignCity!,
-              foreignprovince:
+              foreignProvince:
                   contactProvider.selectedContact!.foreignProvince!,
               emergencyName: contactProvider.selectedContact!.emergencyPhone!,
               foreignZipCode: contactProvider.selectedContact!.foreignZip!,
@@ -67,6 +70,7 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody4(
+                  selectedContact: contactProvider.selectedContact,
               emergencyPhone: contactProvider.selectedContact!.emergencyPhone!,
               cubanFirstName: contactProvider.selectedContact!.cubanFirstName!,
               cubanLastName: contactProvider.selectedContact!.cubanLastName!,
@@ -81,6 +85,7 @@ class ContactInformation extends StatelessWidget {
               children: [
                 BodyCustom(
                     body: CardBody5(
+                      selectedContact: contactProvider.selectedContact,
                   expDate: contactProvider.selectedContact!.expDate!,
                   passportNumbersec:
                       contactProvider.selectedContact!.passportNumberSec!,
@@ -96,6 +101,8 @@ class ContactInformation extends StatelessWidget {
                     contactProvider.updateContact(
                         contact: contactProvider.selectedContact!,
                         token: loginProvider.loggedUser!.jwt);
+
+                    Navigator.pop(context);    
                    
                   },
                   shape: RoundedRectangleBorder(
