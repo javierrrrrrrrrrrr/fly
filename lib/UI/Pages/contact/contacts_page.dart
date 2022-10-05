@@ -171,7 +171,7 @@ class _ListViewBody extends StatelessWidget {
                   //     messageBody:
                   //         'Are you sure you want to delete this contact');
                 },
-                child:   const Icon(
+                child: const Icon(
                   color: Colors.red,
                   Icons.delete_forever_outlined,
                   size: 35,
@@ -258,7 +258,7 @@ class _AppBarRow extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed('/create_contat_page');
+              Navigator.of(context).pushReplacementNamed('/create_contat_page');
             },
             child: Icon(
               Icons.group_add_outlined,
