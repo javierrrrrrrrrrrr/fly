@@ -133,6 +133,7 @@ class ContactProvider extends ChangeNotifier {
           foundedContacts.indexWhere((element) => element.id == contact.id);
 
       foundedContacts[index] = newContact;
+      notifyListeners();
 
       return newContact;
     } else {
