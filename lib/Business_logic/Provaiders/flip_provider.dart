@@ -46,40 +46,28 @@ class FlipProvider extends ChangeNotifier {
       if (flip == 1) {
         controllerLine1.toggleCard();
         controllerCircle1.toggleCard();
-        InAppNotification.show(
-            duration: const Duration(seconds: 1),
-            child: const NotificationBody(texto: "Buen Comienzo"),
-            context: context);
       }
 
       if (flip == 2) {
         controllerLine2.toggleCard();
         controllerCircle2.toggleCard();
-        InAppNotification.show(
-            duration: const Duration(seconds: 2),
-            child: const NotificationBody(texto: "Sigue asi"),
-            context: context);
       }
       if (flip == 3) {
         controllerLine3.toggleCard();
         controllerCircle3.toggleCard();
         InAppNotification.show(
-            duration: const Duration(seconds: 2),
+            duration: const Duration(milliseconds: 500),
             child: const NotificationBody(texto: "Ya falta poco"),
             context: context);
       }
       if (flip == 4) {
         controllerLine4.toggleCard();
         controllerCircle4.toggleCard();
-        InAppNotification.show(
-            duration: const Duration(seconds: 2),
-            child: const NotificationBody(texto: "Solo un paso mas"),
-            context: context);
       }
       if (flip == 5) {
         controllerCircle5.toggleCard();
         InAppNotification.show(
-            duration: const Duration(seconds: 1),
+            duration: const Duration(milliseconds: 500),
             child: const NotificationBody(texto: "Todo listo"),
             context: context);
 

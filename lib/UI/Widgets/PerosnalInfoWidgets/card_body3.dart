@@ -324,9 +324,10 @@ class _MotherMaidenField extends StatelessWidget {
       hintext: selectedContact == null
           ? motherMaiden
           : selectedContact!.mothersMaiden!,
-      keyboardType: TextInputType.phone,
-      onChanged: (value) => contactProvider.selectedContact!.phone = value,
-      prefixIcon: const Icon(Icons.phone_android, color: Colors.blue),
+      keyboardType: TextInputType.name,
+      onChanged: (value) =>
+          contactProvider.selectedContact!.mothersMaiden = value,
+      prefixIcon: const Icon(Icons.description_outlined, color: Colors.blue),
     );
   }
 }
