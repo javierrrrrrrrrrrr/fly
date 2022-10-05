@@ -42,7 +42,7 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody2(
-                  selectedContact: contactProvider.selectedContact,
+              selectedContact: contactProvider.selectedContact,
               address: contactProvider.selectedContact!.address!,
               city: contactProvider.selectedContact!.city!,
               state: contactProvider.selectedContact!.state!,
@@ -55,7 +55,7 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody3(
-                  selectedContact: contactProvider.selectedContact,
+              selectedContact: contactProvider.selectedContact,
               ofacCode: contactProvider.selectedContact!.ofacCode!,
               motherMaiden: contactProvider.selectedContact!.mothersMaiden!,
               foreignAdress: contactProvider.selectedContact!.foreignAddress!,
@@ -70,7 +70,7 @@ class ContactInformation extends StatelessWidget {
           SingleChildScrollView(
             child: BodyCustom(
                 body: CardBody4(
-                  selectedContact: contactProvider.selectedContact,
+              selectedContact: contactProvider.selectedContact,
               emergencyPhone: contactProvider.selectedContact!.emergencyPhone!,
               cubanFirstName: contactProvider.selectedContact!.cubanFirstName!,
               cubanLastName: contactProvider.selectedContact!.cubanLastName!,
@@ -81,11 +81,11 @@ class ContactInformation extends StatelessWidget {
             )),
           ),
           SingleChildScrollView(
-            child: Column(
+            child: Stack(
               children: [
                 BodyCustom(
                     body: CardBody5(
-                      selectedContact: contactProvider.selectedContact,
+                  selectedContact: contactProvider.selectedContact,
                   expDate: contactProvider.selectedContact!.expDate!,
                   passportNumbersec:
                       contactProvider.selectedContact!.passportNumberSec!,
@@ -96,23 +96,35 @@ class ContactInformation extends StatelessWidget {
                   expDatesec: contactProvider.selectedContact!.expDateSec!,
                   space: 40,
                 )),
-                MaterialButton(
-                  onPressed: () {
-                    contactProvider.updateContact(
-                        contact: contactProvider.selectedContact!,
-                        token: loginProvider.loggedUser!.jwt);
+                Positioned(
+                  left: size.width * 0.25,
+                  bottom: size.height * 0.02,
+                  child: MaterialButton(
+                    onPressed: () async {
+                      loadingSpinner(context);
+                      try {
+                        contactProvider
+                            .updateContact(
+                                contact: contactProvider.selectedContact!,
+                                token: loginProvider.loggedUser!.jwt)
+                            .whenComplete(() {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        });
+                      } catch (e) {
+                        // mostrar error cuando veamos como los vamos a poner
 
-                    Navigator.pop(context);    
-                   
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(size.width * 0.02)),
-                  height: size.height * 0.07,
-                  minWidth: size.width * 0.5,
-                  color: kprimarycolor,
-                  child: const Text(
-                    'Update Contact',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                      }
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(size.width * 0.02)),
+                    height: size.height * 0.07,
+                    minWidth: size.width * 0.5,
+                    color: kprimarycolor,
+                    child: const Text(
+                      'Update Contact',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
                   ),
                 )
               ],
@@ -138,7 +150,7 @@ class BodyCustom extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          height: size.height * 0.9,
+          height: size.height,
           width: size.width,
         ),
         Positioned(
