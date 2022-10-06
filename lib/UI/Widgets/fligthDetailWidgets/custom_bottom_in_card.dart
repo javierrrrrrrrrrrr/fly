@@ -25,7 +25,7 @@ class CustomButtomCard extends StatefulWidget {
 class _CustomButtomCardState extends State<CustomButtomCard> {
   @override
   Widget build(BuildContext context) {
-    final paymentsProvider  = Provider.of<PaymentsProvider>(context);
+    final paymentsProvider = Provider.of<PaymentsProvider>(context);
     final flipProvider = Provider.of<FlipProvider>(context);
     final flightProvider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
@@ -68,10 +68,12 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           height: size.height * 0.08,
           color: kprimarycolor,
           onPressed: () {
-           paymentsProvider.pay();
+            Navigator.of(context).pushNamed('/check_pay');
+
+            //  paymentsProvider.pay();
           },
           child: const Text(
-            "!Buy Now",
+            "Continue",
             style: TextStyle(color: Colors.white, fontSize: 26),
           )),
     );
