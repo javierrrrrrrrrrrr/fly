@@ -57,14 +57,14 @@ class BigCardDeparture extends StatelessWidget {
                   ],
                 ),
               ),
-              const Line(),
+              const LineSeparator(),
               RowCardBodyFromToInfo(
                 selected: departureflight,
               ),
               SizedBox(
                 height: size.height * 0.022,
               ),
-              const Line(),
+              const LineSeparator(),
               RowCheckInInfo(
                 selected: departureflight,
                 padding: EdgeInsets.only(
@@ -76,7 +76,7 @@ class BigCardDeparture extends StatelessWidget {
                 miniContainerGreen2: MiniContainerGreen(
                     icono: true, valor: departureflight.openSeats),
               ),
-              const Line(),
+              const LineSeparator(),
               Padding(
                 padding: EdgeInsets.all(size.width * 0.04),
                 child: Row(
@@ -142,7 +142,7 @@ class BigCardDeparture extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * 0.05),
-                child: const Line(),
+                child: const LineSeparator(),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(

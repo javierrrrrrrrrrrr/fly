@@ -54,7 +54,7 @@ class BigCardReturn extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.04,
                     ),
-                    const Line(),
+                    const LineSeparator(),
                     SizedBox(
                       //width: size.width * 0.3,
                       height: size.height * 0.13,
@@ -118,7 +118,7 @@ class BigCardReturn extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Line(),
+                    const LineSeparator(),
                     SizedBox(
                       height: size.height * 0.03,
                     ),
@@ -138,7 +138,7 @@ class BigCardReturn extends StatelessWidget {
                             )
                           : const Text(''),
                     ),
-                    const Line(),
+                    const LineSeparator(),
                     //TODO:Revisar despues lo de Cambiar el index por Selected Fligt y en este caso el index del que viene del modelo
 
                     RowCardBodyFromToInfo(
@@ -147,7 +147,7 @@ class BigCardReturn extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.025,
                     ),
-                    const Line(),
+                    const LineSeparator(),
                     RowCheckInInfo(
                       selected: flightProvider.selectedReturnFlight!,
                       padding: EdgeInsets.only(
@@ -157,7 +157,7 @@ class BigCardReturn extends StatelessWidget {
                       miniContainerGreen2: MiniContainerGreen(
                           icono: true, valor: selectedReturnFlight!.openSeats),
                     ),
-                    const Line(),
+                    const LineSeparator(),
                   ],
                 ),
                 Positioned(

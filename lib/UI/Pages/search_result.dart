@@ -59,14 +59,13 @@ class _SearchResultState extends State<SearchResult> {
                   itemCount: flightProvaider.departureflights.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                        padding: EdgeInsets.only(bottom: size.height * 0.03,
-                        left:  size.height * 0.003,
-                        right: size.height * 0.003,
+                        padding: EdgeInsets.only(
+                          bottom: size.height * 0.03,
+                          left: size.height * 0.003,
+                          right: size.height * 0.003,
                         ),
                         child: CardFlightDetails(
-                          index: index,
-                          departureFlight:
-                              flightProvaider.departureflights[index],
+                          flight: flightProvaider.departureflights[index],
                         ));
                   },
                 ),
