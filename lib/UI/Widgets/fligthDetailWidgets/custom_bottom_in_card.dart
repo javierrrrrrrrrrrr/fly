@@ -1,5 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
@@ -28,6 +29,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
     final paymentsProvider = Provider.of<PaymentsProvider>(context);
     final flipProvider = Provider.of<FlipProvider>(context);
     final flightProvider = Provider.of<FlightProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
     final size = MediaQuery.of(context).size;
     return FlipCard(
       direction: FlipDirection.VERTICAL,
@@ -68,6 +70,13 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           height: size.height * 0.08,
           color: kprimarycolor,
           onPressed: () {
+            //
+            int depatureId = flightProvider.selectedDepartureFlight!.id;
+            int returnId = flightProvider.selectedReturnFlight!.id;
+            List<int> id = contactProvider.getIdContacts();
+
+            loadingSpinner(context);
+
             Navigator.of(context).pushNamed('/check_pay');
 
             //  paymentsProvider.pay();

@@ -300,4 +300,9 @@ class FlightProvider extends ChangeNotifier {
 
     body.clear();
   }
+
+  Future<bool> sendTravelInfo(
+      int flightOutId, int flightInId, List<int> contactsList) async {
+    return true;
+  }
 }
