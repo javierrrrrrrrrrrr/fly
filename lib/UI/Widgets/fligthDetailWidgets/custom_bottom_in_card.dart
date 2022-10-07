@@ -2,7 +2,6 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +25,6 @@ class CustomButtomCard extends StatefulWidget {
 class _CustomButtomCardState extends State<CustomButtomCard> {
   @override
   Widget build(BuildContext context) {
-    final paymentsProvider = Provider.of<PaymentsProvider>(context);
     final flipProvider = Provider.of<FlipProvider>(context);
     final flightProvider = Provider.of<FlightProvider>(context);
     final contactProvider = Provider.of<ContactProvider>(context);
@@ -70,14 +68,9 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           height: size.height * 0.08,
           color: kprimarycolor,
           onPressed: () {
-            //
-            int depatureId = flightProvider.selectedDepartureFlight!.id;
-            int returnId = flightProvider.selectedReturnFlight!.id;
-            List<int> id = contactProvider.getIdContacts();
-
-            loadingSpinner(context);
-
-            Navigator.of(context).pushNamed('/check_pay');
+            Navigator.of(context).pushNamed(
+              '/check_pay',
+            );
 
             //  paymentsProvider.pay();
           },
