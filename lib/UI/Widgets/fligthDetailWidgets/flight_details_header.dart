@@ -9,10 +9,14 @@ class FlightDetailsHeader extends StatelessWidget {
     Key? key,
     required this.flight,
     required this.lastRowWidget,
+    this.isCheckedPage,
+    this.customtext,
   }) : super(key: key);
 
   final Flight flight;
   final Widget lastRowWidget;
+  final bool? isCheckedPage;
+  final String? customtext;
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +28,29 @@ class FlightDetailsHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // SeparadorHorizontal(numero: size.width * 0.06),
-          Text(
-              "${flight.date.substring(flight.date.length - 2, flight.date.length)} ${flightProvaider.convertDayMonthToLeterDay(flight.date)}"),
+          isCheckedPage == true
+              ? Text(customtext!)
+              : Text(
+                  "${flight.date.substring(flight.date.length - 2, flight.date.length)} ${flightProvaider.convertDayMonthToLeterDay(flight.date)}"),
+
           // SeparadorHorizontal(numero: size.width * 0.09),
           SizedBox(
             height: size.height * 0.06,
             width: size.width * 0.2,
             child: Image.asset('assets/logo.png'),
           ),
-          //   SeparadorHorizontal(numero: size.width * 0.14),
-          SizedBox(
-              width: size.width * 0.2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  lastRowWidget,
-                ],
-              ))
+
+          isCheckedPage == true
+              ? Text(
+                  "${flight.date.substring(flight.date.length - 2, flight.date.length)} ${flightProvaider.convertDayMonthToLeterDay(flight.date)}")
+              : SizedBox(
+                  width: size.width * 0.2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      lastRowWidget,
+                    ],
+                  ))
         ],
       ),
     );
