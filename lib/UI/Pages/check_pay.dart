@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/line.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/card_flight_details.dart';
+import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/horizontal_discontinuos_line.dart';
 import 'package:provider/provider.dart';
 
 import '../../DataLayer/Models/flight_model.dart';
@@ -40,27 +41,138 @@ class _CheckPayBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.05, vertical: size.height * 0.03),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.05, vertical: size.height * 0.03),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _BackButton(),
+              SizedBox(height: size.height * 0.015),
+              CardFlightDetails(
+                customtext: "Flight",
+                isCheckedPage: true,
+                flight: departureFlight!,
+              ),
+              SizedBox(height: size.height * 0.015),
+              CardFlightDetails(
+                customtext: 'Return Fligth',
+                isCheckedPage: true,
+                flight: returnFlight!,
+              ),
+              SizedBox(height: size.height * 0.015),
+              _ContactList(size: size),
+              SizedBox(height: size.height * 0.015),
+              const PriceCard(),
+              SizedBox(height: size.height * 0.015),
+              Center(
+                child: MaterialButton(
+                    height: size.height * 0.06,
+                    minWidth: size.width * 0.6,
+                    color: kprimarycolor,
+                    onPressed: () {
+                      final payProvider =
+                          Provider.of<PaymentsProvider>(context, listen: false);
+                      payProvider.pay();
+                    },
+                    child: const Text(
+                      "Pay Now",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PriceCard extends StatelessWidget {
+  const PriceCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.18,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 5,
+            color: Colors.grey,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: size.width * 0.025,
+          right: size.width * 0.025,
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const _BackButton(),
-            SizedBox(height: size.height * 0.03),
-            CardFlightDetails(
-              customtext: "Flight",
-              isCheckedPage: true,
-              flight: departureFlight!,
+            Padding(
+              padding: EdgeInsets.only(
+                top: size.height * 0.02,
+                bottom: size.height * 0.01,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Sub Total",
+                    style: TextStyle(fontSize: 20, color: kprimarycolor),
+                  ),
+                  const Text(
+                    "\$ 1,000",
+                    style: TextStyle(fontSize: 20, color: Colors.green),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: size.height * 0.03),
-            CardFlightDetails(
-              customtext: 'Return Fligth',
-              isCheckedPage: true,
-              flight: returnFlight!,
+            const HorizontalDiscontinuosLine(),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: size.height * 0.01,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Taxes",
+                    style: TextStyle(fontSize: 20, color: kprimarycolor),
+                  ),
+                  const Text(
+                    "\$ 1,000",
+                    style: TextStyle(fontSize: 20, color: Colors.green),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: size.height * 0.03),
-            _ContactList(size: size),
+            const HorizontalDiscontinuosLine(),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: size.height * 0.01,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Total",
+                    style: TextStyle(fontSize: 20, color: kprimarycolor),
+                  ),
+                  const Text(
+                    "\$ 2,000",
+                    style: TextStyle(fontSize: 20, color: Colors.green),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -80,7 +192,7 @@ class _ContactList extends StatelessWidget {
   Widget build(BuildContext context) {
     final contactProvider = Provider.of<ContactProvider>(context);
     return Container(
-      height: size.height * 0.19,
+      height: size.height * 0.21,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: const [
@@ -104,7 +216,10 @@ class _ContactList extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
             ),
-            const LineSeparator(),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.01),
+              child: const HorizontalDiscontinuosLine(),
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: 3,
@@ -128,8 +243,8 @@ class _ContactList extends StatelessWidget {
                           ],
                         ),
                         const Text(
-                          '\$400',
-                          style: TextStyle(fontSize: 16, color: Colors.green),
+                          '\$ 400',
+                          style: TextStyle(fontSize: 20, color: Colors.green),
                         ),
                       ],
                     ),

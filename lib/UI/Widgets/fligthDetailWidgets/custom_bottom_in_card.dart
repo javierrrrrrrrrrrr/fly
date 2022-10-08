@@ -1,7 +1,8 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,8 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
   Widget build(BuildContext context) {
     final flipProvider = Provider.of<FlipProvider>(context);
     final flightProvider = Provider.of<FlightProvider>(context);
-    final contactProvider = Provider.of<ContactProvider>(context);
+    final payProvider = Provider.of<PaymentsProvider>(context);
+    final loginProvider = Provider.of<LoginProvider>(context);
     final size = MediaQuery.of(context).size;
     return FlipCard(
       direction: FlipDirection.VERTICAL,
@@ -67,12 +69,29 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           minWidth: size.width * 0.6,
           height: size.height * 0.08,
           color: kprimarycolor,
-          onPressed: () {
-            Navigator.of(context).pushNamed(
-              '/check_pay',
-            );
+          onPressed: () async {
+            int depatureId = flightProvider.selectedDepartureFlight!.id;
+            int returnId = flightProvider.selectedReturnFlight!.id;
 
-            //  paymentsProvider.pay();
+            List<int> id = loginProvider.selectedcontactIDList;
+            loadingSpinner(context);
+
+            bool respuesta = await payProvider.verifyFlightInfo(
+                loginProvider.loggedUser!.jwt, depatureId, returnId, id);
+            if (respuesta == true) {
+              Navigator.pop(context);
+              Navigator.of(context).pushNamed('/check_pay');
+            } else {
+              Navigator.pop(context);
+              print("errrrrrrrorrrr");
+            }
+
+            //
+            // print("$depatureId");
+            // print("$returnId");
+            // print("$id");
+
+            Navigator.of(context).pushNamed('/check_pay');
           },
           child: const Text(
             "Continue",

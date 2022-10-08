@@ -141,11 +141,11 @@ class ContactProvider extends ChangeNotifier {
     }
   }
 
-  List<int> getIdContacts() {
-    List<int> idContacts = [];
-    for (int i = 0; i < foundedContacts.length; i++) {
-      idContacts.add(foundedContacts[i].id!);
-    }
-    return idContacts;
-  }
+//   List<int> getIdContacts() {
+//     List<int> idContacts = [];
+//     for (int i = 0; i < foundedContacts.length; i++) {
+//       idContacts.add(foundedContacts[i].id!);
+//     }
+//     return idContacts;
+//   }
 }

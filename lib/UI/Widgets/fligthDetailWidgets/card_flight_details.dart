@@ -6,6 +6,7 @@ import '../../../Constants/contants.dart';
 import 'flight_details_body.dart';
 import 'flight_details_footer.dart';
 import 'flight_details_header.dart';
+import 'horizontal_discontinuos_line.dart';
 
 /// Carta pequena */
 class CardFlightDetails extends StatelessWidget {
@@ -23,7 +24,7 @@ class CardFlightDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: isCheckedPage == true ? size.height * 0.19 : size.height * 0.25,
+      height: isCheckedPage == true ? size.height * 0.23 : size.height * 0.25,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: const [
@@ -49,7 +50,9 @@ class CardFlightDetails extends StatelessWidget {
                   )
                 ],
               )),
-          const LineSeparator(),
+          isCheckedPage == true
+              ? const HorizontalDiscontinuosLine()
+              : const LineSeparator(),
           Padding(
             padding: EdgeInsets.only(
                 top: size.width * 0.03,

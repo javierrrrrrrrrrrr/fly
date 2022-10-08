@@ -14,14 +14,16 @@ import '../../DataLayer/Models/user_model.dart';
 class LoginProvider extends ChangeNotifier {
   User? loggedUser;
   List<Contact> contactList = [];
-  List<String> selectedcontactIDList = [];
+  List<int> selectedcontactIDList = [];
   String? _deviceId;
   String? uuidGenerated;
   bool isUuidGenerated = false;
 
+  //converitr arreglo de string a int
+
   //add selected contact list
   void addselectedcontactlist(value) {
-    selectedcontactIDList.add(value);
+    selectedcontactIDList.add(int.parse(value));
     notifyListeners();
   }
 

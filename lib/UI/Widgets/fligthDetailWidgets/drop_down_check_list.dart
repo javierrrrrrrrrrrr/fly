@@ -67,8 +67,8 @@ class _DropDownListExampleState extends State<DropDownListExample> {
         AppTextField(
           textEditingController: _cityTextEditingController,
           hint: loginProvider.selectedcontactIDList.isNotEmpty
-              ? loginProvider
-                  .findNameByid(loginProvider.selectedcontactIDList[0])
+              ? loginProvider.findNameByid(
+                  loginProvider.selectedcontactIDList[0].toString())
               : 'Choose Your contact',
           isCitySelected: true,
           cities: _contactList,
