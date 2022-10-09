@@ -88,10 +88,31 @@ class CustomDrawer extends StatelessWidget {
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
-                  onPressed: () {
-                    statusProvider.getInfoStatus(loginProvider.loggedUser!.jwt);
-                    Navigator.of(context)
-                        .pushNamed('/check_reservation_status');
+                  onPressed: () async {
+                    loadingSpinner(context);
+                    bool respuesta = await statusProvider
+                        .getInfoStatus(loginProvider.loggedUser!.jwt);
+
+                    if (respuesta == true) {
+                      Navigator.of(context).pop();
+                      Navigator.of(context)
+                          .pushNamed('/check_reservation_status');
+                    } else {
+                      Navigator.of(context).pop();
+                      var snackBar = SnackBar(
+                        elevation: 0,
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        content: AwesomeSnackbarContent(
+                          title: 'Error!',
+                          message: "Error al obtener datos",
+                          contentType: ContentType.failure,
+                        ),
+                      );
+
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   },
                   icono: Icons.airplane_ticket_outlined,
                   texto: "Reservations",

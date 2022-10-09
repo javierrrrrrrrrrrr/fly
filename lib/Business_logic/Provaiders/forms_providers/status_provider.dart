@@ -12,7 +12,34 @@ class StatusProvider extends ChangeNotifier {
   List<PayFlyModel> payPendingResponseList = [];
   List<PayFlyModel> payCancelResponseList = [];
 
-  getInfoStatus(String token) async {
+  int index = 1;
+  bool aceptedValue = true;
+  bool rejectedValue = false;
+  bool pendingValue = false;
+
+  //metodo para cambiar el cmapo selecionado
+  changeColorSelectedfild() {
+    if (index == 1) {
+      aceptedValue = true;
+      pendingValue = false;
+      rejectedValue = false;
+      notifyListeners();
+    }
+    if (index == 2) {
+      aceptedValue = false;
+      pendingValue = true;
+      rejectedValue = false;
+      notifyListeners();
+    }
+    if (index == 3) {
+      aceptedValue = false;
+      pendingValue = false;
+      rejectedValue = true;
+      notifyListeners();
+    }
+  }
+
+  Future<bool> getInfoStatus(String token) async {
     var headers = {'Authorization': token};
     var request = http.Request('GET', Uri.parse('$kip/payments/getinvoices'));
     request.headers.addAll(headers);
@@ -30,8 +57,10 @@ class StatusProvider extends ChangeNotifier {
       //  print(payPendingResponseList.length);
 
       notifyListeners();
+      return true;
     } else {
       print(response.reasonPhrase);
+      return false;
     }
   }
 
