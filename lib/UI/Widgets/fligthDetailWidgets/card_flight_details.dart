@@ -109,7 +109,7 @@ class _CheckPayCardBody extends StatelessWidget {
                 ? Row(
                     children: [
                       const Text(
-                        "Check in",
+                        "Check in ",
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),

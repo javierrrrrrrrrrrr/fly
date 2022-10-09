@@ -226,38 +226,58 @@ class _ContactList extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          paymentProvider.payResponse!.bookingsContacts[index]
-                              .contact.firstName,
-                          style: const TextStyle(fontSize: 16),
+                        SizedBox(
+                          height: size.height * 0.03,
+                          width: size.width * 0.2,
+                          // color: Colors.red,
+                          child: Text(
+                            paymentProvider.payResponse!.bookingsContacts[index]
+                                .contact.firstName,
+                            style: const TextStyle(fontSize: 16),
+                          ),
                         ),
-                        Row(
-                          children: [
-                            const Icon(Icons.emoji_people_sharp),
-                            Text(
+                        SizedBox(
+                          height: size.height * 0.03,
+                          width: size.width * 0.2,
+                          //color: Colors.red,
+                          child: Row(
+                            children: [
+                              const Icon(Icons.emoji_people_sharp),
+                              Text(
+                                paymentProvider
+                                    .payResponse!
+                                    .bookingsContacts[index]
+                                    .contact
+                                    .passengerType,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          // color: Colors.red,
+                          height: size.height * 0.03,
+                          width: size.width * 0.2,
+                          child: Center(
+                            child: Text(
                               paymentProvider
-                                  .payResponse!
-                                  .bookingsContacts[index]
-                                  .contact
-                                  .passengerType,
-                              style: const TextStyle(fontSize: 16),
+                                              .payResponse!
+                                              .bookingsContacts[index]
+                                              .contact
+                                              .passengerType ==
+                                          "Adult" ||
+                                      paymentProvider
+                                              .payResponse!
+                                              .bookingsContacts[index]
+                                              .contact
+                                              .passengerType ==
+                                          "child"
+                                  ? "\$ ${paymentProvider.payResponse!.flightInRelation.adultPrice}"
+                                  : "\$ ${paymentProvider.payResponse!.flightInRelation.boysPrice}",
+                              style: const TextStyle(
+                                  fontSize: 20, color: Colors.green),
                             ),
-                          ],
-                        ),
-                        Text(
-                          paymentProvider.payResponse!.bookingsContacts[index]
-                                          .contact.passengerType ==
-                                      "Adult" ||
-                                  paymentProvider
-                                          .payResponse!
-                                          .bookingsContacts[index]
-                                          .contact
-                                          .passengerType ==
-                                      "child"
-                              ? "\$ ${paymentProvider.payResponse!.flightInRelation.adultPrice}"
-                              : "\$ ${paymentProvider.payResponse!.flightInRelation.boysPrice}",
-                          style: const TextStyle(
-                              fontSize: 20, color: Colors.green),
+                          ),
                         ),
                       ],
                     ),
