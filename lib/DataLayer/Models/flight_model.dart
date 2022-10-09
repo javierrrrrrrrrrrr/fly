@@ -42,7 +42,7 @@ class Flight extends Equatable {
   final int adultPrice;
   final int childPrice;
   final int boysPrice;
-  final DateTime createdAt;
+  final String createdAt;
   final bool isDeleted;
 
   factory Flight.fromJson(String str) => Flight.fromMap(json.decode(str));
@@ -67,7 +67,7 @@ class Flight extends Equatable {
         adultPrice: json["adultPrice"],
         childPrice: json["childPrice"],
         boysPrice: json["boysPrice"],
-        createdAt: DateTime.parse(json["createdAt"]),
+        createdAt: json["createdAt"],
         isDeleted: json["isDeleted"],
       );
 
@@ -89,7 +89,7 @@ class Flight extends Equatable {
         "adultPrice": adultPrice,
         "childPrice": childPrice,
         "boysPrice": boysPrice,
-        "createdAt": createdAt.toIso8601String(),
+        "createdAt": createdAt,
         "isDeleted": isDeleted,
       };
 

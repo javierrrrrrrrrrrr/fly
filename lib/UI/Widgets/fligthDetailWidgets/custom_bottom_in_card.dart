@@ -30,6 +30,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
     final flightProvider = Provider.of<FlightProvider>(context);
     final payProvider = Provider.of<PaymentsProvider>(context);
     final loginProvider = Provider.of<LoginProvider>(context);
+
     final size = MediaQuery.of(context).size;
     return FlipCard(
       direction: FlipDirection.VERTICAL,

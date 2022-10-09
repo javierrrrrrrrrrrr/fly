@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/card_flight_details.dart';
@@ -16,12 +14,12 @@ class CheckPay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flightProvider = context.read<FlightProvider>();
+    final paymentProvider = context.read<PaymentsProvider>();
 
     return SafeArea(
       child: _CheckPayBody(
-        departureFlight: flightProvider.selectedDepartureFlight,
-        returnFlight: flightProvider.selectedReturnFlight,
+        departureFlight: paymentProvider.convertflightInRelationtoFlight(),
+        returnFlight: paymentProvider.convertflightOutRelationtoFlight(),
       ),
     );
   }
@@ -34,8 +32,8 @@ class _CheckPayBody extends StatelessWidget {
     required this.returnFlight,
   }) : super(key: key);
 
-  final Flight? departureFlight;
-  final Flight? returnFlight;
+  final Flight departureFlight;
+  final Flight returnFlight;
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +51,16 @@ class _CheckPayBody extends StatelessWidget {
               CardFlightDetails(
                 customtext: "Flight",
                 isCheckedPage: true,
-                flight: departureFlight!,
+                flight: departureFlight,
               ),
               SizedBox(height: size.height * 0.015),
               CardFlightDetails(
                 customtext: 'Return Fligth',
                 isCheckedPage: true,
-                flight: returnFlight!,
+                flight: returnFlight,
               ),
               SizedBox(height: size.height * 0.015),
-              _ContactList(size: size),
+              const _ContactList(),
               SizedBox(height: size.height * 0.015),
               const PriceCard(),
               SizedBox(height: size.height * 0.015),
@@ -96,6 +94,7 @@ class PriceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final paymentProvider = context.read<PaymentsProvider>();
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.18,
@@ -128,9 +127,9 @@ class PriceCard extends StatelessWidget {
                     "Sub Total",
                     style: TextStyle(fontSize: 20, color: kprimarycolor),
                   ),
-                  const Text(
-                    "\$ 1,000",
-                    style: TextStyle(fontSize: 20, color: Colors.green),
+                  Text(
+                    '\$ ${paymentProvider.payResponse!.subtotal.toString()}',
+                    style: const TextStyle(fontSize: 20, color: Colors.green),
                   ),
                 ],
               ),
@@ -147,9 +146,9 @@ class PriceCard extends StatelessWidget {
                     "Taxes",
                     style: TextStyle(fontSize: 20, color: kprimarycolor),
                   ),
-                  const Text(
-                    "\$ 1,000",
-                    style: TextStyle(fontSize: 20, color: Colors.green),
+                  Text(
+                    '\$ ${paymentProvider.payResponse!.fees.toString()}',
+                    style: const TextStyle(fontSize: 20, color: Colors.green),
                   ),
                 ],
               ),
@@ -166,9 +165,9 @@ class PriceCard extends StatelessWidget {
                     "Total",
                     style: TextStyle(fontSize: 20, color: kprimarycolor),
                   ),
-                  const Text(
-                    "\$ 2,000",
-                    style: TextStyle(fontSize: 20, color: Colors.green),
+                  Text(
+                    '\$ ${paymentProvider.payResponse!.total.toString()}',
+                    style: const TextStyle(fontSize: 20, color: Colors.green),
                   ),
                 ],
               ),
@@ -183,14 +182,12 @@ class PriceCard extends StatelessWidget {
 class _ContactList extends StatelessWidget {
   const _ContactList({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    final contactProvider = Provider.of<ContactProvider>(context);
+    final size = MediaQuery.of(context).size;
+    final paymentProvider = context.read<PaymentsProvider>();
     return Container(
       height: size.height * 0.21,
       decoration: BoxDecoration(
@@ -222,29 +219,45 @@ class _ContactList extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 3,
+                itemCount: paymentProvider.payResponse!.bookingsContacts.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Maria Fernanda",
-                          style: TextStyle(fontSize: 16),
+                        Text(
+                          paymentProvider.payResponse!.bookingsContacts[index]
+                              .contact.firstName,
+                          style: const TextStyle(fontSize: 16),
                         ),
                         Row(
-                          children: const [
-                            Icon(Icons.perm_data_setting_rounded),
+                          children: [
+                            const Icon(Icons.emoji_people_sharp),
                             Text(
-                              "Adult",
-                              style: TextStyle(fontSize: 16),
+                              paymentProvider
+                                  .payResponse!
+                                  .bookingsContacts[index]
+                                  .contact
+                                  .passengerType,
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ],
                         ),
-                        const Text(
-                          '\$ 400',
-                          style: TextStyle(fontSize: 20, color: Colors.green),
+                        Text(
+                          paymentProvider.payResponse!.bookingsContacts[index]
+                                          .contact.passengerType ==
+                                      "Adult" ||
+                                  paymentProvider
+                                          .payResponse!
+                                          .bookingsContacts[index]
+                                          .contact
+                                          .passengerType ==
+                                      "child"
+                              ? "\$ ${paymentProvider.payResponse!.flightInRelation.adultPrice}"
+                              : "\$ ${paymentProvider.payResponse!.flightInRelation.boysPrice}",
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.green),
                         ),
                       ],
                     ),
