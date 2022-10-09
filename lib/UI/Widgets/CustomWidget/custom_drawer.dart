@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/forms_providers/status_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
 import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
@@ -19,6 +20,7 @@ class CustomDrawer extends StatelessWidget {
 
     final loginProvider = Provider.of<LoginProvider>(context);
     final userProvider = Provider.of<ContactProvider>(context);
+    final statusProvider = Provider.of<StatusProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -86,13 +88,18 @@ class CustomDrawer extends StatelessWidget {
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
-                  onPressed: () => Navigator.of(context).pushNamed('/search'),
+                  onPressed: () {
+                    statusProvider.getInfoStatus(loginProvider.loggedUser!.jwt);
+                    Navigator.of(context)
+                        .pushNamed('/check_reservation_status');
+                  },
                   icono: Icons.airplane_ticket_outlined,
                   texto: "Reservations",
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
                   onPressed: () {
+                    Navigator.of(context).pushNamed('/search');
                     // Navigator.of(context).pushNamed('/login');
                   },
                   icono: Icons.connecting_airports_outlined,

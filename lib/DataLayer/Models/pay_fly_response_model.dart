@@ -196,7 +196,7 @@ class Contact {
     required this.arrivalDocNoSec,
     required this.expDateSec,
     required this.usersId,
-    required this.value,
+    this.value,
   });
 
   int id;
@@ -232,7 +232,7 @@ class Contact {
   String arrivalDocNoSec;
   String expDateSec;
   int usersId;
-  int value;
+  int? value;
 
   Contact copyWith({
     int? id,

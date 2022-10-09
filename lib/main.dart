@@ -17,9 +17,11 @@ import 'package:provider/provider.dart';
 import 'Business_logic/Provaiders/flight_provider.dart';
 import 'Business_logic/Provaiders/flip_provider.dart';
 import 'Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
+import 'Business_logic/Provaiders/forms_providers/status_provider.dart';
 import 'Business_logic/Provaiders/news_provider.dart';
 
 import 'UI/Pages/check_pay.dart';
+import 'UI/Pages/check_reservation_status.dart';
 import 'UI/Pages/contact/contacts_page.dart';
 import 'UI/Pages/home_page.dart';
 import 'UI/Pages/login/login_page.dart';
@@ -63,6 +65,10 @@ void main() {
         create: (_) => PaymentsProvider(),
         lazy: true,
       ),
+      ChangeNotifierProvider(
+        create: (_) => StatusProvider(),
+        lazy: true,
+      ),
     ],
     child: const MyApp(),
   ));
@@ -97,6 +103,8 @@ class MyApp extends StatelessWidget {
           '/loginRegister': (context) => const LoginRegisterPage(),
           '/l': (context) => const DropDownListExample(),
           '/check_pay': (context) => const CheckPay(),
+          '/check_reservation_status': (context) =>
+              const CheckReservationStatus(),
         },
       ),
     );
