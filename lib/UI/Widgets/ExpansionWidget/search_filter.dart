@@ -30,15 +30,8 @@ class _SearchFiltersState extends State<SearchFilters> {
         height: size.height * 0.75,
         decoration: BoxDecoration(
           //  color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              offset: Offset(0, 0),
-              blurRadius: 5,
-              //color: Colors.black,
-            ),
-          ],
 
-          color: Colors.blue.shade100,
+          color: Colors.grey[200],
           borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
         ),
         padding: EdgeInsets.only(

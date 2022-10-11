@@ -31,34 +31,33 @@ class _SearchResultState extends State<SearchResult> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: size.height * 0.08,
-              ),
-              CustomFilterDropDown(
-                  onRestoreState: () {
-                    return false;
-                  },
-                  expandido: isExpandedDropdown!,
-                  onPreesedFuntionButton: () {
-                    setState(() {
-                      onPressedButton(context);
-                    });
-                  }),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              Text(
-                '${flightProvaider.departureflights.length} Results',
-                style: TextStyle(fontSize: 20, color: kprimarycolor),
-              ),
-              SizedBox(
-                height: size.height * 0.79,
-                width: size.width,
-                // color: Colors.blue,
-                child: Expanded(
+          child: SizedBox(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: size.height * 0.08,
+                ),
+                CustomFilterDropDown(
+                    onRestoreState: () {
+                      return false;
+                    },
+                    expandido: isExpandedDropdown!,
+                    onPreesedFuntionButton: () {
+                      setState(() {
+                        onPressedButton(context);
+                      });
+                    }),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Text(
+                  '${flightProvaider.departureflights.length} Results',
+                  style: TextStyle(fontSize: 20, color: kprimarycolor),
+                ),
+                Expanded(
                   child: RefreshIndicator(
                     onRefresh: () => Future.delayed(const Duration(seconds: 1)),
                     child: ListView.builder(
@@ -78,9 +77,9 @@ class _SearchResultState extends State<SearchResult> {
                       },
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

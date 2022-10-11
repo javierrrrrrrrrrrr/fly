@@ -288,9 +288,9 @@ class _ContactList extends StatelessWidget {
                                               .bookingsContacts[index]
                                               .contact
                                               .passengerType ==
-                                          "child"
-                                  ? "\$ ${paymentProvider.payResponse!.flightInRelation.adultPrice}"
-                                  : "\$ ${paymentProvider.payResponse!.flightInRelation.boysPrice}",
+                                          "Child"
+                                  ? "\$ ${paymentProvider.payResponse!.flightOutRelation.adultPrice}"
+                                  : "\$ ${paymentProvider.payResponse!.flightOutRelation.boysPrice}",
                               style: const TextStyle(
                                   fontSize: 20, color: Colors.green),
                             ),
