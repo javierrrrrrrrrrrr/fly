@@ -18,6 +18,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
+    final flightProvaider = Provider.of<FlightProvider>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
         drawer: const CustomDrawer(),
@@ -36,9 +37,11 @@ class _SearchPageState extends State<SearchPage> {
                     padding: EdgeInsets.only(top: size.height * 0.01),
                     child: SingleChildScrollView(
                         child: CustomFilterDropDown(
-                      expandido: true,
-                      onPreesedFuntionButton: () => onPressedButton(context),
-                    )),
+                            expandido: true,
+                            onPreesedFuntionButton: () {
+                              flightProvaider.changevalue(false);
+                              onPressedButton(context);
+                            })),
                   ),
                 ),
               )),
@@ -48,6 +51,7 @@ class _SearchPageState extends State<SearchPage> {
   void onPressedButton(BuildContext context) async {
     bool respuesta;
     final flightProvaider = Provider.of<FlightProvider>(context, listen: false);
+
     loadingSpinner(context);
     /**Logica de las busqueda */
 

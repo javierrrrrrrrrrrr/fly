@@ -8,6 +8,12 @@ import 'package:http/http.dart' as http;
 import '../../DataLayer/Models/flight_model.dart';
 
 class FlightProvider extends ChangeNotifier {
+  bool isExpanded = false;
+
+  changevalue(bool value) {
+    isExpanded = value;
+    notifyListeners();
+  }
 //vuelo seleccionado  llegada y metodos get y set//
 
   // int get indexselectedFlightReturn => _indexselectedFlightReturn;

@@ -18,7 +18,6 @@ class _SearchResultState extends State<SearchResult> {
   bool? isExpandedDropdown;
   @override
   void initState() {
-    isExpandedDropdown = false;
     super.initState();
   }
 
@@ -42,13 +41,15 @@ class _SearchResultState extends State<SearchResult> {
                 ),
                 CustomFilterDropDown(
                     onRestoreState: () {
-                      return false;
+                      return flightProvaider.isExpanded;
                     },
-                    expandido: isExpandedDropdown!,
+                    //esto no importa
+                    expandido: false,
                     onPreesedFuntionButton: () {
-                      setState(() {
-                        onPressedButton(context);
-                      });
+                      flightProvaider.changevalue(false);
+
+                      setState(() {});
+                      onPressedButton(context);
                     }),
                 SizedBox(
                   height: size.height * 0.02,
@@ -100,9 +101,9 @@ class _SearchResultState extends State<SearchResult> {
 
     if (respuesta == true) {
       flightProvaider.cleanValues();
-
+      //flightProvaider.changevalue(false);
       flightProvaider.cleanIsselectedDays();
-      flightProvaider.isepandedDropDown = false;
+      //  flightProvaider.isepandedDropDown = false;
 
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
