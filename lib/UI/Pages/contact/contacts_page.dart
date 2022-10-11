@@ -25,9 +25,33 @@ class ContactsPage extends StatelessWidget {
             SizedBox(
               height: size.height * 0.005,
             ),
-            _ContactsList(
-              contacts: contactprovider.foundedContacts,
-            )
+            contactprovider.foundedContacts.isEmpty
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: size.height * 0.28),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed('/create_contat_page');
+                      },
+                      child: Column(
+                        children: [
+                          Icon(
+                            //addd contacto
+                            Icons.group_add_outlined,
+                            size: 100,
+                            color: kprimarycolor,
+                          ),
+                          Center(
+                              child: Text("Add Contacts",
+                                  style: TextStyle(
+                                      color: kprimarycolor, fontSize: 25))),
+                        ],
+                      ),
+                    ),
+                  )
+                : _ContactsList(
+                    contacts: contactprovider.foundedContacts,
+                  )
           ],
         ),
       ),
