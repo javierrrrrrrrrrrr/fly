@@ -25,39 +25,41 @@ class _SearchFiltersState extends State<SearchFilters> {
     final flightProvaider = Provider.of<FlightProvider>(context);
     final bookFlightProvider = Provider.of<BookFlightProvider>(context);
     final size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * 0.75,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(1),
-            spreadRadius: 1,
-            blurRadius: 1,
-            offset: const Offset(0, 0),
-          )
-        ],
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
-      ),
-      padding: EdgeInsets.only(
-          left: size.width * 0.060,
-          right: size.width * 0.040,
-          top: size.width * 0.03),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          children: [
-            const TextSearch(texto: 'Flight Number'),
-            SizedBox(
-              width: size.width * 0.12,
+    return SingleChildScrollView(
+      child: Container(
+        height: size.height * 0.75,
+        decoration: BoxDecoration(
+          //  color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(0, 0),
+              blurRadius: 5,
+              //color: Colors.black,
             ),
           ],
+
+          color: Colors.blue.shade100,
+          borderRadius: BorderRadius.all(Radius.circular(size.height * 0.01)),
         ),
-        //Segunda Row
-        Padding(
-          padding: EdgeInsets.only(top: size.height * 0.01),
-          child: Row(
+        padding: EdgeInsets.only(
+            left: size.width * 0.060,
+            right: size.width * 0.040,
+            top: size.width * 0.03),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
             children: [
+              const TextSearch(texto: 'Flight Number'),
               SizedBox(
+                width: size.width * 0.12,
+              ),
+            ],
+          ),
+          //Segunda Row
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.01),
+            child: Row(
+              children: [
+                SizedBox(
                   width: size.width * 0.76,
                   child: CustomDropDown(
                     hintext: 'Flight Number',
@@ -66,203 +68,205 @@ class _SearchFiltersState extends State<SearchFilters> {
                         flightProvaider.flightNumber = value.toString(),
                     onSaved: (value) =>
                         flightProvaider.flightNumber = value.toString(),
-                  )),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        const TextSearch(texto: 'Charter'),
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        SizedBox(
-          width: size.width * 0.76,
-
-          //TODO: Hacer el DropDownMeny de aqui.
-          child: CustomDropDown(
-            hintext: "All",
-            items: bookFlightProvider.charter,
-            onChanged: (value) {
-              flightProvaider.selectedCharter = value.toString();
-            },
-            onSaved: (value) {
-              flightProvaider.selectedCharter = value.toString();
-            },
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        const ColumnaStatus2(),
-        //separador
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        const TextSearch(texto: 'Date from:/To:'),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: size.height * 0.01),
-              child: SizedBox(
-                width: size.width * 0.318,
-                child: Imputfield(
-                  onTap: () async {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    DateTime? piked = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime(2027));
-
-                    if (piked != null) {
-                      flightProvaider.dateFrom =
-                          "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
-                    }
-                  },
-
-                  hintext: flightProvaider.dateFrom == ''
-                      ? "From"
-                      : flightProvaider.dateFrom,
-                  //Aqui va el action del calendar
-                  prefixIcon: flightProvaider.dateFrom == ''
-                      ? Icon(
-                          Icons.calendar_month,
-                          color: kprimarycolor,
-                        )
-                      : null,
+                  ),
                 ),
-              ),
-            ),
-            //separador
-            SizedBox(
-              width: size.width * 0.12,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: size.height * 0.01),
-              child: SizedBox(
-                width: size.width * 0.318,
-                child: Imputfield(
-                  onTap: () async {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    DateTime? piked = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2022),
-                        lastDate: DateTime(2027));
-
-                    if (piked != null) {
-                      flightProvaider.dateTo =
-                          "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
-                    }
-                  },
-                  hintext: flightProvaider.dateTo == ''
-                      ? "To"
-                      : flightProvaider.dateTo,
-                  prefixIcon: flightProvaider.dateTo == ''
-                      ? Icon(
-                          Icons.calendar_month,
-                          color: kprimarycolor,
-                        )
-                      : null,
-                ),
-              ),
-            ),
-          ],
-        ),
-        //separador height
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        const TextSearch(texto: 'Route'),
-        //ROw
-        Padding(
-          padding: EdgeInsets.only(top: size.height * 0.01),
-          child: Row(
-            children: [
-              SizedBox(
-                width: size.width * 0.318,
-                child: CustomDropDown(
-                  hintext: 'From',
-                  items: bookFlightProvider.origen,
-                  onChanged: (value) =>
-                      flightProvaider.selectedRouteFrom = value.toString(),
-                  onSaved: (value) =>
-                      flightProvaider.selectedRouteFrom = value.toString(),
-                ),
-              ),
-              //separador width
-              SizedBox(
-                width: size.width * 0.11,
-              ),
-              SizedBox(
-                width: size.width * 0.318,
-                child: CustomDropDown(
-                  hintext: 'To',
-                  items: bookFlightProvider.destination,
-                  onChanged: (value) =>
-                      flightProvaider.selectedRouteTo = value.toString(),
-                  onSaved: (value) =>
-                      flightProvaider.selectedRouteTo = value.toString(),
-                ),
-              ),
-            ],
-          ),
-        ),
-        //separador height
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        const TextSearch(texto: 'Weekdays'),
-
-        SizedBox(
-          height: size.height * 0.01,
-        ),
-        const WeekDays(),
-        // SizedBox(
-        //   height: size.height * 0.035,
-        // ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //const ColumnaStatus2(),
-            SizedBox(
-              width: size.width * 0.08,
-            ),
-            // const ColumnStatus1(),
-          ],
-        ),
-        SizedBox(
-          height: size.height * 0.02,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: size.width * 0.18),
-          child: MaterialButton(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            onPressed: widget.onPreesedFuntionButton,
-            height: size.height * 0.063,
-            minWidth: size.width * 0.01,
-            color: const Color.fromRGBO(1, 63, 148, 1),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                  size: 28,
-                ),
-                SizedBox(
-                  width: size.width * 0.02,
-                ),
-                const Text("Search",
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
               ],
             ),
           ),
-        )
-      ]),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          const TextSearch(texto: 'Charter'),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          SizedBox(
+            width: size.width * 0.76,
+
+            //TODO: Hacer el DropDownMeny de aqui.
+            child: CustomDropDown(
+              hintext: "All",
+              items: bookFlightProvider.charter,
+              onChanged: (value) {
+                flightProvaider.selectedCharter = value.toString();
+              },
+              onSaved: (value) {
+                flightProvaider.selectedCharter = value.toString();
+              },
+            ),
+          ),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          const ColumnaStatus2(),
+          //separador
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          const TextSearch(texto: 'Date from:/To:'),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.01),
+                child: SizedBox(
+                  width: size.width * 0.318,
+                  child: Imputfield(
+                    onTap: () async {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      DateTime? piked = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2027));
+
+                      if (piked != null) {
+                        flightProvaider.dateFrom =
+                            "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+                      }
+                    },
+
+                    hintext: flightProvaider.dateFrom == ''
+                        ? "From"
+                        : flightProvaider.dateFrom,
+                    //Aqui va el action del calendar
+                    prefixIcon: flightProvaider.dateFrom == ''
+                        ? Icon(
+                            Icons.calendar_month,
+                            color: kprimarycolor,
+                          )
+                        : null,
+                  ),
+                ),
+              ),
+              //separador
+              SizedBox(
+                width: size.width * 0.12,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.01),
+                child: SizedBox(
+                  width: size.width * 0.318,
+                  child: Imputfield(
+                    onTap: () async {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      DateTime? piked = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2022),
+                          lastDate: DateTime(2027));
+
+                      if (piked != null) {
+                        flightProvaider.dateTo =
+                            "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}";
+                      }
+                    },
+                    hintext: flightProvaider.dateTo == ''
+                        ? "To"
+                        : flightProvaider.dateTo,
+                    prefixIcon: flightProvaider.dateTo == ''
+                        ? Icon(
+                            Icons.calendar_month,
+                            color: kprimarycolor,
+                          )
+                        : null,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          //separador height
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          const TextSearch(texto: 'Route'),
+          //ROw
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.01),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: size.width * 0.318,
+                  child: CustomDropDown(
+                    hintext: 'From',
+                    items: bookFlightProvider.origen,
+                    onChanged: (value) =>
+                        flightProvaider.selectedRouteFrom = value.toString(),
+                    onSaved: (value) =>
+                        flightProvaider.selectedRouteFrom = value.toString(),
+                  ),
+                ),
+                //separador width
+                SizedBox(
+                  width: size.width * 0.11,
+                ),
+                SizedBox(
+                  width: size.width * 0.318,
+                  child: CustomDropDown(
+                    hintext: 'To',
+                    items: bookFlightProvider.destination,
+                    onChanged: (value) =>
+                        flightProvaider.selectedRouteTo = value.toString(),
+                    onSaved: (value) =>
+                        flightProvaider.selectedRouteTo = value.toString(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //separador height
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          const TextSearch(texto: 'Weekdays'),
+
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          const WeekDays(),
+          // SizedBox(
+          //   height: size.height * 0.035,
+          // ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //const ColumnaStatus2(),
+              SizedBox(
+                width: size.width * 0.08,
+              ),
+              // const ColumnStatus1(),
+            ],
+          ),
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.18),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              onPressed: widget.onPreesedFuntionButton,
+              height: size.height * 0.063,
+              minWidth: size.width * 0.01,
+              color: const Color.fromRGBO(1, 63, 148, 1),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 28,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.02,
+                  ),
+                  const Text("Search",
+                      style: TextStyle(color: Colors.white, fontSize: 18)),
+                ],
+              ),
+            ),
+          )
+        ]),
+      ),
     );
   }
 }
