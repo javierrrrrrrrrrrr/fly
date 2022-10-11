@@ -128,8 +128,18 @@ class CustomDrawer extends StatelessWidget {
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/home');
+                  onPressed: () async {
+                    if (loginProvider.loggedUser?.jwt != null) {
+                      Navigator.of(context).pushNamed('/home');
+                    } else {
+                      loadingSpinner(context);
+                      //comprobar si el token es valido si da error
+                      bool respuesta = await loginProvider.loginMobileUser();
+                      if (respuesta == true) {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamed('/home');
+                      }
+                    }
                     // Navigator.of(context).pushNamed('/login');
                   },
                   icono: Icons.connecting_airports_outlined,

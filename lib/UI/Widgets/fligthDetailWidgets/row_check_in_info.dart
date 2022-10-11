@@ -17,17 +17,19 @@ class RowCheckInInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int primervalorfrom = int.parse(selected.checkIn.split(":")[0]);
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: padding,
       child: Row(
         children: [
-          const Text("Check in ",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text(selected.checkIn.trim().substring(0, 4),
-              style: const TextStyle(
-                fontSize: 20,
-              )),
+          primervalorfrom >= 10
+              ? Text(
+                  "Check in ${selected.checkIn.trim().substring(0, 5)}",
+                  style: const TextStyle(fontSize: 20),
+                )
+              : Text("Check in ${selected.checkIn.trim().substring(0, 4)}",
+                  style: const TextStyle(fontSize: 20)),
           Text(
               " ${selected.departure.trim().substring(selected.departure.length - 2, selected.departure.length)}",
               style: const TextStyle(fontSize: 20)),
