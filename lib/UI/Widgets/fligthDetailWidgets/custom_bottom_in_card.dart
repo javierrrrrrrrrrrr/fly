@@ -49,17 +49,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
                 ? print("gg")
                 //TODO: Sacar Notificacion
 
-                : loadingSpinner(context);
-            bool respuesta = await flightProvider.verifyReturnFlights(
-                dateReturn: flightProvider.userReturnDay,
-                from: widget.departureFlight.from,
-                to: widget.departureFlight.to);
-
-            if (respuesta == true) {
-              Navigator.pop(context);
-              flipProvider.controllerBigCard.toggleCard();
-              flipProvider.controllerbuttomCard.toggleCard();
-            }
+                : accion(context);
           },
           child: const Text(
             "Return Flight",
@@ -99,5 +89,25 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
             style: TextStyle(color: Colors.white, fontSize: 26),
           )),
     );
+  }
+
+  accion(BuildContext context) async {
+    final flipProvider = Provider.of<FlipProvider>(context, listen: false);
+    final flightProvider = Provider.of<FlightProvider>(context, listen: false);
+
+    loadingSpinner(context);
+    bool respuesta = await flightProvider.verifyReturnFlights(
+        dateReturn: flightProvider.userReturnDay,
+        from: widget.departureFlight.from,
+        to: widget.departureFlight.to);
+
+    if (respuesta == true) {
+      Navigator.pop(context);
+      flipProvider.controllerBigCard.toggleCard();
+      flipProvider.controllerbuttomCard.toggleCard();
+    } else {
+      Navigator.pop(context);
+      print("errrrrrrrorrrr");
+    }
   }
 }
