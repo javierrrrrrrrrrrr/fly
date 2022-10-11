@@ -46,28 +46,36 @@ class _SearchResultState extends State<SearchResult> {
                     onPressedButton(context);
                   });
                 }),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
             Text(
               '${flightProvaider.departureflights.length} Results',
               style: TextStyle(fontSize: 20, color: kprimarycolor),
             ),
-            Expanded(
-              child: RefreshIndicator(
-                onRefresh: () => Future.delayed(const Duration(seconds: 1)),
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: flightProvaider.departureflights.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: EdgeInsets.only(
-                          bottom: size.height * 0.03,
-                          left: size.height * 0.003,
-                          right: size.height * 0.003,
-                        ),
-                        child: CardFlightDetails(
-                          flight: flightProvaider.departureflights[index],
-                        ));
-                  },
+            SizedBox(
+              height: size.height * 0.79,
+              width: size.width,
+              // color: Colors.blue,
+              child: Expanded(
+                child: RefreshIndicator(
+                  onRefresh: () => Future.delayed(const Duration(seconds: 1)),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: flightProvaider.departureflights.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                          padding: EdgeInsets.only(
+                            bottom: size.height * 0.03,
+                            left: size.height * 0.003,
+                            right: size.height * 0.003,
+                          ),
+                          child: CardFlightDetails(
+                            flight: flightProvaider.departureflights[index],
+                          ));
+                    },
+                  ),
                 ),
               ),
             )

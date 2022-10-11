@@ -5,6 +5,7 @@ import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/card_flight_details.d
 import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/horizontal_discontinuos_line.dart';
 import 'package:provider/provider.dart';
 
+import '../../Business_logic/Provaiders/login_provider.dart';
 import '../../DataLayer/Models/flight_model.dart';
 
 class CheckPay extends StatelessWidget {
@@ -18,7 +19,8 @@ class CheckPay extends StatelessWidget {
 
     return SafeArea(
       child: _CheckPayBody(
-        departureFlight: paymentProvider.convertflightInRelationtoFlight(),
+        departureFlight: paymentProvider
+            .convertflightInRelationtoFlight(paymentProvider.payResponse!),
         returnFlight: paymentProvider.convertflightOutRelationtoFlight(),
       ),
     );
@@ -63,16 +65,31 @@ class _CheckPayBody extends StatelessWidget {
               const _ContactList(),
               SizedBox(height: size.height * 0.015),
               const PriceCard(),
-              SizedBox(height: size.height * 0.015),
+              SizedBox(height: size.height * 0.03),
               Center(
                 child: MaterialButton(
                     height: size.height * 0.06,
                     minWidth: size.width * 0.6,
                     color: kprimarycolor,
-                    onPressed: () {
+                    onPressed: () async {
                       final payProvider =
                           Provider.of<PaymentsProvider>(context, listen: false);
+                      final loginProvider =
+                          Provider.of<LoginProvider>(context, listen: false);
+
+                      final token = loginProvider.loggedUser!.jwt;
+                      payProvider.token = token;
                       payProvider.pay();
+
+                      //loadingSpinner(context);
+
+                      //   Navigator.pop(context);
+                      //    Navigator.of(context).pushReplacementNamed('/home');
+                      //   } else {
+                      //    Navigator.pop(context);
+                      //   }
+
+                      // Navigator.of(context).pushReplacementNamed('/home');
                     },
                     child: const Text(
                       "Pay Now",
@@ -305,7 +322,7 @@ class _BackButton extends StatelessWidget {
       },
       child: Icon(
         Icons.arrow_back_ios_new,
-        size: 30,
+        size: 28,
         color: kprimarycolor,
       ),
     );

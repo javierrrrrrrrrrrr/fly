@@ -10,9 +10,11 @@ class FlightDetailsFooter extends StatelessWidget {
   const FlightDetailsFooter({
     Key? key,
     required this.flight,
+    this.isstatuscard,
   }) : super(key: key);
 
   final Flight flight;
+  final bool? isstatuscard;
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +50,16 @@ class FlightDetailsFooter extends StatelessWidget {
                 child: Text("More Details",
                     style: TextStyle(fontSize: 14, color: Colors.white))),
             onPressed: () {
+              if (isstatuscard == true) {
+                Navigator.of(context).pushNamed('/check_pay');
+              } else {
+                flightProvaider.selectedDepartureFlight = flight;
+                ////////////////////////////////////////////////////////
+                Navigator.of(context).pushNamed(
+                  "/MoreDetailsFly",
+                );
+              }
               //Esto es para actualizar el flight selecionado...
-              flightProvaider.selectedDepartureFlight = flight;
-              ////////////////////////////////////////////////////////
-              Navigator.of(context).pushNamed(
-                "/MoreDetailsFly",
-              );
             }),
       ],
     );

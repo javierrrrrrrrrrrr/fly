@@ -79,15 +79,15 @@ class ContactProvider extends ChangeNotifier {
           // foundedContacts.removeAt(i);
         }
       }
-
       notifyListeners();
+      return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);
       error = decodedResp["clientErrorMessage"];
       print(decodedResp["clientErrorMessage"]);
+      //mostrar al usruio cartel de no se pudo borrar el contacto
+      return false;
     }
-
-    return true;
   }
 
   Future<Contact?> createContact(
@@ -98,7 +98,7 @@ class ContactProvider extends ChangeNotifier {
     var url = Uri.parse('$kip/contacts');
     final response = await http.post(url,
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
-        body: contactToMap(contact));
+        body: json.encode(contact.toMap()));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedResp = json.decode(response.body);

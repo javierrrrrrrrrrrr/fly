@@ -33,11 +33,10 @@ class CustomFilterDropDown extends StatelessWidget {
                   bottom: 10,
                 ),
                 child: Material(
-                  borderRadius: BorderRadius.all(
-                            Radius.circular(size.height * 0.01)),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(size.height * 0.01)),
                   elevation: 3,
                   child: Container(
-                    
                     height: size.height * 0.06,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -52,7 +51,8 @@ class CustomFilterDropDown extends StatelessWidget {
                           Expanded(
                               child: Text(
                             'Book Flight',
-                            style: TextStyle(fontSize: 22, color: kprimarycolor),
+                            style:
+                                TextStyle(fontSize: 22, color: kprimarycolor),
                           )),
                           Transform.rotate(
                             angle: math.pi * animationValue / 2,

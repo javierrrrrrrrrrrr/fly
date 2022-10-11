@@ -92,7 +92,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
             // print("$returnId");
             // print("$id");
 
-            Navigator.of(context).pushNamed('/check_pay');
+            Navigator.of(context).pushReplacementNamed('/check_pay');
           },
           child: const Text(
             "Continue",

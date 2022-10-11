@@ -11,6 +11,8 @@ import '../../DataLayer/Models/pay_fly_response_model.dart';
 
 class PaymentsProvider extends ChangeNotifier {
   PayFlyModel? payResponse;
+  String nonce = '';
+  String token = '';
 
   void pay() {
     InAppPayments.setSquareApplicationId(
@@ -20,7 +22,11 @@ class PaymentsProvider extends ChangeNotifier {
         onCardEntryCancel: _onCardEntryCancel);
   }
 
-  void _onCardNonceRequestSuccess(CardDetails result) {
+  void _onCardNonceRequestSuccess(CardDetails result) async {
+    nonce = result.nonce;
+    await makepayment(token, payResponse!.id);
+
+    notifyListeners();
     print('Este es el nonce de la carta${result.nonce}');
 
     InAppPayments.completeCardEntry(onCardEntryComplete: _onCardEntryComplete);
@@ -61,27 +67,47 @@ class PaymentsProvider extends ChangeNotifier {
     }
   }
 
-  Flight convertflightInRelationtoFlight() {
+  Future<bool> makepayment(
+    String token,
+    int idbooking,
+  ) async {
+    var headers = {'Authorization': token, 'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse('$kip/payments/makepayment'));
+    request.body = json.encode({"nonce": nonce, "idBooking": idbooking});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return true;
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
+  }
+
+  Flight convertflightInRelationtoFlight(PayFlyModel payResponse) {
     Flight departureFlight = Flight(
-        id: payResponse!.flightInRelation.id,
-        date: payResponse!.flightInRelation.date,
-        day: payResponse!.flightInRelation.day,
-        charter: payResponse!.flightInRelation.charter,
-        flightNumber: payResponse!.flightInRelation.flightNumber,
-        from: payResponse!.flightInRelation.from,
-        to: payResponse!.flightInRelation.to,
-        checkIn: payResponse!.flightInRelation.checkIn,
-        departure: payResponse!.flightInRelation.departure,
-        arrival: payResponse!.flightInRelation.arrival,
-        gate: payResponse!.flightInRelation.gate,
-        reservedSeats: payResponse!.flightInRelation.reservedSeats,
-        openSeats: payResponse!.flightInRelation.openSeats,
-        status: payResponse!.flightInRelation.status,
-        adultPrice: payResponse!.flightInRelation.adultPrice,
-        childPrice: payResponse!.flightInRelation.childPrice,
-        boysPrice: payResponse!.flightInRelation.boysPrice,
-        createdAt: payResponse!.flightInRelation.createdAt,
-        isDeleted: payResponse!.flightInRelation.isDeleted);
+        id: payResponse.flightInRelation.id,
+        date: payResponse.flightInRelation.date,
+        day: payResponse.flightInRelation.day,
+        charter: payResponse.flightInRelation.charter,
+        flightNumber: payResponse.flightInRelation.flightNumber,
+        from: payResponse.flightInRelation.from,
+        to: payResponse.flightInRelation.to,
+        checkIn: payResponse.flightInRelation.checkIn,
+        departure: payResponse.flightInRelation.departure,
+        arrival: payResponse.flightInRelation.arrival,
+        gate: payResponse.flightInRelation.gate,
+        reservedSeats: payResponse.flightInRelation.reservedSeats,
+        openSeats: payResponse.flightInRelation.openSeats,
+        status: payResponse.flightInRelation.status,
+        adultPrice: payResponse.flightInRelation.adultPrice,
+        childPrice: payResponse.flightInRelation.childPrice,
+        boysPrice: payResponse.flightInRelation.boysPrice,
+        createdAt: payResponse.flightInRelation.createdAt,
+        isDeleted: payResponse.flightInRelation.isDeleted);
 
     // departureFlight = Flight.fromMap(departureFlight.toMap());
     return departureFlight;

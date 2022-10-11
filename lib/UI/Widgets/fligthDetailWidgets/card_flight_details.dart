@@ -15,10 +15,14 @@ class CardFlightDetails extends StatelessWidget {
     required this.flight,
     this.isCheckedPage,
     this.customtext,
+    this.isStatusCard,
+    this.index,
   }) : super(key: key);
   final Flight flight;
   final bool? isCheckedPage;
   final String? customtext;
+  final bool? isStatusCard;
+  final int? index;
 
   @override
   Widget build(BuildContext context) {

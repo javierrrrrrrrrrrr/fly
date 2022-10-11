@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/forms_providers/status_provider.dart';
 import 'package:fly_cliente/Constants/contants.dart';
+import 'package:fly_cliente/UI/Widgets/ReservationStatusWidget/pending_body.dart';
+import 'package:fly_cliente/UI/Widgets/ReservationStatusWidget/rejected_body.dart';
 import 'package:provider/provider.dart';
+
+import '../Widgets/CustomWidget/custom_drawer.dart';
+import '../Widgets/ReservationStatusWidget/acepted_body.dart';
 
 class CheckReservationStatus extends StatefulWidget {
   const CheckReservationStatus({Key? key}) : super(key: key);
@@ -16,10 +21,11 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
     final statusmentProvider = Provider.of<StatusProvider>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: const CustomDrawer(),
       body: Column(
         children: [
           SizedBox(
-            height: size.height * 0.2,
+            height: size.height * 0.15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +55,18 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
               ),
             ],
           ),
+          SizedBox(
+            height: size.height * 0.8,
+            width: size.width,
+            child: statusmentProvider.index == 1
+                ? AceptedBody(
+                    payAceptedResponseList:
+                        statusmentProvider.payAceptedResponseList,
+                  )
+                : statusmentProvider.index == 2
+                    ? const PendingBody()
+                    : const RejectedBody(),
+          )
         ],
       ),
     );

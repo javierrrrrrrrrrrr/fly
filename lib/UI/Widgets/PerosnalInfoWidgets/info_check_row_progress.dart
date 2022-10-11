@@ -37,10 +37,13 @@ class _InfoCheckRowProgressState extends State<InfoCheckRowProgress> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:  [
+                  children: [
                     GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: const Icon(Icons.arrow_back_ios)),
+                        onTap: () => Navigator.of(context).pop(),
+                        child: const Icon(
+                          Icons.arrow_back_ios,
+                          size: 28,
+                        )),
                     const CustomCircleAvatar(),
                   ],
                 ),

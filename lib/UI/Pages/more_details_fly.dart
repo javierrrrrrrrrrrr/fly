@@ -31,7 +31,7 @@ class MoreDetailsFly extends StatelessWidget {
           child: SingleChildScrollView(
         child: AppBackgroundSelection(
           padding: EdgeInsets.only(
-            top: size.height * 0.05,
+            top: size.height * 0.02,
           ),
           customAppBar: Padding(
             padding: EdgeInsets.symmetric(

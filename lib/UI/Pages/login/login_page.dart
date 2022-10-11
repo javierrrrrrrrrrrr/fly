@@ -214,8 +214,12 @@ class CustomLoginImput extends StatelessWidget {
             color: kprimarycolor,
           ),
           border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
+            borderSide: BorderSide(color: Colors.white),
             borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black.withOpacity(0.4)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
         ),
       ),

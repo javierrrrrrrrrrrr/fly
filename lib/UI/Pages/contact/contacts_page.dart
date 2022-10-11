@@ -125,7 +125,7 @@ class _ListViewBody extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   userprovider.selectedContact = contact.copyWith();
-                  print(userprovider.selectedContact);
+                  //print(userprovider.selectedContact);
 
                   Navigator.of(context).pushNamed('/contacts_show_info');
                 },

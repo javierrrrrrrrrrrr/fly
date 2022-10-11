@@ -82,9 +82,18 @@ class CustomDrawer extends StatelessWidget {
                 height: size.height * 0.03,
               ),
               CustomRowDrawer(
-                  onPressed: () => Navigator.of(context).pushNamed('/home'),
+                  onPressed: () => Navigator.of(context).pushNamed('/airlines'),
                   icono: Icons.house_outlined,
                   texto: "Home",
+                  tamnofuente: 18),
+              const Separador(),
+              CustomRowDrawer(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/search');
+                    // Navigator.of(context).pushNamed('/login');
+                  },
+                  icono: Icons.library_books,
+                  texto: "Book Flight",
                   tamnofuente: 18),
               const Separador(),
               CustomRowDrawer(
@@ -120,7 +129,7 @@ class CustomDrawer extends StatelessWidget {
               const Separador(),
               CustomRowDrawer(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/search');
+                    Navigator.of(context).pushNamed('/home');
                     // Navigator.of(context).pushNamed('/login');
                   },
                   icono: Icons.connecting_airports_outlined,
