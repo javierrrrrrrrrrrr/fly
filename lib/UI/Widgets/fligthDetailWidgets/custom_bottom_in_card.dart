@@ -1,6 +1,5 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
@@ -31,7 +30,6 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
     final flightProvider = Provider.of<FlightProvider>(context);
     final payProvider = Provider.of<PaymentsProvider>(context);
     final loginProvider = Provider.of<LoginProvider>(context);
-    final contactProvider = Provider.of<ContactProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return FlipCard(
@@ -48,23 +46,20 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           onPressed: () async {
             widget.flightProvaider.userReturnDay == '' ||
                     loginProvider.selectedcontactIDList.isEmpty
-                ? () {
-                    //TODO: Sacar Notificacion
-                  }
-                : () async {
-                    loadingSpinner(context);
-                    bool respuesta = await flightProvider.verifyReturnFlights(
-                        dateReturn: flightProvider.userReturnDay,
-                        from: widget.departureFlight.from,
-                        to: widget.departureFlight.to);
+                ? print("gg")
+                //TODO: Sacar Notificacion
 
-                    if (respuesta == true) {
-                      // ignore: use_build_context_synchronously
-                      Navigator.pop(context);
-                      flipProvider.controllerBigCard.toggleCard();
-                      flipProvider.controllerbuttomCard.toggleCard();
-                    }
-                  };
+                : loadingSpinner(context);
+            bool respuesta = await flightProvider.verifyReturnFlights(
+                dateReturn: flightProvider.userReturnDay,
+                from: widget.departureFlight.from,
+                to: widget.departureFlight.to);
+
+            if (respuesta == true) {
+              Navigator.pop(context);
+              flipProvider.controllerBigCard.toggleCard();
+              flipProvider.controllerbuttomCard.toggleCard();
+            }
           },
           child: const Text(
             "Return Flight",
