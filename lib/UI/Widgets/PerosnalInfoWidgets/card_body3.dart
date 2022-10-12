@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/DataLayer/Models/contact_model.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
+import '../../../DataLayer/Models/contact_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/contact_provider.dart';
@@ -55,7 +55,7 @@ class CardBody3 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Flight Information",
+                "Información del vuelo",
                 style: TextStyle(fontSize: 25),
               ),
             ),
@@ -63,7 +63,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "OFAC Code",
+                    texto: "OFAC Código",
                   ),
             _OfacCodeField(
                 size: size,
@@ -73,7 +73,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Mother Maiden",
+                    texto: "Nombre de Soltera",
                   ),
             _MotherMaidenField(
                 contactProvider: contactProvider,
@@ -84,7 +84,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Foreign Address",
+                    texto: "Dirección Extranjera",
                   ),
             _ForeingAddressField(
                 selectedContact: selectedContact,
@@ -95,7 +95,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Foreign City",
+                    texto: "Cuidad Extranjera",
                   ),
             _ForeingCityField(
                 selectedContact: selectedContact,
@@ -106,7 +106,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Foreign Province",
+                    texto: "Provincia Extranjera",
                   ),
             _ForeingProvinceField(
                 selectedContact: selectedContact,
@@ -117,7 +117,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Foreign Zip Code",
+                    texto: "Código Postal Extranjero",
                   ),
             _ForeingZipCodeField(
                 selectedContact: selectedContact,
@@ -128,7 +128,7 @@ class CardBody3 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Emergency Number",
+                    texto: "Número de Emergencia",
                   ),
             _EmergencyNameField(
                 selectedContact: selectedContact,

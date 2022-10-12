@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/contact_provider.dart';
@@ -52,13 +52,13 @@ class CardBody4 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Flight Information",
+                "Información de Vuelo",
                 style: TextStyle(fontSize: 25),
               ),
             ),
             spacenamed == false
                 ? const Separador()
-                : Separador(space: space, texto: "Emergency Phone"),
+                : Separador(space: space, texto: "Teléfono de Emergencia"),
             _EmergencyNumberField(
                 selectedContact: selectedContact,
                 emergencyPhone: emergencyPhone,
@@ -66,7 +66,7 @@ class CardBody4 extends StatelessWidget {
                 flipProvaider: flipProvaider),
             spacenamed == false
                 ? const Separador()
-                : Separador(space: space, texto: "Cuban First Name"),
+                : Separador(space: space, texto: "Primer Nombre Cubano"),
             _CubanFirstNameField(
                 selectedContact: selectedContact,
                 cubanFirstName: cubanFirstName,
@@ -74,32 +74,32 @@ class CardBody4 extends StatelessWidget {
                 flipProvaider: flipProvaider),
             spacenamed == false
                 ? const Separador()
-                : Separador(space: space, texto: "Cuban Last Name"),
+                : Separador(space: space, texto: "Apellido Cubano"),
             _CubanLastNameField(
                 selectedContact: selectedContact,
                 cubanLastName: cubanLastName,
                 contactProvider: contactProvider,
                 flipProvaider: flipProvaider),
-            spacenamed == false
-                ? const Separador()
-                : Separador(space: space, texto: "Arrival Docs"),
+            
+
+
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Primary Documents",
+                "Documentos Primarios",
                 style: TextStyle(fontSize: 25),
               ),
             ),
             spacenamed == false
                 ? const Separador()
-                : Separador(space: space, texto: "Arrival Docs"),
+                : Separador(space: space, texto: "Documentos de Llegada"),
             _ArrivalDocumentsField(
                 size: size,
                 arrivalDocs: arrivalDocs,
                 selectedContact: selectedContact),
             spacenamed == false
                 ? const Separador()
-                : Separador(space: space, texto: "Country Issue"),
+                : Separador(space: space, texto: "País en Cuentión"),
             _CountryIssue(
               arrivalDocs: arrivalDocs,
               size: size,
@@ -107,7 +107,7 @@ class CardBody4 extends StatelessWidget {
             ),
             spacenamed == false
                 ? const Separador()
-                : Separador(space: space, texto: "Arrival Doc No"),
+                : Separador(space: space, texto: "Documentos de Llegada No"),
             _ArrivalDocNOField(selectedContact: selectedContact, arrivalDocNo: arrivalDocNo, contactProvider: contactProvider, flipProvaider: flipProvaider),
             Container(
               height: size.height * 0.03,
@@ -152,7 +152,7 @@ class _ArrivalDocNOField extends StatelessWidget {
 }
 
 class _ArrivalDocumentsField extends StatelessWidget {
-  const _ArrivalDocumentsField({
+  const   _ArrivalDocumentsField({
     Key? key,
     required this.size,
     required this.arrivalDocs,

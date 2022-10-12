@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Constants/contants.dart';
+import '../../Constants/contants.dart';
 import 'package:http/http.dart' as http;
 
 import '../../DataLayer/Models/news_model.dart';

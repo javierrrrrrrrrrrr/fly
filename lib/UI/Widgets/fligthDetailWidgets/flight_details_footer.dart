@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/separador_horizontal.dart';
+import 'separador_horizontal.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';
@@ -47,7 +47,7 @@ class FlightDetailsFooter extends StatelessWidget {
             minWidth: 100,
             height: 30,
             child: const Center(
-                child: Text("More Details",
+                child: Text("Más detalles",
                     style: TextStyle(fontSize: 14, color: Colors.white))),
             onPressed: () {
               if (isstatuscard == true) {

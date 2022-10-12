@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
+import 'contact_provider.dart';
+import '../../Constants/contants.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,7 @@
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
 import 'package:provider/provider.dart';
 
 class DropDownListExample extends StatefulWidget {
@@ -69,7 +69,7 @@ class _DropDownListExampleState extends State<DropDownListExample> {
           hint: loginProvider.selectedcontactIDList.isNotEmpty
               ? loginProvider.findNameByid(
                   loginProvider.selectedcontactIDList[0].toString())
-              : 'Choose Your contact',
+              : 'Selecciona tus contactos',
           isCitySelected: true,
           cities: _contactList,
         ),
@@ -109,14 +109,14 @@ class _AppTextFieldState extends State<AppTextField> {
     DropDownState(
       DropDown(
         bottomSheetTitle: const Text(
-          'Contacts',
+          'Contactos',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20.0,
           ),
         ),
         submitButtonChild: const Text(
-          'Done',
+          'Hecho',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,

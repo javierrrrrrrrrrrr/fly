@@ -1,4 +1,4 @@
-import 'package:fly_cliente/Constants/contants.dart';
+import '../../Constants/contants.dart';
 
 import 'widgets.dart';
 

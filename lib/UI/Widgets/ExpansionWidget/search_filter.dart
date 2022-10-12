@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
+import '../../../Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Constants/contants.dart';
@@ -41,7 +41,7 @@ class _SearchFiltersState extends State<SearchFilters> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             children: [
-              const TextSearch(texto: 'Flight Number'),
+              const TextSearch(texto: 'Número de vuelo'),
               SizedBox(
                 width: size.width * 0.12,
               ),
@@ -55,7 +55,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 SizedBox(
                   width: size.width * 0.76,
                   child: CustomDropDown(
-                    hintext: 'Flight Number',
+                    hintext: 'Número de vuelo',
                     items: bookFlightProvider.flightNumber,
                     onChanged: (value) =>
                         flightProvaider.flightNumber = value.toString(),
@@ -78,7 +78,7 @@ class _SearchFiltersState extends State<SearchFilters> {
 
             //TODO: Hacer el DropDownMeny de aqui.
             child: CustomDropDown(
-              hintext: "All",
+              hintext: "Todos",
               items: bookFlightProvider.charter,
               onChanged: (value) {
                 flightProvaider.selectedCharter = value.toString();
@@ -96,7 +96,7 @@ class _SearchFiltersState extends State<SearchFilters> {
           SizedBox(
             height: size.height * 0.01,
           ),
-          const TextSearch(texto: 'Date from:/To:'),
+          const TextSearch(texto: 'Fecha desde:/hasta:'),
           Row(
             children: [
               Padding(
@@ -119,7 +119,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                     },
 
                     hintext: flightProvaider.dateFrom == ''
-                        ? "From"
+                        ? "Desde"
                         : flightProvaider.dateFrom,
                     //Aqui va el action del calendar
                     prefixIcon: flightProvaider.dateFrom == ''
@@ -154,7 +154,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                       }
                     },
                     hintext: flightProvaider.dateTo == ''
-                        ? "To"
+                        ? "Hasta"
                         : flightProvaider.dateTo,
                     prefixIcon: flightProvaider.dateTo == ''
                         ? Icon(
@@ -171,7 +171,7 @@ class _SearchFiltersState extends State<SearchFilters> {
           SizedBox(
             height: size.height * 0.01,
           ),
-          const TextSearch(texto: 'Route'),
+          const TextSearch(texto: 'Ruta'),
           //ROw
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.01),
@@ -180,7 +180,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 SizedBox(
                   width: size.width * 0.318,
                   child: CustomDropDown(
-                    hintext: 'From',
+                    hintext: 'Desde',
                     items: bookFlightProvider.origen,
                     onChanged: (value) =>
                         flightProvaider.selectedRouteFrom = value.toString(),
@@ -195,7 +195,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                 SizedBox(
                   width: size.width * 0.318,
                   child: CustomDropDown(
-                    hintext: 'To',
+                    hintext: 'Hasta',
                     items: bookFlightProvider.destination,
                     onChanged: (value) =>
                         flightProvaider.selectedRouteTo = value.toString(),
@@ -210,7 +210,7 @@ class _SearchFiltersState extends State<SearchFilters> {
           SizedBox(
             height: size.height * 0.01,
           ),
-          const TextSearch(texto: 'Weekdays'),
+          const TextSearch(texto: 'Día de la semana'),
 
           SizedBox(
             height: size.height * 0.01,
@@ -252,7 +252,7 @@ class _SearchFiltersState extends State<SearchFilters> {
                   SizedBox(
                     width: size.width * 0.02,
                   ),
-                  const Text("Search",
+                  const Text("Buscar",
                       style: TextStyle(color: Colors.white, fontSize: 18)),
                 ],
               ),
@@ -277,109 +277,28 @@ class WeekDays extends StatelessWidget {
     final flightProvaider = Provider.of<FlightProvider>(context);
     List<Widget> list = [
       WeekedDay(
-          texto: "Su", isSelected: flightProvaider.dayInWeekList[0].isSelected),
+          texto: "L", isSelected: flightProvaider.dayInWeekList[0].isSelected),
       const CustomSpacer(),
       WeekedDay(
-          texto: "M", isSelected: flightProvaider.dayInWeekList[1].isSelected),
+          texto: "Ma", isSelected: flightProvaider.dayInWeekList[1].isSelected),
       const CustomSpacer(),
       WeekedDay(
-          texto: "Tu", isSelected: flightProvaider.dayInWeekList[2].isSelected),
+          texto: "Mi", isSelected: flightProvaider.dayInWeekList[2].isSelected),
       const CustomSpacer(),
       WeekedDay(
-          texto: "W", isSelected: flightProvaider.dayInWeekList[3].isSelected),
+          texto: "J", isSelected: flightProvaider.dayInWeekList[3].isSelected),
       const CustomSpacer(),
       WeekedDay(
-          texto: "T", isSelected: flightProvaider.dayInWeekList[4].isSelected),
+          texto: "V", isSelected: flightProvaider.dayInWeekList[4].isSelected),
       const CustomSpacer(),
       WeekedDay(
-          texto: "F", isSelected: flightProvaider.dayInWeekList[5].isSelected),
+          texto: "S", isSelected: flightProvaider.dayInWeekList[5].isSelected),
       const CustomSpacer(),
       WeekedDay(
-          texto: "S", isSelected: flightProvaider.dayInWeekList[6].isSelected),
+          texto: "D", isSelected: flightProvaider.dayInWeekList[6].isSelected),
     ];
 
     return Row(children: list);
-  }
-}
-
-class ColumnStatus1 extends StatefulWidget {
-  const ColumnStatus1({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<ColumnStatus1> createState() => _ColumnStatus1State();
-}
-
-class _ColumnStatus1State extends State<ColumnStatus1> {
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final flightProvaider = Provider.of<FlightProvider>(context);
-    return SizedBox(
-      height: size.height * 0.11,
-      width: size.width * 0.32,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TextSearch(texto: "Status"),
-          SizedBox(
-            height: size.height * 0.004,
-          ),
-          flightProvaider.selectedStatus == true
-              ? Row(
-                  children: [
-                    CheckStatus(size: size),
-                    SizedBox(
-                      width: size.width * 0.015,
-                    ),
-                    Column(
-                      children: const [
-                        TextSearch(
-                          texto: "Open",
-                        ),
-                        Icon(
-                          Icons.check_circle,
-                          size: 25,
-                          color: Colors.green,
-                        )
-                      ],
-                    ),
-                  ],
-                )
-              : Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: size.height * 0.004,
-                        ),
-                        Row(
-                          children: [
-                            CheckStatus(size: size),
-                            SizedBox(
-                              width: size.width * 0.015,
-                            ),
-                            Column(
-                              children: const [
-                                TextSearch(texto: "Closed"),
-                                Icon(
-                                  Icons.cancel,
-                                  size: 25,
-                                  color: Colors.red,
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-        ],
-      ),
-    );
   }
 }
 
@@ -467,14 +386,14 @@ class ColumnaStatus2 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TextSearch(texto: 'Gate'),
+        const TextSearch(texto: 'Puerta'),
         SizedBox(
           height: size.height * 0.01,
         ),
         SizedBox(
           width: size.width * 0.75,
           child: CustomDropDown(
-            hintext: 'Gate Number',
+            hintext: 'Número de puerta',
             items: bookFlightProvider.gate,
             onChanged: (value) =>
                 flightProvaider.selectedGate = value.toString(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
+import '../SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';
@@ -53,7 +53,7 @@ class CardBody2 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Personal Information",
+                "Información Personal",
                 style: TextStyle(fontSize: 25),
               ),
             ),
@@ -61,7 +61,7 @@ class CardBody2 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Address",
+                    texto: "Dirección",
                   ),
 
             _AddressField(
@@ -73,7 +73,7 @@ class CardBody2 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "City",
+                    texto: "Ciudad",
                   ),
 
             _CityField(
@@ -85,7 +85,7 @@ class CardBody2 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "State",
+                    texto: "Estado",
                   ),
 
             _Statefield(
@@ -97,7 +97,7 @@ class CardBody2 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Zip Code",
+                    texto: "Código Postal",
                   ),
 
             _ZipCodeField(
@@ -109,7 +109,7 @@ class CardBody2 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Country",
+                    texto: "País",
                   ),
 
             _CountryField(
@@ -121,7 +121,7 @@ class CardBody2 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Nationality",
+                    texto: "Nacionalidad",
                   ),
 
             _NationalityField(
@@ -162,7 +162,7 @@ class _NationalityField extends StatelessWidget {
         //TODO: Lenar el dropdownn con la lista de nacionalidades...
         items: const [
           'Cuban',
-          'Amarican',
+          'American',
           'Others',
         ],
         hintext: nationality,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/forms_providers/status_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/ReservationStatusWidget/pending_body.dart';
-import 'package:fly_cliente/UI/Widgets/ReservationStatusWidget/rejected_body.dart';
+import '../../Business_logic/Provaiders/forms_providers/status_provider.dart';
+import '../../Constants/contants.dart';
+import '../Widgets/ReservationStatusWidget/pending_body.dart';
+import '../Widgets/ReservationStatusWidget/rejected_body.dart';
 import 'package:provider/provider.dart';
 
 import '../Widgets/CustomWidget/custom_drawer.dart';
@@ -32,7 +32,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
             children: [
               StatusContainer(
                 id: 1,
-                texto: "ACEPTED",
+                texto: "Aceptado",
                 icono: Icons.check_circle,
                 selectedcolor: statusmentProvider.aceptedValue,
                 iconcolor: Colors.green,
@@ -40,7 +40,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
               SizedBox(width: size.height * 0.01),
               StatusContainer(
                 id: 2,
-                texto: "PENDING",
+                texto: "Pendiente",
                 selectedcolor: statusmentProvider.pendingValue,
                 icono: Icons.pending_actions,
                 iconcolor: kprimarycolor,
@@ -48,7 +48,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
               SizedBox(width: size.height * 0.01),
               StatusContainer(
                 id: 3,
-                texto: "REJECTED",
+                texto: "Rechazado",
                 icono: Icons.cancel,
                 selectedcolor: statusmentProvider.rejectedValue,
                 iconcolor: Colors.red,

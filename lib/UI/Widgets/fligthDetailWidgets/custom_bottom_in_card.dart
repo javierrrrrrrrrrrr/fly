@@ -1,13 +1,13 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Business_logic/Provaiders/flip_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Business_logic/Provaiders/payment_provider.dart';
+import '../../../Constants/contants.dart';
+import '../../../DataLayer/Models/flight_model.dart';
 
 class CustomButtomCard extends StatefulWidget {
   const CustomButtomCard({
@@ -52,7 +52,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
                 : accion(context);
           },
           child: const Text(
-            "Return Flight",
+            "Vuelo de retorno",
             style: TextStyle(color: Colors.white, fontSize: 26),
           )),
       back: MaterialButton(
@@ -85,7 +85,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
             Navigator.of(context).pushReplacementNamed('/check_pay');
           },
           child: const Text(
-            "Continue",
+            "Continuar",
             style: TextStyle(color: Colors.white, fontSize: 26),
           )),
     );

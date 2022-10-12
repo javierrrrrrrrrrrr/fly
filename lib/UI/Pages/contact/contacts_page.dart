@@ -1,7 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Constants/contants.dart';
+import '../../Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/contact_provider.dart';
@@ -42,7 +42,7 @@ class ContactsPage extends StatelessWidget {
                             color: kprimarycolor,
                           ),
                           Center(
-                              child: Text("Add Contacts",
+                              child: Text("Adicionar Contactos",
                                   style: TextStyle(
                                       color: kprimarycolor, fontSize: 25))),
                         ],
@@ -163,7 +163,7 @@ class _ListViewBody extends StatelessWidget {
                 onTap: () async {
                   confirmDialog(
                       messageBody:
-                          "are you sure you want to delete the contact",
+                          "Esta seguro que desea eliminar el contacto",
                       context: context,
                       function: () async {
                         loadingSpinner(context);
@@ -236,7 +236,7 @@ class _SearchContactField extends StatelessWidget {
               userprovider.udateListContacts(value.toLowerCase()),
           cursorColor: kprimarycolor,
           decoration: InputDecoration(
-              hintText: 'Type name or number',
+              hintText: 'Escribe nombre o número',
               hintStyle: const TextStyle(fontSize: 15),
               suffixIcon: Icon(Icons.search, color: kprimarycolor, size: 38),
               contentPadding: EdgeInsets.symmetric(
@@ -277,7 +277,7 @@ class _AppBarRow extends StatelessWidget {
               onTap: () => Navigator.of(context).pushNamed('/airlines'),
               child: const Icon(Icons.navigate_before, size: 40)),
           const Text(
-            'Contacts List',
+            'Lista de Contactos',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           GestureDetector(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/card_flight_details.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/horizontal_discontinuos_line.dart';
+import '../../Business_logic/Provaiders/payment_provider.dart';
+import '../../Constants/contants.dart';
+import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
+import '../Widgets/fligthDetailWidgets/horizontal_discontinuos_line.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/login_provider.dart';
@@ -51,13 +51,13 @@ class _CheckPayBody extends StatelessWidget {
               const _BackButton(),
               SizedBox(height: size.height * 0.015),
               CardFlightDetails(
-                customtext: "Flight",
+                customtext: "Vuelo",
                 isCheckedPage: true,
                 flight: departureFlight,
               ),
               SizedBox(height: size.height * 0.015),
               CardFlightDetails(
-                customtext: 'Return Fligth',
+                customtext: 'Vuelo de Retorno',
                 isCheckedPage: true,
                 flight: returnFlight,
               ),
@@ -81,18 +81,10 @@ class _CheckPayBody extends StatelessWidget {
                       payProvider.token = token;
                       payProvider.pay();
 
-                      //loadingSpinner(context);
-
-                      //   Navigator.pop(context);
-                      //    Navigator.of(context).pushReplacementNamed('/home');
-                      //   } else {
-                      //    Navigator.pop(context);
-                      //   }
-
-                      // Navigator.of(context).pushReplacementNamed('/home');
+                  
                     },
                     child: const Text(
-                      "Pay Now",
+                      "Pagar Ahora",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )),
               )
@@ -226,7 +218,7 @@ class _ContactList extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: size.width * 0.02),
               child: const Text(
-                'Contacts',
+                'Contactos',
                 style: TextStyle(fontSize: 18),
               ),
             ),
@@ -282,13 +274,13 @@ class _ContactList extends StatelessWidget {
                                               .bookingsContacts[index]
                                               .contact
                                               .passengerType ==
-                                          "Adult" ||
+                                          "Adulto" ||
                                       paymentProvider
                                               .payResponse!
                                               .bookingsContacts[index]
                                               .contact
                                               .passengerType ==
-                                          "Child"
+                                          "Niño"
                                   ? "\$ ${paymentProvider.payResponse!.flightOutRelation.adultPrice}"
                                   : "\$ ${paymentProvider.payResponse!.flightOutRelation.boysPrice}",
                               style: const TextStyle(

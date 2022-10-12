@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body3.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body4.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body5.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body2.dart';
 import 'package:provider/provider.dart';
+
+import '../../../Business_logic/Provaiders/flip_provider.dart';
 import 'card_body1.dart';
+import 'card_body3.dart';
+import 'card_body4.dart';
+import 'card_body5.dart';
+import 'crad_body2.dart';
 
 class InfoCardWIdget extends StatelessWidget {
   const InfoCardWIdget({
@@ -33,51 +34,51 @@ class InfoCardWIdget extends StatelessWidget {
         child: flipProvaider.flip == 0
             ? const CardBody1(
                 spacenamed: false,
-                firstname: "First Name",
-                lastname: "Last Name",
-                passengerType: "Passenger Typer",
-                birthDate: "Birth Date",
+                firstname: "Nombre",
+                lastname: "Apellido",
+                passengerType: "Tipo de Pasajero",
+                birthDate: "Fecha de Nacimiento",
                 email: "Email",
-                gender: "Gender",
-                phone: "Phone",
+                gender: "Género",
+                phone: "Teléfono",
               )
             : flipProvaider.flip == 1
                 ? const CardBody2(
                     spacenamed: false,
-                    address: "Address",
-                    city: "City",
-                    state: "State",
-                    zipCode: "Zip Code",
-                    country: "Country",
-                    nationality: "Nationality")
+                    address: "Dirección",
+                    city: "Cuidad",
+                    state: "Estado",
+                    zipCode: "Código Postal",
+                    country: "Paíz",
+                    nationality: "Nacionalidad")
                 : flipProvaider.flip == 2
                     ? const CardBody3(
                         spacenamed: false,
-                        ofacCode: "Ofac Code",
-                        motherMaiden: "Mother Maiden",
-                        foreignAdress: "Foreign Adress",
-                        foreignCity: "Foreign City",
-                        foreignProvince: "Foreign Province",
-                        foreignZipCode: "Foreign Zip Code",
-                        emergencyName: "Emergency Number",
+                        ofacCode: "Ofac Código",
+                        motherMaiden: "Nombre de Soltera",
+                        foreignAdress: "Dirección Extranjera",
+                        foreignCity: "Cuidad Extranjaera",
+                        foreignProvince: "Provincia Extranjera",
+                        foreignZipCode: "Código Postal Extrangero",
+                        emergencyName: "Número de Emergencia",
                       )
                     : flipProvaider.flip == 3
                         ? const CardBody4(
                             spacenamed: false,
-                            emergencyPhone: "Emergency Phone",
-                            cubanFirstName: "Cuban First Name",
-                            cubanLastName: "Cuban Last Name",
-                            arrivalDocs: "Arrival Docs",
-                            countryIssue: "Country Issue",
-                            arrivalDocNo: "Arrival Doc No",
+                            emergencyPhone: "Teléfono de Emergencia",
+                            cubanFirstName: "Primer Nombre Cubano",
+                            cubanLastName: "Apellido Cubano",
+                            arrivalDocs: "Documentos de Llgada",
+                            countryIssue: "País En Cuentión",
+                            arrivalDocNo: "Documentos de Llgada No",
                           )
                         : const CardBody5(
                             spacenamed: false,
-                            expDate: "Exp Date",
-                            passportNumbersec: "Passport Number",
-                            contryOfIssuesec: "Country Of Issue",
-                            arrivalDocNumbersec: "Arrival Doc Number",
-                            expDatesec: "Exp Date",
+                            expDate: "Fecha de Vencimiento",
+                            passportNumbersec: "Número de Pasaporte",
+                            contryOfIssuesec: "País en Cuestion",
+                            arrivalDocNumbersec: "Documentos de Llgada No",
+                            expDatesec: "Fecha de Vencimiento",
                           ));
   }
 }

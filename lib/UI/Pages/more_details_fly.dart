@@ -1,10 +1,10 @@
 import 'package:flip_card/flip_card.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
-import 'package:fly_cliente/UI/Widgets/app_background_selection.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/big_card_departure.dart';
-import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import '../../Business_logic/Provaiders/flip_provider.dart';
+import '../../Constants/contants.dart';
+import '../../DataLayer/Models/flight_model.dart';
+import '../Widgets/app_background_selection.dart';
+import '../Widgets/fligthDetailWidgets/big_card_departure.dart';
+import '../Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/flight_provider.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
-import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_dropdown.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
-import 'package:fly_cliente/UI/Widgets/imput_field.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
+import '../CustomWidget/custom_dropdown.dart';
+import '../SeparationWidget/separador.dart';
+import '../imput_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
@@ -55,7 +55,7 @@ class CardBody1 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Personal Information",
+                "Información Personal",
                 style: TextStyle(fontSize: 25),
               ),
             ),
@@ -63,7 +63,7 @@ class CardBody1 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "First Name",
+                    texto: "Nombre",
                   ),
             _FirstNameField(
                 selectedContact: selectedContact,
@@ -73,7 +73,7 @@ class CardBody1 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Last Name",
+                    texto: "Apellidos",
                   ),
             _LastNameField(
                 selectedContact: selectedContact,
@@ -83,7 +83,7 @@ class CardBody1 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Passenger Type",
+                    texto: "Tipo de Pasajero",
                   ),
             _PassengerTypeField(
               size: size,
@@ -94,7 +94,7 @@ class CardBody1 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Birth Date",
+                    texto: "Fecha de nacimiento",
                   ),
             _BirthDateField(
                 selectedContact: selectedContact,
@@ -104,7 +104,7 @@ class CardBody1 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Gender",
+                    texto: "Género",
                   ),
             _GenderFIeld(
               size: size,
@@ -125,7 +125,7 @@ class CardBody1 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Phone",
+                    texto: "Teléfono",
                   ),
             _PhoneField(
                 selectedContact: selectedContact,
@@ -228,9 +228,9 @@ class _GenderFIeld extends StatelessWidget {
           iconData: Icons.man,
           contentPadding: EdgeInsets.only(left: size.width * 0.095),
           items: const [
-            'Male',
-            'Female',
-            'Other',
+          'Male',
+          'Female',
+          'Other',
           ],
           hintext: gender,
           onChanged: (value) =>

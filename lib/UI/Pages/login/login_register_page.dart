@@ -1,6 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Constants/contants.dart';
+import '../../../Constants/contants.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/login_provider.dart';
@@ -63,7 +63,7 @@ class LoginRegisterPage extends StatelessWidget {
               bottom: size.height * 0.55,
               left: size.width * 0.1,
               child: const CustomLoginImput(
-                hintext: "Name",
+                hintext: "Nombre",
                 iconodata: Icons.person_outline,
               ),
             ),
@@ -85,7 +85,7 @@ class LoginRegisterPage extends StatelessWidget {
                 onChanged: (value) {
                   loginProvider.password = value;
                 },
-                hintext: "Password",
+                hintext: "Contraseña",
                 iconodata: Icons.lock_outline,
               ),
             ),
@@ -108,7 +108,7 @@ class LoginRegisterPage extends StatelessWidget {
                     if (respuesta2 == true) {
                       Navigator.pop(context);
                       Navigator.of(context).pushNamed('/airlines');
-                      print('correcto');
+                      
                     }
                     if (respuesta == false || respuesta2 == false) {
                       Navigator.pop(context);
@@ -128,7 +128,7 @@ class LoginRegisterPage extends StatelessWidget {
                 },
                 child: const Center(
                     child: Text(
-                  "Sigin up",
+                  "Crear Cuenta",
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 )),
               ),
@@ -141,11 +141,7 @@ class LoginRegisterPage extends StatelessWidget {
               child: SizedBox(
                 height: size.height * 0.07,
                 width: size.width * 0.2,
-                //   decoration: const BoxDecoration(
-                //       image: DecorationImage(
-                //           // image: AssetImage("assets/googleicon.png"),
-                //           // fit: BoxFit.fill)),
-                // ),
+             
               ),
             )),
             Positioned(
@@ -177,7 +173,7 @@ class LoginRegisterPage extends StatelessWidget {
                               image: AssetImage("assets/google.png"),
                               fit: BoxFit.fill)),
                     ),
-                    Text("Sign in Google",
+                    Text("Inicia sesión con Google",
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.5),
                             fontSize: 18)),

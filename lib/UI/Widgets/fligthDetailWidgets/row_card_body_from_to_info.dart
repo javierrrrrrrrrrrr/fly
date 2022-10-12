@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/vertical_discontinuos_line.dart';
+import 'vertical_discontinuos_line.dart';
 
 import '../../../Constants/contants.dart';
 import '../../../DataLayer/Models/flight_model.dart';
@@ -63,7 +63,7 @@ class RowCardBodyFromToInfo extends StatelessWidget {
                         Icons.airline_seat_legroom_extra_rounded,
                         color: kprimarycolor,
                       ),
-                      const Text("Economy"),
+                      const Text("Económica"),
                     ],
                   ),
                   SizedBox(

@@ -47,7 +47,7 @@ class BigCardReturn extends StatelessWidget {
                   children: [
                     SizedBox(height: size.height * 0.02),
                     const Text(
-                      "Return Flight",
+                      "Vuelo de retorno",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),

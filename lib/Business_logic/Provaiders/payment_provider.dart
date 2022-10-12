@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import '../../UI/Widgets/widgets.dart';
 import 'package:square_in_app_payments/in_app_payments.dart';
 import 'package:square_in_app_payments/models.dart';
 import 'package:http/http.dart' as http;
