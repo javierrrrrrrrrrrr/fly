@@ -257,7 +257,10 @@ class _SearchFiltersState extends State<SearchFilters> {
                 ],
               ),
             ),
-          )
+          ),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
         ]),
       ),
     );
