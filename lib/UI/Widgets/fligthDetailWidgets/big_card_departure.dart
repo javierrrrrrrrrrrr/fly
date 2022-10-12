@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/flight_details_header.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/mini_container_green.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/row_card_body_from_to_info.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/vertical_discontinuos_line.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../DataLayer/Models/flight_model.dart';
+import 'flight_details_header.dart';
+import 'mini_container_green.dart';
+import 'row_card_body_from_to_info.dart';
+import 'vertical_discontinuos_line.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';

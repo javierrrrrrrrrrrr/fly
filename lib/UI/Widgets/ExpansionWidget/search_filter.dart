@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
+import '../../../Business_logic/Provaiders/book_flight_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../Business_logic/Provaiders/flight_provider.dart';
 import '../../../Constants/contants.dart';

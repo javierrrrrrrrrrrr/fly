@@ -1,9 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/forms_providers/status_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_row_drawer.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
+import '../../../Business_logic/Provaiders/forms_providers/status_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Constants/contants.dart';
+import 'custom_row_drawer.dart';
+import '../SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/contact_provider.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
+import '../SeparationWidget/separador.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/book_flight_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
-import 'package:fly_cliente/UI/Pages/airline_info.dart';
-import 'package:fly_cliente/UI/Pages/more_details_fly.dart';
-import 'package:fly_cliente/UI/Pages/contact/create_contact_page.dart';
-import 'package:fly_cliente/UI/Pages/contact/contact_show_info.page.dart';
-import 'package:fly_cliente/UI/Pages/search_page.dart';
-import 'package:fly_cliente/UI/Pages/search_result.dart';
-import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
+import 'Business_logic/Provaiders/book_flight_provider.dart';
+import 'Business_logic/Provaiders/login_provider.dart';
+import 'Business_logic/Provaiders/contact_provider.dart';
+import 'Business_logic/Provaiders/payment_provider.dart';
+import 'UI/Pages/airline_info.dart';
+import 'UI/Pages/more_details_fly.dart';
+import 'UI/Pages/contact/create_contact_page.dart';
+import 'UI/Pages/contact/contact_show_info.page.dart';
+import 'UI/Pages/search_page.dart';
+import 'UI/Pages/search_result.dart';
+import 'UI/Pages/more_details_ofert.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 import 'package:provider/provider.dart';
 

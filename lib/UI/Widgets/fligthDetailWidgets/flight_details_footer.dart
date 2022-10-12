@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/separador_horizontal.dart';
+import 'separador_horizontal.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';

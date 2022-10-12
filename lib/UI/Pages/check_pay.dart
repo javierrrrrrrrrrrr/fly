@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/card_flight_details.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/horizontal_discontinuos_line.dart';
+import '../../Business_logic/Provaiders/payment_provider.dart';
+import '../../Constants/contants.dart';
+import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
+import '../Widgets/fligthDetailWidgets/horizontal_discontinuos_line.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/login_provider.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
-import 'package:fly_cliente/UI/Widgets/CustomWidget/custom_dropdown.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/separador.dart';
-import 'package:fly_cliente/UI/Widgets/imput_field.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
+import '../CustomWidget/custom_dropdown.dart';
+import '../SeparationWidget/separador.dart';
+import '../imput_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/forms_providers/contact_form_provider.dart';

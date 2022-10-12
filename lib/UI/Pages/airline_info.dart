@@ -1,5 +1,5 @@
-import 'package:fly_cliente/Business_logic/Provaiders/news_provider.dart';
-import 'package:fly_cliente/UI/Pages/more_details_ofert.dart';
+import '../../Business_logic/Provaiders/news_provider.dart';
+import 'more_details_ofert.dart';
 import 'package:provider/provider.dart';
 
 import '../Widgets/app_background_selection.dart';

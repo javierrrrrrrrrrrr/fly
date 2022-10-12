@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body1.dart';
+import '../../../Business_logic/Provaiders/contact_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Constants/contants.dart';
+import '../../Widgets/PerosnalInfoWidgets/card_body1.dart';
 
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body4.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body5.dart';
+import '../../Widgets/PerosnalInfoWidgets/card_body4.dart';
+import '../../Widgets/PerosnalInfoWidgets/card_body5.dart';
 import 'package:provider/provider.dart';
 
 import '../../Widgets/CustomWidget/custom_circle_avatar.dart';

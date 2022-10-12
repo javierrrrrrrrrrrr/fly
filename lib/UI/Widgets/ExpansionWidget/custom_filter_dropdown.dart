@@ -1,9 +1,9 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Constants/contants.dart';
+import '../../../Constants/contants.dart';
 import 'dart:math' as math;
 
-import 'package:fly_cliente/UI/Widgets/ExpansionWidget/search_filter.dart';
+import 'search_filter.dart';
 
 class CustomFilterDropDown extends StatelessWidget {
   const CustomFilterDropDown({

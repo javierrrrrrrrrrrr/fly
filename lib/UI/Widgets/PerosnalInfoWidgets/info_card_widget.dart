@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body3.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body4.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/card_body5.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/crad_body2.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
+import 'card_body3.dart';
+import 'card_body4.dart';
+import 'card_body5.dart';
+import 'crad_body2.dart';
 import 'package:provider/provider.dart';
 import 'card_body1.dart';
 

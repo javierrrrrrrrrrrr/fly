@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/DataLayer/Models/contact_model.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
+import '../../../DataLayer/Models/contact_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/contact_provider.dart';

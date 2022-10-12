@@ -1,10 +1,10 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flight_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
+import '../../../Business_logic/Provaiders/flight_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Business_logic/Provaiders/payment_provider.dart';
+import '../../../Constants/contants.dart';
+import '../../../DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/forms_providers/status_provider.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/payment_provider.dart';
+import '../../../Business_logic/Provaiders/forms_providers/status_provider.dart';
+import '../../../Business_logic/Provaiders/payment_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../DataLayer/Models/pay_fly_response_model.dart';

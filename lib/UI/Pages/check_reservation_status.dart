@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/forms_providers/status_provider.dart';
-import 'package:fly_cliente/Constants/contants.dart';
-import 'package:fly_cliente/UI/Widgets/ReservationStatusWidget/pending_body.dart';
-import 'package:fly_cliente/UI/Widgets/ReservationStatusWidget/rejected_body.dart';
+import '../../Business_logic/Provaiders/forms_providers/status_provider.dart';
+import '../../Constants/contants.dart';
+import '../Widgets/ReservationStatusWidget/pending_body.dart';
+import '../Widgets/ReservationStatusWidget/rejected_body.dart';
 import 'package:provider/provider.dart';
 
 import '../Widgets/CustomWidget/custom_drawer.dart';

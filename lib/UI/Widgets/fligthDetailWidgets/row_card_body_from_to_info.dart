@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/UI/Widgets/fligthDetailWidgets/vertical_discontinuos_line.dart';
+import 'vertical_discontinuos_line.dart';
 
 import '../../../Constants/contants.dart';
 import '../../../DataLayer/Models/flight_model.dart';

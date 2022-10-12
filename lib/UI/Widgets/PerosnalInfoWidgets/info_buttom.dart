@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/forms_providers/contact_form_provider.dart';

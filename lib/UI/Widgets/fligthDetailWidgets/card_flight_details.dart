@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
-import 'package:fly_cliente/UI/Widgets/SeparationWidget/line.dart';
+import '../../../DataLayer/Models/flight_model.dart';
+import '../SeparationWidget/line.dart';
 
 import '../../../Constants/contants.dart';
 import 'flight_details_body.dart';

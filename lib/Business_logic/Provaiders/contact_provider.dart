@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:fly_cliente/Business_logic/Provaiders/login_provider.dart';
-import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import 'login_provider.dart';
+import '../../UI/Widgets/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/DataLayer/Models/flight_model.dart';
+import '../../../DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';

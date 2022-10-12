@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:fly_cliente/DataLayer/Models/contact_model.dart';
-import 'package:fly_cliente/UI/Widgets/widgets.dart';
+import '../../DataLayer/Models/contact_model.dart';
+import '../../UI/Widgets/widgets.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
-import 'package:fly_cliente/UI/Widgets/PerosnalInfoWidgets/custom_piked_date.dart';
-import 'package:fly_cliente/UI/Widgets/imput_field.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
+import 'custom_piked_date.dart';
+import '../imput_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/contact_provider.dart';
