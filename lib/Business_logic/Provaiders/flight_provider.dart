@@ -88,13 +88,13 @@ class FlightProvider extends ChangeNotifier {
   bool respuesta = false;
 
   List<DayInWeek> dayInWeekList = [
-    DayInWeek('Su', isSelected: false),
-    DayInWeek('M', isSelected: false),
-    DayInWeek('Tu', isSelected: false),
-    DayInWeek('W', isSelected: false),
-    DayInWeek('T', isSelected: false),
-    DayInWeek('F', isSelected: false),
+    DayInWeek('L', isSelected: false),
+    DayInWeek('Ma', isSelected: false),
+    DayInWeek('Mi', isSelected: false),
+    DayInWeek('J', isSelected: false),
+    DayInWeek('V', isSelected: false),
     DayInWeek('S', isSelected: false),
+    DayInWeek('D', isSelected: false),
   ];
 
   void cleanIsselectedDays() {
@@ -109,17 +109,17 @@ class FlightProvider extends ChangeNotifier {
 
   String convertDayWeekToLongDay(String day) {
     switch (day) {
-      case 'Su':
+      case 'D':
         return 'Sunday';
-      case 'M':
+      case 'L':
         return 'Monday';
-      case 'Tu':
+      case 'Ma':
         return 'Tuesday';
-      case 'W':
+      case 'Mi':
         return 'Wednsday';
-      case 'T':
+      case 'J':
         return 'Thursday';
-      case 'F':
+      case 'V':
         return 'Friday';
       case 'S':
         return 'Saturday';
