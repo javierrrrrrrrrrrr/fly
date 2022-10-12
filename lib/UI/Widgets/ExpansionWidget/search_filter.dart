@@ -27,7 +27,7 @@ class _SearchFiltersState extends State<SearchFilters> {
     final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
-        height: size.height * 0.75,
+        //height: size.height * 0.78,
         decoration: BoxDecoration(
           //  color: Colors.white,
 
@@ -443,9 +443,10 @@ class TextSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Text(
       texto,
-      style: const TextStyle(fontSize: 18),
+      style: TextStyle(fontSize: size.height * 0.022),
     );
   }
 }

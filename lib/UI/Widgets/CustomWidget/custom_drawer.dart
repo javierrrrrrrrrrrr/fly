@@ -45,10 +45,10 @@ class CustomDrawer extends StatelessWidget {
                         width: size.width * 0.03,
                       ),
                       Column(
-                        children: const [
+                        children: [
                           Text(
                             'Miranda Charter',
-                            style: TextStyle(fontSize: 21),
+                            style: TextStyle(fontSize: size.height * 0.03),
                           ),
                         ],
                       )
@@ -62,19 +62,23 @@ class CustomDrawer extends StatelessWidget {
                               Navigator.of(context).pushNamed('/login');
                             },
                             child: Row(
-                              children: const [
+                              children: [
                                 Icon(
                                   Icons.add,
-                                  size: 25,
+                                  size: size.height * 0.03,
                                 ),
-                                Text('Sign in', style: TextStyle(fontSize: 16)),
+                                FittedBox(
+                                    fit: BoxFit.fitWidth,
+                                    child: Text('Sign in',
+                                        style: TextStyle(
+                                            fontSize: size.height * 0.025))),
                               ],
                             ),
                           ),
                         )
                       : Text(
                           loginProvider.email,
-                          style: const TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: size.height * 0.025),
                         ),
                 ],
               ),
@@ -85,7 +89,7 @@ class CustomDrawer extends StatelessWidget {
                   onPressed: () => Navigator.of(context).pushNamed('/airlines'),
                   icono: Icons.house_outlined,
                   texto: "Home",
-                  tamnofuente: 18),
+                  tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
                   onPressed: () {
@@ -94,7 +98,7 @@ class CustomDrawer extends StatelessWidget {
                   },
                   icono: Icons.library_books,
                   texto: "Book Flight",
-                  tamnofuente: 18),
+                  tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
                   onPressed: () async {
@@ -125,7 +129,7 @@ class CustomDrawer extends StatelessWidget {
                   },
                   icono: Icons.airplane_ticket_outlined,
                   texto: "Reservations",
-                  tamnofuente: 18),
+                  tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
                   onPressed: () async {
@@ -144,12 +148,12 @@ class CustomDrawer extends StatelessWidget {
                   },
                   icono: Icons.connecting_airports_outlined,
                   texto: "Airline",
-                  tamnofuente: 18),
+                  tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
                   icono: Icons.contacts_outlined,
                   texto: "Contacts",
-                  tamnofuente: 18,
+                  tamnofuente: size.height * 0.025,
                   onPressed: () async {
                     FocusScope.of(context).unfocus();
                     loadingSpinner(context);
@@ -181,15 +185,15 @@ class CustomDrawer extends StatelessWidget {
                 height: size.height * 0.41,
               ),
               const Separador(),
-              const CustomRowDrawer(
+              CustomRowDrawer(
                   icono: Icons.security_outlined,
                   texto: "Privacy Policy",
-                  tamnofuente: 17),
+                  tamnofuente: size.height * 0.023),
               const Separador(),
-              const CustomRowDrawer(
+              CustomRowDrawer(
                   icono: Icons.contact_support_outlined,
                   texto: "Contact Miranda Charter",
-                  tamnofuente: 17),
+                  tamnofuente: size.height * 0.023),
             ],
           ),
         ),

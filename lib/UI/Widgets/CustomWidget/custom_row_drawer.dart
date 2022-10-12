@@ -18,6 +18,7 @@ class CustomRowDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: onPressed,
       child: Row(
@@ -25,7 +26,7 @@ class CustomRowDrawer extends StatelessWidget {
           Icon(
             icono,
             color: kprimarycolor,
-            size: 28,
+            size: size.height * 0.038,
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.02,
