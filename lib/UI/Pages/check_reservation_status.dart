@@ -32,7 +32,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
             children: [
               StatusContainer(
                 id: 1,
-                texto: "ACEPTED",
+                texto: "Aceptado",
                 icono: Icons.check_circle,
                 selectedcolor: statusmentProvider.aceptedValue,
                 iconcolor: Colors.green,
@@ -40,7 +40,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
               SizedBox(width: size.height * 0.01),
               StatusContainer(
                 id: 2,
-                texto: "PENDING",
+                texto: "Pendiente",
                 selectedcolor: statusmentProvider.pendingValue,
                 icono: Icons.pending_actions,
                 iconcolor: kprimarycolor,
@@ -48,7 +48,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
               SizedBox(width: size.height * 0.01),
               StatusContainer(
                 id: 3,
-                texto: "REJECTED",
+                texto: "Rechazado",
                 icono: Icons.cancel,
                 selectedcolor: statusmentProvider.rejectedValue,
                 iconcolor: Colors.red,

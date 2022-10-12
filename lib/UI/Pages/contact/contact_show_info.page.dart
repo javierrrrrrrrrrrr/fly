@@ -122,7 +122,7 @@ class ContactInformation extends StatelessWidget {
                     minWidth: size.width * 0.5,
                     color: kprimarycolor,
                     child: const Text(
-                      'Update Contact',
+                      'Editar Contacto',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),

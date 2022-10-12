@@ -146,7 +146,7 @@ class _CheckPayCardBody extends StatelessWidget {
                   Icons.airline_seat_recline_normal_outlined,
                   color: kprimarycolor,
                 ),
-                const Text('Economy'),
+                const Text('Económica'),
               ],
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../Constants/contants.dart';
 
+import '../../../Constants/contants.dart';
 import '../../../DataLayer/Models/flight_model.dart';
 
 class FlightDetailsBody extends StatelessWidget {
@@ -81,7 +81,7 @@ class FlightDetailsBody extends StatelessWidget {
                       Icons.person_outline_outlined,
                       color: kprimarycolor,
                     ),
-                    const Text('Economy'),
+                    const Text('Económica'),
                   ],
                 ),
               ],

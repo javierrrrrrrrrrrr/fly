@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context);
-    final userProvider = Provider.of<LoginProvider>(context);
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -77,7 +77,7 @@ class LoginPage extends StatelessWidget {
                 onChanged: (value) {
                   loginProvider.password = value;
                 },
-                hintext: "Password",
+                hintext: "Contraseña",
                 iconodata: Icons.lock_outline,
               ),
             ),
@@ -98,7 +98,7 @@ class LoginPage extends StatelessWidget {
                   if (respuesta == true) {
                     Navigator.pop(context);
                     Navigator.of(context).pushNamed('/airlines');
-                    print('correcto');
+                    
                   } else {
                     Navigator.pop(context);
                     var snackBar = SnackBar(
@@ -116,7 +116,7 @@ class LoginPage extends StatelessWidget {
                 },
                 child: const Center(
                     child: Text(
-                  "Log in",
+                  "Iniciar sesión",
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 )),
               ),
@@ -124,7 +124,7 @@ class LoginPage extends StatelessWidget {
             Positioned(
               bottom: size.height * 0.2,
               left: size.width * 0.23,
-              child: Text("Forgot your password ?",
+              child: Text("¿Olvidó la contraseña?",
                   style: TextStyle(
                       color: Colors.black.withOpacity(0.5), fontSize: 20)),
             ),
@@ -135,7 +135,7 @@ class LoginPage extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushNamed('/loginRegister');
                 },
-                child: Text("Don't have an account ?",
+                child: Text("Crear cuenta..",
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.5), fontSize: 20)),
               ),
@@ -169,7 +169,7 @@ class LoginPage extends StatelessWidget {
                               image: AssetImage("assets/google.png"),
                               fit: BoxFit.fill)),
                     ),
-                    Text("Continue with Google",
+                    Text("Inicia sesión con Google",
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.5),
                             fontSize: 18)),

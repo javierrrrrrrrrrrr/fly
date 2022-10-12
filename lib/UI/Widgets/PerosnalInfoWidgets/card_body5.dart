@@ -52,7 +52,7 @@ class CardBody5 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Primary Documents",
+                "Documentos Primarios",
                 style: TextStyle(fontSize: 25),
               ),
             ),
@@ -60,7 +60,7 @@ class CardBody5 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Expiration Date",
+                    texto: "Fecha de Vencimiento",
                   ),
 
             _ExpDateField(
@@ -74,7 +74,7 @@ class CardBody5 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
-                "Secondary Documents",
+                "Documentos Secundarios",
                 style: TextStyle(fontSize: 25),
               ),
             ),
@@ -82,7 +82,7 @@ class CardBody5 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Passport Number",
+                    texto: "Número de Pasaporte",
                   ),
 
             _PassportNumberSecField(
@@ -94,7 +94,7 @@ class CardBody5 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Country of Issue",
+                    texto: "País en Cuentión",
                   ),
 
             _CountryOfIssueSecField(
@@ -106,7 +106,7 @@ class CardBody5 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Arrival Document Number",
+                    texto: "Número de Documentos de LLegada",
                   ),
 
             _ArrivalDocNumberSecField(selectedContact: selectedContact, arrivalDocNumbersec: arrivalDocNumbersec, contactProvider: contactProvider, flipProvaider: flipProvaider),
@@ -114,7 +114,7 @@ class CardBody5 extends StatelessWidget {
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Expiration Date",
+                    texto: "Fecha de Vencimiento",
                   ),
 
             _ExpDateSecField(selectedContact: selectedContact, expDatesec: expDatesec, contactProvider: contactProvider),

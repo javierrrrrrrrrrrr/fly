@@ -51,13 +51,13 @@ class _CheckPayBody extends StatelessWidget {
               const _BackButton(),
               SizedBox(height: size.height * 0.015),
               CardFlightDetails(
-                customtext: "Flight",
+                customtext: "Vuelo",
                 isCheckedPage: true,
                 flight: departureFlight,
               ),
               SizedBox(height: size.height * 0.015),
               CardFlightDetails(
-                customtext: 'Return Fligth',
+                customtext: 'Vuelo de Retorno',
                 isCheckedPage: true,
                 flight: returnFlight,
               ),
@@ -81,18 +81,10 @@ class _CheckPayBody extends StatelessWidget {
                       payProvider.token = token;
                       payProvider.pay();
 
-                      //loadingSpinner(context);
-
-                      //   Navigator.pop(context);
-                      //    Navigator.of(context).pushReplacementNamed('/home');
-                      //   } else {
-                      //    Navigator.pop(context);
-                      //   }
-
-                      // Navigator.of(context).pushReplacementNamed('/home');
+                  
                     },
                     child: const Text(
-                      "Pay Now",
+                      "Pagar Ahora",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )),
               )
@@ -226,7 +218,7 @@ class _ContactList extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: size.width * 0.02),
               child: const Text(
-                'Contacts',
+                'Contactos',
                 style: TextStyle(fontSize: 18),
               ),
             ),
@@ -282,13 +274,13 @@ class _ContactList extends StatelessWidget {
                                               .bookingsContacts[index]
                                               .contact
                                               .passengerType ==
-                                          "Adult" ||
+                                          "Adulto" ||
                                       paymentProvider
                                               .payResponse!
                                               .bookingsContacts[index]
                                               .contact
                                               .passengerType ==
-                                          "Child"
+                                          "Niño"
                                   ? "\$ ${paymentProvider.payResponse!.flightOutRelation.adultPrice}"
                                   : "\$ ${paymentProvider.payResponse!.flightOutRelation.boysPrice}",
                               style: const TextStyle(

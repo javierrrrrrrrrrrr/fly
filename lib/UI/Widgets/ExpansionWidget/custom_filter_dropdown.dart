@@ -50,7 +50,7 @@ class CustomFilterDropDown extends StatelessWidget {
                         children: [
                           Expanded(
                               child: Text(
-                            'Book Flight',
+                            'Reservar vuelo',
                             style:
                                 TextStyle(fontSize: 22, color: kprimarycolor),
                           )),

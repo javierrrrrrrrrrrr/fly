@@ -47,7 +47,7 @@ class FlightDetailsFooter extends StatelessWidget {
             minWidth: 100,
             height: 30,
             child: const Center(
-                child: Text("More Details",
+                child: Text("Más detalles",
                     style: TextStyle(fontSize: 14, color: Colors.white))),
             onPressed: () {
               if (isstatuscard == true) {

@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'Business_logic/Provaiders/book_flight_provider.dart';
-import 'Business_logic/Provaiders/login_provider.dart';
-import 'Business_logic/Provaiders/contact_provider.dart';
-import 'Business_logic/Provaiders/payment_provider.dart';
-import 'UI/Pages/airline_info.dart';
-import 'UI/Pages/more_details_fly.dart';
-import 'UI/Pages/contact/create_contact_page.dart';
-import 'UI/Pages/contact/contact_show_info.page.dart';
-import 'UI/Pages/search_page.dart';
-import 'UI/Pages/search_result.dart';
-import 'UI/Pages/more_details_ofert.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 import 'package:provider/provider.dart';
 
+import 'Business_logic/Provaiders/book_flight_provider.dart';
+import 'Business_logic/Provaiders/contact_provider.dart';
 import 'Business_logic/Provaiders/flight_provider.dart';
 import 'Business_logic/Provaiders/flip_provider.dart';
 import 'Business_logic/Provaiders/forms_providers/contact_form_provider.dart';
 import 'Business_logic/Provaiders/forms_providers/status_provider.dart';
+import 'Business_logic/Provaiders/login_provider.dart';
 import 'Business_logic/Provaiders/news_provider.dart';
-
+import 'Business_logic/Provaiders/payment_provider.dart';
+import 'UI/Pages/airline_info.dart';
 import 'UI/Pages/check_pay.dart';
 import 'UI/Pages/check_reservation_status.dart';
+import 'UI/Pages/contact/contact_show_info.page.dart';
 import 'UI/Pages/contact/contacts_page.dart';
+import 'UI/Pages/contact/create_contact_page.dart';
 import 'UI/Pages/home_page.dart';
 import 'UI/Pages/login/login_page.dart';
 import 'UI/Pages/login/login_register_page.dart';
+import 'UI/Pages/more_details_fly.dart';
+import 'UI/Pages/more_details_ofert.dart';
+import 'UI/Pages/search_page.dart';
+import 'UI/Pages/search_result.dart';
 import 'UI/Widgets/fligthDetailWidgets/drop_down_check_list.dart';
 
 void main() {
@@ -84,7 +83,7 @@ class MyApp extends StatelessWidget {
     return InAppNotification(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Material App',
+        title: 'Havana Charter',
         theme: ThemeData(fontFamily: 'LexendDeca'),
         initialRoute: '/home',
         routes: {

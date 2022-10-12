@@ -57,7 +57,7 @@ class BodyBigCard extends StatelessWidget {
                       Icons.airline_seat_legroom_extra_rounded,
                       color: kprimarycolor,
                     ),
-                    const Text("Economy"),
+                    const Text("Económica"),
                   ],
                 ),
                 SizedBox(

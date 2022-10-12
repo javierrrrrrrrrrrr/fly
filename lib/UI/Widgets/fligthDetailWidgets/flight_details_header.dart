@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../DataLayer/Models/flight_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flight_provider.dart';
+import '../../../DataLayer/Models/flight_model.dart';
 
 class FlightDetailsHeader extends StatelessWidget {
   const FlightDetailsHeader({

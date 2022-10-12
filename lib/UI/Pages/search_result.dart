@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../Constants/contants.dart';
-import '../Widgets/CustomWidget/custom_drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../../Business_logic/Provaiders/flight_provider.dart';
+import '../../Constants/contants.dart';
+import '../Widgets/CustomWidget/custom_drawer.dart';
 import '../Widgets/ExpansionWidget/custom_filter_dropdown.dart';
 import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
 
@@ -55,7 +55,8 @@ class _SearchResultState extends State<SearchResult> {
                   height: size.height * 0.02,
                 ),
                 Text(
-                  '${flightProvaider.departureflights.length} Results',
+                  //TODO: Hacer cuando solo hay un resultado...
+                  '${flightProvaider.departureflights.length} Resultados',
                   style: TextStyle(fontSize: 20, color: kprimarycolor),
                 ),
                 Expanded(

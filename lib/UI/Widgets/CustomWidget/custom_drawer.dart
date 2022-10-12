@@ -69,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
                                 ),
                                 FittedBox(
                                     fit: BoxFit.fitWidth,
-                                    child: Text('Sign in',
+                                    child: Text('Iniciar Sesión',
                                         style: TextStyle(
                                             fontSize: size.height * 0.025))),
                               ],
@@ -88,7 +88,7 @@ class CustomDrawer extends StatelessWidget {
               CustomRowDrawer(
                   onPressed: () => Navigator.of(context).pushNamed('/airlines'),
                   icono: Icons.house_outlined,
-                  texto: "Home",
+                  texto: "Inicio",
                   tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
@@ -97,7 +97,7 @@ class CustomDrawer extends StatelessWidget {
                     // Navigator.of(context).pushNamed('/login');
                   },
                   icono: Icons.library_books,
-                  texto: "Book Flight",
+                  texto: "Reservar Vuelo",
                   tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
@@ -128,7 +128,7 @@ class CustomDrawer extends StatelessWidget {
                     }
                   },
                   icono: Icons.airplane_ticket_outlined,
-                  texto: "Reservations",
+                  texto: "Reservaciones",
                   tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
@@ -147,12 +147,12 @@ class CustomDrawer extends StatelessWidget {
                     // Navigator.of(context).pushNamed('/login');
                   },
                   icono: Icons.connecting_airports_outlined,
-                  texto: "Airline",
+                  texto: "Aerolínea",
                   tamnofuente: size.height * 0.025),
               const Separador(),
               CustomRowDrawer(
                   icono: Icons.contacts_outlined,
-                  texto: "Contacts",
+                  texto: "Contactos",
                   tamnofuente: size.height * 0.025,
                   onPressed: () async {
                     FocusScope.of(context).unfocus();
@@ -187,12 +187,12 @@ class CustomDrawer extends StatelessWidget {
               const Separador(),
               CustomRowDrawer(
                   icono: Icons.security_outlined,
-                  texto: "Privacy Policy",
+                  texto: "Política de Privacidad",
                   tamnofuente: size.height * 0.023),
               const Separador(),
               CustomRowDrawer(
                   icono: Icons.contact_support_outlined,
-                  texto: "Contact Miranda Charter",
+                  texto: "Contactanos",
                   tamnofuente: size.height * 0.023),
             ],
           ),
@@ -201,59 +201,5 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  updateEmail(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            "Add your email",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold, color: kprimarycolor),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: size.height * 0.045,
-                child: TextField(
-                    decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: size.height * 0.003),
-                  hintText: 'Email',
-                  enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromRGBO(155, 155, 155, 0.5))),
-                )),
-              ),
-              SizedBox(
-                height: size.height * 0.025,
-              ),
-              Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(size.width * 0.02),
-                child: SizedBox(
-                  height: size.height * 0.04,
-                  width: size.width * 0.25,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(size.width * 0.02)),
-                    onPressed: () {
-                      //TODO: Aqui va el metodo de actualizar el user email.
-                    },
-                    color: kprimarycolor,
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      },
-    );
-  }
+  
 }

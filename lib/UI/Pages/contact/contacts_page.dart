@@ -42,7 +42,7 @@ class ContactsPage extends StatelessWidget {
                             color: kprimarycolor,
                           ),
                           Center(
-                              child: Text("Add Contacts",
+                              child: Text("Adicionar Contactos",
                                   style: TextStyle(
                                       color: kprimarycolor, fontSize: 25))),
                         ],
@@ -163,7 +163,7 @@ class _ListViewBody extends StatelessWidget {
                 onTap: () async {
                   confirmDialog(
                       messageBody:
-                          "are you sure you want to delete the contact",
+                          "Esta seguro que desea eliminar el contacto",
                       context: context,
                       function: () async {
                         loadingSpinner(context);
@@ -236,7 +236,7 @@ class _SearchContactField extends StatelessWidget {
               userprovider.udateListContacts(value.toLowerCase()),
           cursorColor: kprimarycolor,
           decoration: InputDecoration(
-              hintText: 'Type name or number',
+              hintText: 'Escribe nombre o número',
               hintStyle: const TextStyle(fontSize: 15),
               suffixIcon: Icon(Icons.search, color: kprimarycolor, size: 38),
               contentPadding: EdgeInsets.symmetric(
@@ -277,7 +277,7 @@ class _AppBarRow extends StatelessWidget {
               onTap: () => Navigator.of(context).pushNamed('/airlines'),
               child: const Icon(Icons.navigate_before, size: 40)),
           const Text(
-            'Contacts List',
+            'Lista de Contactos',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           GestureDetector(

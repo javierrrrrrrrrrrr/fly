@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../Business_logic/Provaiders/login_provider.dart';
 import '../../../DataLayer/Models/flight_model.dart';
 import 'flight_details_header.dart';
 import 'mini_container_green.dart';
@@ -26,7 +25,7 @@ class BigCardDeparture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flightProvider = Provider.of<FlightProvider>(context);
-    final loginProvider = Provider.of<LoginProvider>(context);
+  
 
     final size = MediaQuery.of(context).size;
     return Container(
@@ -86,7 +85,8 @@ class BigCardDeparture extends StatelessWidget {
                     Column(
                       children: [
                         const Text(
-                          'Depature Day',
+                          'Día de salida',
+                          style: TextStyle(fontSize: 16),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -97,15 +97,15 @@ class BigCardDeparture extends StatelessWidget {
                             style: const TextStyle(fontSize: 22),
                           ),
                         ),
-                        const Text(
-                          'Thuesday',
+                         Text(
+                          departureflight.day,
                         ),
                       ],
                     ),
                     Column(
                       children: [
                         const Text(
-                          "Return Day",
+                          "Día de regreso",
                           style: TextStyle(fontSize: 16),
                         ),
                         SizedBox(
@@ -154,17 +154,17 @@ class BigCardDeparture extends StatelessWidget {
                   children: [
                     PriceColumn(
                         icon: Icons.accessibility_new_outlined,
-                        person: "Adult",
+                        person: "Adulto",
                         price: departureflight.adultPrice.toString()),
                     const VerticalDiscontinuosLine(),
                     PriceColumn(
                         icon: Icons.family_restroom,
-                        person: "Child",
+                        person: "Niño",
                         price: departureflight.childPrice.toString()),
                     const VerticalDiscontinuosLine(),
                     PriceColumn(
                         icon: Icons.child_friendly_rounded,
-                        person: "Infant",
+                        person: "Infante",
                         price: departureflight.boysPrice.toString()),
                   ],
                 ),
