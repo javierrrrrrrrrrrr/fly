@@ -41,7 +41,7 @@ class _ImputfieldState extends State<Imputfield> {
       validator: widget.validator ??
           (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              return 'Por favor entre algún texto';
             }
             return null;
           },
@@ -68,22 +68,3 @@ class _ImputfieldState extends State<Imputfield> {
   
 
 
-// InputDecoration inputDecoration(hinttext, bool hasicon, Widget? label,
-//     Widget? counter, bool? validateIcon, var width) {
-//   if (hasicon == true) {
-//     return 
-//   } else {
-//     return InputDecoration(
-//       label: label,
-//       contentPadding: EdgeInsets.symmetric(
-//           horizontal: width * 0.05, vertical: width * 0.025),
-//       border: OutlineInputBorder(
-//           borderRadius: BorderRadius.all(Radius.circular(width * 0.04))),
-//       enabledBorder: OutlineInputBorder(
-//           borderSide: const BorderSide(color: Color.fromRGBO(77, 82, 233, 1)),
-//           borderRadius: BorderRadius.all(Radius.circular(width * 0.04))),
-//       hintText: hinttext,
-//       hintStyle: TextStyle(color: Colors.black54, fontSize: width * 0.05),
-//     );
-//   }
-// }

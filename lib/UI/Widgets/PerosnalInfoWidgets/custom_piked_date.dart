@@ -30,7 +30,7 @@ class _CustomPikedDateState extends State<CustomPikedDate> {
       initialValue: widget.initialvalue,
         validator: (value) {
           if (value == null) {
-            return 'Please select a valid date';
+            return 'Por favor seleciona una fecha válida';
           } else {
             return null;
           }

@@ -57,7 +57,7 @@ class InfoButtom extends StatelessWidget {
         }
       },
       child: const Text(
-        "Continue",
+        "Continuar",
         style: TextStyle(color: Colors.white, fontSize: 28),
       ),
     );
