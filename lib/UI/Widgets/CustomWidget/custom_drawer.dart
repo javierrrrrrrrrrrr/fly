@@ -1,6 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import '../../../Business_logic/Provaiders/book_flight_provider.dart';
 import '../../../Business_logic/Provaiders/forms_providers/status_provider.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Business_logic/Provaiders/news_provider.dart';
 import '../../../Constants/contants.dart';
 import 'custom_row_drawer.dart';
 import '../SeparationWidget/separador.dart';
@@ -21,6 +23,8 @@ class CustomDrawer extends StatelessWidget {
     final loginProvider = Provider.of<LoginProvider>(context);
     final userProvider = Provider.of<ContactProvider>(context);
     final statusProvider = Provider.of<StatusProvider>(context);
+    final newsProvider = Provider.of<NewsProvider>(context);
+    final bookProvider = Provider.of<BookFlightProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -86,8 +90,51 @@ class CustomDrawer extends StatelessWidget {
                 height: size.height * 0.03,
               ),
               CustomRowDrawer(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/airlines');
+                  onPressed: () async {
+                    loadingSpinner(context);
+                    try {
+                      Future<bool> respuesta2 =
+                          bookProvider.refillFieldBookFlights();
+                      await newsProvider.getNewsList();
+
+                      var respuesta = newsProvider.respuesta;
+
+                      if (respuesta == true && await respuesta2 == true) {
+                        Navigator.pop(context);
+
+                        Navigator.of(context).pushNamed('/airlines');
+                      } else {
+                        Navigator.pop(context);
+
+                        var snackBar = SnackBar(
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'Error!',
+                            message: "A ocurrido algun error en la API",
+                            contentType: ContentType.failure,
+                          ),
+                        );
+
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    } catch (error) {
+                      Navigator.pop(context);
+                      var snackBar = SnackBar(
+                        elevation: 0,
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        content: AwesomeSnackbarContent(
+                          title: 'Error!',
+                          message: error.toString(),
+                          contentType: ContentType.failure,
+                        ),
+                      );
+
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   },
                   icono: Icons.house_outlined,
                   texto: "Inicio",
