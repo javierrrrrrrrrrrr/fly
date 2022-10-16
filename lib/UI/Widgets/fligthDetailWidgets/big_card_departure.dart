@@ -228,11 +228,41 @@ class BigCardDeparture extends StatelessWidget {
                       ),
                     ),
                   )
-                : Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.03,
-                    ),
-                    child: const DropDownListExample()),
+                : Stack(
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.03,
+                          ),
+                          child: const DropDownListExample()),
+                      Positioned(
+                        bottom: size.height * 0.032,
+                        left: size.width * 0.25,
+                        child: SizedBox(
+                          width: size.width,
+                          child: GestureDetector(
+                            onTap: () {
+                              flipProvider.navegarnormal = false;
+                              Navigator.of(context)
+                                  .pushReplacementNamed('/create_contat_page');
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  //addd contacto
+                                  Icons.group_add_outlined,
+                                  size: 35,
+                                  color: kprimarycolor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
           )
         ],
       ),
