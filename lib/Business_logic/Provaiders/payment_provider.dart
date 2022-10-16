@@ -10,9 +10,15 @@ import '../../DataLayer/Models/flight_model.dart';
 import '../../DataLayer/Models/pay_fly_response_model.dart';
 
 class PaymentsProvider extends ChangeNotifier {
+  bool ispagocompletado = false;
   PayFlyModel? payResponse;
   String nonce = '';
   String token = '';
+
+  changeValuePay(bool value) {
+    ispagocompletado = value;
+    notifyListeners();
+  }
 
   void pay() {
     InAppPayments.setSquareApplicationId(
@@ -24,7 +30,7 @@ class PaymentsProvider extends ChangeNotifier {
 
   void _onCardNonceRequestSuccess(CardDetails result) async {
     nonce = result.nonce;
-    await makepayment(token, payResponse!.id);
+    makepayment(token, payResponse!.id);
 
     notifyListeners();
     print('Este es el nonce de la carta${result.nonce}');

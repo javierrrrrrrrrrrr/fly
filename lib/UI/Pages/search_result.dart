@@ -27,60 +27,70 @@ class _SearchResultState extends State<SearchResult> {
     final flightProvaider = Provider.of<FlightProvider>(context);
     return Scaffold(
       drawer: const CustomDrawer(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: size.height,
-            width: size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: size.height * 0.08,
-                ),
-                CustomFilterDropDown(
-                    onRestoreState: () {
-                      return flightProvaider.isExpanded;
-                    },
-                    //esto no importa
-                    expandido: false,
-                    onPreesedFuntionButton: () {
-                      flightProvaider.changevalue(false);
+      body: Container(
+        color: kprimarycolor,
+        child: SafeArea(
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: size.height,
+                  width: size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.04,
+                      ),
+                      CustomFilterDropDown(
+                          onRestoreState: () {
+                            return flightProvaider.isExpanded;
+                          },
+                          //esto no importa
+                          expandido: false,
+                          onPreesedFuntionButton: () {
+                            flightProvaider.changevalue(false);
 
-                      setState(() {});
-                      onPressedButton(context);
-                    }),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Text(
-                  //TODO: Hacer cuando solo hay un resultado...
-                  '${flightProvaider.departureflights.length} Resultados',
-                  style: TextStyle(fontSize: 20, color: kprimarycolor),
-                ),
-                Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: () => Future.delayed(const Duration(seconds: 1)),
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemCount: flightProvaider.departureflights.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.only(
-                              bottom: size.height * 0.03,
-                              left: size.height * 0.003,
-                              right: size.height * 0.003,
-                            ),
-                            child: CardFlightDetails(
-                              flight: flightProvaider.departureflights[index],
-                            ));
-                      },
-                    ),
+                            setState(() {});
+                            onPressedButton(context);
+                          }),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Text(
+                        //TODO: Hacer cuando solo hay un resultado...
+                        '${flightProvaider.departureflights.length} Resultados',
+                        style: TextStyle(fontSize: 20, color: kprimarycolor),
+                      ),
+                      Expanded(
+                        child: RefreshIndicator(
+                          onRefresh: () =>
+                              Future.delayed(const Duration(seconds: 1)),
+                          child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: flightProvaider.departureflights.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom: size.height * 0.03,
+                                    left: size.height * 0.003,
+                                    right: size.height * 0.003,
+                                  ),
+                                  child: CardFlightDetails(
+                                    flight:
+                                        flightProvaider.departureflights[index],
+                                  ));
+                            },
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
+                ),
+              ),
             ),
           ),
         ),

@@ -11,6 +11,9 @@ import '../../UI/Widgets/notification_body.dart';
 import 'login_provider.dart';
 
 class FlipProvider extends ChangeNotifier {
+  //bool contorl de navegacion
+
+  bool navegarnormal = true;
   //Control del flip carta grande y botton //
   var controllerBigCard = FlipCardController();
   var controllerbuttomCard = FlipCardController();
@@ -86,7 +89,12 @@ class FlipProvider extends ChangeNotifier {
           // controllerLine4.controller?.dispose();
           // controllerCircle4.controller?.dispose();
           // controllerCircle5.controller?.dispose();
-          Navigator.of(context).pushReplacementNamed('/contacts');
+          if (navegarnormal == true) {
+            Navigator.of(context).pushReplacementNamed('/contacts');
+          } else {
+            Navigator.of(context).pushNamed("/MoreDetailsFly");
+            navegarnormal = true;
+          }
           flip = 0;
         });
       }

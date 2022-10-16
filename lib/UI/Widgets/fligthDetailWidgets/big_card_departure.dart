@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
+import '../../../Constants/contants.dart';
 import '../../../DataLayer/Models/flight_model.dart';
 import 'flight_details_header.dart';
 import 'mini_container_green.dart';
@@ -25,7 +28,8 @@ class BigCardDeparture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flightProvider = Provider.of<FlightProvider>(context);
-  
+    final loginProvider = Provider.of<LoginProvider>(context);
+    final flipProvider = Provider.of<FlipProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Container(
@@ -97,7 +101,7 @@ class BigCardDeparture extends StatelessWidget {
                             style: const TextStyle(fontSize: 22),
                           ),
                         ),
-                         Text(
+                        Text(
                           departureflight.day,
                         ),
                       ],
@@ -197,11 +201,38 @@ class BigCardDeparture extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
-            child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.03,
-                ),
-                child: const DropDownListExample()),
+            child: loginProvider.contactList.isEmpty
+                ? SizedBox(
+                    width: size.width,
+                    child: GestureDetector(
+                      onTap: () {
+                        flipProvider.navegarnormal = false;
+                        Navigator.of(context)
+                            .pushReplacementNamed('/create_contat_page');
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            //addd contacto
+                            Icons.group_add_outlined,
+                            size: 25,
+                            color: kprimarycolor,
+                          ),
+                          Center(
+                              child: Text("Adicionar Contactos",
+                                  style: TextStyle(
+                                      color: kprimarycolor, fontSize: 18))),
+                        ],
+                      ),
+                    ),
+                  )
+                : Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.03,
+                    ),
+                    child: const DropDownListExample()),
           )
         ],
       ),

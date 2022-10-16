@@ -22,52 +22,60 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       drawer: const CustomDrawer(),
-      body: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.15,
+      body: Container(
+        color: kprimarycolor,
+        child: SafeArea(
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: size.height * 0.10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    StatusContainer(
+                      id: 1,
+                      texto: "Aceptado",
+                      icono: Icons.check_circle,
+                      selectedcolor: statusmentProvider.aceptedValue,
+                      iconcolor: Colors.green,
+                    ),
+                    SizedBox(width: size.height * 0.01),
+                    StatusContainer(
+                      id: 2,
+                      texto: "Pendiente",
+                      selectedcolor: statusmentProvider.pendingValue,
+                      icono: Icons.pending_actions,
+                      iconcolor: kprimarycolor,
+                    ),
+                    SizedBox(width: size.height * 0.01),
+                    StatusContainer(
+                      id: 3,
+                      texto: "Rechazado",
+                      icono: Icons.cancel,
+                      selectedcolor: statusmentProvider.rejectedValue,
+                      iconcolor: Colors.red,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.8,
+                  width: size.width,
+                  child: statusmentProvider.index == 1
+                      ? AceptedBody(
+                          payAceptedResponseList:
+                              statusmentProvider.payAceptedResponseList,
+                        )
+                      : statusmentProvider.index == 2
+                          ? const PendingBody()
+                          : const RejectedBody(),
+                )
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              StatusContainer(
-                id: 1,
-                texto: "Aceptado",
-                icono: Icons.check_circle,
-                selectedcolor: statusmentProvider.aceptedValue,
-                iconcolor: Colors.green,
-              ),
-              SizedBox(width: size.height * 0.01),
-              StatusContainer(
-                id: 2,
-                texto: "Pendiente",
-                selectedcolor: statusmentProvider.pendingValue,
-                icono: Icons.pending_actions,
-                iconcolor: kprimarycolor,
-              ),
-              SizedBox(width: size.height * 0.01),
-              StatusContainer(
-                id: 3,
-                texto: "Rechazado",
-                icono: Icons.cancel,
-                selectedcolor: statusmentProvider.rejectedValue,
-                iconcolor: Colors.red,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.8,
-            width: size.width,
-            child: statusmentProvider.index == 1
-                ? AceptedBody(
-                    payAceptedResponseList:
-                        statusmentProvider.payAceptedResponseList,
-                  )
-                : statusmentProvider.index == 2
-                    ? const PendingBody()
-                    : const RejectedBody(),
-          )
-        ],
+        ),
       ),
     );
   }

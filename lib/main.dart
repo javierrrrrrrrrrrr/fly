@@ -84,7 +84,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Havana Charter',
-        theme: ThemeData(fontFamily: 'LexendDeca'),
+        theme: ThemeData(
+          fontFamily: 'LexendDeca',
+        ),
         initialRoute: '/home',
         routes: {
           '/home': (context) => const HomePage(),
@@ -105,6 +107,7 @@ class MyApp extends StatelessWidget {
           '/check_reservation_status': (context) =>
               const CheckReservationStatus(),
         },
+        //tema con color personalizado
       ),
     );
   }

@@ -62,12 +62,10 @@ class CardBody5 extends StatelessWidget {
                     space: space,
                     texto: "Fecha de Vencimiento",
                   ),
-
             _ExpDateField(
                 selectedContact: selectedContact,
                 expDate: expDate,
                 contactProvider: contactProvider),
-
             Separador(
               space: space,
             ),
@@ -84,41 +82,41 @@ class CardBody5 extends StatelessWidget {
                     space: space,
                     texto: "Número de Pasaporte",
                   ),
-
             _PassportNumberSecField(
                 size: size,
                 passportNumbersec: passportNumbersec,
                 selectedContact: selectedContact),
-
             spacenamed == false
                 ? const Separador()
                 : Separador(
                     space: space,
                     texto: "País en Cuentión",
                   ),
-
             _CountryOfIssueSecField(
                 size: size,
                 contryOfIssuesec: contryOfIssuesec,
                 selectedContact: selectedContact),
-
             spacenamed == false
                 ? const Separador()
                 : Separador(
                     space: space,
-                    texto: "Número de Documentos de LLegada",
+                    texto: "No de Documentos de LLegada",
                   ),
-
-            _ArrivalDocNumberSecField(selectedContact: selectedContact, arrivalDocNumbersec: arrivalDocNumbersec, contactProvider: contactProvider, flipProvaider: flipProvaider),
+            _ArrivalDocNumberSecField(
+                selectedContact: selectedContact,
+                arrivalDocNumbersec: arrivalDocNumbersec,
+                contactProvider: contactProvider,
+                flipProvaider: flipProvaider),
             spacenamed == false
                 ? const Separador()
                 : Separador(
                     space: space,
                     texto: "Fecha de Vencimiento",
                   ),
-
-            _ExpDateSecField(selectedContact: selectedContact, expDatesec: expDatesec, contactProvider: contactProvider),
-       
+            _ExpDateSecField(
+                selectedContact: selectedContact,
+                expDatesec: expDatesec,
+                contactProvider: contactProvider),
             const Separador(),
             Container(
               height: size.height * 0.06,
@@ -145,7 +143,7 @@ class _ExpDateSecField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPikedDate(
-       initialvalue: selectedContact == null ? '' : selectedContact!.expDateSec!,
+      initialvalue: selectedContact == null ? '' : selectedContact!.expDateSec!,
       //TODO : mandar por parametros en icono del campo
       hintText: expDatesec,
       onSelectedDate: (piked) {
@@ -173,9 +171,8 @@ class _ArrivalDocNumberSecField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Imputfield(
-      initialValue: selectedContact == null
-          ? ''
-          : selectedContact!.arrivalDocNoSec!,
+      initialValue:
+          selectedContact == null ? '' : selectedContact!.arrivalDocNoSec!,
       hintext: selectedContact == null
           ? arrivalDocNumbersec
           : selectedContact!.arrivalDocNoSec!,

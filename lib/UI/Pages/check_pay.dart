@@ -17,11 +17,14 @@ class CheckPay extends StatelessWidget {
   Widget build(BuildContext context) {
     final paymentProvider = context.read<PaymentsProvider>();
 
-    return SafeArea(
-      child: _CheckPayBody(
-        departureFlight: paymentProvider
-            .convertflightInRelationtoFlight(paymentProvider.payResponse!),
-        returnFlight: paymentProvider.convertflightOutRelationtoFlight(),
+    return Container(
+      color: kprimarycolor,
+      child: SafeArea(
+        child: _CheckPayBody(
+          departureFlight: paymentProvider
+              .convertflightInRelationtoFlight(paymentProvider.payResponse!),
+          returnFlight: paymentProvider.convertflightOutRelationtoFlight(),
+        ),
       ),
     );
   }
@@ -39,6 +42,7 @@ class _CheckPayBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final paymentProvider = context.read<PaymentsProvider>();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -67,27 +71,40 @@ class _CheckPayBody extends StatelessWidget {
               const PriceCard(),
               SizedBox(height: size.height * 0.03),
               Center(
-                child: MaterialButton(
-                    height: size.height * 0.06,
-                    minWidth: size.width * 0.6,
-                    color: kprimarycolor,
-                    onPressed: () async {
-                      final payProvider =
-                          Provider.of<PaymentsProvider>(context, listen: false);
-                      final loginProvider =
-                          Provider.of<LoginProvider>(context, listen: false);
+                  child: paymentProvider.ispagocompletado == false
+                      ? MaterialButton(
+                          height: size.height * 0.06,
+                          minWidth: size.width * 0.6,
+                          color: kprimarycolor,
+                          onPressed: () async {
+                            final payProvider = Provider.of<PaymentsProvider>(
+                                context,
+                                listen: false);
+                            final loginProvider = Provider.of<LoginProvider>(
+                                context,
+                                listen: false);
 
-                      final token = loginProvider.loggedUser!.jwt;
-                      payProvider.token = token;
-                      payProvider.pay();
-
-                  
-                    },
-                    child: const Text(
-                      "Pagar Ahora",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    )),
-              )
+                            final token = loginProvider.loggedUser!.jwt;
+                            payProvider.token = token;
+                            payProvider.pay();
+                            //  navegar a HomePage
+                            //intervalo de 3 seundos
+                            await Future.delayed(const Duration(seconds: 3));
+                            Navigator.of(context).pushReplacementNamed('/home');
+                          },
+                          child: const Text(
+                            "Pagar Ahora",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ))
+                      : MaterialButton(
+                          height: size.height * 0.06,
+                          minWidth: size.width * 0.6,
+                          color: kprimarycolor,
+                          onPressed: () async {},
+                          child: const Text(
+                            "Procesando...",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          )))
             ],
           ),
         ),

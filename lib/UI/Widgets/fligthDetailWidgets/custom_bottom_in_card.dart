@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +47,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
           onPressed: () async {
             widget.flightProvaider.userReturnDay == '' ||
                     loginProvider.selectedcontactIDList.isEmpty
-                ? print("gg")
+                ? notificacion()
                 //TODO: Sacar Notificacion
 
                 : accion(context);
@@ -89,6 +90,22 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
             style: TextStyle(color: Colors.white, fontSize: 26),
           )),
     );
+  }
+
+  void notificacion() {
+    var snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'Upss!',
+        message:
+            "Para continuar es nesesario seleccionar un dia de retorno y un contacto,",
+        contentType: ContentType.help,
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   accion(BuildContext context) async {

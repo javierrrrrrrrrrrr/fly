@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
 import '../../../Constants/contants.dart';
+import '../../Widgets/CustomWidget/custom_navbar.dart';
 import '../../Widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,11 @@ class ContactsPage extends StatelessWidget {
                   )
                 : _ContactsList(
                     contacts: contactprovider.foundedContacts,
-                  )
+                  ),
+            CustomNavbar(index: 2),
+            SizedBox(
+              height: size.height * 0.02,
+            )
           ],
         ),
       ),
@@ -162,8 +167,7 @@ class _ListViewBody extends StatelessWidget {
               GestureDetector(
                 onTap: () async {
                   confirmDialog(
-                      messageBody:
-                          "Esta seguro que desea eliminar el contacto",
+                      messageBody: "Esta seguro que desea eliminar el contacto",
                       context: context,
                       function: () async {
                         loadingSpinner(context);

@@ -41,7 +41,6 @@ dependencies:
   dropdown_button2: ^1.7.2
   awesome_snackbar_content: ^0.0.8
   flutter_native_splash: ^2.2.9
-  asset_cache: ^2.0.0
   flip_card: ^0.6.0
   in_app_notification: ^1.1.2
   loading_animation_widget: ^1.2.0+3
@@ -51,6 +50,7 @@ dependencies:
   shared_preferences: ^2.0.15
   drop_down_list: ^0.0.4
   square_in_app_payments: ^1.7.5
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
