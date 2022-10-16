@@ -86,7 +86,9 @@ class CustomDrawer extends StatelessWidget {
                 height: size.height * 0.03,
               ),
               CustomRowDrawer(
-                  onPressed: () => Navigator.of(context).pushNamed('/airlines'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/airlines');
+                  },
                   icono: Icons.house_outlined,
                   texto: "Inicio",
                   tamnofuente: size.height * 0.025),
@@ -200,6 +202,4 @@ class CustomDrawer extends StatelessWidget {
       ),
     );
   }
-
-  
 }
