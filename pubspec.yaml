@@ -51,6 +51,7 @@ dependencies:
   drop_down_list: ^0.0.4
   square_in_app_payments: ^1.7.5
   smooth_page_indicator: ^1.0.0+2
+  flutter_animated_icons: ^1.0.1
 
 dev_dependencies:
   flutter_test:

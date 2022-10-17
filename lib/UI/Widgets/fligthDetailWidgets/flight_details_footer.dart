@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../Business_logic/Provaiders/flip_provider.dart';
+import '../../../Business_logic/Provaiders/login_provider.dart';
 import 'separador_horizontal.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +21,8 @@ class FlightDetailsFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flightProvaider = Provider.of<FlightProvider>(context);
+    final loginProvaider = Provider.of<LoginProvider>(context);
+    final flipProvaider = Provider.of<FlipProvider>(context);
 
     int primervalorfrom = int.parse(flight.checkIn.split(":")[0]);
     final size = MediaQuery.of(context).size;
@@ -54,10 +58,23 @@ class FlightDetailsFooter extends StatelessWidget {
                 Navigator.of(context).pushNamed('/check_pay');
               } else {
                 flightProvaider.selectedDepartureFlight = flight;
+                if (loginProvaider.contactList.isEmpty) {
+                  notificacionDialog(
+                      context: context,
+                      messageBody:
+                          'Para obtener un pasaje es necesario agregar al menos un contacto ',
+                      function: () {
+                        flipProvaider.navegarnormal = false;
+                        Navigator.of(context)
+                            .pushReplacementNamed('/create_contat_page');
+                      });
+                } else {
+                  Navigator.of(context).pushNamed(
+                    "/MoreDetailsFly",
+                  );
+                }
+
                 ////////////////////////////////////////////////////////
-                Navigator.of(context).pushNamed(
-                  "/MoreDetailsFly",
-                );
               }
               //Esto es para actualizar el flight selecionado...
             }),

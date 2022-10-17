@@ -66,3 +66,47 @@ dynamic confirmDialog(
     ),
   );
 }
+
+dynamic notificacionDialog(
+    {required BuildContext context,
+    required String messageBody,
+    required Function function}) {
+  final size = MediaQuery.of(context).size;
+  return showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text(
+          'Confirm ',
+          style: TextStyle(color: kprimarycolor, fontSize: 24),
+        ),
+        Icon(
+          Icons.airplane_ticket,
+          color: kprimarycolor,
+        )
+      ]),
+      content: Text(
+        messageBody,
+        style: const TextStyle(fontSize: 21),
+      ),
+      actionsAlignment: MainAxisAlignment.center,
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+            function();
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const [
+              Text(
+                "Continuar  ",
+              ),
+            ],
+          ),
+        )
+      ],
+      actionsPadding: EdgeInsets.only(bottom: size.height * 0.020),
+    ),
+  );
+}

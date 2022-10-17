@@ -86,12 +86,39 @@ class CustomNavbar extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               index = 2;
-              {
-                FocusScope.of(context).unfocus();
-                loadingSpinner(context);
+
+              FocusScope.of(context).unfocus();
+              loadingSpinner(context);
+              if (loginProvider.islogedUser == false) {
+                bool respuestaa = await loginProvider.loginMobileUser();
+
+                if (respuestaa == true) {
+                  bool respuesta = await userProvider
+                      .getsContacts(loginProvider.loggedUser!.jwt);
+
+                  if (respuesta == true) {
+                    Navigator.pop(context);
+                    Navigator.of(context).pushNamed('/contacts');
+                  } else {
+                    Navigator.pop(context);
+
+                    Scaffold.of(context).closeDrawer();
+                    var snackBar = SnackBar(
+                      elevation: 0,
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      content: AwesomeSnackbarContent(
+                        title: 'Error!',
+                        message: userProvider.error,
+                        contentType: ContentType.failure,
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                }
+              } else {
                 bool respuesta = await userProvider
                     .getsContacts(loginProvider.loggedUser!.jwt);
-
                 if (respuesta == true) {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/contacts');

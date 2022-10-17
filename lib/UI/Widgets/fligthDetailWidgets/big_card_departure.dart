@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_icons/lottiefiles.dart';
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
 import '../../../Constants/contants.dart';
@@ -14,6 +15,8 @@ import '../SeparationWidget/line.dart';
 import '../imput_field.dart';
 import 'drop_down_check_list.dart';
 import 'row_check_in_info.dart';
+
+import 'package:lottie/lottie.dart';
 
 class BigCardDeparture extends StatelessWidget {
   const BigCardDeparture({
@@ -135,8 +138,10 @@ class BigCardDeparture extends StatelessWidget {
                               },
                               hintext: flightProvider.userReturnDay,
                               suffixIcon: flightProvider.userReturnDay == ""
-                                  ? const Icon(Icons.calendar_month,
-                                      color: Colors.blue)
+                                  ? Lottie.asset(
+                                      LottieFiles.$35728_calendar_icon,
+                                      animate: true,
+                                    )
                                   : null),
                         )
                       ],
@@ -201,8 +206,17 @@ class BigCardDeparture extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
-            child: loginProvider.contactList.isEmpty
-                ? SizedBox(
+            child: Stack(
+              children: [
+                Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.03,
+                    ),
+                    child: const DropDownListExample()),
+                Positioned(
+                  bottom: size.height * 0.032,
+                  left: size.width * 0.25,
+                  child: SizedBox(
                     width: size.width,
                     child: GestureDetector(
                       onTap: () {
@@ -217,52 +231,16 @@ class BigCardDeparture extends StatelessWidget {
                           Icon(
                             //addd contacto
                             Icons.group_add_outlined,
-                            size: 25,
+                            size: 35,
                             color: kprimarycolor,
                           ),
-                          Center(
-                              child: Text("Adicionar Contactos",
-                                  style: TextStyle(
-                                      color: kprimarycolor, fontSize: 18))),
                         ],
                       ),
                     ),
-                  )
-                : Stack(
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.03,
-                          ),
-                          child: const DropDownListExample()),
-                      Positioned(
-                        bottom: size.height * 0.032,
-                        left: size.width * 0.25,
-                        child: SizedBox(
-                          width: size.width,
-                          child: GestureDetector(
-                            onTap: () {
-                              flipProvider.navegarnormal = false;
-                              Navigator.of(context)
-                                  .pushReplacementNamed('/create_contat_page');
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  //addd contacto
-                                  Icons.group_add_outlined,
-                                  size: 35,
-                                  color: kprimarycolor,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
                   ),
+                )
+              ],
+            ),
           )
         ],
       ),

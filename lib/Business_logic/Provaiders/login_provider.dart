@@ -12,6 +12,7 @@ import '../../DataLayer/Models/user_model.dart';
 import '../../UI/Widgets/widgets.dart';
 
 class LoginProvider extends ChangeNotifier {
+  bool islogedUser = false;
   User? loggedUser;
   List<Contact> contactList = [];
   List<int> selectedcontactIDList = [];
@@ -140,6 +141,7 @@ class LoginProvider extends ChangeNotifier {
         loggedUser = User.fromMap(decodedResp);
         prefs.setString('jwt', loggedUser!.jwt);
         getAllContacts();
+        islogedUser = true;
         print(prefs.getString('jwt'));
         return true;
       } else {
@@ -190,6 +192,7 @@ class LoginProvider extends ChangeNotifier {
       loggedUser = User.fromMap(decodedResp);
       prefs.setString('jwt', loggedUser!.jwt);
       getAllContacts();
+      islogedUser = true;
       return true;
     } else {
       final Map<String, dynamic> decodedResp = json.decode(respuesta);

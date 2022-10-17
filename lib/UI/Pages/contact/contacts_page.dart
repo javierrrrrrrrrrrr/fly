@@ -28,7 +28,7 @@ class ContactsPage extends StatelessWidget {
             ),
             contactprovider.foundedContacts.isEmpty
                 ? Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.28),
+                    padding: EdgeInsets.symmetric(vertical: size.height * 0.27),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context)

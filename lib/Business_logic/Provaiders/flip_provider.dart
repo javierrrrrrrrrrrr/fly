@@ -92,7 +92,7 @@ class FlipProvider extends ChangeNotifier {
           if (navegarnormal == true) {
             Navigator.of(context).pushReplacementNamed('/contacts');
           } else {
-            Navigator.of(context).pushNamed("/MoreDetailsFly");
+            Navigator.of(context).pushReplacementNamed("/MoreDetailsFly");
             navegarnormal = true;
           }
           flip = 0;
