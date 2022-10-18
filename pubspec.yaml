@@ -52,6 +52,7 @@ dependencies:
   square_in_app_payments: ^1.7.5
   smooth_page_indicator: ^1.0.0+2
   flutter_animated_icons: ^1.0.1
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

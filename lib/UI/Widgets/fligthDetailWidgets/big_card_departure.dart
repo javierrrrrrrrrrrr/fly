@@ -109,41 +109,73 @@ class BigCardDeparture extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Column(
+                    Stack(
                       children: [
-                        const Text(
-                          "Día de regreso",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.005,
-                        ),
-                        SizedBox(
-                          height: size.height * 0.05,
-                          width: size.width * 0.24,
-                          child: Imputfield(
-                              onTap: () async {
-                                FocusScope.of(context)
-                                    .requestFocus(FocusNode());
-                                DateTime? piked = await showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime.now(),
-                                    lastDate: DateTime(2027));
+                        Column(
+                          children: [
+                            const Text(
+                              "Día de regreso",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.005,
+                            ),
+                            SizedBox(
+                                height: size.height * 0.05,
+                                width: size.width * 0.24,
+                                child: flightProvider.userReturnDay != ""
+                                    ? Imputfield(
+                                        onTap: () async {
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
+                                          DateTime? piked =
+                                              await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime.now(),
+                                                  lastDate: DateTime(2027));
 
-                                if (piked != null) {
-                                  flightProvider.changeuserReturnDay(
-                                      "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}");
-                                }
-                              },
-                              hintext: flightProvider.userReturnDay,
-                              suffixIcon: flightProvider.userReturnDay == ""
-                                  ? Lottie.asset(
-                                      LottieFiles.$35728_calendar_icon,
+                                          if (piked != null) {
+                                            flightProvider.changeuserReturnDay(
+                                                "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}");
+                                          }
+                                        },
+                                        hintext: flightProvider.userReturnDay,
+                                      )
+                                    : Container()),
+                          ],
+                        ),
+                        flightProvider.userReturnDay == ""
+                            ? GestureDetector(
+                                onTap: () async {
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
+                                  DateTime? piked = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime.now(),
+                                      lastDate: DateTime(2027));
+
+                                  if (piked != null) {
+                                    flightProvider.changeuserReturnDay(
+                                        "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}");
+                                  }
+                                },
+                                child: Positioned(
+                                  bottom: 0,
+                                  child: SizedBox(
+                                    height: size.height * 0.09,
+                                    width: size.width * 0.26,
+                                    //  color: Colors.blue,
+                                    child: Lottie.asset(
+                                      LottieFiles.$34872_google_icons_calendar,
                                       animate: true,
-                                    )
-                                  : null),
-                        )
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Container()
                       ],
                     )
                   ],

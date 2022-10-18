@@ -37,11 +37,11 @@ class CustomNavbar extends StatelessWidget {
       ),
       child: Row(
         //  crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/home');
+              Navigator.of(context).pushNamed('/home');
               index = 0;
             },
             child: Column(
@@ -62,7 +62,7 @@ class CustomNavbar extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/search');
+              Navigator.of(context).pushNamed('/search');
               index = 1;
             },
             child: Column(
