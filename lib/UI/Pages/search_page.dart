@@ -44,7 +44,6 @@ class _SearchPageState extends State<SearchPage> {
                           customAppBar: const AppBarRow(),
                           body: Expanded(
                             child: SingleChildScrollView(
-                              physics: const BouncingScrollPhysics(),
                               child: Padding(
                                 padding:
                                     EdgeInsets.only(top: size.height * 0.01),

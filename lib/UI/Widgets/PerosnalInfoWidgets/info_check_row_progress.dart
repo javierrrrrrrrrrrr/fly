@@ -1,6 +1,8 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fly_cliente/Constants/contants.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Business_logic/Provaiders/flip_provider.dart';
@@ -21,6 +23,8 @@ void initState() {}
 class _InfoCheckRowProgressState extends State<InfoCheckRowProgress> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: kprimarycolor));
     final size = MediaQuery.of(context).size;
     final flipProvaider = Provider.of<FlipProvider>(context);
     return SizedBox(
