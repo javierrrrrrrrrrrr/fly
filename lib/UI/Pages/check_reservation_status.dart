@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../Business_logic/Provaiders/forms_providers/status_provider.dart';
 import '../../Constants/contants.dart';
+import '../Widgets/CustomWidget/custom_circle_avatar.dart';
 import '../Widgets/ReservationStatusWidget/pending_body.dart';
 import '../Widgets/ReservationStatusWidget/rejected_body.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +30,25 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
             color: Colors.white,
             child: Column(
               children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.08,
+                      vertical: size.height * 0.02),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(Icons.arrow_back_ios),
+                      ),
+                      const CustomCircleAvatar(),
+                    ],
+                  ),
+                ),
                 SizedBox(
-                  height: size.height * 0.10,
+                  height: size.height * 0.050,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +79,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
                   ],
                 ),
                 SizedBox(
-                  height: size.height * 0.8,
+                  height: size.height * 0.7,
                   width: size.width,
                   child: statusmentProvider.index == 1
                       ? AceptedBody(

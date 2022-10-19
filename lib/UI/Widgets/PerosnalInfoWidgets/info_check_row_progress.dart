@@ -156,10 +156,10 @@ class CirclewithNumberAndCheck extends StatelessWidget {
       speed: 1000,
       controller: control,
       front: Container(
-        height: size.height * 0.050,
-        width: size.width * 0.105,
+        height: size.height * 0.060,
+        width: size.width * 0.12,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(size.width * 0.08),
           color: Colors.blue,
           boxShadow: const [
             BoxShadow(
