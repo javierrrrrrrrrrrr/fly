@@ -73,7 +73,7 @@ class FlipProvider extends ChangeNotifier {
             duration: const Duration(milliseconds: 500),
             child: const NotificationBody(texto: "Todo listo"),
             context: context);
-
+        loadingSpinner(context);
         contactProvider
             .createContact(
                 context: context,
@@ -90,8 +90,10 @@ class FlipProvider extends ChangeNotifier {
           // controllerCircle4.controller?.dispose();
           // controllerCircle5.controller?.dispose();
           if (navegarnormal == true) {
+            Navigator.pop(context);
             Navigator.of(context).pushReplacementNamed('/contacts');
           } else {
+            Navigator.pop(context);
             Navigator.of(context).pushReplacementNamed("/MoreDetailsFly");
             navegarnormal = true;
           }

@@ -165,7 +165,7 @@ class BigCardDeparture extends StatelessWidget {
                                   },
                                   child: Lottie.asset(
                                     'assets/34872-google-icons-calendar.json',
-                                    height: size.height * 0.09,
+                                    height: size.height * 0.11,
                                     width: size.width * 0.26,
                                     fit: BoxFit.fill,
                                   ),
