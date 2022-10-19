@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_icons/lottiefiles.dart';
+
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
 import '../../../Constants/contants.dart';
@@ -146,32 +146,28 @@ class BigCardDeparture extends StatelessWidget {
                           ],
                         ),
                         flightProvider.userReturnDay == ""
-                            ? GestureDetector(
-                                onTap: () async {
-                                  FocusScope.of(context)
-                                      .requestFocus(FocusNode());
-                                  DateTime? piked = await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime.now(),
-                                      lastDate: DateTime(2027));
+                            ? Positioned(
+                                top: size.height * 0.002,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    DateTime? piked = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime.now(),
+                                        lastDate: DateTime(2027));
 
-                                  if (piked != null) {
-                                    flightProvider.changeuserReturnDay(
-                                        "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}");
-                                  }
-                                },
-                                child: Positioned(
-                                  bottom: 0,
-                                  child: SizedBox(
+                                    if (piked != null) {
+                                      flightProvider.changeuserReturnDay(
+                                          "${piked.year}/${piked.month <= 9 ? 0.toString() + piked.month.toString() : piked.month}/${piked.day <= 9 ? 0.toString() + piked.day.toString() : piked.day}");
+                                    }
+                                  },
+                                  child: Lottie.asset(
+                                    'assets/34872-google-icons-calendar.json',
                                     height: size.height * 0.09,
                                     width: size.width * 0.26,
-                                    //  color: Colors.blue,
-                                    child: Lottie.asset(
-                                      LottieFiles.$34872_google_icons_calendar,
-                                      animate: true,
-                                      fit: BoxFit.fitWidth,
-                                    ),
+                                    fit: BoxFit.fill,
                                   ),
                                 ),
                               )

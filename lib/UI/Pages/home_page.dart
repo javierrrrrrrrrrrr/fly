@@ -35,88 +35,93 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final newsProvider = Provider.of<NewsProvider>(context);
     final bookProvider = Provider.of<BookFlightProvider>(context);
-    final size = MediaQuery.of(context).size;
+
     return Scaffold(
         body: Container(
       color: kprimarycolor,
       child: SafeArea(
-        child: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage("assets/fondo.jpg"),
-            fit: BoxFit.fill,
-          )),
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: size.width * 0.08,
-              top: size.height * 0.02,
-              right: size.width * 0.08,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CustomCircleAvatar(),
-                SizedBox(
-                  height: size.height * 0.2,
-                ),
-                HavanaAirWidget(onPressed: () async {
-                  loadingSpinner(context);
-                  try {
-                    Future<bool> respuesta2 =
-                        bookProvider.refillFieldBookFlights();
-                    await newsProvider.getNewsList();
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage("assets/fondo.jpg"),
+              fit: BoxFit.fill,
+            )),
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: constraints.biggest.width * 0.08,
+                top: constraints.biggest.height * 0.02,
+                right: constraints.biggest.width * 0.08,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomCircleAvatar(),
+                  SizedBox(
+                    height: constraints.biggest.height * 0.2,
+                  ),
+                  HavanaAirWidget(onPressed: () async {
+                    loadingSpinner(context);
+                    try {
+                      Future<bool> respuesta2 =
+                          bookProvider.refillFieldBookFlights();
+                      await newsProvider.getNewsList();
 
-                    var respuesta = newsProvider.respuesta;
+                      var respuesta = newsProvider.respuesta;
 
-                    if (respuesta == true && await respuesta2 == true) {
+                      if (respuesta == true && await respuesta2 == true) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pop(context);
+
+                        // ignore: use_build_context_synchronously
+                        Navigator.of(context).pushNamed('/airlines');
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pop(context);
+
+                        var snackBar = SnackBar(
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'Error!',
+                            message: "A ocurrido algun error en la API",
+                            contentType: ContentType.failure,
+                          ),
+                        );
+
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    } catch (error) {
                       Navigator.pop(context);
-
-                      Navigator.of(context).pushNamed('/airlines');
-                    } else {
-                      Navigator.pop(context);
-
                       var snackBar = SnackBar(
                         elevation: 0,
                         behavior: SnackBarBehavior.floating,
                         backgroundColor: Colors.transparent,
                         content: AwesomeSnackbarContent(
                           title: 'Error!',
-                          message: "A ocurrido algun error en la API",
+                          message: error.toString(),
                           contentType: ContentType.failure,
                         ),
                       );
 
-                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
-                  } catch (error) {
-                    Navigator.pop(context);
-                    var snackBar = SnackBar(
-                      elevation: 0,
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Colors.transparent,
-                      content: AwesomeSnackbarContent(
-                        title: 'Error!',
-                        message: error.toString(),
-                        contentType: ContentType.failure,
-                      ),
-                    );
-
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                }),
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                const NoAirline(),
-                SizedBox(
-                  height: size.height * 0.35,
-                ),
-                CustomNavbar(index: 0),
-              ],
+                  }),
+                  SizedBox(
+                    height: constraints.biggest.height * 0.02,
+                  ),
+                  const NoAirline(),
+                  SizedBox(
+                    height: constraints.biggest.height * 0.35,
+                  ),
+                  CustomNavbar(index: 0),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     ));
   }
