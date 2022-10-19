@@ -45,20 +45,24 @@ class CustomNavbar extends StatelessWidget {
               index = 0;
             },
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: size.height * 0.01,
                 ),
                 Icon(
                   Icons.home,
-                  color: index == 0 ? kprimarycolor : Colors.black,
+                  color: index == 0 ? kprimarycolor : Colors.grey,
                 ),
                 Text("Home",
                     style: TextStyle(
-                      color: index == 0 ? kprimarycolor : Colors.black,
+                      color: index == 0 ? kprimarycolor : Colors.grey,
                     ))
               ],
             ),
+          ),
+          SizedBox(
+            width: size.width * 0.03,
           ),
           GestureDetector(
             onTap: () {
@@ -66,22 +70,26 @@ class CustomNavbar extends StatelessWidget {
               index = 1;
             },
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: size.height * 0.01,
                 ),
                 Icon(
                   Icons.library_books,
-                  color: index == 1 ? kprimarycolor : Colors.black,
+                  color: index == 1 ? kprimarycolor : Colors.grey,
                 ),
                 Text(
-                  "Reservar vuelo",
+                  "Reservar",
                   style: TextStyle(
-                    color: index == 1 ? kprimarycolor : Colors.black,
+                    color: index == 1 ? kprimarycolor : Colors.grey,
                   ),
                 )
               ],
             ),
+          ),
+          SizedBox(
+            width: size.width * 0.0005,
           ),
           GestureDetector(
             onTap: () async {
@@ -141,18 +149,19 @@ class CustomNavbar extends StatelessWidget {
               }
             },
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: size.height * 0.01,
                 ),
                 Icon(
                   Icons.contacts_outlined,
-                  color: index == 2 ? kprimarycolor : Colors.black,
+                  color: index == 2 ? kprimarycolor : Colors.grey,
                 ),
                 Text(
                   "Contactos",
                   style: TextStyle(
-                    color: index == 2 ? kprimarycolor : Colors.black,
+                    color: index == 2 ? kprimarycolor : Colors.grey,
                   ),
                 )
               ],

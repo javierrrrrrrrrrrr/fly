@@ -100,7 +100,7 @@ class _CustomButtomCardState extends State<CustomButtomCard> {
       content: AwesomeSnackbarContent(
         title: 'Upss!',
         message:
-            "Para continuar es nesesario seleccionar un dia de retorno y un contacto,",
+            "Para continuar es  seleccione un dia de retorno y un contacto",
         contentType: ContentType.help,
       ),
     );
