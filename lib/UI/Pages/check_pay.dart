@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import '../../Business_logic/Provaiders/forms_providers/status_provider.dart';
 import '../../Business_logic/Provaiders/payment_provider.dart';
 import '../../Constants/contants.dart';
 import '../Widgets/fligthDetailWidgets/card_flight_details.dart';
@@ -15,7 +17,7 @@ class CheckPay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final paymentProvider = context.read<PaymentsProvider>();
+    final paymentProvider = Provider.of<PaymentsProvider>(context);
 
     return Container(
       color: kprimarycolor,
@@ -42,71 +44,149 @@ class _CheckPayBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final paymentProvider = context.read<PaymentsProvider>();
+    final paymentProvider = Provider.of<PaymentsProvider>(context);
+    final statusProvider = Provider.of<StatusProvider>(context);
+    final loginProvider = Provider.of<LoginProvider>(context);
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: size.width * 0.05, vertical: size.height * 0.03),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const _BackButton(),
-              SizedBox(height: size.height * 0.015),
-              CardFlightDetails(
-                customtext: "Vuelo",
-                isCheckedPage: true,
-                flight: departureFlight,
-              ),
-              SizedBox(height: size.height * 0.015),
-              CardFlightDetails(
-                customtext: 'Vuelo de Retorno',
-                isCheckedPage: true,
-                flight: returnFlight,
-              ),
-              SizedBox(height: size.height * 0.015),
-              const _ContactList(),
-              SizedBox(height: size.height * 0.015),
-              const PriceCard(),
-              SizedBox(height: size.height * 0.03),
-              Center(
-                  child: paymentProvider.ispagocompletado == false
-                      ? MaterialButton(
-                          height: size.height * 0.06,
-                          minWidth: size.width * 0.6,
-                          color: kprimarycolor,
-                          onPressed: () async {
-                            final payProvider = Provider.of<PaymentsProvider>(
-                                context,
-                                listen: false);
-                            final loginProvider = Provider.of<LoginProvider>(
-                                context,
-                                listen: false);
+          child: paymentProvider.isLoadingPay == false
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const _BackButton(),
+                    SizedBox(height: size.height * 0.015),
+                    CardFlightDetails(
+                      customtext: "Vuelo",
+                      isCheckedPage: true,
+                      flight: departureFlight,
+                    ),
+                    SizedBox(height: size.height * 0.015),
+                    CardFlightDetails(
+                      customtext: 'Vuelo de Retorno',
+                      isCheckedPage: true,
+                      flight: returnFlight,
+                    ),
+                    SizedBox(height: size.height * 0.015),
+                    const _ContactList(),
+                    SizedBox(height: size.height * 0.015),
+                    const PriceCard(),
+                    SizedBox(height: size.height * 0.03),
+                    Center(
+                        child: MaterialButton(
+                            height: size.height * 0.06,
+                            minWidth: size.width * 0.6,
+                            color: kprimarycolor,
+                            onPressed: () async {
+                              final payProvider = Provider.of<PaymentsProvider>(
+                                  context,
+                                  listen: false);
+                              final loginProvider = Provider.of<LoginProvider>(
+                                  context,
+                                  listen: false);
 
-                            final token = loginProvider.loggedUser!.jwt;
-                            payProvider.token = token;
-                            payProvider.pay();
-                            //  navegar a HomePage
-                            //intervalo de 3 seundos
-                            await Future.delayed(const Duration(seconds: 3));
-                            Navigator.of(context).pushReplacementNamed('/home');
-                          },
-                          child: const Text(
-                            "Pagar Ahora",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ))
-                      : MaterialButton(
-                          height: size.height * 0.06,
-                          minWidth: size.width * 0.6,
-                          color: kprimarycolor,
-                          onPressed: () async {},
-                          child: const Text(
-                            "Procesando...",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          )))
-            ],
-          ),
+                              final token = loginProvider.loggedUser!.jwt;
+                              payProvider.token = token;
+                              payProvider.pay();
+                              payProvider.isLoadingPay = true;
+                              //  navegar a HomePage
+                              //intervalo de 3 seundos
+                            },
+                            child: const Text(
+                              "Pagar Ahora",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )))
+                  ],
+                )
+              : Center(
+                  child: paymentProvider.iscompleted == false
+                      ? Column(
+                          children: [
+                            const Text("Procesando el pago"),
+                            SizedBox(
+                              height: size.height * 0.4,
+                            ),
+                            const Text(
+                                "Sus datos se han recibido de manera satifactoria desea continuar"),
+                            SizedBox(
+                              height: size.height * 0.3,
+                            ),
+                            MaterialButton(
+                                height: size.height * 0.06,
+                                minWidth: size.width * 0.6,
+                                color: kprimarycolor,
+                                child: const Text("Continuar",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20)),
+                                onPressed: () async {
+                                  loadingSpinner(context);
+
+                                  bool respuesta =
+                                      await paymentProvider.makepayment(
+                                          paymentProvider.token,
+                                          paymentProvider.payResponse!.id);
+
+                                  if (respuesta == true) {
+                                    Navigator.pop(context);
+                                    paymentProvider.iscompeted(true);
+                                  } else {
+                                    Navigator.pop(context);
+                                  }
+                                }),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            const Text(
+                              "Completado",
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            Lottie.asset("assets/112147-pay-now.json"),
+                            MaterialButton(
+                                height: size.height * 0.06,
+                                minWidth: size.width * 0.6,
+                                color: kprimarycolor,
+                                child: const Text("Ir a la pagina principal",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20)),
+                                onPressed: () async {
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/home');
+                                  paymentProvider.changeValuePay(false);
+                                  paymentProvider.iscompeted(false);
+                                }),
+                            MaterialButton(
+                                height: size.height * 0.06,
+                                minWidth: size.width * 0.6,
+                                color: kprimarycolor,
+                                child: const Text("Verificar pago",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20)),
+                                onPressed: () async {
+                                  loadingSpinner(context);
+                                  paymentProvider.changeValuePay(false);
+                                  paymentProvider.iscompeted(false);
+
+                                  bool respuesta =
+                                      await statusProvider.getInfoStatus(
+                                          loginProvider.loggedUser!.jwt);
+
+                                  if (respuesta == true) {
+                                    Navigator.of(context).pop();
+                                    Navigator.of(context)
+                                        .pushNamed('/check_reservation_status');
+                                  } else {
+                                    Navigator.of(context).pop();
+                                  }
+                                }),
+                          ],
+                        ),
+                ),
         ),
       ),
     );

@@ -10,13 +10,19 @@ import '../../DataLayer/Models/flight_model.dart';
 import '../../DataLayer/Models/pay_fly_response_model.dart';
 
 class PaymentsProvider extends ChangeNotifier {
-  bool ispagocompletado = false;
+  bool iscompleted = false;
+  bool isLoadingPay = false;
   PayFlyModel? payResponse;
   String nonce = '';
   String token = '';
 
+  iscompeted(bool valor) {
+    iscompleted = valor;
+    notifyListeners();
+  }
+
   changeValuePay(bool value) {
-    ispagocompletado = value;
+    isLoadingPay = value;
     notifyListeners();
   }
 
@@ -30,8 +36,7 @@ class PaymentsProvider extends ChangeNotifier {
 
   void _onCardNonceRequestSuccess(CardDetails result) async {
     nonce = result.nonce;
-    makepayment(token, payResponse!.id);
-
+    isLoadingPay == true;
     notifyListeners();
     print('Este es el nonce de la carta${result.nonce}');
 
@@ -86,9 +91,12 @@ class PaymentsProvider extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
+
+      notifyListeners();
       return true;
     } else {
       print(response.reasonPhrase);
+      notifyListeners();
       return false;
     }
   }
