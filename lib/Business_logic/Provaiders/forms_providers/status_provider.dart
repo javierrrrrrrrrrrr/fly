@@ -69,7 +69,7 @@ class StatusProvider extends ChangeNotifier {
     payPendingResponseList.clear();
     payCancelResponseList.clear();
     for (var element in payResponseList) {
-      if (element.status == "ACEPTED") {
+      if (element.status == "APPROVED") {
         payAceptedResponseList.add(element);
       } else if (element.status == "PENDING") {
         payPendingResponseList.add(element);

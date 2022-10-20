@@ -79,7 +79,7 @@ class _CheckReservationStatusState extends State<CheckReservationStatus> {
                   ],
                 ),
                 SizedBox(
-                  height: size.height * 0.7,
+                  height: size.height * 0.76,
                   width: size.width,
                   child: statusmentProvider.index == 1
                       ? AceptedBody(

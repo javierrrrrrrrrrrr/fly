@@ -12,13 +12,18 @@ class RejectedBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final paymentprovider = Provider.of<PaymentsProvider>(context);
     final statusprovider = Provider.of<StatusProvider>(context);
+    final size = MediaQuery.of(context).size;
 
     return ListView.builder(
         itemCount: statusprovider.payCancelResponseList.length,
         itemBuilder: (BuildContext context, int index) {
-          return CardFlightDetails(
-            flight: paymentprovider.convertflightInRelationtoFlight(
-                statusprovider.payCancelResponseList[index]),
+          return Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.04, vertical: size.height * 0.01),
+            child: CardFlightDetails(
+              flight: paymentprovider.convertflightInRelationtoFlight(
+                  statusprovider.payCancelResponseList[index]),
+            ),
           );
         });
   }
