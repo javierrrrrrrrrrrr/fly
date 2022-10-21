@@ -76,25 +76,29 @@ class LoginProvider extends ChangeNotifier {
   }
 
   Future<void> uUIDMaker() async {
-    final prefs = await SharedPreferences.getInstance();
-    var uuid = const Uuid();
-    bool? isUuidWritten = prefs.getBool('uuid');
-    String? valueUuidSharedP = prefs.getString('uuidValue');
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      var uuid = const Uuid();
+      bool? isUuidWritten = prefs.getBool('uuid');
+      String? valueUuidSharedP = prefs.getString('uuidValue');
 
-    if (isUuidWritten == false ||
-        isUuidWritten == null ||
-        valueUuidSharedP == null ||
-        valueUuidSharedP == '') {
-      uuidGenerated = uuid.v4();
+      if (isUuidWritten == false ||
+          isUuidWritten == null ||
+          valueUuidSharedP == null ||
+          valueUuidSharedP == '') {
+        uuidGenerated = uuid.v4();
 
-      await prefs.setBool('uuid', true);
-      await prefs.setString('uuidValue', uuidGenerated!);
-      await createMobileUser();
+        await prefs.setBool('uuid', true);
+        await prefs.setString('uuidValue', uuidGenerated!);
+        await createMobileUser();
+      }
+
+      loginMobileUser();
+
+      print(prefs.getString('uuidValue'));
+    } catch (e) {
+      print(e);
     }
-
-    loginMobileUser();
-
-    print(prefs.getString('uuidValue'));
   }
 
   Future<bool> createMobileUser() async {
@@ -112,12 +116,12 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         return true;
       } else {
-        await prefs.setString('uuidValue', '');
+        //   await prefs.setString('uuidValue', '');
         print(response.reasonPhrase);
         return false;
       }
     } catch (e) {
-      await prefs.setString('uuidValue', '');
+      //   await prefs.setString('uuidValue', '');
       print(e);
       return false;
     }
@@ -146,11 +150,11 @@ class LoginProvider extends ChangeNotifier {
         return true;
       } else {
         print(response.reasonPhrase);
-        await prefs.setString('uuidValue', '');
+        //  await prefs.setString('uuidValue', '');
         return false;
       }
     } catch (e) {
-      await prefs.setString('uuidValue', '');
+      //  await prefs.setString('uuidValue', '');
       print(e);
       return false;
     }

@@ -119,6 +119,8 @@ class _CheckPayBody extends StatelessWidget {
                               height: size.height * 0.3,
                             ),
                             MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                                 height: size.height * 0.06,
                                 minWidth: size.width * 0.6,
                                 color: kprimarycolor,
@@ -157,6 +159,8 @@ class _CheckPayBody extends StatelessWidget {
                                   "assets/112147-pay-now.json",
                                 )),
                             MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                                 height: size.height * 0.06,
                                 minWidth: size.width * 0.6,
                                 color: kprimarycolor,
@@ -176,6 +180,8 @@ class _CheckPayBody extends StatelessWidget {
                               height: size.height * 0.03,
                             ),
                             MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                                 height: size.height * 0.06,
                                 minWidth: size.width * 0.6,
                                 color: kprimarycolor,
