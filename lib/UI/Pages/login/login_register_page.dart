@@ -108,7 +108,6 @@ class LoginRegisterPage extends StatelessWidget {
                     if (respuesta2 == true) {
                       Navigator.pop(context);
                       Navigator.of(context).pushNamed('/airlines');
-                      
                     }
                     if (respuesta == false || respuesta2 == false) {
                       Navigator.pop(context);
@@ -126,10 +125,11 @@ class LoginRegisterPage extends StatelessWidget {
                     }
                   }
                 },
-                child: const Center(
+                child: Center(
                     child: Text(
                   "Crear Cuenta",
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  style: TextStyle(
+                      color: Colors.white, fontSize: size.width * 0.065),
                 )),
               ),
             ),
@@ -141,7 +141,6 @@ class LoginRegisterPage extends StatelessWidget {
               child: SizedBox(
                 height: size.height * 0.07,
                 width: size.width * 0.2,
-             
               ),
             )),
             Positioned(
@@ -176,7 +175,7 @@ class LoginRegisterPage extends StatelessWidget {
                     Text("Inicia sesión con Google",
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.5),
-                            fontSize: 18)),
+                            fontSize: size.width * 0.04)),
                   ],
                 ),
               ),

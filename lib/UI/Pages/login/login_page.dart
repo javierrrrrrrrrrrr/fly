@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final loginProvider = Provider.of<LoginProvider>(context);
-    
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -98,7 +98,6 @@ class LoginPage extends StatelessWidget {
                   if (respuesta == true) {
                     Navigator.pop(context);
                     Navigator.of(context).pushNamed('/airlines');
-                    
                   } else {
                     Navigator.pop(context);
                     var snackBar = SnackBar(
@@ -114,10 +113,11 @@ class LoginPage extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
-                child: const Center(
+                child: Center(
                     child: Text(
                   "Iniciar sesión",
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  style: TextStyle(
+                      color: Colors.white, fontSize: size.width * 0.065),
                 )),
               ),
             ),
@@ -126,7 +126,8 @@ class LoginPage extends StatelessWidget {
               left: size.width * 0.23,
               child: Text("¿Olvidó la contraseña?",
                   style: TextStyle(
-                      color: Colors.black.withOpacity(0.5), fontSize: 20)),
+                      color: Colors.black.withOpacity(0.5),
+                      fontSize: size.width * 0.05)),
             ),
             Positioned(
               bottom: size.height * 0.085,
@@ -137,7 +138,8 @@ class LoginPage extends StatelessWidget {
                 },
                 child: Text("Crear cuenta..",
                     style: TextStyle(
-                        color: Colors.black.withOpacity(0.5), fontSize: 20)),
+                        color: Colors.black.withOpacity(0.5),
+                        fontSize: size.width * 0.05)),
               ),
             ),
             Positioned(
@@ -172,7 +174,7 @@ class LoginPage extends StatelessWidget {
                     Text("Inicia sesión con Google",
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.5),
-                            fontSize: 18)),
+                            fontSize: size.width * 0.04)),
                   ],
                 ),
               ),
