@@ -33,14 +33,20 @@ class NewsProvider extends ChangeNotifier {
 
   Future<List<News>> getNewsList() async {
     news.clear();
-    var response = await http.get(Uri.parse('$kip/news'));
 
-    if (response.statusCode == 200) {
-      final List<dynamic> decodedResp = json.decode(response.body);
-      decodedResp.map((item) => news.add(News.fromMap(item))).toList();
-      respuesta = true;
+    try {
+      var response = await http.get(Uri.parse('$kip/news'));
+
+      if (response.statusCode == 200) {
+        final List<dynamic> decodedResp = json.decode(response.body);
+        decodedResp.map((item) => news.add(News.fromMap(item))).toList();
+        respuesta = true;
+      }
+
+      return news;
+    } catch (e) {
+      respuesta = false;
+      return news;
     }
-
-    return news;
   }
 }

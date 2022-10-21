@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: Colors.transparent,
                           content: AwesomeSnackbarContent(
                             title: 'Error!',
-                            message: "A ocurrido algun error en la API",
+                            message: "Error de conexión con el servidor",
                             contentType: ContentType.failure,
                           ),
                         );

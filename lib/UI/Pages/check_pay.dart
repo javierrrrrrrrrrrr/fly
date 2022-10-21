@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../Business_logic/Provaiders/forms_providers/status_provider.dart';
@@ -120,9 +122,10 @@ class _CheckPayBody extends StatelessWidget {
                                 height: size.height * 0.06,
                                 minWidth: size.width * 0.6,
                                 color: kprimarycolor,
-                                child: const Text("Continuar",
+                                child: Text("Continuar",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
+                                        color: Colors.white,
+                                        fontSize: size.height * 0.03)),
                                 onPressed: () async {
                                   loadingSpinner(context);
 
@@ -142,35 +145,46 @@ class _CheckPayBody extends StatelessWidget {
                         )
                       : Column(
                           children: [
-                            const Text(
+                            Text(
                               "Completado",
-                              style: TextStyle(fontSize: 30),
+                              style: TextStyle(fontSize: size.height * 0.06),
                             ),
-                            Lottie.asset("assets/112147-pay-now.json"),
+                            SizedBox(
+                                // color: Colors.blue,
+                                height: size.height * 0.65,
+                                width: size.width,
+                                child: Lottie.asset(
+                                  "assets/112147-pay-now.json",
+                                )),
                             MaterialButton(
                                 height: size.height * 0.06,
                                 minWidth: size.width * 0.6,
                                 color: kprimarycolor,
-                                child: const Text("Ir a la pagina principal",
+                                child: Text("Ir a la página principal",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
+                                        color: Colors.white,
+                                        fontSize: size.height * 0.03)),
                                 onPressed: () async {
                                   Navigator.of(context)
                                       .pushReplacementNamed('/home');
-                                  paymentProvider.changeValuePay(false);
-                                  paymentProvider.iscompeted(false);
+                                  Timer(const Duration(seconds: 3), () {
+                                    paymentProvider.changeValuePay(false);
+                                    paymentProvider.iscompeted(false);
+                                  });
                                 }),
+                            SizedBox(
+                              height: size.height * 0.03,
+                            ),
                             MaterialButton(
                                 height: size.height * 0.06,
                                 minWidth: size.width * 0.6,
                                 color: kprimarycolor,
-                                child: const Text("Verificar pago",
+                                child: Text("Verificar pago",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
+                                        color: Colors.white,
+                                        fontSize: size.height * 0.03)),
                                 onPressed: () async {
                                   loadingSpinner(context);
-                                  paymentProvider.changeValuePay(false);
-                                  paymentProvider.iscompeted(false);
 
                                   bool respuesta =
                                       await statusProvider.getInfoStatus(
@@ -180,6 +194,10 @@ class _CheckPayBody extends StatelessWidget {
                                     Navigator.of(context).pop();
                                     Navigator.of(context)
                                         .pushNamed('/check_reservation_status');
+                                    Timer(const Duration(seconds: 3), () {
+                                      paymentProvider.changeValuePay(false);
+                                      paymentProvider.iscompeted(false);
+                                    });
                                   } else {
                                     Navigator.of(context).pop();
                                   }
