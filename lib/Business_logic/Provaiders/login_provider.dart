@@ -50,7 +50,7 @@ class LoginProvider extends ChangeNotifier {
   String error = "";
 
   LoginProvider() {
-    uUIDMaker();
+    // uUIDMaker();
 
     // initPlatformState();
   }
@@ -75,7 +75,7 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> uUIDMaker() async {
+  Future<bool> uUIDMaker() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       var uuid = const Uuid();
@@ -93,11 +93,13 @@ class LoginProvider extends ChangeNotifier {
         await createMobileUser();
       }
 
-      loginMobileUser();
-
       print(prefs.getString('uuidValue'));
+      await loginMobileUser();
+
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 

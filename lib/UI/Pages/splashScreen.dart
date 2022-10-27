@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
+import '../../Business_logic/Provaiders/login_provider.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,11 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(const Duration(seconds: 4), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    });
+    logUser();
+    // Future.delayed(const Duration(seconds: 4), () {
+    //   Navigator.pushReplacement(
+    //       context, MaterialPageRoute(builder: (context) => const HomePage()));
+    // });
   }
 
   @override
@@ -26,6 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
     precacheImage(const AssetImage("assets/fondo.jpg"), context);
 
     super.didChangeDependencies();
+  }
+
+  void logUser() async {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    bool respuesta = await loginProvider.uUIDMaker();
+    if (respuesta == true) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    }
   }
 
   @override
