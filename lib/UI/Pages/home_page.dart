@@ -16,19 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Image? image1;
-
   @override
   void initState() {
     super.initState();
-    image1 = Image.asset("assets/fondo.jpg");
-  }
-
-  @override
-  void didChangeDependencies() async {
-    super.didChangeDependencies();
-
-    precacheImage(image1!.image, context);
   }
 
   @override

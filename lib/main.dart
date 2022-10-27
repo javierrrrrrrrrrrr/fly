@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 import 'package:provider/provider.dart';
 
@@ -25,11 +24,10 @@ import 'UI/Pages/more_details_fly.dart';
 import 'UI/Pages/more_details_ofert.dart';
 import 'UI/Pages/search_page.dart';
 import 'UI/Pages/search_result.dart';
+import 'UI/Pages/splashScreen.dart';
 import 'UI/Widgets/fligthDetailWidgets/drop_down_check_list.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -71,7 +69,6 @@ void main() {
     ],
     child: const MyApp(),
   ));
-  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -87,8 +84,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'LexendDeca',
         ),
-        initialRoute: '/home',
+        initialRoute: '/splash',
         routes: {
+          '/splash': (context) => const SplashScreen(),
           '/home': (context) => const HomePage(),
           '/airlines': (context) => const AirlineInfoPage(),
           '/search': (context) => const SearchPage(),
