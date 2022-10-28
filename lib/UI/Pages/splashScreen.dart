@@ -16,7 +16,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    logUser();
     // Future.delayed(const Duration(seconds: 4), () {
     //   Navigator.pushReplacement(
     //       context, MaterialPageRoute(builder: (context) => const HomePage()));
@@ -28,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     precacheImage(const AssetImage("assets/fondo.jpg"), context);
 
     super.didChangeDependencies();
+    logUser();
   }
 
   void logUser() async {

@@ -146,7 +146,7 @@ class NoAirline extends StatelessWidget {
         height: size.height * 0.11,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(size.height * 0.002),
             color: const Color.fromRGBO(130, 130, 130, 1),
           ),
           child: const Center(
