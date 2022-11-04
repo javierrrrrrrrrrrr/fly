@@ -206,11 +206,7 @@ class _CountryOfIssueSecField extends StatelessWidget {
         iconData: Icons.flag_outlined,
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
-        items: const [
-          'Document 1',
-          'Document 2',
-          'Document 3',
-        ],
+        items: contactProvider.countryNames,
         hintext: contryOfIssuesec,
         onChanged: (value) => contactProvider
             .selectedContact!.countryOfIssueSec = value.toString(),
@@ -223,11 +219,7 @@ class _CountryOfIssueSecField extends StatelessWidget {
         iconData: Icons.flag_outlined,
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
-        items: const [
-          'Document 1',
-          'Document 2',
-          'Document 3',
-        ],
+        items: contactProvider.countryNames,
         hintext: contryOfIssuesec,
         onChanged: (value) => contactProvider
             .selectedContact!.countryOfIssueSec = value.toString(),
@@ -259,9 +251,11 @@ class _PassportNumberSecField extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
         items: const [
-          'Document 1',
-          'Document 2',
-          'Document 3',
+          'Pasaporte',
+          'Visa',
+          'Permanent Resident Card',
+          'ID',
+          'Alient Resident Card',
         ],
         hintext: passportNumbersec,
         onChanged: (value) => contactProvider
@@ -276,9 +270,11 @@ class _PassportNumberSecField extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
         items: const [
-          'Document 1',
-          'Document 2',
-          'Document 3',
+          'Pasaporte',
+          'Visa',
+          'Permanent Resident Card',
+          'ID',
+          'Alient Resident Card',
         ],
         hintext: passportNumbersec,
         onChanged: (value) => contactProvider

@@ -15,6 +15,7 @@ class ContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //final seacrhProvider = Provider.of<SearchProvider>(context);
     final contactprovider = Provider.of<ContactProvider>(context);
+    // final loginProvider = Provider.of<LoginProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -30,9 +31,14 @@ class ContactsPage extends StatelessWidget {
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: size.height * 0.27),
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed('/create_contat_page');
+                      onTap: () async {
+                        loadingSpinner(context);
+                        bool respuesta = await contactprovider.getCountryName();
+                        if (respuesta == true) {
+                          Navigator.pop(context);
+                          Navigator.of(context)
+                              .pushReplacementNamed('/create_contat_page');
+                        }
                       },
                       child: Column(
                         children: [
@@ -285,8 +291,14 @@ class _AppBarRow extends StatelessWidget {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed('/create_contat_page');
+            onTap: () async {
+              loadingSpinner(context);
+              bool respuesta = await contactProvider.getCountryName();
+              if (respuesta == true) {
+                Navigator.pop(context);
+                Navigator.of(context)
+                    .pushReplacementNamed('/create_contat_page');
+              }
             },
             child: Icon(
               Icons.group_add_outlined,

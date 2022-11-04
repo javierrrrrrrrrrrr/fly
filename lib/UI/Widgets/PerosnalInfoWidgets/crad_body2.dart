@@ -63,7 +63,6 @@ class CardBody2 extends StatelessWidget {
                     space: space,
                     texto: "Dirección",
                   ),
-
             _AddressField(
                 selectedContact: selectedContact,
                 address: address,
@@ -75,7 +74,6 @@ class CardBody2 extends StatelessWidget {
                     space: space,
                     texto: "Ciudad",
                   ),
-
             _CityField(
                 selectedContact: selectedContact,
                 city: city,
@@ -87,7 +85,6 @@ class CardBody2 extends StatelessWidget {
                     space: space,
                     texto: "Estado",
                   ),
-
             _Statefield(
                 selectedContact: selectedContact,
                 state: state,
@@ -99,7 +96,6 @@ class CardBody2 extends StatelessWidget {
                     space: space,
                     texto: "Código Postal",
                   ),
-
             _ZipCodeField(
                 selectedContact: selectedContact,
                 zipCode: zipCode,
@@ -111,7 +107,6 @@ class CardBody2 extends StatelessWidget {
                     space: space,
                     texto: "País",
                   ),
-
             _CountryField(
                 selectedContact: selectedContact,
                 country: country,
@@ -123,13 +118,11 @@ class CardBody2 extends StatelessWidget {
                     space: space,
                     texto: "Nacionalidad",
                   ),
-
             _NationalityField(
               size: size,
               nationality: nationality,
               selectedContact: selectedContact,
             ),
-
             Container(
               height: size.height * 0.03,
             ),
@@ -160,11 +153,7 @@ class _NationalityField extends StatelessWidget {
         iconData: Icons.flag_outlined,
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de nacionalidades...
-        items: const [
-          'Cuban',
-          'American',
-          'Others',
-        ],
+        items: contactProvider.countryNames,
         hintext: nationality,
         onChanged: (value) =>
             contactProvider.selectedContact!.nationality = value.toString(),
@@ -177,11 +166,7 @@ class _NationalityField extends StatelessWidget {
         iconData: Icons.flag_outlined,
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de nacionalidades...
-        items: const [
-          'Cuban',
-          'Amarican',
-          'Others',
-        ],
+        items: contactProvider.countryNames,
         hintext: nationality,
         onChanged: (value) =>
             contactProvider.selectedContact!.nationality = value.toString(),

@@ -12,6 +12,8 @@ class ContactProvider extends ChangeNotifier {
   List<Contact> contacts = [];
   Contact? selectedContact;
 
+  List<String> countryNames = [];
+
   String error = "";
 
   List<Contact> foundedContacts = [];
@@ -138,6 +140,29 @@ class ContactProvider extends ChangeNotifier {
       return newContact;
     } else {
       return null;
+    }
+  }
+
+  Future<bool> getCountryName() async {
+    //   List<String> countryName = [];
+
+    var request =
+        http.Request('GET', Uri.parse('https://restcountries.com/v3.1/all'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      String respuesta = await response.stream.bytesToString();
+      final List<dynamic> decodedResp = json.decode(respuesta);
+      for (int i = 0; i < decodedResp.length; i++) {
+        countryNames.add(decodedResp[i]["name"]["common"]);
+      }
+      countryNames.sort((a, b) => a.compareTo(b));
+      //  print(decodedResp[1]["name"]["common"]);
+      return true;
+      //  final Map<String, dynamic> decodedResp = json.decode(response.body);
+    } else {
+      return false;
     }
   }
 

@@ -109,12 +109,38 @@ class _CheckPayBody extends StatelessWidget {
                   child: paymentProvider.iscompleted == false
                       ? Column(
                           children: [
-                            const Text("Procesando el pago"),
-                            SizedBox(
-                              height: size.height * 0.4,
+                            Text(
+                              "Procesando el Pago",
+                              style: TextStyle(fontSize: size.height * 0.04),
                             ),
-                            const Text(
-                                "Sus datos se han recibido de manera satifactoria desea continuar"),
+                            SizedBox(
+                              height: size.height * 0.3,
+                            ),
+                            Container(
+                              height: size.height * 0.2,
+                              width: size.width * 0.95,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 3,
+                                    color: Colors.grey,
+                                    offset: Offset(0, 0),
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.05),
+                                child: Center(
+                                  child: Text(
+                                    "Sus datos se han recibido de manera satifactoria y estamos listos para procesar su pedido esta es la ultima confirmacion precione continuar o cancelar ",
+                                    style: TextStyle(
+                                        fontSize: size.height * 0.025),
+                                  ),
+                                ),
+                              ),
+                            ),
                             SizedBox(
                               height: size.height * 0.3,
                             ),

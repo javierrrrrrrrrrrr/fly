@@ -80,9 +80,6 @@ class CardBody4 extends StatelessWidget {
                 cubanLastName: cubanLastName,
                 contactProvider: contactProvider,
                 flipProvaider: flipProvaider),
-            
-
-
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
               child: const Text(
@@ -108,7 +105,11 @@ class CardBody4 extends StatelessWidget {
             spacenamed == false
                 ? const Separador()
                 : Separador(space: space, texto: "Documentos de Llegada No"),
-            _ArrivalDocNOField(selectedContact: selectedContact, arrivalDocNo: arrivalDocNo, contactProvider: contactProvider, flipProvaider: flipProvaider),
+            _ArrivalDocNOField(
+                selectedContact: selectedContact,
+                arrivalDocNo: arrivalDocNo,
+                contactProvider: contactProvider,
+                flipProvaider: flipProvaider),
             Container(
               height: size.height * 0.03,
             ),
@@ -152,7 +153,7 @@ class _ArrivalDocNOField extends StatelessWidget {
 }
 
 class _ArrivalDocumentsField extends StatelessWidget {
-  const   _ArrivalDocumentsField({
+  const _ArrivalDocumentsField({
     Key? key,
     required this.size,
     required this.arrivalDocs,
@@ -172,9 +173,11 @@ class _ArrivalDocumentsField extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
         items: const [
-          'Document 1',
-          'Document 2',
-          'Document 3',
+          'Pasaporte',
+          'Visa',
+          'Permanent Resident Card',
+          'ID',
+          'Alient Resident Card',
         ],
         hintext: arrivalDocs,
         onChanged: (value) =>
@@ -189,9 +192,11 @@ class _ArrivalDocumentsField extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
         items: const [
-          'Document 1',
-          'Document 2',
-          'Document 3',
+          'Pasaporte',
+          'Visa',
+          'Permanent Resident Card',
+          'ID',
+          'Alient Resident Card',
         ],
         hintext: arrivalDocs,
         onChanged: (value) =>
@@ -223,11 +228,7 @@ class _CountryIssue extends StatelessWidget {
         iconData: Icons.flag_outlined,
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de countrys  here...
-        items: const [
-          'Country 1',
-          'Country 2',
-          'Country 3',
-        ],
+        items: contactProvider.countryNames,
         hintext: arrivalDocs,
         onChanged: (value) =>
             contactProvider.selectedContact!.countryOfIssue = value.toString(),
@@ -240,11 +241,7 @@ class _CountryIssue extends StatelessWidget {
         iconData: Icons.flag_outlined,
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
-        items: const [
-          'Country 1',
-          'Country 2',
-          'Country 3',
-        ],
+        items: contactProvider.countryNames,
         hintext: arrivalDocs,
         onChanged: (value) =>
             contactProvider.selectedContact!.countryOfIssue = value.toString(),

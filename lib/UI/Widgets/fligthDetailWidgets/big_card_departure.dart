@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 
 import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
@@ -33,6 +34,7 @@ class BigCardDeparture extends StatelessWidget {
     final flightProvider = Provider.of<FlightProvider>(context);
     final loginProvider = Provider.of<LoginProvider>(context);
     final flipProvider = Provider.of<FlipProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
 
     final size = MediaQuery.of(context).size;
     return Container(
@@ -247,10 +249,15 @@ class BigCardDeparture extends StatelessWidget {
                   child: SizedBox(
                     width: size.width,
                     child: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         flipProvider.navegarnormal = false;
-                        Navigator.of(context)
-                            .pushReplacementNamed('/create_contat_page');
+                        loadingSpinner(context);
+                        bool respuesta = await contactProvider.getCountryName();
+                        if (respuesta == true) {
+                          Navigator.pop(context);
+                          Navigator.of(context)
+                              .pushReplacementNamed('/create_contat_page');
+                        }
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
