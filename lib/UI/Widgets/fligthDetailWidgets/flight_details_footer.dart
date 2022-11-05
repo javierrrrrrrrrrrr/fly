@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/contact_provider.dart';
 import '../../../Business_logic/Provaiders/flip_provider.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
 import 'separador_horizontal.dart';
@@ -23,6 +24,7 @@ class FlightDetailsFooter extends StatelessWidget {
     final flightProvaider = Provider.of<FlightProvider>(context);
     final loginProvaider = Provider.of<LoginProvider>(context);
     final flipProvaider = Provider.of<FlipProvider>(context);
+    final contactProvider = Provider.of<ContactProvider>(context);
 
     int primervalorfrom = int.parse(flight.checkIn.split(":")[0]);
     final size = MediaQuery.of(context).size;
@@ -63,10 +65,16 @@ class FlightDetailsFooter extends StatelessWidget {
                       context: context,
                       messageBody:
                           'Para obtener un pasaje es necesario agregar al menos un contacto ',
-                      function: () {
+                      function: () async {
                         flipProvaider.navegarnormal = false;
-                        Navigator.of(context)
-                            .pushReplacementNamed('/create_contat_page');
+                        loadingSpinner(context);
+                        bool respuesta = await contactProvider.getCountryName();
+                        if (respuesta == true) {
+                          Navigator.pop(context);
+
+                          Navigator.of(context)
+                              .pushReplacementNamed('/create_contat_page');
+                        }
                       });
                 } else {
                   Navigator.of(context).pushNamed(
