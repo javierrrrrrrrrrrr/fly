@@ -98,7 +98,7 @@ class CardBody4 extends StatelessWidget {
                 ? const Separador()
                 : Separador(space: space, texto: "País en Cuentión"),
             _CountryIssue(
-              arrivalDocs: arrivalDocs,
+              countryIssue: countryIssue,
               size: size,
               selectedContact: selectedContact,
             ),
@@ -212,12 +212,12 @@ class _CountryIssue extends StatelessWidget {
   const _CountryIssue({
     Key? key,
     required this.size,
-    required this.arrivalDocs,
+    required this.countryIssue,
     this.selectedContact,
   }) : super(key: key);
 
   final Size size;
-  final String arrivalDocs;
+  final String countryIssue;
   final Contact? selectedContact;
 
   @override
@@ -229,7 +229,7 @@ class _CountryIssue extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de countrys  here...
         items: contactProvider.countryNames,
-        hintext: arrivalDocs,
+        hintext: countryIssue,
         onChanged: (value) =>
             contactProvider.selectedContact!.countryOfIssue = value.toString(),
         onSaved: (value) =>
@@ -242,7 +242,7 @@ class _CountryIssue extends StatelessWidget {
         contentPadding: EdgeInsets.only(left: size.width * 0.095),
         //TODO: Lenar el dropdownn con la lista de ddocument  here...
         items: contactProvider.countryNames,
-        hintext: arrivalDocs,
+        hintext: countryIssue,
         onChanged: (value) =>
             contactProvider.selectedContact!.countryOfIssue = value.toString(),
         onSaved: (value) =>
