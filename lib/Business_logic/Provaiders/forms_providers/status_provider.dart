@@ -40,6 +40,7 @@ class StatusProvider extends ChangeNotifier {
   }
 
   Future<bool> getInfoStatus(String token) async {
+    payResponseList.clear();
     var headers = {'Authorization': token};
     var request = http.Request('GET', Uri.parse('$kip/payments/getinvoices'));
     request.headers.addAll(headers);

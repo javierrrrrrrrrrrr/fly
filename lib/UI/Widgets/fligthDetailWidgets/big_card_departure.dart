@@ -252,6 +252,7 @@ class BigCardDeparture extends StatelessWidget {
                       onTap: () async {
                         flipProvider.navegarnormal = false;
                         loadingSpinner(context);
+                        flipProvider.flip = 0;
                         bool respuesta = await contactProvider.getCountryName();
                         if (respuesta == true) {
                           Navigator.pop(context);

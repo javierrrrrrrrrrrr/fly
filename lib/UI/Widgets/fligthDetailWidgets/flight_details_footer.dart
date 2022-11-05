@@ -68,6 +68,7 @@ class FlightDetailsFooter extends StatelessWidget {
                       function: () async {
                         flipProvaider.navegarnormal = false;
                         loadingSpinner(context);
+                        flipProvaider.flip = 0;
                         bool respuesta = await contactProvider.getCountryName();
                         if (respuesta == true) {
                           Navigator.pop(context);

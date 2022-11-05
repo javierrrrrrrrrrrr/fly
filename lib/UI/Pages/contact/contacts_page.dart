@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:fly_cliente/Business_logic/Provaiders/flip_provider.dart';
 import '../../../Business_logic/Provaiders/login_provider.dart';
 import '../../../Constants/contants.dart';
 import '../../Widgets/CustomWidget/custom_navbar.dart';
@@ -15,6 +16,7 @@ class ContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //final seacrhProvider = Provider.of<SearchProvider>(context);
     final contactprovider = Provider.of<ContactProvider>(context);
+    final flipProvider = Provider.of<FlipProvider>(context);
     // final loginProvider = Provider.of<LoginProvider>(context);
 
     final size = MediaQuery.of(context).size;
@@ -33,6 +35,7 @@ class ContactsPage extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         loadingSpinner(context);
+                        flipProvider.flip = 0;
                         bool respuesta = await contactprovider.getCountryName();
                         if (respuesta == true) {
                           Navigator.pop(context);
@@ -277,6 +280,7 @@ class _AppBarRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final contactProvider = Provider.of<ContactProvider>(context);
+    final flipProvider = Provider.of<FlipProvider>(context);
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.05, vertical: size.width * 0.05),
@@ -293,6 +297,7 @@ class _AppBarRow extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               loadingSpinner(context);
+              flipProvider.flip = 0;
               bool respuesta = await contactProvider.getCountryName();
               if (respuesta == true) {
                 Navigator.pop(context);
